@@ -11,7 +11,7 @@ module Eligia
     config.generators do |generate|
       generate.assets true
       generate.helper true
-      generate.test_framework :test_unit, fixture: false
+      generate.test_framework :rspec, fixture: false
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0

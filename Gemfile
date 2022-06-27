@@ -33,6 +33,8 @@ gem "redis", "~> 4.0"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
+gem 'rails_admin'
+
 gem 'money-rails'
 
 gem 'stripe'
@@ -84,3 +86,4 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+gem "sassc-rails"

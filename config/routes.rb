@@ -10,10 +10,12 @@ Rails.application.routes.draw do
 
   resources :orders, except: %i[index show] do
     resources :order_accounts, only: %i[new create destroy]
-    resources :order_accounts, except: %i[index destroy]
+    resources :order_documents, except: %i[index destroy]
   end
 
   resources :users, only: :show do
     resources :orders, only: :show
   end
+
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 end

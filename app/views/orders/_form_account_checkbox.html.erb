@@ -1,0 +1,4 @@
+<%= simple_form_for OrderAccount.new do |f_order_account| %>
+  <%= f_order_account.collection_check_boxes :account_id, Account.all, :id, :name %>
+  <%= f_order_account.submit%>
+<% end %>

@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    raise
     @order = Order.new(order_params)
     @order.user = current_user
     return unless @order.save

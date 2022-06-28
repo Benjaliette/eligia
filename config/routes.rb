@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :order_accounts, only: %i[new create destroy]
   resources :orders, except: %i[index show] do
+    resources :order_accounts, only: %i[new create destroy]
     resources :order_documents, except: %i[index destroy]
   end
 

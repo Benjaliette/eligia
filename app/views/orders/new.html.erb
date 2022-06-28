@@ -1,15 +1,1 @@
 <h1>Nouvelle order</h1>
-
-<%= simple_form_for @order do |f_order| %>
-  <%= f_order.input :deceased_first_name %>
-  <%= f_order.input :deceased_last_name %>
-
-
-  <%= simple_form_for OrderAccount.new do |f_order_account| %>
-    <%= f_order_account.input :order_id %>
-    <%= f_order_account.input :account_id %>
-    <%= f_ %>
-  <% end %>
-
-  <%= f_order.submit %>
-<% end %>

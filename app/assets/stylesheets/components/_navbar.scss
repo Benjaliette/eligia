@@ -24,5 +24,9 @@
   .nav-item {
     list-style: none;
     padding: 12px;
+    a {
+      text-decoration: none;
+      color: black;
+    }
   }
 }

@@ -1,1 +1,24 @@
 <h1>Nouvelle order</h1>
+
+<%= simple_form_for @order do |f_order| %>
+  <%= f_order.input :deceased_first_name %>
+  <%= f_order.input :deceased_last_name %>
+
+
+  <% @categories.each do |category| %>
+  <h4> <%= category.name %> </h4>
+
+    <% category.subcategories.each do |subcategory| %>
+      <h6> <%= subcategory.name %> </h6>
+
+      <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
+        <%= f_order_accounts.collection_radio_buttons :account_id, Account.all, :id, :name %>
+      <% end %>
+
+    <% end %>
+
+
+  <% end %>
+
+<%= f_order.submit %>
+<% end %>

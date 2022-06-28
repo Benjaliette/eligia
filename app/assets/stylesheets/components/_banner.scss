@@ -1,0 +1,22 @@
+.banner {
+  padding: 150px 0;
+  h1 {
+    margin: 0;
+    color: black;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-size: 32px;
+    font-weight: bold;
+  }
+  p {
+    margin: 40px 0;
+    font-size: 20px;
+    color: black;
+    opacity: .7;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+}
+
+.second-banner container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}

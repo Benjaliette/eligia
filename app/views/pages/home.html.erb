@@ -1,9 +1,11 @@
 <div class="banner">
-  <h1>Résiliez en 10 minutes tous les abonnements d’un proche disparu</h1>
-  <p>Plus de simplicité pour faciliter le deuil</p>
-  <%= link_to "Commencer", new_order_path, class:"btn-principal" %>
+  <div class="container">
+    <h1>Résiliez en 10 minutes tous les abonnements d’un proche disparu</h1>
+    <p>Plus de simplicité pour faciliter le deuil</p>
+    <%= link_to "Commencer", new_order_path, class:"btn-principal" %>
+  </div>
 </div>
-<div class="second-banner">
+<div class="second-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'background_second_banner.jpg' %>)">
   <div class="container">
     <h2>Les avantages d'Eligia</h2>
     <ul class="second-banner-list-items">

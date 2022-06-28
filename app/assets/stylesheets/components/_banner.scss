@@ -1,0 +1,36 @@
+.banner .container {
+  padding: 150px 0;
+  h1 {
+    margin: 0;
+    color: black;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-size: 32px;
+    font-weight: bold;
+  }
+  p {
+    margin: 40px 0;
+    font-size: 20px;
+    color: black;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+}
+
+.second-banner {
+  padding: 100px 0;
+  height: 70vh;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  .container .second-banner-list-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    .second-banner-list-item {
+      padding: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      list-style-type: square;
+    }
+  }
+}

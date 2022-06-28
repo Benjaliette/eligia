@@ -1,26 +1,25 @@
 <h1>Nouvelle order</h1>
 
 <%= simple_form_for @order do |f_order| %>
-  <%= f_order.input :deceased_first_name %>
-  <%= f_order.input :deceased_last_name %>
+  <%= f_order.input :deceased_first_name, label: 'Prénom du défunt' %>
+  <%= f_order.input :deceased_last_name, label: 'Nom du défunt' %>
 
 
   <% @categories.each do |category| %>
-  <h4> <%= category.name %> </h4>
-
-    <% category.subcategories.each do |subcategory| %>
-      <h6> <%= subcategory.name %> </h6>
-
-      <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
-        <%= f_order_accounts.collection_radio_buttons :account_id, Account.all, :id, :name, {item_wrapper_class:'account_radio_button'} do |b_account| %>
-          <%= b_account.label {b_account.radio_button + content_tag(:span, b_account.text, class:'account_radio_button_text')} %>
-        <% end %>
+  <div class="category">
+    <h4> <%= category.name %> </h4>
+      <% category.subcategories.each do |subcategory| %>
+        <h6> <%= subcategory.name %> </h6>
+        <div class="form-subcategory">
+          <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
+            <%= f_order_accounts.collection_radio_buttons :account_id, Account.all, :id, :name, {item_wrapper_class:'account_radio_button'} do |b_account| %>
+              <%= b_account.label {b_account.radio_button + content_tag(:span, b_account.text, class:'account_radio_button_text')} %>
+            <% end %>
+          <% end %>
+        </div>
       <% end %>
-
     <% end %>
+  </div>
 
-
-  <% end %>
-
-<%= f_order.submit %>
+<%= f_order.submit class:'btn-principal' %>
 <% end %>

@@ -8,9 +8,11 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.user = current_user
-    return unless @order.save
-
-    redirect_to root_path
+    if @order.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private

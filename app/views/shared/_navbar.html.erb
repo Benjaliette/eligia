@@ -1,0 +1,18 @@
+<div class="navbar">
+  <div class="container">
+    <div class="logo">
+      <%= image_tag 'logo.png' %>
+    </div>
+    <ul class="nav-items">
+      <li class="nav-item">Tarifs</li>
+      <li class="nav-item">Nous contacter</li>
+      <li class="nav-item">
+        <% if current_user %>
+          <%= image_tag 'default_user.jpg', class: "avatar" %>
+        <% else %>
+          <%= link_to 'Connexion/Identification', new_user_session_path %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

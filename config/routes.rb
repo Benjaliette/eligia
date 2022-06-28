@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     member do
       get 'recap'
     end
-    resources :order_accounts, only: %i[new create destroy]
     resources :order_documents, except: %i[index destroy]
   end
 

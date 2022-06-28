@@ -1,4 +1,18 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-<%= link_to "Nouvelle order", new_order_path %>
+<div class="banner">
+  <div class="container">
+    <h1>Résiliez en 10 minutes tous les abonnements d’un proche disparu</h1>
+    <p>Plus de simplicité pour faciliter le deuil</p>
+    <%= link_to "Commencer", new_order_path, class:"btn-principal" %>
+  </div>
+</div>
+<div class="second-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'background_second_banner.jpg' %>)">
+  <div class="container">
+    <h2>Les avantages d'Eligia</h2>
+    <ul class="second-banner-list-items">
+      <li class="second-banner-list-item">Premièrement</li>
+      <li class="second-banner-list-item">Deuxièmement</li>
+      <li class="second-banner-list-item">Troisièmement</li>
+      <li class="second-banner-list-item">Dernièrement</li>
+    </ul>
+  </div>
+</div>

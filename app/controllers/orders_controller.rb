@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-
   def new
     @order = Order.new
     @categories = Category.all
@@ -8,7 +7,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.user = current_user
-    if @order.save
+    if @order.save!
       redirect_to root_path
     else
       render :new
@@ -22,7 +21,13 @@ class OrdersController < ApplicationController
       :deceased_first_name,
       :deceased_last_name,
       order_accounts_attributes: [
-        :account_id
+        :id,
+        :account_id,
+        account_attributes: [
+          :_destroy,
+          :name,
+          :category_id
+        ]
       ]
     )
   end

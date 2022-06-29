@@ -5,22 +5,28 @@
   <%= f_order.input :deceased_last_name, label: 'Nom du défunt' %>
 
 
-  <% @categories.each do |category| %>
-  <div class="category">
-    <h4> <%= category.name %> </h4>
-      <% category.subcategories.each do |subcategory| %>
-        <h6> <%= subcategory.name %> </h6>
-        <div class="form-subcategory" data-controller="other-account">
-          <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
-            <%= f_order_accounts.collection_radio_buttons(:account_id, Account.all, :id, :name, {item_wrapper_class:'account-radio-button'}) do |b_account| %>
-              <%= b_account.label {b_account.radio_button(data:{'other-account-target':"radioButtons", action:'click->other-account#radioclicked'}) + content_tag(:span, b_account.text, class:'account-radio-button-text')} %>
+  <% Category.all.each do |category| %>
+    <div class="category">
+      <h4> <%= category.name %> </h4>
+        <% category.subcategories.each do |subcategory| %>
+          <h6> <%= subcategory.name %> </h6>
+          <div class="form-subcategory" data-controller="other-account">
+            <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
+              <% validated_accounts = Account.where(status: 'validated') %>
+              <%= f_order_accounts.collection_radio_buttons(:account_id, validated_accounts, :id, :name, {item_wrapper_class:'account-radio-button'}) do |b_account| %>
+                <%= b_account.label {b_account.radio_button(data:{'other-account-target':"radioButtons", action:'click->other-account#radioclicked'}) + content_tag(:span, b_account.text, class:'account-radio-button-text')} %>
+              <% end %>
+              <%= f_order_accounts.label "autre", class:'account-other-button', data: {action:'click->other-account#otherclicked','other-account-target':"otherButton"} %>
+              <div data-other-account-target='subcategoryDiv' class="display-none">
+                <%= f_order_accounts.simple_fields_for :account, Account.new do |f_account| %>
+                  <%= f_account.input :name %>
+                  <%= f_account.input :category_id, input_html: { value: category.id } %>
+                <% end %>
+              </div>
             <% end %>
-            <%= f_order_accounts.label "autre", class:'account-other-button', data: {action:'click->other-account#otherclicked','other-account-target':"otherButton"} %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-
-<%= f_order.submit class:'btn-principal' %>
+    </div>
+  <%= f_order.submit class:'btn-principal' %>
 <% end %>

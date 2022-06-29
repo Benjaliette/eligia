@@ -1,28 +1,35 @@
 import { Controller } from "@hotwired/stimulus"
 
+let radioCheckNumber = 0;
+let lastclicked;
+
 // Connects to data-controller="other-account"
 export default class extends Controller {
   static targets = ['radioButtons', "otherButton", "subcategoryDiv"]
-  connect() {
-    console.log('connected')
-  }
 
   otherclicked(event) {
-    console.log('other clicked function')
-
     this.radioButtonsTargets.forEach(radioButton => {
-      console.log(radioButton)
       radioButton.checked = false
     });
 
     this.subcategoryDivTarget.classList.toggle('display-none');
+    this.otherButtonTarget.classList.toggle('active');
 
-    event.target.classList.toggle('active')
+    lastclicked = event.target;
   }
 
   radioclicked(event) {
+    radioCheckNumber ++
 
-    console.log('radio clicked function')
-    this.otherButtonTarget.classList.remove('active')
+    this.subcategoryDivTarget.classList.add('display-none');
+    this.otherButtonTarget.classList.remove('active');
+
+    if (radioCheckNumber % 2 === 0 && lastclicked === event.target) {
+      event.target.checked = false
+    } else {
+      event.target.checked = true
+    }
+
+    lastclicked = event.target;
   }
 }

@@ -7,5 +7,5 @@ class Order < ApplicationRecord
             presence: true,
             format: { with: /\A\D+\z/, message: "ne doit contenir que des lettres" }
 
-  accepts_nested_attributes_for :order_accounts
+  accepts_nested_attributes_for :order_accounts, allow_destroy: true
 end

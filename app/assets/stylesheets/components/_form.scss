@@ -10,14 +10,14 @@
   text-align: center;
 }
 
-.account_radio_button{
+.account-radio-button{
 
   input{
     position: absolute;
     transform: scale(0);
   }
 
-  input + .account_radio_button_text{
+  input + .account-radio-button-text{
     text-align: center;
     cursor: pointer;
     width: 100px;
@@ -28,14 +28,34 @@
     display: inline-block;
   }
 
-  .account_radio_button_text:hover{
-    // background-color: $background-green;
+  .account-radio-button-text:hover{
     transform: scale(1.07);
     box-shadow: 0px 0px 4px lightgray;
     transition: all .07s ease;
   }
 
-  input:checked + .account_radio_button_text{
+  input:checked + .account-radio-button-text{
+    background-color: $background-green;
+  }
+}
+
+.account-other-button{
+  text-align: center;
+  cursor: pointer;
+  width: 100px;
+  padding: 10px;
+  margin: 20px;
+  background-color: $light-gray;
+  border-radius: 10px;
+  display: inline-block;
+
+  &:hover{
+    transform: scale(1.07);
+    box-shadow: 0px 0px 4px lightgray;
+    transition: all .07s ease;
+  }
+
+  &.active{
     background-color: $background-green;
   }
 }

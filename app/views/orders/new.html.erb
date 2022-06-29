@@ -12,9 +12,10 @@
         <h6> <%= subcategory.name %> </h6>
         <div class="form-subcategory">
           <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
-            <%= f_order_accounts.collection_radio_buttons :account_id, Account.all, :id, :name, {item_wrapper_class:'account_radio_button'} do |b_account| %>
+            <%= f_order_accounts.collection_radio_buttons(:account_id, Account.all, :id, :name, {item_wrapper_class:'account_radio_button'}) do |b_account| %>
               <%= b_account.label {b_account.radio_button + content_tag(:span, b_account.text, class:'account_radio_button_text')} %>
             <% end %>
+            <%= f_order_accounts.label "autre", class:'test', data: { controller: :hello } %>
           <% end %>
         </div>
       <% end %>

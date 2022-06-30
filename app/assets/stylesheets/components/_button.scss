@@ -5,4 +5,26 @@
   padding: 10px 30px;
   border-radius: 10px;
   font-weight: bold;
+  display: inline-block;
+
+  &:hover{
+    transform: scale(1.04);
+    box-shadow: 0px 0px 2px lightgrey;
+    transition: all ease .07s;
+  }
+}
+
+.btn-second {
+  background-color: $background-green;
+  color: black;
+  text-decoration: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  display: inline-block;
+
+  &:hover{
+    transform: scale(1.04);
+    box-shadow: 0px 0px 2px lightgrey;
+    transition: all ease .07s;
+  }
 }

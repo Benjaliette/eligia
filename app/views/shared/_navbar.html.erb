@@ -1,17 +1,22 @@
-<div class="navbar">
+<div class="navbar" data-controller="navbar-dropdown">
   <div class="container">
     <div class="logo">
-      <%= image_tag 'logo.png' %>
+      <%= link_to root_path do %>
+        <%= image_tag 'eligia-sans-fond-vecto.svg' %>
+      <% end %>
     </div>
     <ul class="nav-items">
       <li class="nav-item">Tarifs</li>
       <li class="nav-item">Nous contacter</li>
-      <li class="nav-item">
+      <li class="nav-item" id="user">
         <% if current_user %>
-          <%= image_tag 'default_user.jpg', class: "avatar" %>
+          <%= image_tag 'default_user.jpg', class: "avatar", data:{action: "click->navbar-dropdown#dropdown"} %>
         <% else %>
           <%= link_to 'Connexion/Identification', new_user_session_path %>
         <% end %>
+        <div class="navbar-dropdown" data-navbar-dropdown-target="dropdowndiv">
+          <%= link_to "Se déconnecter", destroy_user_session_path  %>
+        </div>
       </li>
     </ul>
   </div>

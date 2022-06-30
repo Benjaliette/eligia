@@ -1,0 +1,9 @@
+<h4>Documents à fournir</h4>
+
+<% @order.required_documents.each do |document| %>
+  <%= simple_form_for OrderDocument.new do |f| %>
+    <%= f.input :order_id, input_html: { value: @order.id }, as: :hidden %>
+    <%= f.input :document_id, input_html: { value: document.id }, as: :hidden %>
+    <%= f.input document.name.to_sym, as: :file %>
+  <% end %>
+<% end %>

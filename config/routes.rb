@@ -6,9 +6,10 @@ Rails.application.routes.draw do
     member do
       get 'recap'
       get 'paiement'
+      get 'add_documents'
     end
-    resources :order_documents, except: %i[index destroy]
   end
+  resources :order_documents, only: :create
 
   resources :users, only: :show do
     resources :orders, only: :show

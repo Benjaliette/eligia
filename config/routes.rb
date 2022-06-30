@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount StripeEvent::Engine, at: '/paiement-success'
 end

@@ -14,6 +14,6 @@ Rails.application.routes.draw do
     resources :orders, only: :show
   end
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine, at: '/admin', as: 'rails_admin'
   mount StripeEvent::Engine, at: '/paiement-success'
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_28_124221) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_30_092934) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -97,7 +97,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_124221) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price_cents", default: 0, null: false
+    t.bigint "pack_id"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "checkout_session_id"
+    t.index ["pack_id"], name: "index_orders_on_pack_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "packs", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "price_cents", default: 0, null: false
   end
 
   create_table "subcategories", force: :cascade do |t|
@@ -133,6 +145,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_124221) do
   add_foreign_key "order_accounts", "orders"
   add_foreign_key "order_documents", "documents"
   add_foreign_key "order_documents", "orders"
+  add_foreign_key "orders", "packs"
   add_foreign_key "orders", "users"
   add_foreign_key "subcategories", "categories"
 end

@@ -1,10 +1,10 @@
 # encoding : utf-8
 
-MoneyRails.configure do |config|
+# https://github.com/RubyMoney/money#deprecation
+Money.locale_backend = :currency
 
-  # To set the default currency
-  #
-  # config.default_currency = :usd
+MoneyRails.configure do |config|
+  config.default_currency = :eur
 
   # Set default bank object
   #

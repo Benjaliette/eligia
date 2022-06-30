@@ -3,11 +3,41 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.3"
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.3"
+# Use Autoprefixer to parse CSS and add vendor prefixes to CSS rules
+gem "autoprefixer-rails"
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+# gem "bcrypt", "~> 3.1.7"
+
+# Reduces boot times through caching; required in config/boot.rb
+gem "bootsnap", require: false
+
+# Use cloudinary to store pictures and documents on the cloud
+gem 'cloudinary'
+
+# Used devise to code the users table
+gem "devise"
+
+# Use font-awesome gem to use icons
+gem "font-awesome-sass", "~> 6.1"
+
+# Geocoder is used to store address in users and allow them to have an autocompletion when entering their address
+gem "geocoder"
+
+# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+# gem "image_processing", "~> 1.2"
+
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem "jbuilder"
+
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem "jsbundling-rails"
+
+# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
+# gem "kredis"
+
+# Gem to store a money column into DB (here the orders table)
+gem 'money-rails'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -15,59 +45,51 @@ gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
-# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails"
+# Pundit is a restrcited access to admin for deletion of orders and related tables (order_accounts & order_documents) & to validate accounts
+gem 'pundit'
 
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "~> 7.0.3"
 
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
-
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
+# Gem used to have an admin section and check DB
+gem 'rails_admin'
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
+# Use Sass to process CSS
+gem "sassc-rails"
 
-gem 'rails_admin'
+# Gem simple form is used to builds the forms/nested forms on the website
+gem "simple_form", github: "heartcombo/simple_form"
 
-gem 'money-rails'
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem "sprockets-rails"
 
+# Gem to use Stripe API for paiement
 gem 'stripe'
 
-gem 'cloudinary'
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails"
 
-gem "geocoder"
-
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem "turbo-rails"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
 
-# Use Sass to process CSS
-gem "sassc-rails"
+## ===== GEMS FOR DEVELOPMENT / TEST ===== ##
 
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
-gem 'pundit'
-gem "devise"
-gem "autoprefixer-rails"
-gem "font-awesome-sass", "~> 6.1"
-gem "simple_form", github: "heartcombo/simple_form"
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "dotenv-rails"
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  # Tests are made with Rspec
   gem 'rspec-rails'
 end
+
+
+## ===== GEMS FOR DEVELOPMENT ONLY ===== ##
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
@@ -80,9 +102,12 @@ group :development do
   # gem "spring"
 end
 
-group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
-end
+
+## ===== GEMS FOR TEST ONLY (commented) ===== ##
+
+# group :test do
+#   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+#   gem "capybara"
+#   gem "selenium-webdriver"
+#   gem "webdrivers"
+# end

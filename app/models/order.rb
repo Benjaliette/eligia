@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_accounts
   has_many :order_documents
-  has_one :pack
+  belongs_to :pack
 
   validates :deceased_first_name, :deceased_last_name,
             presence: true,

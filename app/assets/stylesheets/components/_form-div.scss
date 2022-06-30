@@ -1,0 +1,53 @@
+.form-div{
+  text-align: center;
+  background-color: white;
+  box-shadow: 0px 0px 4px lightgray;
+  border-radius: 8px;
+  width:500px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 20px 50px;
+
+  &:hover{
+    transform: scale(1.04);
+    box-shadow: 0px 0px 6px lightgray;
+    transition: all .07s ease;
+  }
+
+  form{
+    margin-top: 50px;
+  }
+
+  .form-inputs{
+    width: 80%;
+    margin: 0px auto 20px auto;
+  }
+
+
+  .form-inputs > .input{
+    margin: 5px auto;
+    width: 100%;
+  }
+
+  .form-inputs > .user_remember_me{
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  #user_remember_me {
+    margin-right: 10px;
+  }
+
+  .input > input{
+    border: solid 1px lightgray;
+    border-radius: 4px;
+    width: 60%;
+    padding: 4px;
+  }
+
+  .form-actions{
+    margin-bottom: 20px;
+  }
+
+}

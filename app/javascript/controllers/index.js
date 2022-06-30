@@ -7,5 +7,8 @@ import { application } from "./application"
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
 
+import NavbarDropdownController from "./navbar_dropdown_controller.js"
+application.register("navbar-dropdown", NavbarDropdownController)
+
 import OtherAccountController from "./other_account_controller.js"
 application.register("other-account", OtherAccountController)

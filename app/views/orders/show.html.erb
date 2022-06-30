@@ -1,3 +1,30 @@
-<h1>Commande n°<%= @order.id %></h1>
+<div class="container">
+  <%= render 'order_creation_steps', step: 2 %>
+  <h3>Dernière étape</h3>
+  <p>
+    Il ne vous reste plus qu'à valider toutes les informations.<br>
+    Ensuite, nous nous occupons du reste.
+  </p>
 
-<%= link_to "Payer", paiement_order_path(@order) %>
+  <div class="main-order-divs">
+    <div class="order-divs">
+      <ul class="order-div-list">
+        <% @order.order_accounts.each do |order_account| %>
+          <li class="order-div-item">
+            <div class="order-div-list-style-type">
+              <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
+            </div>
+            <%= order_account.account.name %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="order-divs">
+      <% @order.order_documents.each do |order_document| %>
+        <li class="order-div-item"><%= order_document %></div>
+      <% end %>
+    </div>
+
+  </div>
+  <%= link_to "Payer", paiement_order_path(@order) %>
+</div>

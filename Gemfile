@@ -69,6 +69,9 @@ gem "sprockets-rails"
 # Gem to use Stripe API for paiement
 gem 'stripe'
 
+# Allow Stripe to tell us whether the paiement is complete
+gem 'stripe_event'
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 

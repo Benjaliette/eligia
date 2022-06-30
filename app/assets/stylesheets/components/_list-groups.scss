@@ -1,0 +1,35 @@
+.order-div-list-style-type {
+  background-color: $background-green;
+  font-weight: bold;
+  margin-right: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-div-item {
+  list-style-type: none;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 50px 0;
+}
+
+.step {
+  color: $background-green;
+}
+
+.current-step {
+  color: $green;
+  font-weight: bold;
+}

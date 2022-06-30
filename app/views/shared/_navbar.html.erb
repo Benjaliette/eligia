@@ -15,7 +15,7 @@
           <%= link_to 'Connexion/Identification', new_user_session_path %>
         <% end %>
         <div class="navbar-dropdown" data-navbar-dropdown-target="dropdowndiv">
-          <%= link_to "Se déconnecter", destroy_user_session_path  %>
+          <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete } %>
         </div>
       </li>
     </ul>

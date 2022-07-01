@@ -1,4 +1,4 @@
 class Category < ApplicationRecord
-  has_many :subcategories
-  has_many :accounts
+  has_many :subcategories, dependent: :destroy
+  has_many :accounts, dependent: :destroy
 end

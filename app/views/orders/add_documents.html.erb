@@ -1,0 +1,20 @@
+<div class="container">
+  <h3>Documents à fournir</h3>
+
+  <% @order.required_documents.each do |document| %>
+    <div class="insert-document">
+      <% if @order.has_this_created?(document) %>
+        <span class="document-created-true"><%= document.name %> : OK</span>
+      <% else %>
+        <%= simple_form_for OrderDocument.new do |f| %>
+          <%= f.input :order_id, input_html: { value: @order.id }, as: :hidden %>
+          <%= f.input :document_id, input_html: { value: document.id }, as: :hidden %>
+          <%= f.input :document_file, as: :file, label: document.name %>
+          <%= f.submit %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= link_to "Suivant", order_path(@order), class:'btn-principal' %>
+</div>

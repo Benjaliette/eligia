@@ -6,6 +6,7 @@
   border-radius: 10px;
   font-weight: bold;
   display: inline-block;
+  cursor: pointer;
 
   &:hover{
     transform: scale(1.04);
@@ -21,6 +22,7 @@
   padding: 10px 30px;
   border-radius: 10px;
   display: inline-block;
+  cursor: pointer;
 
   &:hover{
     transform: scale(1.04);

@@ -7,6 +7,9 @@ import { application } from "./application"
 import ActivateCurrentOrderStepController from "./activate_current_order_step_controller.js"
 application.register("activate-current-order-step", ActivateCurrentOrderStepController)
 
+import DocumentSubmitController from "./document_submit_controller.js"
+application.register("document-submit", DocumentSubmitController)
+
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
 

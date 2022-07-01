@@ -13,15 +13,20 @@ class OrdersController < ApplicationController
     @order.user = current_user
     @order.pack = determine_pack_type(@order.order_accounts)
     @order.amount_cents = @order.pack.price_cents
-    if @order.save!
+    if @order.save
       open_paiement_session(@order)
-      redirect_to order_path(@order)
+      redirect_to add_documents_order_path(@order)
+
     else
       render :new
     end
   end
 
   def paiement
+    @order = Order.find(params[:id])
+  end
+
+  def add_documents
     @order = Order.find(params[:id])
   end
 

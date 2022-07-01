@@ -1,25 +1,31 @@
-<h2>Nouveau dosser</h2>
+<div class="container">
+  <h2>Nouveau dosser</h2>
 
-<!-- ==== FORM TO CREATE A NEW ORDER ==== -->
+  <%= render 'order_creation_steps', step: 0 %>
 
-<%= simple_form_for @order do |f_order| %>
-  <%= f_order.input :deceased_first_name, label: 'Prénom du défunt' %>
-  <%= f_order.input :deceased_last_name, label: 'Nom du défunt' %>
+  <!-- ==== FORM TO CREATE A NEW ORDER ==== -->
 
-  <!-- ==== Sections for type of accounts(categories) ==== -->
-  <% @categories.each do |category| %>
-    <div class="category">
-      <h3><%= category.name %></h3>
-
-      <!-- ==== Sections for subtype of accounts (subcategories) inside categories ==== -->
-      <% category.subcategories.each do |subcategory| %>
-        <h4><%= subcategory.name %></h4>
-
-        <!-- Inside, one nested form (put in partial)-->
-        <!-- => for new order_accounts, ie. accounts to cancel) -->
-        <%= render 'chose_account_form', category: category, f_order: f_order %>
-      <% end %>
+  <%= simple_form_for @order do |f_order| %>
+    <div class="form-name-div">
+      <%= f_order.input :deceased_first_name, label: 'Prénom du défunt', input_html: { class: 'form-name-input' } %>
+      <%= f_order.input :deceased_last_name, label: 'Nom du défunt', input_html: { class: 'form-name-input' } %>
     </div>
+
+    <!-- ==== Sections for type of accounts(categories) ==== -->
+    <% @categories.each do |category| %>
+      <div class="order-divs">
+        <h3><%= category.name %></h3>
+
+        <!-- ==== Sections for subtype of accounts (subcategories) inside categories ==== -->
+        <% category.subcategories.each do |subcategory| %>
+          <h4><%= subcategory.name %></h4>
+
+          <!-- Inside, one nested form (put in partial)-->
+          <!-- => for new order_accounts, ie. accounts to cancel) -->
+          <%= render 'chose_account_form', category: category, f_order: f_order %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= f_order.submit class:'btn-principal' %>
   <% end %>
-  <%= f_order.submit class:'btn-principal' %>
-<% end %>
+</div>

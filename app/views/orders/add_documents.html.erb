@@ -4,9 +4,11 @@
   <%= simple_form_for OrderDocument.new do |f| %>
     <%= f.input :order_id, input_html: { value: @order.id }, as: :hidden %>
     <%= f.input :document_id, input_html: { value: document.id }, as: :hidden %>
-    <%= f.input :document_file, as: :file, label: document.id %>
+    <%= f.input :document_file, as: :file, label: document.name %>
     <%= f.submit %>
   <% end %>
+  <br>
+  <hr>
 <% end %>
 
 <%= link_to "Suivant", order_path(@order), class:'btn-principal' %>

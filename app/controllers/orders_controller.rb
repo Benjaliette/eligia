@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
     if @order.save
       open_paiement_session(@order)
       redirect_to add_documents_order_path(@order)
+
     else
       render :new
     end

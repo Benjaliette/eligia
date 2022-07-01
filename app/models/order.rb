@@ -19,4 +19,20 @@ class Order < ApplicationRecord
     end
     required_documents.flatten.uniq
   end
+
+  def every_document_uploaded?
+    uploads = []
+    self.required_documents.each do |required_document|
+      uploads << self.order_documents.map(&:document_id).include?(required_document.id)
+    end
+    uploads.exclude?(false)
+  end
+
+  def which_document_uploaded?
+    uploads = []
+    self.required_documents.each do |required_document|
+      uploads << [required_document.name, self.order_documents.map(&:document_id).include?(required_document.id)]
+    end
+    uploads
+  end
 end

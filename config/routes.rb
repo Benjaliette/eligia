@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get 'add_documents'
     end
   end
-  resources :order_documents, only: :create
+  resources :order_documents, only: %i[create update]
 
   resources :users, only: :show do
     resources :orders, only: :show

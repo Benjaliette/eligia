@@ -20,8 +20,8 @@
       </ul>
     </div>
     <div class="order-divs">
-      <% @order.order_documents.each do |order_document| %>
-        <li class="order-div-item"><%= order_document %></div>
+      <% @order.required_documents.each do |required_document| %>
+        <li class="order-div-item"><%= required_document.name %> : <%= @order.order_documents.map(&:document_id).include?(required_document.id)? "OK" : "Document manquant!" %></li>
       <% end %>
     </div>
 

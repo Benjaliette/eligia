@@ -20,19 +20,23 @@ class Order < ApplicationRecord
     required_documents.flatten.uniq
   end
 
-  def every_document_uploaded?
-    uploads = []
+  def every_document_created?
+    created = []
     self.required_documents.each do |required_document|
-      uploads << self.order_documents.map(&:document_id).include?(required_document.id)
+      created << self.order_documents.map(&:document_id).include?(required_document.id)
     end
-    uploads.exclude?(false)
+    created.exclude?(false)
   end
 
-  def which_document_uploaded?
-    uploads = []
+  def which_document_created?
+    created = []
     self.required_documents.each do |required_document|
-      uploads << [required_document.name, self.order_documents.map(&:document_id).include?(required_document.id)]
+      created << [required_document.name, self.order_documents.map(&:document_id).include?(required_document.id)]
     end
-    uploads
+    created
+  end
+
+  def has_this_created?(document)
+    self.order_documents.map(&:document_id).include?(document.id)
   end
 end

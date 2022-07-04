@@ -26,5 +26,16 @@
     </div>
 
   </div>
-  <%= link_to "Payer", paiement_order_path(@order), class:'btn-principal' %>
+  <button id="pay" class="btn-principal">Valider et payer</button>
 </div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const paymentButton = document.getElementById('pay');
+  paymentButton.addEventListener('click', () => {
+    const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+    stripe.redirectToCheckout({
+      sessionId: '<%= @order.checkout_session_id %>'
+    });
+  });
+</script>

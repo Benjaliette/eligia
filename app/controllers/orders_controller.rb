@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
-  after_action only: :create do
+  before_action :set_order, only: %i[show paiement add_documents]
+  before_action only: :paiement do
     open_paiement_session(@order)
   end
-  before_action :set_order, only: %i[show paiement add_documents]
 
   def show
   end
@@ -24,9 +24,6 @@ class OrdersController < ApplicationController
     else
       render :new
     end
-  end
-
-  def paiement
   end
 
   def add_documents
@@ -58,7 +55,7 @@ class OrdersController < ApplicationController
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
-        name: order.pack.title,
+        name: "Vous avez choisi la formule #{order.pack.title}",
         amount: order.amount_cents,
         currency: 'eur',
         quantity: 1

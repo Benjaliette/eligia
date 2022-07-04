@@ -10,11 +10,30 @@
   justify-content: center;
 }
 
+.order-div-list-style-type-non-validated {
+  background-color: $orange;
+  font-weight: bold;
+  margin-right: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .order-div-item {
   list-style-type: none;
   margin: 20px 0;
   display: flex;
   align-items: center;
+}
+
+.order-div-item-non-validated {
+  font-size: 12px;
+  color: orange;
+  font-style: italic;
+  margin-left: 10px;
 }
 
 .steps {

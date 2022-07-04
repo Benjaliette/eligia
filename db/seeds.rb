@@ -6,22 +6,21 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-if Rails.env.development?
-  Account.destroy_all
-  AccountDocument.destroy_all
-  Category.destroy_all
-  Document.destroy_all
-  Pack.destroy_all
-  User.destroy_all
-  Subcategory.destroy_all
-end
+# if Rails.env.development?
+#   Account.destroy_all
+#   AccountDocument.destroy_all
+#   Category.destroy_all
+#   Document.destroy_all
+#   Pack.destroy_all
+#   User.destroy_all
+#   Subcategory.destroy_all
+# end
 
 puts "👷🏼 Création des Users"
 User.create(first_name: 'Marc', last_name: 'Delesalle', email: 'marc.delesalle@eligia.fr', password: '123456', admin: 'true')
 User.create(first_name: 'Benjamin', last_name: 'Liet', email: 'benjamin.liet@eligia.fr', password: '123456', admin: 'true')
 User.create(first_name: 'jane', last_name: 'doe', email: 'jane.doe@eligia.fr', password: '123456')
 puts User.count == 3 ? "🟩 Users créées avec succès" : "🟥 Erreur dans la création des Users"
-
 
 puts "👷🏼 Création des catégories"
 Category.create(name: 'Telecom')
@@ -35,26 +34,36 @@ Subcategory.create(name: 'Ligne fixe', category: Category.find_by(name: 'Telecom
 Subcategory.create(name: 'Internet', category: Category.find_by(name: 'Telecom'))
 Subcategory.create(name: 'Journaux', category: Category.find_by(name: 'Media'))
 Subcategory.create(name: 'Télévision', category: Category.find_by(name: 'Media'))
-puts Subcategory.count == 5 ? "🟩 Sous-catégories créées avec succès" : "🟥 Erreur dans la création des sous-catégories"
+Subcategory.create(name: 'Electricite', category: Category.find_by(name: 'Energie'))
+Subcategory.create(name: 'Gaz', category: Category.find_by(name: 'Energie'))
+puts Subcategory.count == 7 ? "🟩 Sous-catégories créées avec succès" : "🟥 Erreur dans la création des sous-catégories"
 
 puts "👷🏼 Création des accounts"
-Account.create(name: 'Free', category: Category.find_by(name: 'Telecom'), status: 'validated')
-Account.create(name: 'Orange', category: Category.find_by(name: 'Telecom'), status: 'validated')
-Account.create(name: 'SFR', category: Category.find_by(name: 'Telecom'), status: 'validated')
-Account.create(name: 'Bouygues', category: Category.find_by(name: 'Telecom'), status: 'validated')
-Account.create(name: 'Le Monde', category: Category.find_by(name: 'Media'), status: 'validated')
-Account.create(name: 'Libération', category: Category.find_by(name: 'Media'), status: 'validated')
-Account.create(name: 'Le Nouvel Obs', category: Category.find_by(name: 'Media'), status: 'validated')
-Account.create(name: 'Le Parisien', category: Category.find_by(name: 'Media'), status: 'validated')
-Account.create(name: 'Sud Ouest', category: Category.find_by(name: 'Media'), status: 'validated')
-Account.create(name: 'Ouest France', category: Category.find_by(name: 'Media'), status: 'validated')
-Account.create(name: "L'Equipe", category: Category.find_by(name: 'Media'), status: 'validated')
-Account.create(name: "Canal +", category: Category.find_by(name: 'Media'), status: 'validated')
-Account.create(name: "BeinSport", category: Category.find_by(name: 'Media'), status: 'validated')
-Account.create(name: "Tele 7 jours", category: Category.find_by(name: 'Media'), status: 'validated')
-Account.create(name: 'EDF', category: Category.find_by(name: 'Energie'), status: 'validated')
-Account.create(name: 'Engie', category: Category.find_by(name: 'Energie'), status: 'validated')
-puts Account.count == 16 ? "🟩 Accounts créées avec succès" : "🟥 Erreur dans la création des accounts"
+Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Ligne mobile'), status: 'validated')
+Account.create(name: 'Orange', subcategory: Subcategory.find_by(name: 'Ligne mobile'), status: 'validated')
+Account.create(name: 'SFR', subcategory: Subcategory.find_by(name: 'Ligne mobile'), status: 'validated')
+Account.create(name: 'Bouygues', subcategory: Subcategory.find_by(name: 'Ligne mobile'), status: 'validated')
+Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Ligne fixe'), status: 'validated')
+Account.create(name: 'Orange', subcategory: Subcategory.find_by(name: 'Ligne fixe'), status: 'validated')
+Account.create(name: 'SFR', subcategory: Subcategory.find_by(name: 'Ligne fixe'), status: 'validated')
+Account.create(name: 'Bouygues', subcategory: Subcategory.find_by(name: 'Ligne fixe'), status: 'validated')
+Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Internet'), status: 'validated')
+Account.create(name: 'Orange', subcategory: Subcategory.find_by(name: 'Internet'), status: 'validated')
+Account.create(name: 'SFR', subcategory: Subcategory.find_by(name: 'Internet'), status: 'validated')
+Account.create(name: 'Bouygues', subcategory: Subcategory.find_by(name: 'Internet'), status: 'validated')
+Account.create(name: 'Le Monde', subcategory: Subcategory.find_by(name: 'Journaux'), status: 'validated')
+Account.create(name: 'Libération', subcategory: Subcategory.find_by(name: 'Journaux'), status: 'validated')
+Account.create(name: 'Le Nouvel Obs', subcategory: Subcategory.find_by(name: 'Journaux'), status: 'validated')
+Account.create(name: 'Le Parisien', subcategory: Subcategory.find_by(name: 'Journaux'), status: 'validated')
+Account.create(name: 'Sud Ouest', subcategory: Subcategory.find_by(name: 'Journaux'), status: 'validated')
+Account.create(name: 'Ouest France', subcategory: Subcategory.find_by(name: 'Journaux'), status: 'validated')
+Account.create(name: "L'Equipe", subcategory: Subcategory.find_by(name: 'Journaux'), status: 'validated')
+Account.create(name: "Canal +", subcategory: Subcategory.find_by(name: 'Télévision'), status: 'validated')
+Account.create(name: "BeinSport", subcategory: Subcategory.find_by(name: 'Télévision'), status: 'validated')
+Account.create(name: "Tele 7 jours", subcategory: Subcategory.find_by(name: 'Télévision'), status: 'validated')
+Account.create(name: 'EDF', subcategory: Subcategory.find_by(name: 'Electricite'), status: 'validated')
+Account.create(name: 'Engie', subcategory: Subcategory.find_by(name: 'Gaz'), status: 'validated')
+puts Account.count == 24 ? "🟩 Accounts créées avec succès" : "🟥 Erreur dans la création des accounts"
 
 puts "👷🏼 Création des documents"
 Document.create(name: 'Certificat de décès', format: 'pdf')

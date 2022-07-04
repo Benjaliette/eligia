@@ -16,7 +16,7 @@
       <%= f_order_accounts.simple_fields_for :account, Account.new do |f_account| %>
         <%= f_account.input :name %>
         <%=
-          f_account.input :category_id, input_html: { value: category.id }, as: :hidden
+          f_account.input :subcategory_id, input_html: { value: subcategory.id }, as: :hidden
           # This hidden field allow us to store the created account in the category
           # where the other button has been clicked
         %>

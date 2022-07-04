@@ -91,4 +91,9 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  # To only allow the expect syntax (i.e. should = not allowed), for homogeneity reasons.
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
 end

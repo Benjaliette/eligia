@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[show paiement add_documents]
+  before_action :set_order, only: %i[show paiement edit update]
   before_action only: :paiement do
     open_paiement_session(@order)
   end
@@ -26,10 +26,27 @@ class OrdersController < ApplicationController
     end
   end
 
-  def add_documents
+  def edit
+    @order_documents = []
+    @order.required_documents.each do |required_document|
+      @order_documents << OrderDocument.create(order: @order, document: required_document)
+    end
+  end
+
+  def update
+    @order.update(order_params)
+    if @order.save
+      redirect_to paiement_order_path(@order)
+    else
+      render :edit
+    end
   end
 
   private
+
+  def set_order
+    @order = Order.find(params[:id])
+  end
 
   def order_params
     params.require(:order).permit(
@@ -43,6 +60,11 @@ class OrdersController < ApplicationController
           :name,
           :category_id
         ]
+      ],
+      order_documents_attributes: [
+        :id,
+        :document_id,
+        :document_file
       ]
     )
   end

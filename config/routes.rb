@@ -4,16 +4,12 @@ Rails.application.routes.draw do
 
   resources :orders, except: :index do
     member do
-      get 'recap'
       get 'paiement'
-      get 'add_documents'
     end
   end
   resources :order_documents, only: :create
 
-  resources :users, only: :show do
-    resources :orders, only: :show
-  end
+  resources :users, only: :show
 
   mount RailsAdmin::Engine, at: '/admin', as: 'rails_admin'
   mount StripeEvent::Engine, at: '/paiement-success'

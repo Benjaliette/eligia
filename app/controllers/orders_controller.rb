@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
-  after_action only: :create do
+  before_action :set_order, only: %i[show paiement add_documents]
+  before_action only: :paiement do
     open_paiement_session(@order)
   end
-  before_action :set_order, only: %i[show paiement add_documents]
 
   def show
   end

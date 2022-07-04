@@ -1,21 +1,21 @@
 class Order < ApplicationRecord
   monetize :amount_cents
 
-  belongs_to :user
-  has_many :order_accounts
-  has_many :order_documents
   belongs_to :pack
+  belongs_to :user
+  has_many :order_accounts, dependent: :destroy
+  has_many :order_documents, dependent: :destroy
 
   validates :deceased_first_name, :deceased_last_name,
             presence: true,
             format: { with: /\A\D+\z/, message: "ne doit contenir que des lettres" }
 
   accepts_nested_attributes_for :order_accounts, allow_destroy: true
+  accepts_nested_attributes_for :order_documents, allow_destroy: true
 
   def required_documents
     # Le but de cette méthode est de lister les documents nécessaires pour une order donnée.
     # --> En sortie on a un array d'instances de documents
-
     required_documents = []
     self.order_accounts.each do |o_a|
       required_documents << o_a.account.account_documents.map(&:document)
@@ -45,5 +45,9 @@ class Order < ApplicationRecord
 
   def has_this_created?(document)
     self.order_documents.map(&:document_id).include?(document.id)
+  end
+
+  def reject_order_document(attributes)
+    attributes[:order][:order_document][:document_file].blank?
   end
 end

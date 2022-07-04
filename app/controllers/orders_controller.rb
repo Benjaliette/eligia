@@ -26,9 +26,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def paiement
-  end
-
   def add_documents
   end
 
@@ -58,7 +55,7 @@ class OrdersController < ApplicationController
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
-        name: order.pack.title,
+        name: "Vous avez choisi la formule #{order.pack.title}",
         amount: order.amount_cents,
         currency: 'eur',
         quantity: 1

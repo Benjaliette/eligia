@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :set_order, only: %i[show paiement edit update]
+
   def show
-    @order = Order.find(params[:id])
   end
 
   def new
@@ -15,7 +16,7 @@ class OrdersController < ApplicationController
     @order.amount_cents = @order.pack.price_cents
     if @order.save
       open_paiement_session(@order)
-      redirect_to add_documents_order_path(@order)
+      redirect_to edit_order_path(@order)
 
     else
       render :new
@@ -23,14 +24,29 @@ class OrdersController < ApplicationController
   end
 
   def paiement
-    @order = Order.find(params[:id])
   end
 
-  def add_documents
-    @order = Order.find(params[:id])
+  def edit
+    @order_documents = []
+    @order.required_documents.each do |required_document|
+      @order_documents << OrderDocument.create(order: @order, document: required_document)
+    end
+  end
+
+  def update
+    @order.update(order_params)
+    if @order.save
+      redirect_to paiement_order_path(@order)
+    else
+      render :edit
+    end
   end
 
   private
+
+  def set_order
+    @order = Order.find(params[:id])
+  end
 
   def order_params
     params.require(:order).permit(
@@ -44,6 +60,11 @@ class OrdersController < ApplicationController
           :name,
           :category_id
         ]
+      ],
+      order_documents_attributes: [
+        :id,
+        :document_id,
+        :document_file
       ]
     )
   end

@@ -6,13 +6,7 @@ Rails.application.routes.draw do
     member do
       get 'recap'
       get 'paiement'
-      get 'add_documents'
     end
-  end
-  resources :order_documents, only: %i[create update]
-
-  resources :users, only: :show do
-    resources :orders, only: :show
   end
 
   mount RailsAdmin::Engine, at: '/admin', as: 'rails_admin'

@@ -78,6 +78,6 @@ class Order < ApplicationRecord
   private
 
   def reject_order_accounts(attributes)
-    attributes['account_id'].blank?
+    attributes['account_id'].blank? && attributes['account_attributes']['name'].blank?
   end
 end

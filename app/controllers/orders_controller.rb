@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[show paiement edit update]
-  before_action only: :paiement do
+  before_action :set_order, only: %i[show edit update]
+  before_action only: :show do
     open_paiement_session(@order)
   end
 
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     @order.amount = @order.pack.price
 
     if @order.save
-      redirect_to add_documents_order_path(@order)
+      redirect_to edit_order_path(@order)
     else
       render :new
     end
@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
   def update
     @order.update(order_params)
     if @order.save
-      redirect_to paiement_order_path(@order)
+      redirect_to order_path(@order)
     else
       render :edit
     end
@@ -58,7 +58,7 @@ class OrdersController < ApplicationController
         account_attributes: [
           :_destroy,
           :name,
-          :category_id
+          :subcategory_id
         ]
       ],
       order_documents_attributes: [
@@ -67,10 +67,6 @@ class OrdersController < ApplicationController
         :document_file
       ]
     )
-  end
-
-  def set_order
-    @order = Order.find(params[:id])
   end
 
   def open_paiement_session(order)

@@ -11,10 +11,18 @@
       <ul class="order-div-list">
         <% @order.order_accounts.each do |order_account| %>
           <li class="order-div-item">
-            <div class="order-div-list-style-type">
-              <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
-            </div>
-            <%= order_account.account.name %>
+            <% if order_account.account.status == "non_validated" %>
+              <div class="order-div-list-style-type-non-validated">
+                <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
+              </div>
+              <div><%= order_account.account.name %></div>
+              <div class="order-div-item-non-validated">A valider</div>
+            <% else %>
+              <div class="order-div-list-style-type">
+                <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
+              </div>
+              <div><%= order_account.account.name %></div>
+            <% end %>
           </li>
         <% end %>
       </ul>
@@ -28,6 +36,7 @@
   </div>
   <button id="pay" class="btn-principal">Valider et payer</button>
 </div>
+
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>

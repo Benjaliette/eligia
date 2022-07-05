@@ -66,6 +66,7 @@
   grid-column-gap: 0px;
   grid-row-gap: 700px;
   padding: 0;
+  margin-bottom: calc(100vh - 160px - #{$footer-height} - 308px);
 
   .home-infos-list-item {
     list-style: none;
@@ -79,4 +80,15 @@
   .first-item { grid-area: 1 / 1 / 2 / 3; }
   .second-item { grid-area: 2 / 2 / 3 / 4; }
   .third-item { grid-area: 3 / 3 / 4 / 5; }
+}
+
+.slide-in {
+  opacity: 0;
+  transition: all .5s;
+  transform: translateY(-30%) scale(0.95);
+}
+
+.slide-in.active {
+  opacity: 1;
+  transform: translateX(0%) scale(1);
 }

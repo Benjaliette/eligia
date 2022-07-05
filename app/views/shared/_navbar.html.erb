@@ -10,7 +10,9 @@
       <li class="nav-item">Nous contacter</li>
       <li class="nav-item" id="user">
         <% if current_user %>
-          <%= image_tag 'default_user.jpg', class: "avatar", data:{action: "click->navbar-dropdown#dropdown"} %>
+          <div class="avatar", data-action="click->navbar-dropdown#dropdown" >
+            <%= current_user.first_name[0].upcase + current_user.last_name[0].upcase %>
+          </div>
         <% else %>
           <%= link_to 'Connexion/Identification', new_user_session_path %>
         <% end %>

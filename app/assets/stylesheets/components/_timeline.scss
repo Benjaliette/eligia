@@ -1,0 +1,59 @@
+.timeline {
+  height: 5px;
+  width: 100%;
+  background: $background-green;
+  position: sticky;
+  top: 80px;
+  margin: 100px 0;
+}
+
+.timeline-checkpoint {
+  background: $background-green;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  position: absolute;
+  top: -6px;
+  transform: rotate(-45deg);
+  font-size: 12px;
+  font-weight: bold;
+  color: $green;
+
+  &:first-child {
+    left: 10%;
+    &::after {
+      margin-left: 25px;
+      content: "1ère semaine";
+      white-space: nowrap;
+    }
+  }
+
+  &:nth-child(2) {
+    left: 40%;
+    &::after {
+      margin-left: 25px;
+      content: "1er mois";
+      white-space: nowrap;
+    }
+  }
+
+  &:last-child {
+    right: 10%;
+    &::after {
+      margin-left: 25px;
+      content: "6 mois";
+      white-space: nowrap;
+    }
+  }
+}
+
+.slide-in {
+  opacity: 0;
+  transition: all .5s;
+  transform: translateY(-30%) scale(0.95);
+}
+
+.slide-in.active {
+  opacity: 1;
+  transform: translateX(0%) scale(1);
+}

@@ -5,16 +5,18 @@
       <% @order_documents.each do |order_document| %>
         <div class="insert-document" data-controller="add-file">
           <%= f.simple_fields_for :order_documents, order_document do |fod| %>
-          <label>
-            <%= order_document.document.name %>
-            <%= fod.input :document_file, label: "Ajouter", as: :file, input_html:{class:'hidden-document-input', :'data-action' => "change->add-file#added", :'data-add-file-target' => 'input'}, label_html:{class:'label-document-input'} %>
-          </label>
-          <div class="file-name" data-add-file-target="fileNameDiv">
+            <span class="document-name"><%= order_document.document.name %></span>
+            <div class="document-btn-and-name">
+              <label>
+                <%= fod.input :document_file, label: "Ajouter", as: :file, input_html:{class:'hidden-document-input', :'data-action' => "change->add-file#added", :'data-add-file-target' => 'input'}, label_html:{class:'label-document-input', :'data-add-file-target' => 'label'} %>
+              </label>
+              <div class="file-name" data-add-file-target="fileNameDiv">
+            </div>
           </div>
           <% end %>
         </div>
       <% end %>
-      <%= f.submit %>
+      <%= f.submit class:'btn-principal'%>
     <% end %>
   </div>
 </div>

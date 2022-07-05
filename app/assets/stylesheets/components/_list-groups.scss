@@ -1,3 +1,5 @@
+// ==== LIST FOR RECAP ==== //
+
 .order-div-list-style-type {
   background-color: $background-green;
   font-weight: bold;
@@ -36,6 +38,8 @@
   margin-left: 10px;
 }
 
+// ==== LIST FOR ORDER CREATION STEPS (PARTIAL) ==== //
+
 .steps {
   display: flex;
   align-items: center;
@@ -51,4 +55,28 @@
 .current-step {
   color: $green;
   font-weight: bold;
+}
+
+// ==== LIST FOR INFOS IN HOMEPAGE ==== //
+
+.home-infos-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 700px;
+  padding: 0;
+
+  .home-infos-list-item {
+    list-style: none;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: white;
+    padding: 20px;
+    position: sticky;
+    top: 160px;
+  }
+  .first-item { grid-area: 1 / 1 / 2 / 3; }
+  .second-item { grid-area: 2 / 2 / 3 / 4; }
+  .third-item { grid-area: 3 / 3 / 4 / 5; }
 }

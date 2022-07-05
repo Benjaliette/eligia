@@ -10,6 +10,9 @@ application.register("activate-current-order-step", ActivateCurrentOrderStepCont
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
 
+import HomeInfosAppearController from "./home_infos_appear_controller.js"
+application.register("home-infos-appear", HomeInfosAppearController)
+
 import NavbarDropdownController from "./navbar_dropdown_controller.js"
 application.register("navbar-dropdown", NavbarDropdownController)
 

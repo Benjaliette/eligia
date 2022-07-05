@@ -24,22 +24,6 @@ class Order < ApplicationRecord
     required_documents.flatten.uniq
   end
 
-  def every_document_attached?
-    # Retourne true si tous les documents nécessaires ont été uploadés
-    self.order_documents.map do |order_document|
-      order_document.document_file.attached?
-    end
-        .uniq == [true]
-  end
-
-  def which_document_attached?
-    # Chaque ligne est un array composé du nom du document et de true/false si il a été créé. ex :
-    # [['Certificat de décès', true], ['Carte identité', false]]
-    self.order_documents.map do |order_document|
-      [order_document.document.name, order_document.document_file.attached?]
-    end
-  end
-
   def determine_pack_type
     case self.order_accounts.size
     when 1..5 then return Pack.find(1)

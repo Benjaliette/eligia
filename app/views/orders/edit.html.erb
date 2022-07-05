@@ -4,7 +4,6 @@
 
     <%= simple_form_for @order do |f| %>
 
-    <%= f.input :deceased_first_name %>
       <% @order_documents.each do |order_document| %>
         <div class="insert-document">
           <%= f.simple_fields_for :order_documents, order_document do |f| %>

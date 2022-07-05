@@ -1,6 +1,8 @@
+$navbar-height:100px;
+
 .navbar {
   background: $background-green;
-  height: 100px;
+  height: $navbar-height;
 
 
   .container {

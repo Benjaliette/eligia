@@ -24,7 +24,7 @@ class Order < ApplicationRecord
     required_documents.flatten.uniq
   end
 
-  def every_document_uploaded?
+  def every_document_created?
     # Retourne true si tous les documents nécessaires ont été uploadés
     created = []
     self.required_documents.each do |required_document|

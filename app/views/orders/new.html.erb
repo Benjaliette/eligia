@@ -1,31 +1,38 @@
 <div class="container">
-  <h2>Nouveau dossier</h2>
 
   <%= render 'order_creation_steps', step: 0 %>
 
   <!-- ==== FORM TO CREATE A NEW ORDER ==== -->
+  <div class="form-order-div">
+    <%= simple_form_for @order do |f_order| %>
+      <div class="form-name-div">
+        <%= f_order.input :deceased_first_name, label: 'Prénom du défunt', input_html: { class: 'form-name-input' } %>
+        <%= f_order.input :deceased_last_name, label: 'Nom du défunt', input_html: { class: 'form-name-input' } %>
+      </div>
 
-  <%= simple_form_for @order do |f_order| %>
-    <div class="form-name-div">
-      <%= f_order.input :deceased_first_name, label: 'Prénom du défunt', input_html: { class: 'form-name-input' } %>
-      <%= f_order.input :deceased_last_name, label: 'Nom du défunt', input_html: { class: 'form-name-input' } %>
-    </div>
+      <!-- ==== Sections for type of accounts(categories) ==== -->
+      <% @categories.each do |category| %>
+        <div class="order-divs">
+          <h3><%= category.name %></h3>
 
-    <!-- ==== Sections for type of accounts(categories) ==== -->
-    <% @categories.each do |category| %>
-      <div class="order-divs">
-        <h3><%= category.name %></h3>
+          <!-- ==== Sections for subtype of accounts (subcategories) inside categories ==== -->
+          <% category.subcategories.each do |subcategory| %>
+            <h4><%= subcategory.name %></h4>
 
-        <!-- ==== Sections for subtype of accounts (subcategories) inside categories ==== -->
-        <% category.subcategories.each do |subcategory| %>
-          <h4><%= subcategory.name %></h4>
-
-          <!-- Inside, one nested form (put in partial)-->
-          <!-- => for new order_accounts, ie. accounts to cancel) -->
-          <%= render 'chose_account_form', category: category, f_order: f_order, subcategory: subcategory %>
+            <!-- Inside, one nested form (put in partial)-->
+            <!-- => for new order_accounts, ie. accounts to cancel) -->
+            <%= render 'chose_account_form', category: category, f_order: f_order, subcategory: subcategory %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="order-btn">
+        <%= button_tag(type: 'submit', class: "learn-more") do %>
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Valider</span>
         <% end %>
       </div>
     <% end %>
-    <%= f_order.submit class:'btn-principal' %>
-  <% end %>
+  </div>
 </div>

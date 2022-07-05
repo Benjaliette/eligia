@@ -112,12 +112,13 @@
 
   .label-document-input{
     @extend .btn-second;
+    background-color: lightgray;
     width: fit-content;
     margin-top: 10px;
   }
 
   .label-document-input-selected{
-    background-color: lightgray;
+    background-color: $background-green;
   }
 
   .document-btn-and-name{

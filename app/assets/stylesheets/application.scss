@@ -32,3 +32,7 @@ a {
     text-decoration: inherit; /* no underline */
   }
 }
+
+.fullscreen{
+  min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
+}

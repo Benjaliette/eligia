@@ -97,29 +97,32 @@
   margin: 20px auto;
 }
 
-.order_order_documents_document_file{
+
+.edit_order{
+
+  .order_order_documents_document_file{
   display: flex;
   flex-direction: column;
-
-  .document-name{
-    margin-bottom: 8px;
-  }
-
-  #order_order_documents_attributes_0_document_file::before{
-    background-color: rebeccapurple;
-    color: red;
-    padding: 20px;
-    margin: 60px;
   }
 
   .hidden-document-input{
+    // Ne pas retirer, c'est pour masquer l'input simple form de base sans le as: :hidden
     display: none;
   }
 
   .label-document-input{
-    background-color: purple;
-    padding: 10px;
-    color: white;
+    @extend .btn-second;
     width: fit-content;
+    margin-top: 10px;
+  }
+
+  .label-document-input-selected{
+    background-color: lightgray;
+  }
+
+  .document-btn-and-name{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }

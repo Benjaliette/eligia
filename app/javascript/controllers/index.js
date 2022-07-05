@@ -21,3 +21,6 @@ application.register("navbar-dropdown", NavbarDropdownController)
 
 import OtherAccountController from "./other_account_controller.js"
 application.register("other-account", OtherAccountController)
+
+import RemoveFooterController from "./remove_footer_controller.js"
+application.register("remove-footer", RemoveFooterController)

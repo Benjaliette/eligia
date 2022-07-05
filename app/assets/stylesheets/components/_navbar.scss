@@ -1,5 +1,9 @@
+$navbar-height:100px;
+
 .navbar {
   background: $background-green;
+  height: $navbar-height;
+
 
   .container {
     display: flex;

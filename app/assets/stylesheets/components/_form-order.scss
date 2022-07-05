@@ -1,3 +1,5 @@
+//////////////// ORDER CREATION
+
 .form-name-div {
   margin-left: 40px;
   margin-bottom: 40px;
@@ -83,5 +85,45 @@
 
   &.active{
     background-color: $background-green;
+  }
+}
+
+
+//////////// ORDER EDIT : ADD DOCUMENTS
+
+.insert-document{
+  box-shadow: 0px 0px 2px lightgray;
+  padding: 20px;
+  margin: 20px auto;
+}
+
+
+.edit_order{
+
+  .order_order_documents_document_file{
+  display: flex;
+  flex-direction: column;
+  }
+
+  .hidden-document-input{
+    // Ne pas retirer, c'est pour masquer l'input simple form de base sans le as: :hidden
+    display: none;
+  }
+
+  .label-document-input{
+    @extend .btn-second;
+    background-color: lightgray;
+    width: fit-content;
+    margin-top: 10px;
+  }
+
+  .label-document-input-selected{
+    background-color: $background-green;
+  }
+
+  .document-btn-and-name{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }

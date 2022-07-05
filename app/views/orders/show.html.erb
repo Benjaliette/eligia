@@ -1,40 +1,42 @@
 <div class="container">
-  <%= render 'order_creation_steps', step: 2 %>
-  <h3>Dernière étape</h3>
-  <p>
-    Il ne vous reste plus qu'à valider toutes les informations.<br>
-    Ensuite, nous nous occupons du reste.
-  </p>
+  <div class="fullscreen">
+    <%= render 'order_creation_steps', step: 2 %>
+    <h3>Dernière étape</h3>
+    <p>
+      Il ne vous reste plus qu'à valider toutes les informations.<br>
+      Ensuite, nous nous occupons du reste.
+    </p>
 
-  <div class="main-order-divs">
-    <div class="order-divs">
-      <ul class="order-div-list">
-        <% @order.order_accounts.each do |order_account| %>
-          <li class="order-div-item">
-            <% if order_account.account.status == "non_validated" %>
-              <div class="order-div-list-style-type-non-validated">
-                <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
-              </div>
-              <div><%= order_account.account.name %></div>
-              <div class="order-div-item-non-validated">A valider</div>
-            <% else %>
-              <div class="order-div-list-style-type">
-                <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
-              </div>
-              <div><%= order_account.account.name %></div>
-            <% end %>
-          </li>
+    <div class="main-order-divs">
+      <div class="order-divs">
+        <ul class="order-div-list">
+          <% @order.order_accounts.each do |order_account| %>
+            <li class="order-div-item">
+              <% if order_account.account.status == "non_validated" %>
+                <div class="order-div-list-style-type-non-validated">
+                  <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
+                </div>
+                <div><%= order_account.account.name %></div>
+                <div class="order-div-item-non-validated">A valider</div>
+              <% else %>
+                <div class="order-div-list-style-type">
+                  <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
+                </div>
+                <div><%= order_account.account.name %></div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="order-divs">
+        <% @order.required_documents.each do |required_document| %>
+          <li class="order-div-item"><%= required_document.name %> : <span class="document-created-<%=@order.has_this_created?(required_document)%>"><%=@order.has_this_created?(required_document)? "OK" : "Document manquant"%></span></li>
         <% end %>
-      </ul>
-    </div>
-    <div class="order-divs">
-      <% @order.required_documents.each do |required_document| %>
-        <li class="order-div-item"><%= required_document.name %> : <span class="document-created-<%=@order.has_this_created?(required_document)%>"><%=@order.has_this_created?(required_document)? "OK" : "Document manquant"%></span></li>
-      <% end %>
-    </div>
+      </div>
 
+    </div>
+    <button id="pay" class="btn-principal">Valider et payer</button>
   </div>
-  <button id="pay" class="btn-principal">Valider et payer</button>
 </div>
 
 

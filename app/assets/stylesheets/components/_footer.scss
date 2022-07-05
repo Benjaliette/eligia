@@ -1,15 +1,32 @@
+$footer-height: 70px;
+
 .footer {
   background: $background-green;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100px;
+  height: $footer-height;
   padding: 0px 50px;
-  margin-top: 50px;
 
   .site-list {
     list-style: none;
     margin: 0;
     font-size: 12px;
+  }
+  .logo{
+    height: 100%;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo img{
+    height: calc(#{$footer-height}*0.8) ;
+    margin: 0px;
+  }
+
+  .logo a{
+    height: calc(#{$footer-height}*0.8) ;
   }
 }

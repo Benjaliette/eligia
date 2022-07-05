@@ -15,9 +15,18 @@ $footer-height: 70px;
   }
   .logo{
     height: 100%;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .logo img{
-    height: 80%;
-  };
+    height: calc(#{$footer-height}*0.8) ;
+    margin: 0px;
+  }
+
+  .logo a{
+    height: calc(#{$footer-height}*0.8) ;
+  }
 }

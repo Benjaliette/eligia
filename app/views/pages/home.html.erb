@@ -2,21 +2,61 @@
   <div class="container">
     <h1>Résiliez en 10 minutes tous les abonnements d'un proche disparu</h1>
     <p>Plus de simplicité pour faciliter le deuil</p>
-    <%= link_to "Commencer", new_order_path, class:"btn-principal" %>
+    <%= link_to "Commencer", new_order_path, class:"btn-second" %>
   </div>
 </div>
 <div class="second-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'background_second_banner.jpg' %>)">
   <div class="container">
     <h2>Les avantages d'Eligia</h2>
     <ul class="second-banner-list-items">
-      <li class="second-banner-list-item">Premièrement</li>
-      <li class="second-banner-list-item">Deuxièmement</li>
-      <li class="second-banner-list-item">Troisièmement</li>
-      <li class="second-banner-list-item">Dernièrement</li>
+      <li class="second-banner-list-item">Démarche faite en quelques minutes : il suffit de nous donner les noms des comptes à résilier et les documents nécessaires</li>
+      <li class="second-banner-list-item">Un forfait attractif : en fonction du nombre de comptes à résilier, nous vous proposons plusieurs tarifs à prix bas</li>
+      <li class="second-banner-list-item">Suivi facile : un tableau personnalisé sur votre compte vous permet de suivre l'avancée des démarches facilement et depuis chez vous</li>
+      <li class="second-banner-list-item">Et enfin : vous n'avez plus rien à faire, nous nous occupons de tout ...</li>
     </ul>
   </div>
 </div>
 <div class="container">
-  <h2>Le parcours classique après un décès</h2>
-  <p style="height: 200px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum fugit ullam perspiciatis aspernatur, temporibus dignissimos. Eos eligendi facilis, facere fugiat soluta possimus natus, quidem et itaque excepturi optio modi pariatur.</p>
+  <div class="home-infos" data-controller="home-infos-appear" data-action="scroll@window->home-infos-appear#transition">
+    <h2>Point information : que faire quand un proche nous a quitté ?</h2>
+    <p>
+      Le décès d'un proche est un des moments les plus douloureux dans la vie d'une personne
+      et nous sommes que très rarement préparé à ce genre d'évènements. Malgré la peine et l'émotion,
+      il faut néanmoins s'occuper de démarches administratives souvent coûteuses et chronophages.
+      Mais quelles sont ces démarches et quand doivent-elles être entreprises.
+    </p>
+    <div class=timeline>
+      <div class="timeline-checkpoint"></div>
+      <div class="timeline-checkpoint"></div>
+      <div class="timeline-checkpoint"></div>
+    </div>
+    <ul class="home-infos-list">
+      <li class="home-infos-list-item first-item slide-in" data-home-infos-appear-target="infoItems">
+        Lors de la <strong>première semaine</strong> suivant le décès, les premières démarches sont à réaliser en priorité.
+        Cela comporte le constat du décès, sa déclaration en mairie afin de pouvoir récupérer l'acte de décès,
+        puis l'organisation des obsèques.
+        Ces démarches sont réalisées par les pompes funèbres qui proposent plusieurs sortes d'accompagnement
+        personnalisés. Pour vous aider dans vos démarches, voici une liste du gouvernement des sociétés de pompes
+        funèbres que vous pouvez contacter : LISTE.
+      </li>
+      <li class="home-infos-list-item second-item slide-in" data-home-infos-appear-target="infoItems">
+        Dans le <strong>premier mois</strong>, vous devez vous occuper des démarches purement administratives. Premièrement, vous
+        devrez vous occuper de la cloturation du compte en banque du défunt avec un document notarial prouvant que vous
+        êtes l'héritier (ne peut être fait que par vous ou votre notaire). Pensez néanmoins à bien noter l'IBAN
+        de votre proche décédé pour les résiliations qui suivront. Les autres comptes à régler ensuite en priorité proviennent
+        des organismes sociaux où le défunt était enregistré, les différentes contrats d'assurance, la bailleur si il/elle
+        était locataire, le service des impôts, le certificat d'immatriculation etc ...
+        Pour ces nombreuses démarches, nous pouvons vous aider et le faire à votre place.
+      </li>
+      <li class="home-infos-list-item third-item slide-in" data-home-infos-appear-target="infoItems">
+        Enfin, vous devrez vous occuper des abonnements restants du défunt. Ces comptes à résilier ne font
+        pas partie des démarches prioritaires (à faire <strong>dans les 6 mois</strong>), pourtant si elles ne sont pas faites
+        dans le premier mois, les contrats perdurent et seront toujours facturés. De ce fait, nous vous conseillons
+        de vous en occuper rapidement : mais ne vous en faites pas, la encore nous pouvons vous décharger de ce poids
+        et le faire à votre place, efficacement et rapidement.
+        Le plus souvent il s'agit d'abonnements à un fournisseurs d'énergie (EDF, Engie ...), à un télécom (Orange, SFR, Bouygues ...),
+        à une chaîne de télévision payante (Canal+, Netflix ...) ou encore à des journaux et/ou magazines.
+      </li>
+    </ul>
+  </div>
 </div>

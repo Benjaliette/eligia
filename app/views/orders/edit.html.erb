@@ -1,16 +1,18 @@
 <div class="container">
-  <h3>ORDER EDIT</h3>
+  <div class="fullscreen">
+    <%= render 'order_creation_steps', step: 1 %>
 
-  <%= simple_form_for @order do |f| %>
+    <%= simple_form_for @order do |f| %>
 
-  <%= f.input :deceased_first_name %>
-    <% @order_documents.each do |order_document| %>
-      <div class="insert-document">
-        <%= f.simple_fields_for :order_documents, order_document do |f| %>
-          <%= f.input :document_file, as: :file, label: order_document.document.name %>
-        <% end %>
-      </div>
+    <%= f.input :deceased_first_name %>
+      <% @order_documents.each do |order_document| %>
+        <div class="insert-document">
+          <%= f.simple_fields_for :order_documents, order_document do |f| %>
+            <%= f.input :document_file, as: :file, label: order_document.document.name %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= f.submit %>
     <% end %>
-    <%= f.submit %>
-  <% end %>
+  </div>
 </div>

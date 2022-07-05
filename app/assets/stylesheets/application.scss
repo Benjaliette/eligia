@@ -13,7 +13,13 @@ body {
   margin: 0;
   background: #f9f2ed;
   font-family: $body-font;
-  color: black;
+  color: $gray;
+}
+
+.body-home {
+  background: asset-url('background-eligia.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 h1, h2, h3, h4 {

@@ -1,16 +1,22 @@
 <div class="container">
-  <h3>ORDER EDIT</h3>
-
-  <%= simple_form_for @order do |f| %>
-
-  <%= f.input :deceased_first_name %>
-    <% @order_documents.each do |order_document| %>
-      <div class="insert-document">
-        <%= f.simple_fields_for :order_documents, order_document do |f| %>
-          <%= f.input :document_file, as: :file, label: order_document.document.name %>
-        <% end %>
-      </div>
+  <div class="fullscreen">
+    <%= render 'order_creation_steps', step: 1 %>
+    <%= simple_form_for @order do |f| %>
+      <% @order_documents.each do |order_document| %>
+        <div class="insert-document" data-controller="add-file">
+          <%= f.simple_fields_for :order_documents, order_document do |fod| %>
+            <span class="document-name"><%= order_document.document.name %></span>
+            <div class="document-btn-and-name">
+              <label>
+                <%= fod.input :document_file, label: "Ajouter", as: :file, input_html:{class:'hidden-document-input', :'data-action' => "change->add-file#added", :'data-add-file-target' => 'input'}, label_html:{class:'label-document-input', :'data-add-file-target' => 'label'} %>
+              </label>
+              <div class="file-name" data-add-file-target="fileNameDiv">
+            </div>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
+      <%= f.submit class:'btn-principal'%>
     <% end %>
-    <%= f.submit %>
-  <% end %>
+  </div>
 </div>

@@ -24,28 +24,20 @@ class Order < ApplicationRecord
     required_documents.flatten.uniq
   end
 
-  def every_document_created?
+  def every_document_attached?
     # Retourne true si tous les documents nécessaires ont été uploadés
-    created = []
-    self.required_documents.each do |required_document|
-      created << self.order_documents.map(&:document_id).include?(required_document.id)
+    self.order_documents.map do |order_document|
+      order_document.document_file.attached?
     end
-    created.uniq == [true]
+        .uniq == [true]
   end
 
-  def which_document_created?
-    # Cette méthode retourne un array d'arrays.
+  def which_document_attached?
     # Chaque ligne est un array composé du nom du document et de true/false si il a été créé. ex :
     # [['Certificat de décès', true], ['Carte identité', false]]
-    created = []
-    self.required_documents.each do |required_document|
-      created << [required_document.name, self.order_documents.map(&:document_id).include?(required_document.id)]
+    self.order_documents.map do |order_document|
+      [order_document.document.name, order_document.document_file.attached?]
     end
-    created
-  end
-
-  def has_this_created?(document)
-    self.order_documents.map(&:document_id).include?(document.id)
   end
 
   def determine_pack_type

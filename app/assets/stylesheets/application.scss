@@ -34,5 +34,5 @@ a {
 }
 
 .fullscreen{
-  min-height: calc(100vh - 100px - 100px);
+  min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
 }

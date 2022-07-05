@@ -29,8 +29,8 @@
         </ul>
       </div>
       <div class="order-divs">
-        <% @order.required_documents.each do |required_document| %>
-          <li class="order-div-item"><%= required_document.name %> : <span class="document-created-<%=@order.has_this_created?(required_document)%>"><%=@order.has_this_created?(required_document)? "OK" : "Document manquant"%></span></li>
+        <% @order.order_documents.each do |order_document| %>
+          <li class="order-div-item"><%= order_document.document.name %> : <span class="document-created-<%= order_document.document_file.attached? %>"><%= order_document.document_file.attached? ? "OK" : "Document manquant"%></span></li>
         <% end %>
       </div>
 

@@ -8,7 +8,7 @@ export default class extends Controller {
     this.infoItemsTargets.forEach((infoItem, i) => {
       const divTop = infoItem.getBoundingClientRect().top
 
-      if (divTop < 200) {
+      if (divTop < 400) {
         infoItem.classList.add('active')
       }
 

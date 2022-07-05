@@ -17,16 +17,17 @@
 
 .second-banner {
   padding: 100px 0;
-  height: 70vh;
+  height: 50vh;
   color: white;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  margin-bottom: 100px;
   .container .second-banner-list-items {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     .second-banner-list-item {
-      padding: 70px;
+      padding: 40px;
       display: flex;
       align-items: center;
       justify-content: center;

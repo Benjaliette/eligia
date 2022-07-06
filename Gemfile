@@ -18,6 +18,9 @@ gem 'cloudinary'
 # Used devise to code the users table
 gem "devise"
 
+# Factorybot : used to generate fixtures for testing
+gem "factory_bot_rails"
+
 # Use font-awesome gem to use icons
 gem "font-awesome-sass", "~> 6.1"
 

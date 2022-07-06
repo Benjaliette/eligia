@@ -10,12 +10,19 @@ FactoryBot.define do
 
   # Category
   factory :category do
-    name { "CategoryName" }
+    name { "categoryName" }
   end
 
   # Subcategory
   factory :subcategory do
     category
     name { "subcategoryName" }
+  end
+
+  # Accounts
+  factory :account do
+    category
+    name { "accountName" }
+    status { "non-validated" }
   end
 end

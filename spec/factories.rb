@@ -12,4 +12,10 @@ FactoryBot.define do
   factory :category do
     name { "CategoryName" }
   end
+
+  # Subcategory
+  factory :subcategory do
+    category
+    name { "subcategoryName" }
+  end
 end

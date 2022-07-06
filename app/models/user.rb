@@ -8,5 +8,5 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name,
             presence: true,
-            format: { with: /\A\D+\z/, message: "ne doit contenir que des lettres" }
+            format: { with: /\A[a-zA-Z]+\z/, message: "ne doit contenir que des lettres" }
 end

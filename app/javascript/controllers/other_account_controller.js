@@ -32,4 +32,12 @@ export default class extends Controller {
 
     lastclicked = event.target;
   }
+
+  buttonText(event) {
+    if (event.key.length === 1) {
+      this.otherButtonTarget.textContent = event.srcElement.value;
+    }
+
+
+  }
 }

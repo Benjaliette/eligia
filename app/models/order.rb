@@ -25,10 +25,10 @@ class Order < ApplicationRecord
 
   def determine_pack_type
     case self.order_accounts.size
-    when 0..5 then return Pack.find(1)
-    when 6..10 then return Pack.find(2)
-    when 10..14 then return Pack.find(3)
-    when 15..20 then return Pack.find(4)
+    when 0..5 then return Pack.where(level: 1).last
+    when 6..10 then return Pack.where(level: 2).last
+    when 10..14 then return Pack.where(level: 3).last
+    when 15..20 then return Pack.where(level: 4).last
     else
       return 'error'
     end

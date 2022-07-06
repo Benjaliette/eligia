@@ -4,9 +4,13 @@
   background: white;
   border-radius: 10px;
   box-shadow: 0px 0px 10px grey;
-  padding: 50px 10px;
+  padding: 50px 30px;
   width: 100%;
   margin-bottom: 50px;
+}
+
+.form-order-infos {
+  margin-bottom: 80px;
 }
 
 .form-name-div {
@@ -36,6 +40,10 @@
 }
 
 .order-divs {
+  h3 {
+    width: fit-content;
+  }
+
   border: solid lightgrey 1px;
   box-shadow: 0px 0px 2px lightgray;
   padding: 5px 20px;
@@ -45,7 +53,7 @@
 }
 
 .form-subcategory{
-  text-align: center;
+  text-align: left;
 }
 
 .account-radio-button{
@@ -57,12 +65,14 @@
 
   input + .account-radio-button-text{
     text-align: center;
+    vertical-align: baseline;
     cursor: pointer;
-    width: 100px;
+    width: 200px;
+    height: 20px;
     padding: 10px;
     margin: 20px;
-    background-color: $light-gray;
-    border-radius: 10px;
+    border: 2px solid $light-green;
+    border-radius: 5px;
     display: inline-block;
   }
 
@@ -73,18 +83,20 @@
   }
 
   input:checked + .account-radio-button-text{
-    background-color: $background-green;
+    background-color: $light-green;
+    border: 2px solid $green;
   }
 }
 
 .account-other-button{
   text-align: center;
   cursor: pointer;
-  width: 100px;
+  width: 200px;
+  height: 20px;
   padding: 10px;
   margin: 20px;
-  background-color: $light-gray;
-  border-radius: 10px;
+  border: 2px solid $light-green;
+  border-radius: 5px;
   display: inline-block;
 
   &:hover{
@@ -94,7 +106,25 @@
   }
 
   &.active{
-    background-color: $background-green;
+    background-color: $light-green;
+    border: 2px solid $green;
+  }
+}
+
+.other-account {
+  margin-top: 30px;
+  margin-left: 21px;
+}
+
+[id^="order_order_accounts_attributes"] {
+  border: 0px solid white;
+  border-bottom: 1px solid $gray;
+  height: 20px;
+  margin-left: 20px;
+  &:focus {
+    outline: none;
+    border: 0px solid white;
+    border-bottom: 1px solid $gray;
   }
 }
 
@@ -110,9 +140,15 @@
 
 .edit_order{
 
+  .document-name {
+    font-weight: bold;
+    margin-bottom: 30px;
+    width: fit-content;
+  }
+
   .order_order_documents_document_file{
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
   }
 
   .hidden-document-input{
@@ -121,19 +157,27 @@
   }
 
   .label-document-input{
-    @extend .btn-second;
-    background-color: lightgray;
+    cursor: pointer;
+    padding: 10px 30px;
+    border: 2px solid $light-green;
+    border-radius: 5px;
     width: fit-content;
     margin-top: 10px;
   }
 
   .label-document-input-selected{
-    background-color: $background-green;
+    background-color: $light-green;
   }
 
   .document-btn-and-name{
+    width: 40%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+  }
+
+  .file-name {
+    font-size: 14px;
+    font-style: italic;
   }
 }

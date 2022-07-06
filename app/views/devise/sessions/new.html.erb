@@ -1,7 +1,6 @@
 <div class="container" data-controller="remove-footer">
-  <h2>Identifiez-vous pour pouvoir continuer</h2>
   <div class="form-div">
-    <h3>S'identifier</h3>
+    <h2>S'identifier</h2>
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
       <div class="form-inputs">
@@ -18,7 +17,7 @@
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, "Connexion", class:"btn-second" %>
+        <%= f.button :submit, "Connexion", class:"btn-principal" %>
       </div>
     <% end %>
 

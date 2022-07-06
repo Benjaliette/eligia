@@ -2,10 +2,15 @@ import { Controller } from "@hotwired/stimulus"
 
 let radioCheckNumber = 0;
 let lastclicked;
+const newWord = [];
 
 // Connects to data-controller="other-account"
 export default class extends Controller {
   static targets = ['radioButtons', "otherButton", "subcategoryDiv"]
+
+  connect() {
+    console.log(this.otherButtonTarget.textContent)
+  }
 
   otherclicked(event) {
     this.radioButtonsTargets.forEach(radioButton => {
@@ -31,5 +36,13 @@ export default class extends Controller {
     }
 
     lastclicked = event.target;
+  }
+
+  buttonText(event) {
+    if (event.key.length === 1) {
+      this.otherButtonTarget.textContent = event.srcElement.value;
+    }
+
+
   }
 }

@@ -6,8 +6,12 @@
       <% end %>
     </div>
     <ul class="nav-items">
-      <li class="nav-item">Tarifs</li>
-      <li class="nav-item">Nous contacter</li>
+      <li class="nav-item">
+        <%= link_to 'Tarifs', price_pages_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Nous contacter', contact_pages_path %>
+      </li>
       <li class="nav-item" id="user">
         <% if current_user %>
           <div class="avatar", data-action="click->navbar-dropdown#dropdown" >

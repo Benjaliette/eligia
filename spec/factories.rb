@@ -10,19 +10,33 @@ FactoryBot.define do
 
   # Category
   factory :category do
-    name { "categoryName" }
+    sequence :name do |n|
+      "categoryName#{n}"
+    end
   end
 
   # Subcategory
   factory :subcategory do
     category
-    name { "subcategoryName" }
+    sequence :name do |n|
+      "subcategoryName#{n}"
+    end
   end
 
   # Accounts
   factory :account do
-    category
-    name { "accountName" }
+    subcategory
+    sequence :name do |n|
+      "accountName#{n}"
+    end
     status { "non-validated" }
+  end
+
+  # Document
+  factory :document do
+    sequence :name do |n|
+      "documentName#{n}"
+    end
+    format { "pdf" }
   end
 end

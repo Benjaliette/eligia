@@ -8,7 +8,7 @@ class Order < ApplicationRecord
 
   validates :deceased_first_name, :deceased_last_name,
             presence: { message: "Veuillez saisir ce champ" },
-            format: { with: /\A\D+\z/, message: "ne doit contenir que des lettres" }
+            format: { with: /\A[a-zA-Z]+\z/, message: "ne doit contenir que des lettres" }
 
   accepts_nested_attributes_for :order_documents, allow_destroy: true
   accepts_nested_attributes_for :order_accounts, allow_destroy: true, reject_if: :reject_order_accounts
@@ -27,7 +27,7 @@ class Order < ApplicationRecord
     case self.order_accounts.size
     when 0..5 then return Pack.where(level: 1).last
     when 6..10 then return Pack.where(level: 2).last
-    when 10..14 then return Pack.where(level: 3).last
+    when 11..14 then return Pack.where(level: 3).last
     when 15..20 then return Pack.where(level: 4).last
     else
       return 'error'

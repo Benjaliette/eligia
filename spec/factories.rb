@@ -55,12 +55,18 @@ FactoryBot.define do
   # Pack
   factory :pack do
     sequence :title do |n|
-      "packName#{n}"
+      "packTitle#{n}"
     end
     price { 100 }
     sequence :level do |n|
-      "level#{n}"
+      n
     end
+  end
+
+  # Order_accounts
+  factory :order_account do
+    order
+    account
   end
 
   # Order

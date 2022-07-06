@@ -7,6 +7,13 @@ Rails.application.routes.draw do
 
   resources :users, only: :show
 
+  resources :pages do
+    collection do
+      get 'price'
+      get 'contact'
+    end
+  end
+
   mount RailsAdmin::Engine, at: '/admin', as: 'rails_admin'
   mount StripeEvent::Engine, at: '/paiement-success'
 end

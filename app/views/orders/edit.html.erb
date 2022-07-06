@@ -1,22 +1,40 @@
 <div class="container">
   <div class="fullscreen">
+
     <%= render 'order_creation_steps', step: 1 %>
-    <%= simple_form_for @order do |f| %>
-      <% @order_documents.each do |order_document| %>
-        <div class="insert-document" data-controller="add-file">
-          <%= f.simple_fields_for :order_documents, order_document do |fod| %>
-            <span class="document-name"><%= order_document.document.name %></span>
-            <div class="document-btn-and-name">
-              <label>
-                <%= fod.input :document_file, label: "Ajouter", as: :file, input_html:{class:'hidden-document-input', :'data-action' => "change->add-file#added", :'data-add-file-target' => 'input'}, label_html:{class:'label-document-input', :'data-add-file-target' => 'label'} %>
-              </label>
-              <div class="file-name" data-add-file-target="fileNameDiv">
+
+    <div class="form-order-div">
+      <div class="form-order-infos">
+        <h2>Deuxième étape</h2>
+        <p>
+          Documents et identifiants à fournir.<br>
+          Les comptes demandés lors de la première étape seront grâce à ces documents.
+        </p>
+      </div>
+      <%= simple_form_for @order do |f| %>
+        <% @order_documents.each do |order_document| %>
+          <div class="insert-document" data-controller="add-file">
+            <%= f.simple_fields_for :order_documents, order_document do |fod| %>
+              <div class="document-name highlight-yellow"><%= order_document.document.name %></div>
+              <div class="document-btn-and-name">
+                <label>
+                  <%= fod.input :document_file, label: "Ajouter", as: :file, input_html:{class:'hidden-document-input', :'data-action' => "change->add-file#added", :'data-add-file-target' => 'input'}, label_html:{class:'label-document-input', :'data-add-file-target' => 'label'} %>
+                </label>
+                <div class="file-name" data-add-file-target="fileNameDiv">
+              </div>
             </div>
+            <% end %>
           </div>
+        <% end %>
+        <div class="order-btn">
+          <%= button_tag(type: 'submit', class: "learn-more") do %>
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">Valider</span>
           <% end %>
         </div>
       <% end %>
-      <%= f.submit class:'btn-principal'%>
-    <% end %>
+    </div>
   </div>
 </div>

@@ -20,6 +20,11 @@ class OrdersController < ApplicationController
     @order.amount = @order.pack.price
 
     if @order.save
+      @order_documents = []
+      @order.required_documents.each do |required_document|
+        @order_documents << OrderDocument.create(order: @order, document: required_document)
+      end
+
       redirect_to edit_order_path(@order)
     else
       render :new
@@ -27,10 +32,7 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @order_documents = []
-    @order.required_documents.each do |required_document|
-      @order_documents << OrderDocument.create(order: @order, document: required_document)
-    end
+    @order_documents = @order.order_documents
   end
 
   def update

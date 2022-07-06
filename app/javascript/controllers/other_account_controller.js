@@ -7,10 +7,6 @@ let lastclicked;
 export default class extends Controller {
   static targets = ['radioButtons', "otherButton", "subcategoryDiv"]
 
-  connect() {
-    console.log(this.otherButtonTarget.textContent)
-  }
-
   otherclicked(event) {
     this.radioButtonsTargets.forEach(radioButton => {
       radioButton.checked = false

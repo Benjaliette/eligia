@@ -14,22 +14,37 @@
 }
 
 .second-banner {
-  padding: 100px 0;
+  padding: 0px 0px 100px 230px;
   height: 50vh;
-  color: white;
-  background-size: cover;
-  background-position: center;
+  margin-right: 20%;
+  margin-bottom: 278px;
+  color: $gray;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), asset-url('banner_marguerite.png');
+  background-size: contain;
+  background-position: left;
   background-repeat: no-repeat;
-  margin-bottom: 100px;
-  .container .second-banner-list-items {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+  h2 {
+    text-align: center;
+    margin: 0 auto 50px auto;
+    width: 220px;
+  }
+
+  .second-banner-list-items {
     .second-banner-list-item {
-      padding: 40px;
+      img {
+        margin-right: 26px;
+      }
+
       display: flex;
       align-items: center;
       justify-content: center;
-      list-style-type: square;
+      list-style: none;
+      margin-bottom: 50px;
     }
+  }
+
+  .second-banner-text {
+    text-align: justify;
   }
 }

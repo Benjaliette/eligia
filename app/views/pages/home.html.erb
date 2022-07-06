@@ -1,24 +1,30 @@
 <div class="banner" data-controller="transparent-navbar">
   <div class="container">
-    <h1>Résiliez en 10 minutes tous les abonnements d'un proche disparu</h1>
+    <h1>Résiliez en 10 minutes tous les<br> abonnements d'un proche disparu</h1>
     <p>Plus de simplicité pour faciliter le deuil</p>
     <%= link_to "Commencer", new_order_path, class:"btn-principal" %>
   </div>
 </div>
-<div class="second-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'background_second_banner_second.jpg' %>)">
-  <div class="container">
-    <h2>Les avantages d'Eligia</h2>
-    <ul class="second-banner-list-items">
-      <li class="second-banner-list-item">Démarche faite en quelques minutes : il suffit de nous donner les noms des comptes à résilier et les documents nécessaires</li>
-      <li class="second-banner-list-item">Un forfait attractif : en fonction du nombre de comptes à résilier, nous vous proposons plusieurs tarifs à prix bas</li>
-      <li class="second-banner-list-item">Suivi facile : un tableau personnalisé sur votre compte vous permet de suivre l'avancée des démarches facilement et depuis chez vous</li>
-      <li class="second-banner-list-item">Et enfin : vous n'avez plus rien à faire, nous nous occupons de tout ...</li>
-    </ul>
-  </div>
+<div class="second-banner">
+  <h2 class="highlight-green">Pourquoi Eligia ?</h2>
+  <ul class="second-banner-list-items">
+    <li class="second-banner-list-item">
+      <%= image_tag 'icon_banner1.png'%>
+      <div class="second-banner-text">Démarche effectuée en <span class="highlight-yellow">quelques minutes</span> : il suffit de renseigner les comptes à résilier et de joindre les documents nécessaires</div>
+    </li>
+    <li class="second-banner-list-item">
+      <%= image_tag 'icon_banner2.png'%>
+      <div class="second-banner-text">Un forfait <span class="highlight-yellow">attractif</span> : en fonction du nombre de comptes à résilier, nous vous proposons plusieurs tarifs attractifs</div>
+    </li>
+    <li class="second-banner-list-item">
+      <%= image_tag 'icon_banner3.png'%>
+      <div class="second-banner-text">Suivi <span class="highlight-yellow">facile</span> : un tableau de bord personnalisé vous permet de suivre facilement l'avancée des démarches depuis chez vous</div>
+    </li>
+  </ul>
 </div>
 <div class="container">
   <div class="home-infos" data-controller="home-infos-appear" data-action="scroll@window->home-infos-appear#transition">
-    <h2>Point information : que faire quand un proche nous a quitté ?</h2>
+    <h2><span class="highlight-green">Point information</span> : que faire quand un proche nous a quitté ?</h2>
     <p>
       Le décès d'un proche est un des moments les plus douloureux dans la vie d'une personne
       et nous sommes que très rarement préparé à ce genre d'évènements. Malgré la peine et l'émotion,

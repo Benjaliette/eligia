@@ -39,4 +39,36 @@ FactoryBot.define do
     end
     format { "pdf" }
   end
+
+  # Account_document
+  factory :account_document do
+    account
+    document
+  end
+
+  # Order_document
+  factory :order_document do
+    order
+    document
+  end
+
+  # Pack
+  factory :pack do
+    sequence :title do |n|
+      "packName#{n}"
+    end
+    price { 100 }
+    sequence :level do |n|
+      "level#{n}"
+    end
+  end
+
+  # Order
+  factory :order do
+    user
+    pack
+    deceased_first_name { "Jane" }
+    deceased_last_name { "Doe" }
+  end
+
 end

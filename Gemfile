@@ -84,6 +84,8 @@ gem "turbo-rails"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
+# Pour les tests systèmes
+gem 'webrick'
 
 ## ===== GEMS FOR DEVELOPMENT / TEST ===== ##
 
@@ -109,11 +111,12 @@ group :development do
 end
 
 
-## ===== GEMS FOR TEST ONLY (commented) ===== ##
+# ## ===== GEMS FOR TEST ONLY (commented) ===== ##
 
-# group :test do
-#   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-#   gem "capybara"
-#   gem "selenium-webdriver"
-#   gem "webdrivers"
-# end
+group :test do
+# #   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "capybara"
+  gem 'capybara-screenshot'
+  gem "selenium-webdriver"
+  gem "webdrivers"
+end

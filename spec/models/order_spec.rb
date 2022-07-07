@@ -70,6 +70,30 @@ RSpec.describe Order, type: :model do
       create_list(:order_account, 4, order: order)
       expect(order.determine_pack_type.title).not_to eq("packTitle4")
     end
+  end
+
+  describe "#required_documents" do
+    it "Should return the 2 appropriate documents in an array" do
+      order = create(:order)
+      sfr = create(:account, name: "sfr")
+      create(:order_account, order: order, account: sfr)
+      create(:account_document, account: sfr, document: create(:document, name: "id"))
+      create(:account_document, account: sfr, document: create(:document, name: "certif"))
+      expect(order.required_documents.sort).to eq([Document.find_by(name: "id"), Document.find_by(name: "certif")].sort)
+    end
+
+    it "Should be able to manage multiple order_accounts" do
+      order = create(:order)
+      sfr = create(:account, name: "sfr")
+      orange = create(:account, name: "orange")
+      create(:order_account, order: order, account: sfr)
+      create(:order_account, order: order, account: orange)
+      create(:account_document, account: sfr, document: create(:document, name: "id"))
+      create(:account_document, account: sfr, document: create(:document, name: "certif"))
+      create(:account_document, account: orange, document: Document.find_by(name: 'id'))
+      create(:account_document, account: orange, document: create(:document, name: "doc3"))
+      expect(order.required_documents.sort).to eq([Document.find_by(name: "id"), Document.find_by(name: "certif"), Document.find_by(name: "doc3")].sort)
+    end
 
   end
 end

@@ -1,4 +1,8 @@
-<div class="alert">
-  <%= flash[:alert] %>
-  <div class="close">+</div>
-</div>
+<% flash.each do |type, msg| %>
+  <div class="flash <%= type %>" data-controller="close-flash" data-close-flash-target='alert'>
+    <div>
+      <%= msg %>
+    </div>
+    <div class="close" data-action="click->close-flash#closePartial">+</div>
+  </div>
+<% end %>

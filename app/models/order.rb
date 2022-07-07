@@ -7,9 +7,8 @@ class Order < ApplicationRecord
   has_many :order_documents, dependent: :destroy
 
   validates :deceased_first_name, :deceased_last_name,
-            presence: true,
-            format: { with: /\A\D+\z/, message: "ne doit contenir que des lettres" }
-
+            presence: { message: "Veuillez saisir ce champ" },
+            format: { with: /\A[a-zA-Z]+\z/, message: "ne doit contenir que des lettres" }
 
   accepts_nested_attributes_for :order_documents, allow_destroy: true
   accepts_nested_attributes_for :order_accounts, allow_destroy: true, reject_if: :reject_order_accounts
@@ -24,12 +23,28 @@ class Order < ApplicationRecord
     required_documents.flatten.uniq
   end
 
+  # def determine_pack_type
+  #   case self.order_accounts.size
+  #   when 0..5 then return Pack.where(level: 1).last
+  #   when 6..10 then return Pack.where(level: 2).last
+  #   when 11..14 then return Pack.where(level: 3).last
+  #   when 15..20 then return Pack.where(level: 4).last
+  #   else
+  #     return 'error'
+  #   end
+  # end
+
+  # def determine_pack_type
+  #   45
+  # end
+
   def determine_pack_type
+    last_id = Pack.last.id
     case self.order_accounts.size
-    when 0..5 then return Pack.find(1)
-    when 6..10 then return Pack.find(2)
-    when 10..14 then return Pack.find(3)
-    when 15..20 then return Pack.find(4)
+    when 0..5 then return Pack.find(last_id - 3)
+    when 6..10 then return Pack.find(last_id - 2)
+    when 11..14 then return Pack.find(last_id - 1)
+    when 15..20 then return Pack.find(last_id)
     else
       return 'error'
     end

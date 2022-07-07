@@ -87,7 +87,8 @@ puts ""
 puts "🟧 AccountDocuments done"
 
 puts "👷🏼 Création des Packs"
-Pack.create(title: 'Basic pack', price_cents: 10_000)
-Pack.create(title: 'Premium pack', price_cents: 15_000)
-Pack.create(title: 'Unlimited pack', price_cents: 20_000)
-puts Pack.count == 3 ? "🟩 Packs créées avec succès" : "🟥 Erreur dans la création des Packs"
+Pack.create(title: 'Basic pack', price: 100, level: 1)
+Pack.create(title: 'Premium pack', price: 150, level: 2)
+Pack.create(title: 'Unlimited pack', price: 200, level: 3)
+Pack.create(title: 'wtf pack', price: 250, level: 4)
+puts Pack.count == 4 ? "🟩 Packs créées avec succès" : "🟥 Erreur dans la création des Packs"

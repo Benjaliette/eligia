@@ -1,11 +1,15 @@
-<div class="navbar" data-controller="navbar-dropdown">
-  <div class="container">
+<div class="navbar"
+     data-controller="navbar-responsivity"
+     data-action="resize@window->navbar-responsivity#toggle">
+  <div class="container"
+       data-controller="navbar-dropdown">
     <div class="logo">
       <%= link_to root_path do %>
         <%= image_tag 'eligia-sans-fond-vecto.svg' %>
       <% end %>
     </div>
-    <ul class="nav-items">
+    <ul class="nav-items"
+        data-navbar-responsivity-target="navitems">
       <li class="nav-item">
         <%= link_to 'Tarifs', price_pages_path %>
       </li>
@@ -25,5 +29,15 @@
         </div>
       </li>
     </ul>
+    <div class="display-none hamburger"
+         data-navbar-responsivity-target="hamburger"
+         data-action="click->navbar-dropdown#toggleDropdown">
+      <i class="fa-solid fa-bars fa-xl"></i>
+      <ul class="toggle-nav-items display-none" data-navbar-dropdown-target="toggleDropdowndiv">
+        <li class="toggle-nav-item">Tarifs</li>
+        <li class="toggle-nav-item">Nous contacter</li>
+        <li class="toggle-nav-item">Mon compte</li>
+      </ul>
+    </div>
   </div>
 </div>

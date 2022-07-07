@@ -10,6 +10,9 @@ application.register("activate-current-order-step", ActivateCurrentOrderStepCont
 import AddFileController from "./add_file_controller.js"
 application.register("add-file", AddFileController)
 
+import CloseFlashController from "./close_flash_controller.js"
+application.register("close-flash", CloseFlashController)
+
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
 
@@ -19,13 +22,14 @@ application.register("home-infos-appear", HomeInfosAppearController)
 import NavbarDropdownController from "./navbar_dropdown_controller.js"
 application.register("navbar-dropdown", NavbarDropdownController)
 
+import NavbarResponsivityController from "./navbar_responsivity_controller.js"
+application.register("navbar-responsivity", NavbarResponsivityController)
+
 import OtherAccountController from "./other_account_controller.js"
 application.register("other-account", OtherAccountController)
-
-
-import TransparentNavbarController from "./transparent_navbar_controller.js"
-application.register("transparent-navbar", TransparentNavbarController)
 
 import RemoveFooterController from "./remove_footer_controller.js"
 application.register("remove-footer", RemoveFooterController)
 
+import TransparentNavbarController from "./transparent_navbar_controller.js"
+application.register("transparent-navbar", TransparentNavbarController)

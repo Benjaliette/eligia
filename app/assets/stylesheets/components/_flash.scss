@@ -1,23 +1,36 @@
-.alert {
-  width: 50%;
-  margin: 20px auto;
-  padding: 30px;
-  position: absolute;
+.flash {
+  width: fit-content;
+  margin: 20px;
+  padding: 12px;
+  position: sticky;
   bottom: 10px;
-  right: 10px;
   border-radius: 5px;
   box-shadow: 0 0 15px 5px #ccc;
-  background: #fff09b;
-  border: 2px solid $yellow;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   .close {
+    margin-left: 20px;
     transform: rotate(45deg);
     font-size: 32px;
     font-weight: 400;
     cursor: pointer;
   }
+}
+
+.alert {
+  background: #fff09b;
+  border: 2px solid $yellow;
+}
+
+.warning {
+  background: #ff9b9b;
+  border: 2px solid red;
+}
+
+.success {
+  background: #b2ff9b;
+  border: 2px solid green;
 }

@@ -5,6 +5,10 @@ if User.count.zero?
 end
 
 RSpec.describe "pages", type: :system do
+  before :example do
+    sign_in User.first
+  end
+
   context "pages#home" do
 
     # See pages#home
@@ -45,9 +49,8 @@ RSpec.describe "pages", type: :system do
 
     it "Can click the link towarts /orders/new" do
       visit "/"
-      sign_in User.first
       click_link(nil, href: '/orders/new')
-      expect(page).to have_text("Premièzzre étape")
+      expect(page).to have_text("Première étape")
     end
   end
 end

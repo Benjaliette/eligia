@@ -29,30 +29,47 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  # describe "#determine_pack_type" do
+  describe "#determine_pack_type" do
 
-  #   it "Should assign pack #1 for 4 OrderAccounts" do
-  #     create_list(:pack, 4)
-  #     default_pack = create(:pack, title: 'Default_pack', price: 2000)
-  #     order = create(:order, pack: default_pack)
-  #     build_stubbed_list(:order_account, 4, order: order)
-  #     expect(order.determine_pack_type).to eq Pack.find_by(title: 'packTitle1')
-  #   end
+    it "Should assign pack #1 for 4 OrderAccounts" do
+      create(:pack, title: 'packTitle1')
+      create(:pack, title: 'packTitle2')
+      create(:pack, title: 'packTitle3')
+      create(:pack, title: 'packTitle4')
+      order = create(:order, pack: Pack.first)
+      create_list(:order_account, 4, order: order)
+      expect(order.determine_pack_type.title).to eq("packTitle1")
+    end
 
-  #   it "Should assign pack #2 for 10 OrderAccounts" do
-  #     create_list(:pack, 4)
-  #     default_pack = create(:pack, title: 'Default_pack', price: 2000)
-  #     order = create(:order, pack: default_pack)
-  #     build_stubbed_list(:order_account, 10, order: order)
-  #     expect(order.determine_pack_type).to eq Pack.find_by(title: 'packTitle2')
-  #   end
+    it "Should not assign pack #2 for 4 OrderAccounts" do
+      create(:pack, title: 'packTitle1')
+      create(:pack, title: 'packTitle2')
+      create(:pack, title: 'packTitle3')
+      create(:pack, title: 'packTitle4')
+      order = create(:order, pack: Pack.first)
+      create_list(:order_account, 4, order: order)
+      expect(order.determine_pack_type.title).not_to eq("packTitle2")
+    end
 
-  #   it "Should assign pack #3 for 11 OrderAccounts" do
-  #     create_list(:pack, 4)
-  #     default_pack = build_stubbed(:pack, title: 'Default_pack', price: 2000)
-  #     order = build_stubbed(:order, pack: default_pack)
-  #     build_stubbed_list(:order_account, 11, order: order)
-  #     expect(order.determine_pack_type).to eq Pack.find_by(title: 'packTitle2')
-  #   end
+    it "Should assign pack #3 for 11 OrderAccounts" do
+      create(:pack, title: 'packTitle1')
+      create(:pack, title: 'packTitle2')
+      create(:pack, title: 'packTitle3')
+      create(:pack, title: 'packTitle4')
+      order = create(:order, pack: Pack.first)
+      create_list(:order_account, 11, order: order)
+      expect(order.determine_pack_type.title).to eq("packTitle3")
+    end
+
+    it "Should not assign pack #4 for 11 OrderAccounts" do
+      create(:pack, title: 'packTitle1')
+      create(:pack, title: 'packTitle2')
+      create(:pack, title: 'packTitle3')
+      create(:pack, title: 'packTitle4')
+      order = create(:order, pack: Pack.first)
+      create_list(:order_account, 4, order: order)
+      expect(order.determine_pack_type.title).not_to eq("packTitle4")
+    end
+
   end
 end

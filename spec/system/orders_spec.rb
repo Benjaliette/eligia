@@ -4,7 +4,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "pages", type: :system do
+RSpec.describe "orders", type: :system do
   before :example do
     sign_in User.first
   end
@@ -21,13 +21,13 @@ RSpec.describe "pages", type: :system do
       create(:pack, title: 'packTitle3')
       create(:pack, title: 'packTitle4')
       create_list(:account, 4, subcategory: create(:subcategory, name: 'Mobile', category: create(:category, name: 'Telecom')), status: 'validated')
-      create(:account_document, account: Account.find_by(name: 'accountName1'), document: create(:document, name:"id"))
-      create(:account_document, account: Account.find_by(name: 'accountName1'), document: create(:document, name:"certificat"))
+      create(:account_document, account: Account.last, document: create(:document, name:"id"))
+      create(:account_document, account: Account.last, document: create(:document, name:"certificat"))
       visit "/orders/new"
-      expect(page).to have_text("accountName1")
+      expect(page).to have_text(Account.last.name)
       fill_in "order[deceased_first_name]", with: "Johnny"
       fill_in "order[deceased_last_name]", with: "Halliday"
-      page.find(class: 'account-radio-button-text', text: 'accountName1').click
+      page.find(class: 'account-radio-button-text', text: Account.last.name).click
       page.find(class: 'learn-more').click
       expect(page).to have_text("Deuxième étape")
     end

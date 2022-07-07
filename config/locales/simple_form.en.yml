@@ -9,7 +9,7 @@ en:
       # When using html, text and mark won't be used.
       # html: '<abbr title="required" class="required">required</abbr>'
     error_notification:
-      default_message: "Inscription impossible, veuillez corriger les problèmes ci-dessous :"
+      default_message: ""
     # Examples
     # labels:
     #   defaults:

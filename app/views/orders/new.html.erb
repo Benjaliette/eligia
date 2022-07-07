@@ -12,9 +12,14 @@
       </p>
     </div>
 
-    <%= simple_form_for @order do |f_order| %>
+    <%= simple_form_for @order, data: { turbo: :false } do |f_order| %>
+      <%= f_order.error_notification %>
+
       <div class="form-name-div">
-        <%= f_order.input :deceased_first_name, label: 'Prénom du défunt', input_html: { class: 'form-name-input' } %>
+        <%= f_order.input :deceased_first_name,
+                          label: 'Prénom du défunt',
+                          input_html: { class: 'form-name-input' },
+                          autofocus: true %>
         <%= f_order.input :deceased_last_name, label: 'Nom du défunt', input_html: { class: 'form-name-input' } %>
       </div>
 

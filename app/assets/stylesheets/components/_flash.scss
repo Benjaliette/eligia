@@ -1,0 +1,23 @@
+.alert {
+  width: 50%;
+  margin: 20px auto;
+  padding: 30px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 5px #ccc;
+  background: #fff09b;
+  border: 2px solid $yellow;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .close {
+    transform: rotate(45deg);
+    font-size: 32px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+}

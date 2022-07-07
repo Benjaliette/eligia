@@ -7,6 +7,9 @@ require_relative './support/factory_bot'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -70,4 +73,6 @@ RSpec.configure do |config|
 
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include Warden::Test::Helpers
+  Capybara::Screenshot.webkit_options = { width: 1440, height: 2000 }
+
 end

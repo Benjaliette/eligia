@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
 
-  resources :orders, except: :index
+  resources :orders, except: :index do
+    member do
+      get 'recap'
+    end
+  end
   resources :order_documents, only: :create
 
   resources :users, only: :show

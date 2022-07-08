@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[show edit update]
+  before_action :set_order, only: %i[show edit update recap]
   before_action only: :show do
     open_paiement_session(@order)
   end
@@ -39,10 +39,13 @@ class OrdersController < ApplicationController
   def update
     @order.update(order_params)
     if @order.save
-      redirect_to order_path(@order)
+      redirect_to recap_order_path(@order)
     else
       render :edit
     end
+  end
+
+  def recap
   end
 
   private

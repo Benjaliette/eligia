@@ -1,12 +1,11 @@
 <div class="container">
   <div class="fullscreen">
-    <h3>Bonjour, <%= current_user.first_name %></h3>
+    <h3 class="no-margin padding-top-three">Bonjour, <%= current_user.first_name %></h3>
     <%= render "shared/dashboard_navigation", order: false %>
     <% @orders.each do |order| %>
       <%= link_to order_path(order) do  %>
         <%= render "order_dashboard_card", order: order %>
       <% end %>
     <% end %>
-
   </div>
 </div>

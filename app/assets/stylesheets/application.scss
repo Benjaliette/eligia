@@ -6,9 +6,13 @@
 // External libraries
 @import "font-awesome";
 
-// Your CSS partials
+// CSS components
 @import "components/index";
+// CSS misc classes
+@import 'components/miscellaneous';
 
+
+// CSS global
 body {
   margin: 0;
   background: #f9f2ed;
@@ -30,12 +34,11 @@ h1, h2, h3, h4 {
   min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
 }
 
-// POUR QUE LES LIENS NE SOIENT PAS BLEUS
 a {
-  color: inherit; /* blue colors for links too */
-  text-decoration: inherit; /* no underline */
+  color: inherit;
+  text-decoration: inherit;
   &:hover {
-    color: inherit; /* blue colors for links too */
-    text-decoration: inherit; /* no underline */
+    color: inherit;
+    text-decoration: inherit;
   }
 }

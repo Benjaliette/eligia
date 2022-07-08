@@ -10,9 +10,6 @@ application.register("add-file", AddFileController)
 import CloseFlashController from "./close_flash_controller.js"
 application.register("close-flash", CloseFlashController)
 
-import DashboardNavigationController from "./dashboard_navigation_controller.js"
-application.register("dashboard-navigation", DashboardNavigationController)
-
 import FooterResponsivityController from "./footer_responsivity_controller.js"
 application.register("footer-responsivity", FooterResponsivityController)
 

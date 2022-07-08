@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import OrderStepController from "./order_step_controller.js"
-application.register("order-step", OrderStepController)
-
 import AddFileController from "./add_file_controller.js"
 application.register("add-file", AddFileController)
 
@@ -27,6 +24,9 @@ application.register("navbar-dropdown", NavbarDropdownController)
 
 import NavbarResponsivityController from "./navbar_responsivity_controller.js"
 application.register("navbar-responsivity", NavbarResponsivityController)
+
+import OrderStepController from "./order_step_controller.js"
+application.register("order-step", OrderStepController)
 
 import OtherAccountController from "./other_account_controller.js"
 application.register("other-account", OtherAccountController)

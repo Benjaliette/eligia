@@ -1,66 +1,10 @@
 <div class="container">
   <div class="fullscreen">
+    <h3 class="no-margin padding-top-three">Dossier de <%= @order.deceased_last_name.upcase %> <%= @order.deceased_first_name %></h3>
+    <%= render "shared/dashboard_navigation", order: @order %>
 
-    <%= render 'order_creation_steps', step: 2 %>
-
-    <div class="form-order-div">
-      <h3>Dernière étape</h3>
-      <p>
-        Il ne vous reste plus qu'à valider toutes les informations.<br>
-        Ensuite, nous nous occupons du reste.
-      </p>
-
-      <div class="main-order-divs">
-        <div class="order-divs">
-          <ul class="order-div-list">
-            <% @order.order_accounts.each do |order_account| %>
-              <li class="order-div-item">
-                <% if order_account.account.status == "non_validated" %>
-                  <div class="order-div-list-style-type-non-validated">
-                    <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
-                  </div>
-                  <div><%= order_account.account.name %></div>
-                  <div class="order-div-item-non-validated">A valider</div>
-                <% else %>
-                  <div class="order-div-list-style-type">
-                    <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
-                  </div>
-                  <div><%= order_account.account.name %></div>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="order-divs">
-          <% @order.order_documents.each do |order_document| %>
-            <li class="order-div-item document">
-              <div><%= order_document.document.name %> :</div>
-              <div class="document-created-<%= order_document.document_file.attached? %>"><%= order_document.document_file.attached? ? " OK" : " Document manquant"%></div>
-            </li>
-          <% end %>
-        </div>
-
-      </div>
-      <div class="order-btn">
-        <%= button_tag(type: 'submit', class: "learn-more", id: 'pay') do %>
-          <span class="circle" aria-hidden="true">
-            <span class="icon arrow"></span>
-          </span>
-          <span class="button-text">Paiement</span>
-        <% end %>
-      </div>
-    </div>
+    <% @order.order_accounts.each do |order_account| %>
+      <%= render "order_account_card", order_account: order_account %>
+    <% end %>
   </div>
 </div>
-
-
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-  const paymentButton = document.getElementById('pay');
-  paymentButton.addEventListener('click', () => {
-    const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
-    stripe.redirectToCheckout({
-      sessionId: '<%= @order.checkout_session_id %>'
-    });
-  });
-</script>

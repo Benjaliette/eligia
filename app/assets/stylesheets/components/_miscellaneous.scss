@@ -1,0 +1,197 @@
+// Les classes qu'on peut être ammenés à ajouter on the fly sur les composants html
+
+.display-none {
+  display: none;
+}
+
+
+// // // // // //  Margins
+
+// No
+.no-margin {
+  margin: 0;
+}
+
+// All around
+.margin-one {
+  margin: $level-one;
+}
+.margin-two {
+  margin: $level-two;
+}
+.margin-three {
+  margin: $level-three;
+}
+.margin-four {
+  margin: $level-four;
+}
+.margin-five {
+  margin: $level-five;
+}
+
+// Top
+.margin-top-one {
+  margin-top: $level-one;
+}
+.margin-top-two {
+  margin-top: $level-two;
+}
+.margin-top-three {
+  margin-top: $level-three;
+}
+.margin-top-four {
+  margin-top: $level-four;
+}
+.margin-top-five {
+  margin-top: $level-five;
+}
+
+// Right
+.margin-right-one {
+  margin-right: $level-one;
+}
+.margin-right-two {
+  margin-right: $level-two;
+}
+.margin-right-three {
+  margin-right: $level-three;
+}
+.margin-right-four {
+  margin-right: $level-four;
+}
+.margin-right-five {
+  margin-right: $level-five;
+}
+
+// Bottom
+.margin-bottom-one {
+  margin-bottom: $level-one;
+}
+.margin-bottom-two {
+  margin-bottom: $level-two;
+}
+.margin-bottom-three {
+  margin-bottom: $level-three;
+}
+.margin-bottom-four {
+  margin-bottom: $level-four;
+}
+.margin-bottom-five {
+  margin-bottom: $level-five;
+}
+
+// Left
+.margin-left-one {
+  margin-left: $level-one;
+}
+.margin-left-two {
+  margin-left: $level-two;
+}
+.margin-left-three {
+  margin-left: $level-three;
+}
+.margin-left-four {
+  margin-left: $level-four;
+}
+.margin-left-five {
+  margin-left: $level-five;
+}
+
+
+// // // // // //  Paddings
+
+// No
+.no-padding {
+  padding: 0;
+}
+
+// All around
+.padding-one {
+  padding: $level-one;
+}
+.padding-two {
+  padding: $level-two;
+}
+.padding-three {
+  padding: $level-three;
+}
+.padding-four {
+  padding: $level-four;
+}
+.padding-five {
+  padding: $level-five;
+}
+
+// Top
+.padding-top-one {
+  padding-top: $level-one;
+}
+.padding-top-two {
+  padding-top: $level-two;
+}
+.padding-top-three {
+  padding-top: $level-three;
+}
+.padding-top-four {
+  padding-top: $level-four;
+}
+.padding-top-five {
+  padding-top: $level-five;
+}
+
+// Right
+.padding-right-one {
+  padding-right: $level-one;
+}
+.padding-right-two {
+  padding-right: $level-two;
+}
+.padding-right-three {
+  padding-right: $level-three;
+}
+.padding-right-four {
+  padding-right: $level-four;
+}
+.padding-right-five {
+  padding-right: $level-five;
+}
+
+// Bottom
+.padding-bottom-one {
+  padding-bottom: $level-one;
+}
+.padding-bottom-two {
+  padding-bottom: $level-two;
+}
+.padding-bottom-three {
+  padding-bottom: $level-three;
+}
+.padding-bottom-four {
+  padding-bottom: $level-four;
+}
+.padding-bottom-five {
+  padding-bottom: $level-five;
+}
+
+// Left
+.padding-left-one {
+  padding-left: $level-one;
+}
+.padding-left-two {
+  padding-left: $level-two;
+}
+.padding-left-three {
+  padding-left: $level-three;
+}
+.padding-left-four {
+  padding-left: $level-four;
+}
+.padding-left-five {
+  padding-left: $level-five;
+}
+
+// // // // // Text
+
+.bold{
+  font-weight: bold;
+}

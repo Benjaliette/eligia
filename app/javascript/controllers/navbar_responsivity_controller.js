@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = [ 'navitems', 'hamburger' ]
   connect() {
     this.toggle()
+    console.log(this.navitemsTarget)
   }
 
   toggle() {

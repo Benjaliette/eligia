@@ -4,8 +4,8 @@
 
 import { application } from "./application"
 
-import ActivateCurrentOrderStepController from "./activate_current_order_step_controller.js"
-application.register("activate-current-order-step", ActivateCurrentOrderStepController)
+import OrderStepController from "./order_step_controller.js"
+application.register("order-step", OrderStepController)
 
 import AddFileController from "./add_file_controller.js"
 application.register("add-file", AddFileController)

@@ -3,7 +3,7 @@
 
     <%= render 'order_creation_steps', step: 2 %>
 
-    <div class="form-order-div">
+        <div class="form-order-div">
       <h3>Dernière étape</h3>
       <p>
         Il ne vous reste plus qu'à valider toutes les informations.<br>
@@ -33,7 +33,10 @@
         </div>
         <div class="order-divs">
           <% @order.order_documents.each do |order_document| %>
-            <li class="order-div-item"><%= order_document.document.name %> : <span class="document-created-<%= order_document.document_file.attached? %>"><%= order_document.document_file.attached? ? "OK" : "Document manquant"%></span></li>
+            <li class="order-div-item document">
+              <div><%= order_document.document.name %> :</div>
+              <div class="document-created-<%= order_document.document_file.attached? %>"><%= order_document.document_file.attached? ? " OK" : " Document manquant"%></div>
+            </li>
           <% end %>
         </div>
 
@@ -47,8 +50,6 @@
         <% end %>
       </div>
     </div>
-  </div>
-</div>
 
 
 <script src="https://js.stripe.com/v3/"></script>

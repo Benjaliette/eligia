@@ -34,9 +34,19 @@
          data-action="click->navbar-dropdown#toggleDropdown">
       <i class="fa-solid fa-bars fa-xl"></i>
       <ul class="toggle-nav-items display-none" data-navbar-dropdown-target="toggleDropdowndiv">
-        <li class="toggle-nav-item">Tarifs</li>
-        <li class="toggle-nav-item">Nous contacter</li>
-        <li class="toggle-nav-item">Mon compte</li>
+        <li class="toggle-nav-item">
+          <%= link_to 'Tarifs', price_pages_path %>
+        </li>
+        <li class="toggle-nav-item">
+          <%= link_to 'Nous contacter', contact_pages_path %>
+        </li>
+        <li class="toggle-nav-item">
+          <% if current_user %>
+            <%= link_to 'Mon compte', user_path(current_user) %>
+          <% else %>
+            <%= link_to 'Connexion', new_user_session_path %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>

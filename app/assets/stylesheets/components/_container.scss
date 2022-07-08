@@ -1,7 +1,6 @@
 .container {
   width: 940px;
   margin: 0 auto;
-  border: solid 1px red;
 }
 
 @media (max-width: 1440px) {
@@ -24,6 +23,6 @@
 
 @media (max-width: 400px) {
   .container {
-    width: 100%;
+    width: 95%;
   }
 }

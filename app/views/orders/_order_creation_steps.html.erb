@@ -1,5 +1,5 @@
-<div class="steps" data-controller="activate-current-order-step" data-activate-current-order-step-id-value=<%= step %>>
-  <h3 class="step" data-activate-current-order-step-target="step">1. Résiliations</h3>
-  <h3 class="step" data-activate-current-order-step-target="step">2. Informations nécessaires</h3>
-  <h3 class="step" data-activate-current-order-step-target="step">3. Validation</h3>
+<div class="steps" data-controller="order-step" data-order-step-id-value=<%= step %> data-action="resize@window->order-step#toggle">
+  <h3 class="step" data-order-step-target="step">1. Résiliations</h3>
+  <h3 class="step" data-order-step-target="step">2. Informations nécessaires</h3>
+  <h3 class="step" data-order-step-target="step">3. Validation</h3>
 </div>

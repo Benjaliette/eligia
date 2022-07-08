@@ -13,6 +13,9 @@ application.register("add-file", AddFileController)
 import CloseFlashController from "./close_flash_controller.js"
 application.register("close-flash", CloseFlashController)
 
+import FooterResponsivityController from "./footer_responsivity_controller.js"
+application.register("footer-responsivity", FooterResponsivityController)
+
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
 

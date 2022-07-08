@@ -9,4 +9,8 @@ export default class extends Controller {
       this.alertTarget.remove();
     }, 5000)
   }
+
+  closePartial() {
+    this.alertTarget.remove()
+  }
 }

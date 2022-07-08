@@ -20,6 +20,18 @@
   }
 }
 
+@media (max-width: 900px) {
+  .flash {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .flash {
+    font-size: 12px;
+  }
+}
+
 .alert {
   background: #fff09b;
   border: 2px solid $yellow;

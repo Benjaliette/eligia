@@ -1,3 +1,5 @@
+// Order-dashboard-card
+
 .order-dashboard-card{
   padding: 10px 50px;
   margin: 10px 0px;
@@ -10,4 +12,17 @@
     box-shadow: 0px 0px 4px lightgrey;
     transition: all ease .07s;
   }
+}
+
+// Order-account-card
+
+.order-account-card{
+  padding: 10px 50px;
+  margin: 10px 0px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 2px lightgrey;
+  border: solid 1px lightgrey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

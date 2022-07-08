@@ -26,8 +26,8 @@ h1, h2, h3, h4 {
   font-family: $headers-font;
 }
 
-.display-none {
-  display: none;
+.fullscreen{
+  min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
 }
 
 // POUR QUE LES LIENS NE SOIENT PAS BLEUS
@@ -38,8 +38,4 @@ a {
     color: inherit; /* blue colors for links too */
     text-decoration: inherit; /* no underline */
   }
-}
-
-.fullscreen{
-  min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
 }

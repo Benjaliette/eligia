@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="fullscreen">
+    <h2 class="no-margin padding-top-three">Bonjour, <%= current_user.first_name %></h2>
+    <p>Vos démarches :</p>
+
+
+    <% @orders.each do |order| %>
+      <%= render "order_dashboard_card", order: order %>
+    <% end %>
+
+  </div>
+</div>

@@ -5,9 +5,8 @@
   border-radius: 10px;
   box-shadow: 0px 0px 10px grey;
   padding: 50px 30px;
-  width: 100%;
+  max-width: 100%;
   margin-bottom: 50px;
-
   .error{
     font-size: 12px;
     color: red;
@@ -30,8 +29,6 @@
   margin-bottom: 40px;
 
   input {
-    // display: flex;
-    // flex-direction: column;
     padding: 0 10px;
   }
   .form-name-input {
@@ -43,7 +40,6 @@
   }
   label {
     font-weight: bold;
-    font-weight: bold;
   }
 }
 
@@ -52,16 +48,16 @@
 }
 
 .order-divs {
-  h3 {
-    width: fit-content;
-  }
-
   border: solid lightgrey 1px;
   box-shadow: 0px 0px 2px lightgray;
   padding: 5px 20px;
   border-radius: 8px;
   margin: 20px;
   width: 90%;
+
+  h3 {
+    width: fit-content;
+  }
 }
 
 .form-subcategory{
@@ -137,6 +133,48 @@
     outline: none;
     border: 0px solid white;
     border-bottom: 1px solid $gray;
+  }
+}
+
+
+@media (max-width: 500px) {
+
+  .form-order-div {
+    text-align: center;
+    padding: 20px 5px;
+  }
+
+  .form-name-div{
+    margin: 10px 5px 25px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    label {
+      font-weight: 400;
+    }
+
+    .form-name-input {
+      width: 200px;
+    }
+  }
+
+  .order-divs {
+    margin: 5px 0;
+    width: 90%;
+  }
+
+  .account-radio-button{
+    input + .account-radio-button-text {
+      width: 90px;
+      font-size: 14px;
+    }
+  }
+
+  .account-other-button{
+    width: 90px;
+    font-size: 14px;
   }
 }
 

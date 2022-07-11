@@ -349,7 +349,6 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  after_commit_everywhere (~> 1.0)
   autoprefixer-rails
   bootsnap
   capybara

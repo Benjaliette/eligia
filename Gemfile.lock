@@ -82,9 +82,6 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    after_commit_everywhere (1.2.2)
-      activerecord (>= 4.2)
-      activesupport
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
     aws_cf_signer (0.1.3)

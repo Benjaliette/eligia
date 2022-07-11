@@ -27,11 +27,11 @@ class OrderAccount < ApplicationRecord
     state :pending, :resiliation_sent, :resiliation_failed, :resiliation_succeded
 
     event :declare_missing do
-      transitions from: :any, to: :documents_missing
+      transitions to: :documents_missing
     end
 
     event :declare_pending do
-      transitions from: :any, to: :pending
+      transitions to: :pending
     end
 
     event :send_resiliation do
@@ -43,7 +43,7 @@ class OrderAccount < ApplicationRecord
     end
 
     event :declare_resiliation_failure do
-      transitions from: :any, to: :resiliation_failed
+      transitions to: :resiliation_failed
     end
   end
 end

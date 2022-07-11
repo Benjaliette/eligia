@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     @order.amount = @order.pack.price
 
     if @order.save
-      @order_accounts = []
+      @order_documents = []
       @order.required_documents.each do |required_document|
         @order_documents << OrderDocument.create(order: @order, document: required_document)
       end
@@ -92,5 +92,10 @@ class OrdersController < ApplicationController
   end
 
   def update_order_account_status(order)
+    order.order_accounts.each do |order_account|
+      if order_account.order_documents.map { |o_d| o_d.document_file.attached? }.uniq == [true]
+        order_account.declare_pending!
+      end
+    end
   end
 end

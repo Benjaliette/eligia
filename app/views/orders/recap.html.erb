@@ -3,7 +3,7 @@
 
     <%= render 'order_creation_steps', step: 2 %>
 
-        <div class="form-order-div">
+    <div class="form-order-div">
       <h3>Dernière étape</h3>
       <p>
         Il ne vous reste plus qu'à valider toutes les informations.<br>
@@ -39,8 +39,8 @@
             </li>
           <% end %>
         </div>
-
       </div>
+
       <div class="order-btn">
         <%= button_tag(type: 'submit', class: "learn-more", id: 'pay') do %>
           <span class="circle" aria-hidden="true">
@@ -50,7 +50,8 @@
         <% end %>
       </div>
     </div>
-
+  </div>
+</div>
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>

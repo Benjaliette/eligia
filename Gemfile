@@ -12,6 +12,9 @@ gem "autoprefixer-rails"
 # Acts As State Machine
 gem 'aasm'
 
+# To persist in DB the aasm statuses
+gem 'after_commit_everywhere', '~> 1.0'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+
   root to: "pages#home"
 
   resources :orders, except: :index do
@@ -7,9 +8,10 @@ Rails.application.routes.draw do
       get 'recap'
     end
   end
+  get '/orders/', to: 'orders#new'
   resources :order_documents, only: :create
 
-  resources :users, only: :show
+  resources :users, only: [:show, :index]
 
   resources :pages do
     collection do

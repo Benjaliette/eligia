@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     @order.amount = @order.pack.price
 
     if @order.save
-      @order_documents = []
+      @order_accounts = []
       @order.required_documents.each do |required_document|
         @order_documents << OrderDocument.create(order: @order, document: required_document)
       end
@@ -39,6 +39,7 @@ class OrdersController < ApplicationController
   def update
     @order.update(order_params)
     if @order.save
+      update_order_account_status(@order)
       redirect_to recap_order_path(@order)
     else
       render :edit
@@ -88,5 +89,8 @@ class OrdersController < ApplicationController
       cancel_url: order_url(order)
     )
     order.update(checkout_session_id: session.id)
+  end
+
+  def update_order_account_status(order)
   end
 end

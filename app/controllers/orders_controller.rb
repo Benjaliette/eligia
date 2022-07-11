@@ -93,9 +93,7 @@ class OrdersController < ApplicationController
 
   def update_order_account_status(order)
     order.order_accounts.each do |order_account|
-      if order_account.order_documents.map { |o_d| o_d.document_file.attached? }.uniq == [true]
-        order_account.declare_pending!
-      end
+      order_account.declare_pending! if order_account.order_documents.all? { |o_d| o_d.document_file.attached? }
     end
   end
 end

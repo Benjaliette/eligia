@@ -1,0 +1,11 @@
+<div class="container margin-top-three padding-three" data-controller="remove-footer">
+  <% session = Stripe::Checkout::Session.retrieve(params[:session_id]) %>
+  <% @customer = Stripe::Customer.retrieve(session.customer) %>
+
+  <h3 class="color-green">Merci <%= @customer.name %> pour votre commande</h3>
+
+  <p>Un mail de confirmation vous a été envoyé à <%= @customer.email %></p>
+
+  <p>Pour voir le détail de votre commande, allez sur <%= link_to "mon compte", user_path(current_user), class: 'bold-link' %></p>
+  <p>Pour retourner à la page d'accueil, <%= link_to "cliquez ici", root_path, class: 'bold-link' %></p>
+</div>

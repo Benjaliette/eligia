@@ -51,6 +51,9 @@ class OrdersController < ApplicationController
   def recap
   end
 
+  def success
+  end
+
   private
 
   def set_order
@@ -87,7 +90,7 @@ class OrdersController < ApplicationController
         currency: 'eur',
         quantity: 1
       }],
-      success_url: order_url(order),
+      success_url: user_url(order.user),
       cancel_url: order_url(order)
     )
     order.update(checkout_session_id: session.id)

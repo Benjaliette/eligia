@@ -17,9 +17,18 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    redirect_path = root_path
+    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+    flash[:warning] = "Vous n'êtes plus connecté" if signed_out
+
+    # We actually need to hardcode this as Rails default responder doesn't
+    # support returning empty response on GET request
+    respond_to do |format|
+      format.all { head :no_content }
+      format.any(*navigational_formats) { redirect_to redirect_path }
+    end
+  end
 
   # protected
 

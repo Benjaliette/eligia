@@ -4,6 +4,9 @@ class OrdersController < ApplicationController
     open_paiement_session(@order)
   end
 
+  def index
+  end
+
   def show
   end
 

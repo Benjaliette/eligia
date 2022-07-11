@@ -11,9 +11,10 @@ class OrderAccount < ApplicationRecord
     attributes['name'].blank?
   end
 
-  # State Machine
+  # # State Machine
   aasm do
-    state :documents_missing, :pending, :sent, :failed, :succeded
+    state :documents_missing, initial: true
+    state :pending, :resiliation_sent, :failed, :succeded
 
     event :declare_missing do
       transitions from: :any, to: :documents_missing
@@ -23,12 +24,12 @@ class OrderAccount < ApplicationRecord
       transitions from: :any, to: :pending
     end
 
-    event :send do
-      transitions from: :pending, to: :sent
+    event :resiliate do
+      transitions from: :pending, to: :resiliation_sent
     end
 
     event :declare_success do
-      transitions from: :sent, to: :succeded
+      transitions from: :resiliation_sent, to: :succeded
     end
 
     event :declare_failure do

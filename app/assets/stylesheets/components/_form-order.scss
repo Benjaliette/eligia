@@ -32,6 +32,8 @@
     padding: 0 10px;
   }
   .form-name-input {
+    // position: absolute;
+    // left: 300px;
     margin: 10px 0 20px 20px;
     height: 30px;
     width: 300px;
@@ -39,7 +41,9 @@
     border: 1px solid $green;
   }
   label {
+    display: inline-block;
     font-weight: bold;
+    width: 175px;
   }
 }
 
@@ -75,7 +79,7 @@
     text-align: center;
     vertical-align: baseline;
     cursor: pointer;
-    width: 200px;
+    width: 180px;
     height: 20px;
     padding: 10px;
     margin: 20px;
@@ -99,7 +103,7 @@
 .account-other-button{
   text-align: center;
   cursor: pointer;
-  width: 200px;
+  width: 180px;
   height: 20px;
   padding: 10px;
   margin: 20px;

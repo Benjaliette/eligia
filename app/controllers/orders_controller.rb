@@ -4,6 +4,16 @@ class OrdersController < ApplicationController
     open_paiement_session(@order)
   end
 
+  def index
+    @order = Order.new
+    @categories = Category.all
+    render(
+      html: "<script>confirm(`Vous vous apprêtez à effacer tout ce que vous aviez fait jusqu'à présent,
+       voulez-vous quand même continuer ?`)</script>".html_safe,
+      action: 'new'
+    )
+  end
+
   def show
   end
 

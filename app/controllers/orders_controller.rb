@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[show edit update recap]
-  before_action only: :show do
+  before_action only: :recap do
     open_paiement_session(@order)
   end
 
@@ -53,6 +53,8 @@ class OrdersController < ApplicationController
   end
 
   def success
+    session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    @customer = Stripe::Customer.retrieve(session.customer)
   end
 
   private
@@ -91,7 +93,7 @@ class OrdersController < ApplicationController
         currency: 'eur',
         quantity: 1
       }],
-      success_url: user_url(order.user),
+      success_url: "#{success_order_url(order)}?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: order_url(order)
     )
     order.update(checkout_session_id: session.id)

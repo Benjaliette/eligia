@@ -195,3 +195,15 @@
 .bold{
   font-weight: bold;
 }
+
+.color-green {
+  color: $green;
+}
+
+.bold-link {
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

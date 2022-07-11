@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'recap'
     end
   end
+  get '/orders/', to: 'orders#new'
   resources :order_documents, only: :create
 
   resources :users, only: :show

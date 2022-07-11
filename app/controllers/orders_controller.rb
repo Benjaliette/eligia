@@ -42,6 +42,7 @@ class OrdersController < ApplicationController
   def update
     @order.update(order_params)
     if @order.save
+      update_order_account_status(@order)
       redirect_to recap_order_path(@order)
     else
       render :edit
@@ -94,5 +95,11 @@ class OrdersController < ApplicationController
       cancel_url: order_url(order)
     )
     order.update(checkout_session_id: session.id)
+  end
+
+  def update_order_account_status(order)
+    order.order_accounts.each do |order_account|
+      order_account.declare_pending! if order_account.order_documents.all? { |o_d| o_d.document_file.attached? }
+    end
   end
 end

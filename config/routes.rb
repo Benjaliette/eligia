@@ -19,9 +19,10 @@ Rails.application.routes.draw do
   resources :pages do
     collection do
       get 'price'
-      get 'contact'
     end
   end
+
+  resources :messages, only: %i[new create], path: 'contact'
 
   mount RailsAdmin::Engine, at: '/admin', as: 'rails_admin'
   mount StripeEvent::Engine, at: '/paiement-success'

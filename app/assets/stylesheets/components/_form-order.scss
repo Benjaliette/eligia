@@ -40,10 +40,28 @@
     border-radius: 10px;
     border: 1px solid $green;
   }
+
   label {
     display: inline-block;
     font-weight: bold;
     width: 175px;
+  }
+
+  .input.text {
+    .form-name-input-text {
+      margin: 10px auto 20px auto;
+      height: 500px;
+      width: 75%;
+      border-radius: 10px;
+      border: 1px solid $green;
+    }
+
+    label {
+      margin-top: 50px;
+      display: block;
+      font-weight: bold;
+      width: 175px;
+    }
   }
 }
 

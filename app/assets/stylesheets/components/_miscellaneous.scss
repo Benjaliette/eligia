@@ -200,10 +200,18 @@
   color: $green;
 }
 
+.background-green {
+  background-color: $green;
+}
+
 .bold-link {
   font-weight: bold;
 
   &:hover {
     text-decoration: underline;
   }
+}
+
+.align-center {
+  text-align: center;
 }

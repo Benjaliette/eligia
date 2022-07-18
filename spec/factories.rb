@@ -1,4 +1,5 @@
 FactoryBot.define do
+
   # User
   factory :user do
     first_name { "John" }

@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="fullscreen">
+    <div class="form-order-div margin-top-five">
+      <div class='form-order-infos'>
+        <h2>N'hésitez pas à entrer en contact avec nous</h2>
+        <p>
+          Pour en savoir plus sur notre service ou pour poser n'importe quelle question,
+          veuillez remplir le formulaire ci-dessous
+        </p>
+      </div>
+
+      <%= simple_form_for @message do |f| %>
+        <div class="form-name-div">
+          <%= f.input :name,
+                          label: 'Votre nom',
+                          input_html: { class: 'form-name-input' },
+                          autofocus: true %>
+          <%= f.input :email,
+                          label: 'Votre email',
+                          input_html: { class: 'form-name-input' } %>
+          <%= f.input :body,
+                          label: 'Votre message',
+                          as: :text,
+                          input_html: { class: 'form-name-input-text' } %>
+        </div>
+        <div class="form-actions align-center">
+          <%= f.submit 'Envoyer', class: 'btn-principal' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

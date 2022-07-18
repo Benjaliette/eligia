@@ -1,9 +1,4 @@
 FactoryBot.define do
-  factory :message do
-    name { "MyString" }
-    email { "MyString" }
-    body { "MyText" }
-  end
 
   # User
   factory :user do

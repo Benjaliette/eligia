@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.3"
+ruby "3.1.2"
 
 # Use Autoprefixer to parse CSS and add vendor prefixes to CSS rules
 gem "autoprefixer-rails"

@@ -5,4 +5,7 @@
   <div class="order-creation-date">
       <%= order_account.created_at.strftime('%D') %>
   </div>
+  <div>
+    <%= link_to "Voir le doc", order_account_path(order_account, format: :pdf), class: 'btn-second'  %>
+  </div>
 </div>

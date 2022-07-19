@@ -3,8 +3,8 @@ class OrderAccountPdf < TemplatePdf
     @order_account = order_account
   end
 
-  def resiliation_pdf
-    super(build_args)
+  def resiliation_pdf(args = build_args)
+    super
   end
 
   private

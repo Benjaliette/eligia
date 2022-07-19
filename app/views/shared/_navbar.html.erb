@@ -21,13 +21,19 @@
           <div class="avatar", data-action="click->navbar-dropdown#dropdown" >
             <%= current_user.first_name[0].upcase + current_user.last_name[0].upcase %>
           </div>
+          <ul class="navbar-dropdown" data-navbar-dropdown-target="dropdowndiv">
+            <li>
+              <i class="fa-solid fa-house-user fa-xl"></i>
+              <%= link_to "Mon compte", user_path(current_user) %>
+            </li>
+            <li>
+              <i class="fa-solid fa-right-from-bracket fa-xl"></i>
+              <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete } %>
+            </li>
+          </ul>
         <% else %>
           <%= link_to 'Connexion/Identification', new_user_session_path %>
         <% end %>
-        <ul class="navbar-dropdown" data-navbar-dropdown-target="dropdowndiv">
-          <li><%= link_to "Mon compte", user_path(current_user) %></li>
-          <li><%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete } %>
-        </ul>
       </li>
     </ul>
     <div class="display-none hamburger"

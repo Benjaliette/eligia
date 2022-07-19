@@ -12,9 +12,10 @@ Rails.application.routes.draw do
     end
   end
   get '/orders/', to: 'orders#new'
-  resources :order_documents, only: :create
 
+  resources :order_documents, only: :create
   resources :users, only: [:show, :index]
+  resources :order_accounts, only: [:show]
 
   resources :pages do
     collection do

@@ -64,23 +64,39 @@ $navbar-height:100px;
   position: absolute;
   top: 86px;
   right: 29px;
-  width: 109px;
+  width: 200px;
+  padding: 0;
   text-align: center;
   background-color:rgb(241, 243, 240);
-  padding: 0px 10px;
   border-radius: 8px;
   font-size: 12px;
   list-style: none;
 
   li {
-    margin: 20px auto;
+    padding: 25px;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    i {
+      color: $gray;
+    }
   }
 
-  a:hover{
-    border-bottom: 0px solid $gray;
-    color: black;
-    font-weight: bold;
-    transition: all ease .07s;
+  a {
+    padding-bottom: 0px;
+
+    &:hover{
+      border-bottom: 0px solid $gray;
+      color: black;
+      font-weight: bold;
+      transition: all ease .07s;
+    }
   }
 
   &::before {

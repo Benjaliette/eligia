@@ -26,3 +26,46 @@
   justify-content: space-between;
   align-items: center;
 }
+
+// Home-infos cards
+
+// ==== LIST FOR INFOS IN HOMEPAGE ==== //
+
+.home-infos-list {
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  min-height: 500px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0;
+
+  .home-infos-list-item {
+    width: 70%;
+    list-style: none;
+    border: 1px solid $yellow;
+    box-shadow: 0 10px 15px rgba(0,0,0,.15);
+    border-radius: 10px;
+    background: white;
+    padding: 20px;
+    position: absolute;
+    margin-left: 15%;
+    margin-bottom: 2em;
+    opacity: 0;
+    transition: transform 0.3s ease-in-out;
+    top: 0;
+
+    &.active {
+      height: auto;
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 5;
+    }
+
+    &.next {
+      opacity: 0.4;
+      transform: translateX(105%);
+      z-index: 0;
+    }
+  }
+}

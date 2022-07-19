@@ -20,7 +20,7 @@ class Users::SessionsController < Devise::SessionsController
   def destroy
     redirect_path = root_path
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-    flash[:warning] = "Déconecté(e)" if signed_out
+    flash[:warning] = "Déconnecté(e)" if signed_out
 
     # We actually need to hardcode this as Rails default responder doesn't
     # support returning empty response on GET request

@@ -57,6 +57,10 @@ gem "puma", "~> 5.0"
 # Pundit is a restrcited access to admin for deletion of orders and related tables (order_accounts & order_documents) & to validate accounts
 gem 'pundit'
 
+# For PDF generation
+# gem 'prawn-rails', '~> 1.4.2'
+gem 'prawn', '~> 2.4.0'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
 

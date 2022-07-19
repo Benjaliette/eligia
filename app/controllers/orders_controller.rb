@@ -8,6 +8,17 @@ class OrdersController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.pdf do
+        pdf = ExportPdf.new(@order)
+        pdf.resiliation_pdf
+        send_data pdf.render,
+          filename: "export.pdf",
+          type: 'application/pdf',
+          disposition: 'inline'
+      end
+    end
   end
 
   def new

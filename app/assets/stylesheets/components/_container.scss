@@ -26,3 +26,11 @@
     width: 95%;
   }
 }
+
+.timeline-legend-container {
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  min-height: 150px;
+  transition: height 0.5s ease-in-out;
+}

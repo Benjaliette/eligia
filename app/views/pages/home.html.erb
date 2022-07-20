@@ -23,7 +23,7 @@
   </ul>
 </div>
 <div class="container">
-  <div class="home-infos" data-controller="home-infos-appear" data-action="scroll@window->home-infos-appear#transition">
+  <div class="home-infos" data-controller="home-infos-appear">
     <h2><span class="highlight-green">Point information</span> : que faire quand un proche nous a quitté ?</h2>
     <p>
       Le décès d'un proche est un des moments les plus douloureux dans la vie d'une personne
@@ -31,10 +31,30 @@
       il faut néanmoins s'occuper de démarches administratives souvent coûteuses et chronophages.
       Mais quelles sont ces démarches et quand doivent-elles être entreprises.
     </p>
+    <div class="timeline-legend-container">
+      <div class="timeline-legend active" data-home-infos-appear-target="timelineItems">
+        1ère semaine
+      </div>
+      <div class="timeline-legend next" data-home-infos-appear-target="timelineItems">
+        1er mois
+      </div>
+      <div class="timeline-legend next-transparent" data-home-infos-appear-target="timelineItems">
+        6 mois
+      </div>
+    </div>
     <div class=timeline>
-      <div class="timeline-checkpoint"></div>
-      <div class="timeline-checkpoint"></div>
-      <div class="timeline-checkpoint"></div>
+      <div class="timeline-checkpoint active"
+           data-action="click->home-infos-appear#transition"
+           data-home-infos-appear-target="checkpoints">
+      </div>
+      <div class="timeline-checkpoint next"
+           data-action="click->home-infos-appear#transition"
+           data-home-infos-appear-target="checkpoints">
+      </div>
+      <div class="timeline-checkpoint"
+           data-action="click->home-infos-appear#transition"
+           data-home-infos-appear-target="checkpoints">
+      </div>
     </div>
     <ul class="home-infos-list">
       <li class="home-infos-list-item active" data-home-infos-appear-target="infoItems">
@@ -54,7 +74,7 @@
         était locataire, le service des impôts, le certificat d'immatriculation etc ...
         Pour ces nombreuses démarches, nous pouvons vous aider et le faire à votre place.
       </li>
-      <li class="home-infos-list-item" data-home-infos-appear-target="infoItems">
+      <li class="home-infos-list-item next-transparent" data-home-infos-appear-target="infoItems">
         Enfin, vous devrez vous occuper des abonnements restants du défunt. Ces comptes à résilier ne font
         pas partie des démarches prioritaires (à faire <strong>dans les 6 mois</strong>), pourtant si elles ne sont pas faites
         dans le premier mois, les contrats perdurent et seront toujours facturés. De ce fait, nous vous conseillons

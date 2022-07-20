@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Pack, type: :model do
   context "When creating a pack" do
-
     it "Should be valid with a title, a level and a price" do
       pack = build(:pack)
       expect(pack.valid?).to eq true

@@ -32,7 +32,7 @@
 // ==== LIST FOR INFOS IN HOMEPAGE ==== //
 
 .home-infos-list {
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   align-items: flex-start;
   min-height: 500px;
@@ -43,7 +43,6 @@
   .home-infos-list-item {
     width: 50%;
     list-style: none;
-    border: 1px solid $yellow;
     box-shadow: 0 10px 15px rgba(0,0,0,.15);
     border-radius: 10px;
     background: white;
@@ -54,6 +53,23 @@
     opacity: 0;
     transition: transform 0.3s ease-in-out;
     top: 0;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    &:first-child {
+      border: 1px solid $light-green;
+    }
+
+    &:nth-child(2) {
+      border: 1px solid $yellow;
+    }
+
+    &:last-child {
+      border: 1px solid $blue;
+    }
 
     &.active {
       height: auto;
@@ -86,5 +102,10 @@
       transform: translateX(-210%);
       z-index: 0;
     }
+  }
+
+  .icon-infos {
+    width: 110px;
+    margin: 20px auto;
   }
 }

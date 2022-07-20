@@ -216,6 +216,7 @@
   text-align: center;
 }
 
-.button-hover:hover {
-  font-weight: bold;
+.disabled {
+  color: $light-gray;
+  cursor: initial !important;
 }

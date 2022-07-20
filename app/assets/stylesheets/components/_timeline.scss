@@ -38,17 +38,17 @@
   &.active {
     height: auto;
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(20px);
     z-index: 5;
   }
 
   &.next {
     height: auto;
     opacity: 0.4;
-    transform: translateX(100%);
+    transform: translateX(114%);
     z-index: 0;
-    // text-align: left;
-    // padding-left: 70px;
+    text-align: left;
+    padding-left: 70px;
   }
 
   &.next-transparent {
@@ -62,8 +62,6 @@
     opacity: 0.4;
     transform: translateX(-105%);
     z-index: 0;
-    // text-align: right;
-    // padding-right: 6px;
   }
 
   &.prev-transparent {
@@ -82,17 +80,24 @@
   border-radius: 50%;
   position: absolute;
   top: -6px;
-  transform: rotate(-45deg);
-  font-size: 12px;
-  font-weight: bold;
-  color: $green;
   transition: all 0.3s ease;
 
   &:first-child {
     border: 4px solid $light-green;
+    right: 50%;
+    display: none;
 
     &.active {
       background: $light-green;
+      display: block;
+    }
+
+    &.prev {
+      display: block;
+    }
+
+    &.next {
+      display: block;
     }
   }
 
@@ -108,9 +113,19 @@
   &:last-child {
     border: 4px solid $blue;
     right: -30%;
+    display: none;
 
     &.active {
       background: $blue;
+      display: block;
+    }
+
+    &.prev {
+      display: block;
+    }
+
+    &.next {
+      display: block;
     }
   }
 

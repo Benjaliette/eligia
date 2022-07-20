@@ -2,10 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="home-infos-appear"
 export default class extends Controller {
-  static targets = [ "timelineItems", "checkpoints", "infoItems" ]
+  static targets = [ "timelineItems", "checkpoints", "infoItems", "arrowLeft", "arrowRight" ]
 
   transition(event) {
-    if((Array.from(event.srcElement.classList).includes('next'))) {
+    if(Array.from(event.srcElement.classList).includes('next')) {
       this.slideLeft(this.timelineItemsTargets)
       this.slideLeft(this.infoItemsTargets)
       this.slideLeft(this.checkpointsTargets)
@@ -15,6 +15,34 @@ export default class extends Controller {
       this.slideRight(this.checkpointsTargets)
     }
 
+  }
+
+  transitionLeft(event) {
+    if(!(Array.from(event.srcElement.classList).includes('disabled'))) {
+      this.slideRight(this.timelineItemsTargets)
+      this.slideRight(this.infoItemsTargets)
+      this.slideRight(this.checkpointsTargets)
+    }
+
+    this.arrowRightTarget.classList.remove('disabled')
+
+    if(this.infoItemsTargets.filter(infoItem => Array.from(infoItem.classList).includes('prev')).length === 0) {
+      this.arrowLeftTarget.classList.add('disabled')
+    }
+  }
+
+  transitionRight(event) {
+    if(!(Array.from(event.srcElement.classList).includes('disabled'))) {
+      this.slideLeft(this.timelineItemsTargets)
+      this.slideLeft(this.infoItemsTargets)
+      this.slideLeft(this.checkpointsTargets)
+    }
+
+    this.arrowLeftTarget.classList.remove('disabled')
+
+    if(this.infoItemsTargets.filter(infoItem => Array.from(infoItem.classList).includes('next')).length === 0) {
+      this.arrowRightTarget.classList.add('disabled')
+    }
   }
 
   slideLeft(array) {

@@ -42,46 +42,75 @@
         6 mois
       </div>
     </div>
-    <div class=timeline>
-      <div class="timeline-checkpoint active"
-           data-action="click->home-infos-appear#transition"
-           data-home-infos-appear-target="checkpoints">
+    <div class="timeline-container">
+      <i class="fa-solid fa-circle-chevron-left fa-xl disabled"
+         data-action="click->home-infos-appear#transitionLeft"
+         data-home-infos-appear-target="arrowLeft"></i>
+      <div class=timeline>
+        <div class="timeline-checkpoint active"
+            data-action="click->home-infos-appear#transition"
+            data-home-infos-appear-target="checkpoints">
+        </div>
+        <div class="timeline-checkpoint next"
+            data-action="click->home-infos-appear#transition"
+            data-home-infos-appear-target="checkpoints">
+        </div>
+        <div class="timeline-checkpoint"
+            data-action="click->home-infos-appear#transition"
+            data-home-infos-appear-target="checkpoints">
+        </div>
       </div>
-      <div class="timeline-checkpoint next"
-           data-action="click->home-infos-appear#transition"
-           data-home-infos-appear-target="checkpoints">
-      </div>
-      <div class="timeline-checkpoint"
-           data-action="click->home-infos-appear#transition"
-           data-home-infos-appear-target="checkpoints">
-      </div>
+      <i class="fa-solid fa-circle-chevron-right fa-xl"
+         data-action="click->home-infos-appear#transitionRight"
+         data-home-infos-appear-target="arrowRight"></i>
     </div>
     <ul class="home-infos-list">
       <li class="home-infos-list-item active" data-home-infos-appear-target="infoItems">
-        Lors de la <strong>première semaine</strong> suivant le décès, les premières démarches sont à réaliser en priorité.
-        Cela comporte le constat du décès, sa déclaration en mairie afin de pouvoir récupérer l'acte de décès,
-        puis l'organisation des obsèques.
-        Ces démarches sont réalisées par les pompes funèbres qui proposent plusieurs sortes d'accompagnement
-        personnalisés. Pour vous aider dans vos démarches, voici une liste du gouvernement des sociétés de pompes
-        funèbres que vous pouvez contacter : LISTE.
+        <div>
+          Lors de la <span class="highlight-green">première semaine</span> suivant le décès, les premières démarches sont à réaliser en priorité.
+          Cela comporte le constat du décès, sa déclaration en mairie afin de pouvoir récupérer l'acte de décès,
+          puis l'organisation des obsèques.
+        </div>
+        <%= image_tag 'funeral.png', class: 'icon-infos' %>
+        <div>
+          Ces démarches sont réalisées par les pompes funèbres qui proposent plusieurs sortes d'accompagnement
+          personnalisés. Pour vous aider dans vos démarches, voici une page détaillée du gouvernement sur les sociétés de pompes
+          funèbres, quand et comment les contacter :
+          <%= link_to 'site internet', "https://www.economie.gouv.fr/dgccrf/Publications/Vie-pratique/Fiches-pratiques/Prestations-funeraires",
+              target: :_blank,
+              class: 'bold-link' %>
+          .
+        </div>
       </li>
       <li class="home-infos-list-item next" data-home-infos-appear-target="infoItems">
-        Dans le <strong>premier mois</strong>, vous devez vous occuper des démarches purement administratives. Premièrement, vous
-        devrez vous occuper de la cloturation du compte en banque du défunt avec un document notarial prouvant que vous
-        êtes l'héritier (ne peut être fait que par vous ou votre notaire). Pensez néanmoins à bien noter l'IBAN
-        de votre proche décédé pour les résiliations qui suivront. Les autres comptes à régler ensuite en priorité proviennent
-        des organismes sociaux où le défunt était enregistré, les différentes contrats d'assurance, la bailleur si il/elle
-        était locataire, le service des impôts, le certificat d'immatriculation etc ...
-        Pour ces nombreuses démarches, nous pouvons vous aider et le faire à votre place.
+        <div>
+          Dans le <span class="highlight-yellow">premier mois</span>, vous devez vous occuper des démarches purement administratives. Premièrement, vous
+          devrez vous occuper de la cloturation du compte en banque du défunt avec un document notarial prouvant que vous
+          êtes l'héritier (ne peut être fait que par vous ou votre notaire). Pensez néanmoins à bien noter l'IBAN
+          de votre proche décédé pour les résiliations qui suivront.
+        </div>
+        <%= image_tag 'administration.png', class: 'icon-infos' %>
+        <div>
+          Les autres comptes à régler ensuite en priorité proviennent
+          des organismes sociaux où le défunt était enregistré, les différentes contrats d'assurance, la bailleur si il/elle
+          était locataire, le service des impôts, le certificat d'immatriculation etc ...
+          Pour ces nombreuses démarches, nous pouvons vous aider et le faire à votre place.
+        </div>
       </li>
       <li class="home-infos-list-item next-transparent" data-home-infos-appear-target="infoItems">
-        Enfin, vous devrez vous occuper des abonnements restants du défunt. Ces comptes à résilier ne font
-        pas partie des démarches prioritaires (à faire <strong>dans les 6 mois</strong>), pourtant si elles ne sont pas faites
-        dans le premier mois, les contrats perdurent et seront toujours facturés. De ce fait, nous vous conseillons
-        de vous en occuper rapidement : mais ne vous en faites pas, la encore nous pouvons vous décharger de ce poids
-        et le faire à votre place, efficacement et rapidement.
-        Le plus souvent il s'agit d'abonnements à un fournisseurs d'énergie (EDF, Engie ...), à un télécom (Orange, SFR, Bouygues ...),
-        à une chaîne de télévision payante (Canal+, Netflix ...) ou encore à des journaux et/ou magazines.
+        <div>
+          Enfin, vous devrez vous occuper des abonnements restants du défunt. Ces comptes à résilier ne font
+          pas partie des démarches prioritaires (à faire <span class="highlight-blue">dans les 6 mois</span>), pourtant si elles ne sont pas faites
+          dans le premier mois, les contrats perdurent et seront toujours facturés. De ce fait, nous vous conseillons
+          de vous en occuper rapidement.
+        </div>
+        <%= image_tag 'subscription.png', class: 'icon-infos' %>
+        <div>
+          Mais ne vous en faites pas, la encore nous pouvons vous décharger de ce poids
+          et le faire à votre place, efficacement et rapidement.
+          Le plus souvent il s'agit d'abonnements à un fournisseurs d'énergie (EDF, Engie ...), à un télécom (Orange, SFR, Bouygues ...),
+          à une chaîne de télévision payante (Canal+, Netflix ...) ou encore à des journaux et/ou magazines.
+        </div>
       </li>
     </ul>
   </div>

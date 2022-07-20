@@ -49,7 +49,6 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           yarn build
-          yarn build:css
       - name: Prepare DB
         run: |
           cp config/database.github.yml config/database.yml

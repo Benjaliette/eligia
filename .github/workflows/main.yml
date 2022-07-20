@@ -46,12 +46,14 @@ jobs:
           path: ${{ steps.yarn-cache.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - name: Yarn install
-        run: yarn install --frozen-lockfile
+        run: |
+          yarn install --frozen-lockfile
+          yarn build
       - name: Prepare DB
         run: |
           cp config/database.github.yml config/database.yml
           bundle exec rails db:create db:migrate
       - name: Run model tests
-        run: bundle exec rails test
+        run: bundle exec rspec spec/models
       - name: Run system tests
-        run: bundle exec rails test:system
+        run: bundle exec rspec spec/system

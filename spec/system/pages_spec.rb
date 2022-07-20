@@ -30,21 +30,21 @@ RSpec.describe "pages", type: :system do
     end
 
     # Access pages#contact
-    it "Has a link towarts /pages/contact" do
+    it "Has a link towarts /contact/new" do
       visit "/"
-      expect(page).to have_link(nil, href: '/pages/contact')
+      expect(page).to have_link(nil, href: '/contact/new')
     end
 
-    it "Can click the link towarts /pages/price and see the page title" do
+    it "Can click the link towarts /contact/new and see the page title" do
       visit "/"
-      click_link(nil, href: '/pages/contact')
-      expect(page).to have_text("Page de contact")
+      click_link(nil, href: '/contact/new')
+      expect(page).to have_text("Votre message")
     end
 
     # Access orders#new
     it "Has a link towarts /orders/new" do
       visit "/"
-      expect(page).to have_link(nil, href: '/pages/contact')
+      expect(page).to have_link(nil, href: '/contact/new')
     end
 
     it "Can click the link towarts /orders/new" do

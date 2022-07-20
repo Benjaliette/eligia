@@ -364,7 +364,7 @@ DEPENDENCIES
   aasm
   autoprefixer-rails
   bootsnap
-  capybara
+  capybara (~> 3.37.1)
   capybara-screenshot
   cloudinary
   debug

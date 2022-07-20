@@ -94,6 +94,5 @@ RSpec.describe Order, type: :model do
       create(:account_document, account: orange, document: create(:document, name: "doc3"))
       expect(order.required_documents.sort).to eq([Document.find_by(name: "id"), Document.find_by(name: "certif"), Document.find_by(name: "doc3")].sort)
     end
-
   end
 end

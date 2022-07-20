@@ -42,6 +42,9 @@ gem "jsbundling-rails"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
+# Gem originally in older version of Ruby than 3.1
+gem 'matrix'
+
 # Gem to store a money column into DB (here the orders table)
 gem 'money-rails'
 

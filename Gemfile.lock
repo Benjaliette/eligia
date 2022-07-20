@@ -376,6 +376,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   letter_opener
+  matrix
   money-rails
   pg (~> 1.1)
   postmark-rails

@@ -58,6 +58,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    cursor: pointer;
 
     &:first-child {
       border: 1px solid $light-green;

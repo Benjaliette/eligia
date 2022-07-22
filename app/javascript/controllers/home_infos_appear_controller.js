@@ -5,14 +5,27 @@ export default class extends Controller {
   static targets = [ "timelineItems", "checkpoints", "infoItems", "arrowLeft", "arrowRight" ]
 
   transition(event) {
-    if(Array.from(event.srcElement.classList).includes('next')) {
+    console.log(event)
+    if(Array.from(event.srcElement.classList).includes('next') || Array.from(event.srcElement.parentElement.classList).includes('next')) {
       this.slideLeft(this.timelineItemsTargets)
       this.slideLeft(this.infoItemsTargets)
       this.slideLeft(this.checkpointsTargets)
-    } else if((Array.from(event.srcElement.classList).includes('prev'))) {
+
+      this.arrowLeftTarget.classList.remove('disabled')
+
+      if(this.infoItemsTargets.filter(infoItem => Array.from(infoItem.classList).includes('next')).length === 0) {
+        this.arrowRightTarget.classList.add('disabled')
+      }
+    } else if(Array.from(event.srcElement.classList).includes('prev') || Array.from(event.srcElement.parentElement.classList).includes('prev')) {
       this.slideRight(this.timelineItemsTargets)
       this.slideRight(this.infoItemsTargets)
       this.slideRight(this.checkpointsTargets)
+
+      this.arrowRightTarget.classList.remove('disabled')
+
+      if(this.infoItemsTargets.filter(infoItem => Array.from(infoItem.classList).includes('prev')).length === 0) {
+        this.arrowLeftTarget.classList.add('disabled')
+      }
     }
 
   }

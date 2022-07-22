@@ -26,7 +26,7 @@ RSpec.describe "pages", type: :system do
     it "Can click the link towarts /pages/price and see the page title" do
       visit "/"
       click_link(nil, href: '/pages/price')
-      expect(page).to have_text("Page des prix")
+      expect(page).to have_text("tarifs")
     end
 
     # Access pages#contact

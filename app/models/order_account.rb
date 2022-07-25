@@ -20,6 +20,18 @@ class OrderAccount < ApplicationRecord
     OrderDocument.where(order_id: self.order_id, document_id: self.required_documents)
   end
 
+  # Pour avoir les states en français dans les show et utiliser les classes
+
+  def state_to_french
+    case self.aasm_state
+      when "pending" then "En attente"
+      when "documents_missing" then "Document(s) manquant(s)"
+      when "resiliation_sent" then "Demande de résiliation envoyée"
+      when "resiliation_failed" then "Erreur"
+      when "resiliation_succeded" then "Compte résilié"
+    end
+  end
+
   # # State Machine
   aasm do
     state :documents_missing, initial: true

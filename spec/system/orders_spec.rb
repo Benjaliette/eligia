@@ -16,10 +16,9 @@ RSpec.describe "orders", type: :system do
     end
 
     it "Create order" do
-      create(:pack, title: 'packTitle1')
-      create(:pack, title: 'packTitle2')
-      create(:pack, title: 'packTitle3')
-      create(:pack, title: 'packTitle4')
+      create(:pack, title: 'packTitle1', level: 1)
+      create(:pack, title: 'packTitle2', level: 2)
+      create(:pack, title: 'packTitle3', level: 3)
       create_list(:account, 4, subcategory: create(:subcategory, name: 'Mobile', category: create(:category, name: 'Telecom')), status: 'validated')
       create(:account_document, account: Account.last, document: create(:document, name:"id"))
       create(:account_document, account: Account.last, document: create(:document, name:"certificat"))
@@ -27,6 +26,7 @@ RSpec.describe "orders", type: :system do
       expect(page).to have_text(Account.last.name)
       fill_in "order[deceased_first_name]", with: "Johnny"
       fill_in "order[deceased_last_name]", with: "Halliday"
+      Capybara::Screenshot.screenshot_and_save_page
       page.find(class: 'account-radio-button-text', text: Account.last.name).click
       page.find(class: 'learn-more').click
       expect(page).to have_text("Deuxième étape")

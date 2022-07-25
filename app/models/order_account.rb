@@ -3,7 +3,6 @@ class OrderAccount < ApplicationRecord
 
   belongs_to :order
   belongs_to :account
-  has_many :account_documents
 
   accepts_nested_attributes_for :account, allow_destroy: true, reject_if: :reject_accounts
 
@@ -19,6 +18,18 @@ class OrderAccount < ApplicationRecord
   # Retourne un array avec les instances de OrderDocument correspondant aux documents nécessaires de cet order_account
   def order_documents
     OrderDocument.where(order_id: self.order_id, document_id: self.required_documents)
+  end
+
+  # Pour avoir les states en français dans les show et utiliser les classes
+
+  def state_to_french
+    case self.aasm_state
+      when "pending" then "En attente"
+      when "documents_missing" then "Document(s) manquant(s)"
+      when "resiliation_sent" then "Demande de résiliation envoyée"
+      when "resiliation_failed" then "Erreur"
+      when "resiliation_succeded" then "Compte résilié"
+    end
   end
 
   # # State Machine

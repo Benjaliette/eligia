@@ -26,7 +26,6 @@ RSpec.describe "orders", type: :system do
       expect(page).to have_text(Account.last.name)
       fill_in "order[deceased_first_name]", with: "Johnny"
       fill_in "order[deceased_last_name]", with: "Halliday"
-      Capybara::Screenshot.screenshot_and_save_page
       page.find(class: 'account-radio-button-text', text: Account.last.name).click
       page.find(class: 'learn-more').click
       expect(page).to have_text("Deuxième étape")

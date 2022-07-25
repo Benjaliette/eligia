@@ -1,0 +1,18 @@
+<div class="account-infos">
+  <div class="account-infos-title">
+    <div class="avatar-xl"><%= user.first_name[0].upcase + user.last_name[0].upcase %></div>
+    <div class="account-infos-title-name"><%= "#{user.first_name} #{user.last_name}" %></div>
+  </div>
+  <div class="account-infos-description">
+    <div>Mail : <%= user.email %></div>
+    <div class="margin-bottom-three">Adresse :
+      <% if user.address %>
+        <%= user.address %>
+      <% else %>
+        <span class="account-infos-description-address">Vous n'avez pas encore renseigné d'adresse</span>
+      <% end %>
+    </div>
+    <div class="margin-bottom-three margin-top-three">Mot de passe : ************</div>
+    <%= link_to "Modifier vos informations", edit_user_registration_path(user), class: 'btn-principal small' %>
+  </div>
+</div>

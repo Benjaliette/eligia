@@ -17,6 +17,17 @@
     min-width: 80%;
     max-width: 100%;
     margin: 0px auto 20px auto;
+
+    .form-inputs-block {
+      margin-left: 40px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+
+      label {
+        width: 175px;
+      }
+    }
   }
 
   .form-inputs > .input{

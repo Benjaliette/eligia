@@ -12,3 +12,19 @@
   justify-content: center;
   cursor: pointer;
 }
+
+.avatar-xl {
+  background-color: $light-green;
+  color: $gray;
+  font-weight: bold;
+  margin-right: 20px;
+  width: 100px;
+  height: 100px;
+  font-size: 32px;
+  border-radius: 50%;
+  border: 2px solid $gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

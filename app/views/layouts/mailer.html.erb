@@ -27,10 +27,22 @@
       .margin {
         margin-top: 50px;
       }
+
+      .table {
+        text-align: left;
+        width: 100;
+        margin: 100px auto;
+      }
+
+      th, td {
+        padding: 20px 40px;
+        border-bottom: 1px solid black;
+      }
     </style>
   </head>
 
   <body>
+    <div class="welcome"><%= image_tag attachments['eligia.svg'].url, width: '200px' %></div>
     <%= yield %>
   </body>
 </html>

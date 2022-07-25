@@ -37,7 +37,11 @@ export default class extends Controller {
     if (event.key.length === 1) {
       this.otherButtonTarget.textContent = event.srcElement.value;
     }
+  }
 
-
+  preventSubmit(event) {
+    if(event.keyCode === 13) {
+      event.preventDefault()
+    }
   }
 }

@@ -56,6 +56,8 @@ class OrdersController < ApplicationController
   def success
     session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @customer = Stripe::Customer.retrieve(session.customer)
+
+    @order.user.add_adress!(@customer.address)
   end
 
   private
@@ -88,6 +90,7 @@ class OrdersController < ApplicationController
   def open_paiement_session(order)
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
+      billing_address_collection: 'required',
       line_items: [{
         name: "Vous avez choisi la formule #{order.pack.title}",
         amount: order.amount_cents,

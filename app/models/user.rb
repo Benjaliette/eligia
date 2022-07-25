@@ -15,4 +15,13 @@ class User < ApplicationRecord
   def send_welcome_email
     UserMailer.with(user: self).welcome.deliver_now
   end
+
+  def add_adress!(address)
+    cleaned_address = "#{address.line1} #{address.city}"
+    results = Geocoder.search(cleaned_address)
+    self.update(
+      latitude: results.first.coordinates.first,
+      longitude: results.first.coordinates.last
+    )
+  end
 end

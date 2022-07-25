@@ -1,0 +1,30 @@
+<div class='welcome'>
+  <h1>Cher(e) <%= @user.first_name %> <%= @user.last_name %></h1>
+</div>
+
+
+<p>Merci pour votre commande chez <strong>Eligia</strong> et de nous avoir fait confiance</p>
+
+<p>Veuillez-trouver ci-dessous les détails de la commande <%= "F#{"0" * (10 - @order.id.to_s.split.size)}#{@order.id}" %> :</p>
+
+<table class='table'>
+  <tr>
+    <th>Nom du produit</th>
+    <th>Quantité</th>
+    <th>Montant</th>
+  </tr>
+  <tr>
+    <td><%= @order.pack.title %></td>
+    <td>1</td>
+    <td><%= @order.pack.price %> €</td>
+  </tr>
+  <tr>
+    <td>Total</td>
+    <td></td>
+    <td><%= @order.amount %> €</td>
+  </tr>
+</table>
+
+<p>
+  Vous pouvez suivre l'avancement des résiliations sur <%= link_to 'votre compte', user_url(@user) %>
+</p>

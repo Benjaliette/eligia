@@ -87,8 +87,27 @@ puts ""
 puts "🟧 AccountDocuments done"
 
 puts "👷🏼 Création des Packs"
-Pack.create(title: 'Basic pack', price: 100, level: 1)
-Pack.create(title: 'Premium pack', price: 150, level: 2)
-Pack.create(title: 'Unlimited pack', price: 200, level: 3)
-Pack.create(title: 'wtf pack', price: 250, level: 4)
-puts Pack.count == 4 ? "🟩 Packs créées avec succès" : "🟥 Erreur dans la création des Packs"
+Pack.create(
+  title: 'Forfait initial',
+  price: 100, level: 1,
+  description: "Le forfait initial vous permet de résilier jusqu'à 7 comptes.
+                Il est idéal si le défunt possédait peu de comptes ou si une
+                personne tierce s'est déjà occupé de quelques résiliations"
+)
+Pack.create(
+  title: 'Forfait premium',
+  price: 160,
+  level: 2,
+  description: "Le forfait premium inclut la résiliation jusqu'à 15 comptes.
+                Il est en général recommandé pour les démarches classiques"
+)
+Pack.create(
+  title: 'Forfait illimité',
+  price: 200,
+  level: 3,
+  description: "Le forfait illimité est un forfait qui vous permet de résilier
+                tous les comptes de votre proche, sans compter leur nombre.
+                Si ce dernier possédait un très grand nombre d'abonnements, c'est
+                bien entendu vers ce forfait que nous vous conseillons d'aller"
+)
+puts Pack.count == 3 ? "🟩 Packs créées avec succès" : "🟥 Erreur dans la création des Packs"

@@ -25,7 +25,7 @@ RSpec.describe "pages", type: :system do
 
     it "Can click the link towarts /pages/price and see the page title" do
       visit "/"
-      click_link(nil, href: '/pages/price')
+      click_link(nil, href: '/pages/price', match: :first)
       expect(page).to have_text("tarifs")
     end
 
@@ -37,7 +37,7 @@ RSpec.describe "pages", type: :system do
 
     it "Can click the link towarts /contact/new and see the page title" do
       visit "/"
-      click_link(nil, href: '/contact/new')
+      click_link(nil, href: '/contact/new', match: :first)
       expect(page).to have_text("Votre message")
     end
 

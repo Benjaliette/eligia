@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[show edit update recap]
+  before_action :set_order, only: %i[show edit update recap success]
   before_action only: :recap do
     open_paiement_session(@order)
   end
+  after_action :send_confirmation_mail, only: :success
 
   def index
   end
@@ -103,5 +104,9 @@ class OrdersController < ApplicationController
     order.order_accounts.each do |order_account|
       order_account.declare_pending! if order_account.order_documents.all? { |o_d| o_d.document_file.attached? }
     end
+  end
+
+  def send_confirmation_mail
+    OrderMailer.with(order: @order, user: current_user).confirmation.deliver_now
   end
 end

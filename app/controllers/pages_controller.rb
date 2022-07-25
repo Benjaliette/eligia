@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   end
 
   def price
+    @packs = Pack.all.last(3)
   end
 
   def contact

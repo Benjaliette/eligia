@@ -6,30 +6,27 @@
     </div>
 
     <div class="tarif-card-box">
-      <div class="tarif-card">
-        <div class="tarif-card-top">
-          <p class="highlight-green">Jusqu'à 7 démarches</p>
+      <% @packs.each do |pack| %>
+        <div class="tarif-card-<%= pack.level %>">
+          <div class="tarif-card-top">
+            <p class="highlight-<%=
+              if pack.level == 1
+                'green'
+              elsif pack.level == 2
+                'yellow'
+              else
+                'blue'
+              end %>
+            "><%= pack.title %></p>
+          </div>
+          <div class="tarif-card-price">
+            <p><%= pack.price %> €</p>
+          </div>
+          <div class="tarif-card-description">
+            <p><%= pack.description %></p>
+          </div>
         </div>
-        <div class="tarif-card-price">
-          <p>100€</p>
-        </div>
-      </div>
-      <div class="tarif-card">
-        <div class="tarif-card-top">
-          <p class="highlight-yellow">Jusqu'à 10 démarches</p>
-        </div>
-        <div class="tarif-card-price">
-          <p>130€</p>
-        </div>
-      </div>
-      <div class="tarif-card">
-        <div class="tarif-card-top">
-          <p class="highlight-blue">Plus de 10 démarches</p>
-        </div>
-        <div class="tarif-card-price">
-          <p>120€ + 8€/ démarche supplémentaire</p>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

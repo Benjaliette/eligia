@@ -115,23 +115,50 @@
 // Home-infos cards
 .tarif-card-box{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
   margin-top: 20px;
   width: 100%;
 
-  .tarif-card{
-    margin: 5px;
+  .tarif-card-1{
+    margin: 15px;
     padding: 30px;
     background: white;
+    border: 3px solid $light-green;
     border-radius: 8px;
     width: 25%;
-    height: 30vh;
+    min-height: fit-content;
     display: flex;
     flex-direction: column;
     box-shadow: 0px 0px 4px lightgrey;
-
   }
+
+  .tarif-card-2 {
+    margin: 15px;
+    padding: 30px;
+    background: white;
+    border: 3px solid $yellow;
+    border-radius: 8px;
+    width: 25%;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 4px lightgrey;
+  }
+
+  .tarif-card-3 {
+    margin: 15px;
+    padding: 30px;
+    background: white;
+    border: 3px solid $blue;
+    border-radius: 8px;
+    width: 25%;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 4px lightgrey;
+  }
+
   .tarif-card-top{
     font-size: 22px;
     text-align: center;
@@ -144,5 +171,10 @@
     text-align: center;
     justify-content: center;
     flex-grow: 1;
+    font-weight: bold;
+  }
+
+  .tarif-card-description {
+    text-align: justify;
   }
 }

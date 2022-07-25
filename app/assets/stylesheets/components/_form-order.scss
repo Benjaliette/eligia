@@ -171,6 +171,37 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .other-account{
+    margin: 0px;
+
+    input{
+      margin-bottom: 20px;
+    }
+  }
+
+  .account-radio-button{
+    input + .account-radio-button-text {
+      width: 90px;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .account-other-button{
+    width: 90px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .form-subcategory{
+    text-align: center;
+  }
+
 }
 
 @media (max-width: 500px) {

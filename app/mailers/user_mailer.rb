@@ -1,5 +1,4 @@
 class UserMailer < ApplicationMailer
-
   def welcome
     @user = params[:user]
 

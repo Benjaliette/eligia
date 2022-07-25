@@ -13,8 +13,6 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-  # config.force_ssl = true <-- Fait péter la prod !!
-
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

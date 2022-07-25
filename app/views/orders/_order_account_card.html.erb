@@ -1,11 +1,14 @@
 <div class="order-account-card">
-  <div class="account-name">
+  <div class="account-name d-flex justify-content-center align-items-center">
     <%= order_account.account.name %>
   </div>
-  <div class="order-creation-date">
+  <div class="order-creation-date d-flex justify-content-center align-items-center">
       <%= order_account.created_at.strftime('%D') %>
   </div>
-  <div>
-    <%= link_to "Voir le doc", order_account_path(order_account, format: :pdf), class: 'btn-second'  %>
+  <div class="order-account-status order-account-state-<%=order_account.aasm_state%> d-flex justify-content-center align-items-center align-center">
+      <%= order_account.state_to_french %>
+  </div>
+  <div class = "d-flex justify-content-center align-items-center">
+    <%= link_to "Voir le doc", order_account_path(order_account, format: :pdf), class: 'btn-second', target: :_blank  %>
   </div>
 </div>

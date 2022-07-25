@@ -1,6 +1,21 @@
+// basic-white-card
+
+.basic-white-card{
+  border: solid 1px $light-gray;
+  border-radius: 8px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 2px lightgrey;
+}
+
+
 // Order-dashboard-card
 
 .order-dashboard-card{
+  background-color: white;
   padding: 10px 50px;
   margin: 10px 0px;
   border-radius: 8px;
@@ -18,14 +33,18 @@
 // Order-account-card
 
 .order-account-card{
+  background-color: white;
   padding: 10px 50px;
   margin: 10px 0px;
   border-radius: 8px;
   box-shadow: 0px 0px 2px lightgrey;
   border: solid 1px lightgrey;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  .order-account-status{
+    font-size: 12px;
+  }
 }
 
 // Home-infos cards
@@ -132,12 +151,13 @@
     padding: 30px;
     background: white;
     border: 3px solid $light-green;
+    box-shadow: 0px 0px 4px lightgrey;
     border-radius: 8px;
     width: 25%;
-    min-height: fit-content;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 0px 4px lightgrey;
+    height: 55vh;
+    min-height: fit-content;
   }
 
   .tarif-card-2 {
@@ -145,12 +165,13 @@
     padding: 30px;
     background: white;
     border: 3px solid $yellow;
+    box-shadow: 0px 0px 4px lightgrey;
     border-radius: 8px;
     width: 25%;
-    min-height: fit-content;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 0px 4px lightgrey;
+    height: 55vh;
+    min-height: fit-content;
   }
 
   .tarif-card-3 {
@@ -158,12 +179,13 @@
     padding: 30px;
     background: white;
     border: 3px solid $blue;
+    box-shadow: 0px 0px 4px lightgrey;
     border-radius: 8px;
     width: 25%;
-    min-height: fit-content;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 0px 4px lightgrey;
+    height: 55vh;
+    min-height: fit-content;
   }
 
   .tarif-card-top{
@@ -176,13 +198,13 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    justify-content: center;
-    flex-grow: 1;
     font-weight: bold;
   }
 
   .tarif-card-description {
     text-align: justify;
+    justify-content: flex-start;
+    flex-grow: 1;
   }
 }
 

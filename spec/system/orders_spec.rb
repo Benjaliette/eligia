@@ -16,10 +16,9 @@ RSpec.describe "orders", type: :system do
     end
 
     it "Create order" do
-      create(:pack, title: 'packTitle1')
-      create(:pack, title: 'packTitle2')
-      create(:pack, title: 'packTitle3')
-      create(:pack, title: 'packTitle4')
+      create(:pack, title: 'packTitle1', level: 1)
+      create(:pack, title: 'packTitle2', level: 2)
+      create(:pack, title: 'packTitle3', level: 3)
       create_list(:account, 4, subcategory: create(:subcategory, name: 'Mobile', category: create(:category, name: 'Telecom')), status: 'validated')
       create(:account_document, account: Account.last, document: create(:document, name:"id"))
       create(:account_document, account: Account.last, document: create(:document, name:"certificat"))

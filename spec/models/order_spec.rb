@@ -32,43 +32,57 @@ RSpec.describe Order, type: :model do
   describe "#determine_pack_type" do
 
     it "Should assign pack #1 for 4 OrderAccounts" do
-      create(:pack, title: 'packTitle1')
-      create(:pack, title: 'packTitle2')
-      create(:pack, title: 'packTitle3')
-      create(:pack, title: 'packTitle4')
+      create(:pack, title: 'packTitle1', level: 1)
+      create(:pack, title: 'packTitle2', level: 2)
+      create(:pack, title: 'packTitle3', level: 3)
       order = create(:order, pack: Pack.first)
       create_list(:order_account, 4, order: order)
       expect(order.determine_pack_type.title).to eq("packTitle1")
     end
 
-    it "Should not assign pack #2 for 4 OrderAccounts" do
-      create(:pack, title: 'packTitle1')
-      create(:pack, title: 'packTitle2')
-      create(:pack, title: 'packTitle3')
-      create(:pack, title: 'packTitle4')
+    it "Should not assign pack #2 for 7 OrderAccounts" do
+      create(:pack, title: 'packTitle1', level: 1)
+      create(:pack, title: 'packTitle2', level: 2)
+      create(:pack, title: 'packTitle3', level: 3)
       order = create(:order, pack: Pack.first)
-      create_list(:order_account, 4, order: order)
+      create_list(:order_account, 7, order: order)
       expect(order.determine_pack_type.title).not_to eq("packTitle2")
     end
 
-    it "Should assign pack #3 for 11 OrderAccounts" do
-      create(:pack, title: 'packTitle1')
-      create(:pack, title: 'packTitle2')
-      create(:pack, title: 'packTitle3')
-      create(:pack, title: 'packTitle4')
+    it "Should assign pack #2 for 8 OrderAccounts" do
+      create(:pack, title: 'packTitle1', level: 1)
+      create(:pack, title: 'packTitle2', level: 2)
+      create(:pack, title: 'packTitle3', level: 3)
       order = create(:order, pack: Pack.first)
-      create_list(:order_account, 11, order: order)
+      create_list(:order_account, 8, order: order)
+      expect(order.determine_pack_type.title).to eq("packTitle2")
+    end
+
+    it "Should not assign pack #3 for 15 OrderAccounts" do
+      create(:pack, title: 'packTitle1', level: 1)
+      create(:pack, title: 'packTitle2', level: 2)
+      create(:pack, title: 'packTitle3', level: 3)
+      order = create(:order, pack: Pack.first)
+      create_list(:order_account, 15, order: order)
+      expect(order.determine_pack_type.title).not_to eq("packTitle3")
+    end
+
+    it "Should assign pack #3 for 16 OrderAccounts" do
+      create(:pack, title: 'packTitle1', level: 1)
+      create(:pack, title: 'packTitle2', level: 2)
+      create(:pack, title: 'packTitle3', level: 3)
+      order = create(:order, pack: Pack.first)
+      create_list(:order_account, 16, order: order)
       expect(order.determine_pack_type.title).to eq("packTitle3")
     end
 
-    it "Should not assign pack #4 for 11 OrderAccounts" do
-      create(:pack, title: 'packTitle1')
-      create(:pack, title: 'packTitle2')
-      create(:pack, title: 'packTitle3')
-      create(:pack, title: 'packTitle4')
+    it "Should assign pack #3 for 100 OrderAccounts" do
+      create(:pack, title: 'packTitle1', level: 1)
+      create(:pack, title: 'packTitle2', level: 2)
+      create(:pack, title: 'packTitle3', level: 3)
       order = create(:order, pack: Pack.first)
-      create_list(:order_account, 4, order: order)
-      expect(order.determine_pack_type.title).not_to eq("packTitle4")
+      create_list(:order_account, 100, order: order)
+      expect(order.determine_pack_type.title).to eq("packTitle3")
     end
   end
 

@@ -26,12 +26,9 @@ class Order < ApplicationRecord
   def determine_pack_type
     last_id = Pack.last.id
     case self.order_accounts.size
-    when 0..5 then return Pack.find(last_id - 3)
-    when 6..10 then return Pack.find(last_id - 2)
-    when 11..14 then return Pack.find(last_id - 1)
-    when 15..20 then return Pack.find(last_id)
-    else
-      return 'error'
+      when 0..7 then return Pack.order(created_at: :desc).find_by(level: 1)
+      when 7..15 then return Pack.order(created_at: :desc).find_by(level: 2)
+      else return Pack.order(created_at: :desc).find_by(level: 3)
     end
   end
 

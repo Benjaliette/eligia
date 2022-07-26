@@ -4,15 +4,15 @@
     <div class="account-infos-title-name"><%= "#{user.first_name} #{user.last_name}" %></div>
   </div>
   <div class="account-infos-description">
-    <div>Mail : <%= user.email %></div>
-    <div class="margin-bottom-three">Adresse :
+    <div class="margin-bottom-three">Mail : <%= user.email %></div>
+    <div class="margin-bottom-three">Adresse de facturation :
       <% if user.address %>
         <%= user.address %>
       <% else %>
         <span class="account-infos-description-address">Vous n'avez pas encore renseigné d'adresse</span>
       <% end %>
     </div>
-    <div class="margin-bottom-three margin-top-three">Mot de passe : ************</div>
+    <div class="margin-bottom-five">Mot de passe : ************</div>
     <%= link_to "Modifier vos informations", edit_user_registration_path(user), class: 'btn-principal small' %>
   </div>
 </div>

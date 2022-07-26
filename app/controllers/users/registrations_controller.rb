@@ -49,7 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         set_flash_message :success, flash_key
       end
       sign_in resource_name, resource, :bypass => true
-      respond_with resource, :location => after_update_path_for(resource)
+      respond_with resource, :location => user_path(resource)
     elsif resource.update_without_password(resource_params_without_pasword)
       if is_navigational_format?
         flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
@@ -57,7 +57,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         set_flash_message :success, flash_key
       end
       sign_in resource_name, resource, :bypass => true
-      respond_with resource, :location => after_update_path_for(resource)
+      respond_with resource, :location => user_path(resource)
     else
       clean_up_passwords resource
       respond_with resource

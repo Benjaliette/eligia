@@ -25,7 +25,20 @@
       align-items: center;
 
       label {
-        width: 175px;
+        width: 270px;
+        text-align: left;
+      }
+    }
+
+    .form-inputs-block-address {
+      margin-left: 40px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: flex-start;
+
+      label {
+        width: 270px;
+        text-align: left;
       }
     }
   }
@@ -47,7 +60,7 @@
     margin-right: 10px;
   }
 
-  .input > input{
+  .input > input {
     border: solid 1px lightgray;
     border-radius: 4px;
     width: 90%;
@@ -114,5 +127,41 @@
 @media (max-width: 500px) {
   .form-div{
     padding: 10px 10px;
+  }
+}
+
+// Style for address geocoder in edit form
+
+.mapboxgl-ctrl-geocoder--icon {
+  display: none;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+  border: solid 1px lightgray;
+  border-radius: 4px;
+  width: 90%;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.suggestions-wrapper {
+  border-radius: 4px;
+  width: 90%;
+  padding: 10px;
+  font-size: 15px;
+
+  .suggestions {
+    list-style: none;
+    text-align: left;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+
+    li {
+      padding: 5px 0;
+      cursor: pointer;
+      &:hover {
+        font-weight: bold;
+      }
+    }
   }
 }

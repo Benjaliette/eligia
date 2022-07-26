@@ -7,6 +7,9 @@ import { application } from "./application"
 import AddFileController from "./add_file_controller.js"
 application.register("add-file", AddFileController)
 
+import AddressAutocompleteController from "./address_autocomplete_controller.js"
+application.register("address-autocomplete", AddressAutocompleteController)
+
 import CloseFlashController from "./close_flash_controller.js"
 application.register("close-flash", CloseFlashController)
 

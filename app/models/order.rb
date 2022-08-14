@@ -1,4 +1,7 @@
 class Order < ApplicationRecord
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
   monetize :amount_cents
 
   belongs_to :pack
@@ -36,5 +39,12 @@ class Order < ApplicationRecord
 
   def reject_order_accounts(attributes)
     attributes['account_id'].blank? && attributes['account_attributes']['name'].blank?
+  end
+
+  def slug_candidates
+    [
+      :deceased_last_name,
+      %i[deceased_first_name deceased_last_name]
+    ]
   end
 end

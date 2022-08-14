@@ -27,6 +27,9 @@ gem "factory_bot_rails"
 # Use font-awesome gem to use icons
 gem "font-awesome-sass", "~> 6.1"
 
+# For human-friendly urls
+gem 'friendly_id', '~> 5.4.0'
+
 # Geocoder is used to store address in users and allow them to have an autocompletion when entering their address
 gem "geocoder"
 

@@ -51,6 +51,9 @@ gem 'matrix'
 # Gem to store a money column into DB (here the orders table)
 gem 'money-rails'
 
+# To open images from cloudinary with Prawn
+gem 'open-uri', "~> 0.2.0"
+
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 

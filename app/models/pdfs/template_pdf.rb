@@ -22,8 +22,13 @@ class TemplatePdf
       move_down 10
       text "Merci"
     end
+    args[:order_account].order_documents.select{|order_document| order_document.document_file.attached?}.each do |order_document|
+      move_down 20
+      image StringIO.open(order_document.document_file.download), height: 300
+    end
     fill_color '8FCC9B'
     fill_rectangle [0, 100], 540, 100
+
     image "#{Rails.root}/app/assets/images/eligia-sans-fond.png", height: 80, at: [10, 90]
   end
 end

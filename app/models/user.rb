@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
   after_create :send_welcome_email
 
   devise :database_authenticatable, :registerable,
@@ -23,4 +26,10 @@ class User < ApplicationRecord
     UserMailer.with(user: self).welcome.deliver_now
   end
 
+  def slug_candidates
+    [
+      :last_name,
+      %i[first_name last_name]
+    ]
+  end
 end

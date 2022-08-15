@@ -8,9 +8,9 @@ class OrderAccountsController < ApplicationController
         pdf = OrderAccountPdf.new(@order_account)
         pdf.resiliation_pdf
         send_data pdf.render,
-          filename: "export.pdf",
-          type: 'application/pdf',
-          disposition: 'inline'
+                  filename: "export.pdf",
+                  type: 'application/pdf',
+                  disposition: 'inline'
       end
     end
   end

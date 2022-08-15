@@ -63,7 +63,7 @@ class OrdersController < ApplicationController
   private
 
   def set_order
-    @order = Order.find(params[:id])
+    @order = Order.friendly.find(params[:id])
   end
 
   def order_params

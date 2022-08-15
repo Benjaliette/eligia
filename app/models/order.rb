@@ -1,4 +1,7 @@
 class Order < ApplicationRecord
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
   monetize :amount_cents
 
   belongs_to :pack
@@ -24,11 +27,10 @@ class Order < ApplicationRecord
   end
 
   def determine_pack_type
-    last_id = Pack.last.id
     case self.order_accounts.size
-      when 0..7 then return Pack.order(created_at: :desc).find_by(level: 1)
-      when 8..15 then return Pack.order(created_at: :desc).find_by(level: 2)
-      else return Pack.order(created_at: :desc).find_by(level: 3)
+    when 0..7 then return Pack.order(created_at: :desc).find_by(level: 1)
+    when 8..15 then return Pack.order(created_at: :desc).find_by(level: 2)
+    else return Pack.order(created_at: :desc).find_by(level: 3)
     end
   end
 
@@ -36,5 +38,12 @@ class Order < ApplicationRecord
 
   def reject_order_accounts(attributes)
     attributes['account_id'].blank? && attributes['account_attributes']['name'].blank?
+  end
+
+  def slug_candidates
+    [
+      :deceased_last_name,
+      %i[deceased_first_name deceased_last_name]
+    ]
   end
 end

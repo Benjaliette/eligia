@@ -10,7 +10,6 @@ class OrderAccountPdf < TemplatePdf
   private
 
   def build_args
-    { sender_first_name: @order_account.order.deceased_first_name,
-      sender_last_name: @order_account.order.deceased_last_name }
+    { order_account: @order_account }
   end
 end

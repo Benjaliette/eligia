@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Eligia</title>
+    <title>
+      <% if content_for?(:title) %>
+        <%= yield(:title) %>
+      <% else %>
+        Eligia
+      <% end %>
+    </title>
+    <link rel="icon" type="image/png" sizes="32x32" href=<%=image_path('eligia-favicon-32x32.png')%>>
+    <meta name="description" content="Résiliez d'un seul coup tous les abonnements d'un proche disparu. Simplifier les démarches pour se concentrer sur le deuil.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

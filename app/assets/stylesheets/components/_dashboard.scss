@@ -5,13 +5,16 @@
   align-items: center;
   width: fit-content;
 
-  .demarches{
-    padding-right: 20px;
-    cursor: pointer;
-  }
+  div {
+    &:first-child {
+      padding-right: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-  .dashboard-nav-right{
-    padding-right: 20px;
+    &:last-child {
+      padding-left: 20px;
+    }
   }
 }
 

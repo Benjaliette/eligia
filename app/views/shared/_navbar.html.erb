@@ -32,7 +32,7 @@
             </li>
           </ul>
         <% else %>
-          <%= link_to 'Connexion/Identification', new_user_session_path %>
+          <%= link_to 'Connexion/Inscription', new_user_session_path %>
         <% end %>
       </li>
     </ul>
@@ -51,7 +51,7 @@
           <% if current_user %>
             <%= link_to 'Mon compte', user_path(current_user) %>
           <% else %>
-            <%= link_to 'Connexion', new_user_session_path %>
+            <%= link_to 'Connexion/Inscription', new_user_session_path %>
           <% end %>
         </li>
       </ul>

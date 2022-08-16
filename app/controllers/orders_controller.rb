@@ -5,10 +5,13 @@ class OrdersController < ApplicationController
   end
   after_action :send_confirmation_mail, only: :success
 
+  add_breadcrumb "Démarches", :user_path, only: :show
+
   def index
   end
 
   def show
+    add_breadcrumb "#{@order.deceased_last_name.capitalize}-#{@order.deceased_first_name.first}"
   end
 
   def new

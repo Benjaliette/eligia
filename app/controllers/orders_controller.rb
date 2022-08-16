@@ -1,11 +1,17 @@
+require 'json'
+
 class OrdersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[new create edit update]
 
-  before_action :set_order, only: %i[show edit update recap success]
+  before_action :set_order, only: %i[show change edit update recap success]
+  before_action :set_categories, only: %i[change new create]
   after_action only: :recap do
     open_paiement_session(@order)
   end
   after_action :send_confirmation_mail, only: :success
+
+  add_breadcrumb "1. Résiliations", :change_order_path, only: %i[edit recap]
+  add_breadcrumb "2. Informations nécessaires", :edit_order_path, only: :recap
 
   def index
   end
@@ -13,9 +19,20 @@ class OrdersController < ApplicationController
   def show
   end
 
+
   def new
     @order = Order.new
     @categories = Category.all
+  end
+
+  def change
+    @order_accounts = jsonify_order_accounts
+
+    add_breadcrumb "<div class='current-step'>1. Résiliations</div>".html_safe
+    add_breadcrumb "2. Informations nécessaires"
+    add_breadcrumb "3. Validation"
+
+    render :new
   end
 
   def create
@@ -25,10 +42,7 @@ class OrdersController < ApplicationController
     @order.amount = @order.pack.price
 
     if @order.save
-      @order_documents = []
-      @order.required_documents.each do |required_document|
-        @order_documents << OrderDocument.create(order: @order, document: required_document)
-      end
+      set_order_documents_to_order
 
       redirect_to edit_order_path(@order)
     else
@@ -38,21 +52,27 @@ class OrdersController < ApplicationController
   end
 
   def edit
+    set_order_documents_to_order
+
     @order_documents = @order.order_documents
+    @order_documents_json = jsonify_order_documents
+
+    add_breadcrumb "<div class='current-step'>2. Informations nécessaires</div>".html_safe
+    add_breadcrumb "3. Validation"
   end
 
   def update
+
+
     @order.update(order_params)
-    if @order.save
-      update_order_account_status(@order)
-      redirect_to recap_order_path(@order)
-    else
-      render :edit
-    end
+    update_order_account_status(@order)
+
+    redirect_to recap_order_path(@order)
   end
 
   def recap
     @order.update(user: current_user)
+    add_breadcrumb "<div class='current-step'>3. Validation</div>".html_safe
   end
 
   def success
@@ -66,6 +86,30 @@ class OrdersController < ApplicationController
 
   def set_order
     @order = Order.friendly.find(params[:id])
+  end
+
+  def set_categories
+    @categories = Category.all
+  end
+
+  def jsonify_order_accounts
+    accounts = @order.order_accounts.map do |order_account|
+      {
+        account_id: order_account.account.id,
+      }
+    end
+
+    JSON.generate({ accounts: accounts })
+  end
+
+  def jsonify_order_documents
+    documents = @order_documents.map do |order_document|
+      {
+        document: order_document.document_file.attached?,
+      }
+    end
+
+    JSON.generate({ documents: documents })
   end
 
   def order_params
@@ -103,6 +147,14 @@ class OrdersController < ApplicationController
       cancel_url: order_url(order)
     )
     order.update(checkout_session_id: session.id)
+  end
+
+  def set_order_documents_to_order
+    @order.required_documents.each do |required_document|
+      OrderDocument.create(order: @order, document: required_document) if @order.order_documents.none? do |order_document|
+        order_document.document == required_document
+      end
+    end
   end
 
   def update_order_account_status(order)

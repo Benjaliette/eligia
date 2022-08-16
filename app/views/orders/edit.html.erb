@@ -14,7 +14,7 @@
           Les comptes demandés lors de la première étape seront grâce à ces documents.
         </p>
       </div>
-      <%= simple_form_for @order do |f| %>
+      <%= simple_form_for @order, data: { turbo: false } do |f| %>
         <% @order_documents.each do |order_document| %>
           <div class="insert-document" data-controller="add-file">
             <%= f.simple_fields_for :order_documents, order_document do |fod| %>
@@ -34,7 +34,13 @@
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>
             </span>
-            <span class="button-text">Valider</span>
+            <span class="button-text">
+              <% if current_user %>
+                Valider
+              <% else %>
+                S'identifier
+              <% end %>
+            </span>
           <% end %>
         </div>
       <% end %>

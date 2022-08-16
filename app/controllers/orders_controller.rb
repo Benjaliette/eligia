@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[new create edit update]
+
   before_action :set_order, only: %i[show edit update recap success]
-  before_action only: :recap do
+  after_action only: :recap do
     open_paiement_session(@order)
   end
   after_action :send_confirmation_mail, only: :success
@@ -19,7 +21,6 @@ class OrdersController < ApplicationController
   def create
     @categories = Category.all
     @order = Order.new(order_params)
-    @order.user = current_user
     @order.pack = @order.determine_pack_type
     @order.amount = @order.pack.price
 
@@ -51,6 +52,7 @@ class OrdersController < ApplicationController
   end
 
   def recap
+    @order.update(user: current_user)
   end
 
   def success

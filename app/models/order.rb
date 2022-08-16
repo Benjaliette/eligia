@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   monetize :amount_cents
 
   belongs_to :pack
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :order_accounts, dependent: :destroy
   has_many :order_documents, dependent: :destroy
 

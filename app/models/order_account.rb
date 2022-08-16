@@ -4,6 +4,8 @@ class OrderAccount < ApplicationRecord
   belongs_to :order
   belongs_to :account
 
+  validates :account, uniqueness: true
+
   accepts_nested_attributes_for :account, allow_destroy: true, reject_if: :reject_accounts
 
   def reject_accounts(attributes)

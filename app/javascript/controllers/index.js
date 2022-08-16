@@ -4,38 +4,41 @@
 
 import { application } from "./application"
 
-import AddFileController from "./add_file_controller.js"
+import AddFileController from "./add_file_controller"
 application.register("add-file", AddFileController)
 
-import AddressAutocompleteController from "./address_autocomplete_controller.js"
+import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address-autocomplete", AddressAutocompleteController)
 
-import CloseFlashController from "./close_flash_controller.js"
+import CheckDocumentController from "./check_document_controller"
+application.register("check-document", CheckDocumentController)
+
+import CloseFlashController from "./close_flash_controller"
 application.register("close-flash", CloseFlashController)
 
-import FooterResponsivityController from "./footer_responsivity_controller.js"
+import FooterResponsivityController from "./footer_responsivity_controller"
 application.register("footer-responsivity", FooterResponsivityController)
 
-import HelloController from "./hello_controller.js"
+import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import HomeInfosAppearController from "./home_infos_appear_controller.js"
+import HomeInfosAppearController from "./home_infos_appear_controller"
 application.register("home-infos-appear", HomeInfosAppearController)
 
-import NavbarDropdownController from "./navbar_dropdown_controller.js"
+import NavbarDropdownController from "./navbar_dropdown_controller"
 application.register("navbar-dropdown", NavbarDropdownController)
 
-import NavbarResponsivityController from "./navbar_responsivity_controller.js"
+import NavbarResponsivityController from "./navbar_responsivity_controller"
 application.register("navbar-responsivity", NavbarResponsivityController)
 
-import OrderStepController from "./order_step_controller.js"
+import OrderStepController from "./order_step_controller"
 application.register("order-step", OrderStepController)
 
-import OtherAccountController from "./other_account_controller.js"
+import OtherAccountController from "./other_account_controller"
 application.register("other-account", OtherAccountController)
 
-import RemoveFooterController from "./remove_footer_controller.js"
+import RemoveFooterController from "./remove_footer_controller"
 application.register("remove-footer", RemoveFooterController)
 
-import TransparentNavbarController from "./transparent_navbar_controller.js"
+import TransparentNavbarController from "./transparent_navbar_controller"
 application.register("transparent-navbar", TransparentNavbarController)

@@ -15,6 +15,9 @@ gem 'aasm'
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# Helper to add breadcrumbs for rails
+gem "breadcrumbs_on_rails"
+
 # Use cloudinary to store pictures and documents on the cloud
 gem 'cloudinary'
 

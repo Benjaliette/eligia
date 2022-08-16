@@ -4,7 +4,9 @@
 <div class="container">
   <div class="fullscreen">
     <h3 class="no-margin padding-top-three">Dossier de <%= @order.deceased_last_name.upcase %> <%= @order.deceased_first_name %></h3>
-    <%= render "shared/dashboard_navigation", order: @order %>
+    <div class="dashboard-navigation">
+      <%= render_breadcrumbs tag: :div, separator: ">" %>
+    </div>
 
     <% @order.order_accounts.each do |order_account| %>
       <%= render "order_account_card", order_account: order_account %>

@@ -13,10 +13,13 @@ class OrdersController < ApplicationController
   add_breadcrumb "1. Résiliations", :change_order_path, only: %i[edit recap]
   add_breadcrumb "2. Informations nécessaires", :edit_order_path, only: :recap
 
+  add_breadcrumb "Démarches", :user_path, only: :show
+
   def index
   end
 
   def show
+    add_breadcrumb "#{@order.deceased_last_name.capitalize}-#{@order.deceased_first_name.first}"
   end
 
 

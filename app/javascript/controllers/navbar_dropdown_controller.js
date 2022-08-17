@@ -5,12 +5,19 @@ export default class extends Controller {
   static targets = [ 'hamburgerIcon', 'dropdowndiv', 'toggleDropdowndiv']
 
   connect() {
-
   }
 
   dropdown(){
-    console.log('clicked')
-    this.dropdowndivTarget.classList.toggle('navbar-dropdown-visible')
+    window.onclick = function(event){
+      const dropDown = document.querySelector('.navbar-dropdown')
+      const dropDownbtn = document.querySelector('.avatar')
+      if (event.target != dropDown && dropDown.classList.contains('navbar-dropdown-visible')){
+        dropDown.classList.remove('navbar-dropdown-visible')
+      }
+      else if (event.target === dropDownbtn) {
+        dropDown.classList.add('navbar-dropdown-visible')
+      }
+    }
   }
 
   toggleDropdown(event) {
@@ -18,4 +25,5 @@ export default class extends Controller {
     this.hamburgerIconTarget.classList.toggle('fa-bars')
     this.hamburgerIconTarget.classList.toggle('fa-xmark')
   }
+
 }

@@ -9,28 +9,23 @@ export default class extends Controller {
 
   static values = {
     order: Object,
-    subcategory: Number
+    subcategory: Number,
+    accountNumber: Number,
   }
 
   connect() {
-    // console.log(this.subcategoryValue)
-
     this.radioButtonsTargets.forEach((account) => {
       this.orderValue.accounts.forEach((orderAccount) => {
         if (account.value == orderAccount.account_id) {
           account.setAttribute('checked', true)
+        } else if (orderAccount.account_id >= Math.floor(this.accountNumberValue) + 1) {
+          if (this.subcategoryValue == orderAccount.account_subcategory) {
+            this.otherButtonTarget.classList.add('active')
+            this.otherButtonTarget.innerText = orderAccount.account_name.replace('_', ' ')
+          }
         }
       })
     })
-
-
-      this.orderValue.accounts.forEach((orderAccount) => {
-        console.log(this.subcategoryValue)
-        console.log(orderAccount)
-        if (this.subcategoryValue == orderAccount.account_subcategory) {
-          this.otherButtonTarget.classList.add('active')
-        }
-      })
   }
 
   otherclicked(event) {
@@ -39,7 +34,10 @@ export default class extends Controller {
     });
 
     this.subcategoryDivTarget.classList.toggle('display-none');
-    this.otherButtonTarget.classList.toggle('active');
+    console.log(this.otherButtonTarget.innerText)
+    if (this.otherButtonTarget.innerText == 'Autre' || !this.otherButtonTarget.classList.contains('active')) {
+      this.otherButtonTarget.classList.toggle('active');
+    }
 
     lastclicked = event.target;
   }

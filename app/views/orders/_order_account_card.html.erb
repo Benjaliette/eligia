@@ -3,7 +3,7 @@
     <%= order_account.account.name %>
   </div>
   <div class="order-creation-date d-flex justify-content-center align-items-center">
-      <%= order_account.created_at.strftime('%D') %>
+      <%= order_account.created_at.strftime('%d/%m/%y') %>
   </div>
   <div class="order-account-status order-account-state-<%=order_account.aasm_state%> d-flex justify-content-center align-items-center align-center">
       <%= order_account.state_to_french %>

@@ -9,9 +9,12 @@ export default class extends Controller {
 
   static values = {
     order: Object,
+    subcategory: Number
   }
 
   connect() {
+    // console.log(this.subcategoryValue)
+
     this.radioButtonsTargets.forEach((account) => {
       this.orderValue.accounts.forEach((orderAccount) => {
         if (account.value == orderAccount.account_id) {
@@ -19,6 +22,15 @@ export default class extends Controller {
         }
       })
     })
+
+
+      this.orderValue.accounts.forEach((orderAccount) => {
+        console.log(this.subcategoryValue)
+        console.log(orderAccount)
+        if (this.subcategoryValue == orderAccount.account_subcategory) {
+          this.otherButtonTarget.classList.add('active')
+        }
+      })
   }
 
   otherclicked(event) {

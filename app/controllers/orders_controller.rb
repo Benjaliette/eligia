@@ -99,6 +99,8 @@ class OrdersController < ApplicationController
     accounts = @order.order_accounts.map do |order_account|
       {
         account_id: order_account.account.id,
+        account_name: order_account.account.name.gsub(' ', '_'),
+        account_subcategory: order_account.account.subcategory.id,
       }
     end
 

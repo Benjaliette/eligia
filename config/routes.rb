@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'change'
       get 'recap'
       get 'success'
+      get 'paiement'
     end
   end
   get '/orders/', to: 'orders#new'

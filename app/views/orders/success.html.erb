@@ -4,6 +4,14 @@
 <div class="container margin-top-three padding-three" data-controller="remove-footer">
   <% session = Stripe::Checkout::Session.retrieve(params[:session_id]) %>
   <% customer = Stripe::Customer.retrieve(session.customer) %>
+  <% customer = Stripe::Customer.update(customer.id, {address: {
+    "city": session.customer_details.address.city,
+    "country": session.customer_details.address.country,
+    "line1": session.customer_details.address.line1,
+    "line2": session.customer_details.address.line2,
+    "postal_code": session.customer_details.address.postal_code,
+    "state": session.customer_details.address.state
+  }}) %>
   <% user = current_user %>
   <% user.add_address!(customer.address) %>
 

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :orders, except: :index do
     member do
+      get 'change'
       get 'recap'
       get 'success'
     end

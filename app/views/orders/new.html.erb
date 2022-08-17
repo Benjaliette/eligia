@@ -3,7 +3,7 @@
 
 <div class="container">
 
-  <%= render 'order_creation_steps', step: 0 %>
+  <div class="steps"><%= render_breadcrumbs tag: :h3, separator: "" %></div>
 
   <!-- ==== FORM TO CREATE A NEW ORDER ==== -->
   <div class="form-order-div">
@@ -37,7 +37,7 @@
 
             <!-- Inside, one nested form (put in partial)-->
             <!-- => for new order_accounts, ie. accounts to cancel) -->
-            <%= render 'chose_account_form', category: category, f_order: f_order, subcategory: subcategory %>
+            <%= render 'chose_account_form', category: category, f_order: f_order, subcategory: subcategory, order_accounts: @order_accounts %>
           <% end %>
         </div>
       <% end %>

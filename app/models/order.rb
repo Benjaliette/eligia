@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   monetize :amount_cents
 
   belongs_to :pack
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :order_accounts, dependent: :destroy
   has_many :order_documents, dependent: :destroy
 
@@ -37,7 +37,8 @@ class Order < ApplicationRecord
   private
 
   def reject_order_accounts(attributes)
-    attributes['account_id'].blank? && attributes['account_attributes']['name'].blank?
+    (attributes['account_id'].blank? && attributes['account_attributes']['name'].blank?) ||
+    self.order_accounts.any? { |order_account| order_account.account.id == attributes['account_id'].to_i }
   end
 
   def slug_candidates

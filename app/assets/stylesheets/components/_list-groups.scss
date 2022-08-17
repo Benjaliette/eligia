@@ -52,6 +52,7 @@
   justify-content: space-between;
   max-width: 100%;
   padding: 50px 0;
+  color: $light-green;
 }
 
 @media (max-width: 900px) {
@@ -71,10 +72,6 @@
   .steps {
     padding: 10px;
   }
-}
-
-.step {
-  color: $light-green;
 }
 
 .current-step {

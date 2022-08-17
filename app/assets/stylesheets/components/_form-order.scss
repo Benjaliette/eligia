@@ -307,15 +307,17 @@
   }
 
   .document-btn-and-name{
-    width: 40%;
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
   }
 
   .file-name {
     font-size: 14px;
     font-style: italic;
     margin-left: 10px;
+    flex-grow: 1;
   }
 }
 
@@ -327,5 +329,7 @@
   .file-name {
     margin-left: 5px;
     font-size: 12px;
+    display: inline-block;
+    flex-grow: 1;
   }
 }

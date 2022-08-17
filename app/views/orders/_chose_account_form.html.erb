@@ -1,4 +1,6 @@
-<div class="form-subcategory" data-controller="other-account" data-other-account-order-value=<%= order_accounts %>>
+<div class="form-subcategory" data-controller="other-account" data-other-account-order-value=<%= order_accounts %>
+                                                              data-other-account-subcategory-value=<%= subcategory.id %>
+                                                              data-other-account-account-number-value=<%= Account.where(status: 'validated').count %>>
 
   <!-- First nested form for order_accounts (created as nested attribute for order) -->
   <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>

@@ -1,13 +1,10 @@
 require 'json'
 
 class OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new create edit update]
+  skip_before_action :authenticate_user!, only: %i[change new create edit update recap]
 
-  before_action :set_order, only: %i[show change edit update recap success]
+  before_action :set_order, only: %i[show change edit update recap success paiement]
   before_action :set_categories, only: %i[change new create]
-  after_action only: :recap do
-    open_paiement_session(@order)
-  end
   after_action :send_confirmation_mail, only: :success
 
   add_breadcrumb "1. Résiliations", :change_order_path, only: %i[edit recap]
@@ -65,8 +62,6 @@ class OrdersController < ApplicationController
   end
 
   def update
-
-
     @order.update(order_params)
     update_order_account_status(@order)
 
@@ -74,8 +69,22 @@ class OrdersController < ApplicationController
   end
 
   def recap
-    @order.update(user: current_user)
     add_breadcrumb "<div class='current-step'>3. Validation</div>".html_safe
+  end
+
+  def paiement
+    @order.pack = @order.determine_pack_type
+    @order.amount = @order.pack.price
+    @order.user = current_user
+
+    if @order.save
+      session = @order.set_stripe_paiement(success_order_url(@order), root_url)
+      @order.update(checkout_session_id: session.id)
+
+      redirect_to session.url, allow_other_host: true
+    else
+      render :recap
+    end
   end
 
   def success
@@ -134,22 +143,6 @@ class OrdersController < ApplicationController
         :document_file
       ]
     )
-  end
-
-  def open_paiement_session(order)
-    session = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      billing_address_collection: 'required',
-      line_items: [{
-        name: "Vous avez choisi la formule #{order.pack.title}",
-        amount: order.amount_cents,
-        currency: 'eur',
-        quantity: 1
-      }],
-      success_url: "#{success_order_url(order)}?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: order_url(order)
-    )
-    order.update(checkout_session_id: session.id)
   end
 
   def set_order_documents_to_order

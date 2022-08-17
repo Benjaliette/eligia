@@ -300,6 +300,12 @@
     background-color: $light-green;
   }
 
+  .label-document-input-wrong-format{
+    background-color: $orange;
+    border-color: $gray;
+    color: white;
+  }
+
   .document-btn-and-name{
     width: 40%;
     display: flex;

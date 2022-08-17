@@ -4,9 +4,9 @@
 <div class="container">
   <div class="fullscreen">
 
-    <%= render 'order_creation_steps', step: 1 %>
+    <div class="steps"><%= render_breadcrumbs tag: :h3, separator: "" %></div>
 
-    <div class="form-order-div">
+    <div class="form-order-div" data-controller='check-document' data-check-document-document-value=<%= @order_documents_json %>>
       <div class="form-order-infos">
         <h2>Deuxième étape</h2>
         <p>
@@ -14,14 +14,15 @@
           Les comptes demandés lors de la première étape seront grâce à ces documents.
         </p>
       </div>
-      <%= simple_form_for @order do |f| %>
+      <%= simple_form_for @order, data: { turbo: false } do |f| %>
         <% @order_documents.each do |order_document| %>
           <div class="insert-document" data-controller="add-file">
             <%= f.simple_fields_for :order_documents, order_document do |fod| %>
               <div class="document-name highlight-yellow"><%= order_document.document.name %></div>
+              <div data-check-document-target='infoDiv'></div>
               <div class="document-btn-and-name">
                 <label>
-                  <%= fod.input :document_file, label: "Ajouter", as: :file, input_html:{class:'hidden-document-input', :'data-action' => "change->add-file#added", :'data-add-file-target' => 'input'}, label_html:{class:'label-document-input', :'data-add-file-target' => 'label'} %>
+                  <%= fod.input :document_file, label: "Ajouter", as: :file, input_html:{class:'hidden-document-input', :'data-action' => "change->add-file#added", :'data-add-file-target' => 'input'}, label_html:{class:'label-document-input', :'data-add-file-target' => 'label', :'data-check-document-target' => 'documentForm'} %>
                 </label>
                 <div class="file-name" data-add-file-target="fileNameDiv">
               </div>
@@ -34,7 +35,13 @@
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>
             </span>
-            <span class="button-text">Valider</span>
+            <span class="button-text">
+              <% if current_user %>
+                Valider
+              <% else %>
+                S'identifier
+              <% end %>
+            </span>
           <% end %>
         </div>
       <% end %>

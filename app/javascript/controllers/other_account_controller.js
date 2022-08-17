@@ -7,6 +7,20 @@ let lastclicked;
 export default class extends Controller {
   static targets = ['radioButtons', "otherButton", "subcategoryDiv"]
 
+  static values = {
+    order: Object,
+  }
+
+  connect() {
+    this.radioButtonsTargets.forEach((account) => {
+      this.orderValue.accounts.forEach((orderAccount) => {
+        if (account.value == orderAccount.account_id) {
+          account.setAttribute('checked', true)
+        }
+      })
+    })
+  }
+
   otherclicked(event) {
     this.radioButtonsTargets.forEach(radioButton => {
       radioButton.checked = false

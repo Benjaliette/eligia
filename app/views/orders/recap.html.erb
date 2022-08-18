@@ -15,7 +15,7 @@
 
       <div class="main-order-divs">
         <div class="order-divs">
-          <ul class="order-div-list">
+          <ul class="order-div-list no-padding">
             <% @order.order_accounts.each do |order_account| %>
               <li class="order-div-item">
                 <% if order_account.account.status == "non_validated" %>

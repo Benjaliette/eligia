@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  include AASM
+
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
@@ -51,6 +53,15 @@ class Order < ApplicationRecord
       success_url: "#{success_url}?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: cancel_url
     )
+  end
+
+  aasm do
+    state :pending, initial: true
+    state :done
+
+    event :declare_done do
+      transitions from: :pending,
+    end
   end
 
   private

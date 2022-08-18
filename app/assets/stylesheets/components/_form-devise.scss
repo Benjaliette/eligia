@@ -72,9 +72,10 @@
     margin-bottom: 20px;
   }
 
-  .field_without_errors{
+  .field_without_errors {
     width: 100%;
   }
+
   .field_with_errors{
     width: 100%;
     display: flex;
@@ -163,5 +164,30 @@
         font-weight: bold;
       }
     }
+  }
+}
+
+// Style for user edit password
+
+.user_password {
+  &.field_without_errors {
+    width: initial;
+  }
+}
+
+.user_password_confirmation {
+  &.field_with_errors {
+    width: initial;
+    display: block;
+
+    input {
+      width: initial;
+    }
+  }
+
+  .error {
+    margin: 0;
+    display: block;
+    text-align: left;
   }
 }

@@ -26,7 +26,9 @@ class UsersController < ApplicationController
 
   def update
     if @current_user.update(user_params)
-      redirect_to user_path(@current_user), flash[:success] = 'Mot de passe modifié'
+      bypass_sign_in(@current_user)
+      flash[:success] = 'Mot de passe modifié'
+      redirect_to user_path(@current_user)
     else
       flash[:alert] = "Les deux mots de passes ne sont pas les mêmes"
       render :edit

@@ -2,22 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="navbar-dropdown"
 export default class extends Controller {
-  static targets = [ 'hamburgerIcon', 'dropdowndiv', 'toggleDropdowndiv']
-
-  connect() {
-  }
+  static targets = [ 'hamburgerIcon', 'avatar', 'dropdowndiv', 'toggleDropdowndiv']
 
   dropdown(){
-    window.onclick = function(event){
-      const dropDown = document.querySelector('.navbar-dropdown')
-      const dropDownbtn = document.querySelector('.avatar')
-      if (event.target != dropDown && dropDown.classList.contains('navbar-dropdown-visible')){
-        dropDown.classList.remove('navbar-dropdown-visible')
-      }
-      else if (event.target === dropDownbtn) {
-        dropDown.classList.add('navbar-dropdown-visible')
-      }
-    }
+    this.dropdowndivTarget.classList.toggle('navbar-dropdown-visible')
   }
 
   toggleDropdown(event) {
@@ -26,4 +14,9 @@ export default class extends Controller {
     this.hamburgerIconTarget.classList.toggle('fa-xmark')
   }
 
+  closeDropdown(event) {
+    if (event.srcElement != this.avatarTarget) {
+      this.dropdowndivTarget.classList.remove('navbar-dropdown-visible')
+    }
+  }
 }

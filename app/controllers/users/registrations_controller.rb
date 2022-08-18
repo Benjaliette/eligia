@@ -42,15 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
-    if resource.update_with_password(resource_params)
-      if is_navigational_format?
-        flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
-          :update_needs_confirmation : :updated
-        set_flash_message :success, flash_key
-      end
-      sign_in resource_name, resource, :bypass => true
-      respond_with resource, :location => user_path(resource)
-    elsif resource.update_without_password(resource_params_without_pasword)
+    if resource.update_without_password(resource_params_without_pasword)
       if is_navigational_format?
         flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
           :update_needs_confirmation : :updated
@@ -79,10 +71,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
-
-  def resource_params
-    params.require(:user).permit(:first_name, :last_name, :email, :address, :password)
-  end
 
   def resource_params_without_pasword
     params.require(:user).permit(:first_name, :last_name, :email, :address)

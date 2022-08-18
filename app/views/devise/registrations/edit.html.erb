@@ -46,25 +46,13 @@
                       placeholder: 'Adresse de facturation'
           %>
         </div>
-        <div class="form-inputs-block">
-          <%= f.label 'Mot de passe' %>
-          <%= f.input :password,
-                      required: true,
-                      label: false,
-                      placeholder:'**********'%>
-        </div>
-        <div class="form-inputs-block">
-          <%= f.label 'Confirmation du mot de passe' %>
-          <%= f.input :password_confirmation,
-                      required: true,
-                      label: false,
-                      placeholder:'**********'%>
-        </div>
       </div>
 
       <div class="form-actions">
         <%= f.button :submit, "Confirmer", class: 'btn-principal' %>
       </div>
     <% end %>
+
+    <%= link_to 'Changer de mot de passe ?', control_password_user_path(resource) %>
   </div>
 </div>

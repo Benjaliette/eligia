@@ -9,23 +9,25 @@
       <%= f.full_error :reset_password_token %>
 
       <div class="form-inputs">
-        <%= f.input :password,
-                    label: "New password",
-                    required: true,
-                    autofocus: true,
-                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :password_confirmation,
-                    label: "Confirm your new password",
-                    required: true,
-                    input_html: { autocomplete: "new-password" } %>
+        <div class="form-inputs-block">
+          <%= f.label 'Nouveau mot de passe' %>
+          <%= f.input :password,
+                      required: true,
+                      label: false,
+                      placeholder:'**********'%>
+        </div>
+        <div class="form-inputs-block confirm">
+          <%= f.label 'Confirmation du mot de passe' %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      label: false,
+                      placeholder:'**********'%>
+        </div>
       </div>
 
       <div class="form-actions">
         <%= f.button :submit, "Changer mon mot de passe", class: 'btn-principal' %>
       </div>
     <% end %>
-
-    <%= render "devise/shared/links" %>
   </div>
 </div>

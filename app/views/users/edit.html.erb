@@ -1,0 +1,33 @@
+<% content_for :title, "Changement du mot de passe - Eligia" %>
+
+
+<div class="container" data-controller="remove-footer">
+  <div class="form-div">
+    <h2>Mettre à jour le mot de passe</h2>
+
+    <%= simple_form_for(@current_user, html: { "data-turbo": "false", method: :patch }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <div class="form-inputs-block">
+          <%= f.label 'Nouveau mot de passe' %>
+          <%= f.input :password,
+                      required: true,
+                      label: false,
+                      placeholder:'**********'%>
+        </div>
+        <div class="form-inputs-block confirm">
+          <%= f.label 'Confirmation du mot de passe' %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      label: false,
+                      placeholder:'**********'%>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Confirmer", class: 'btn-principal' %>
+      </div>
+    <% end %>
+  </div>
+</div>

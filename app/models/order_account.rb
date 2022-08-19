@@ -37,6 +37,7 @@ class OrderAccount < ApplicationRecord
   private
 
   def update_order_state
+    # return
     self.order.update_state
   end
 

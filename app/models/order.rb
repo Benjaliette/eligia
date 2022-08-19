@@ -37,7 +37,7 @@ class Order < ApplicationRecord
   end
 
   def update_state
-    return unless self.order_accounts.map { |order_account| order_account.aasm_state == 'resiliation_succeded' }.uniq
+    return unless (self.order_accounts.all { |order_account| order_account.aasm_state == 'resiliation_succeded' } && self.aasm_state != 'done')
 
     self.declare_done!
   end

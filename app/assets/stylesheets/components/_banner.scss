@@ -14,10 +14,9 @@
 }
 
 .second-banner {
-  padding: 0px 0px 100px 230px;
+  padding: 0px auto 100px auto;
   height: 50vh;
-  margin-right: 20%;
-  margin-bottom: 120px;
+  margin: 20px auto 120px auto;
   color: $gray;
   background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), asset-url('banner_marguerite.png');
   background-size: contain;
@@ -41,11 +40,17 @@
       justify-content: flex-start;
       list-style: none;
       margin-bottom: 50px;
+
     }
+
   }
 
   .second-banner-text {
     text-align: justify;
+  }
+
+  ul{
+    padding-inline-start: 0px;
   }
 }
 

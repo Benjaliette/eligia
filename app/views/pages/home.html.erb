@@ -1,15 +1,17 @@
-<% content_for :title, "Eligia" %>
-
 <div class="banner" data-controller="transparent-navbar">
-  <div class="container">
+  <div class="container padding-bottom-3">
     <h1>Résiliez en 10 minutes tous les <br> abonnements d'un proche disparu</h1>
     <p>Simplifier les démarches pour se concentrer sur le deuil</p>
     <%= link_to "Commencer", new_order_path, class:"btn-call-to-a" %>
+  <p class="important-text">Eligia est un outil digital permettant de résilier les abonnements d'un proche suite à son décès. Il suffit de se sélectionner les comptes à résilier et fournir les documents demandés. Nous nous occupons du reste et vous fournissons tous les justificatifs nécessaires.</p>
   </div>
 </div>
 
+
 <div class="second-banner">
+<div class="container">
   <h2 class="highlight-green">Pourquoi Eligia ?</h2>
+
   <ul class="second-banner-list-items">
     <li class="second-banner-list-item">
       <%= image_tag('icon_fast.png', alt:'icone rapidité')%>
@@ -28,6 +30,7 @@
       <div class="second-banner-text">Un suivi <span class="highlight-yellow">facile</span> : grâce à un tableau de bord personnalisé qui vous permet de suivre facilement l'avancée des démarches depuis chez vous</div>
     </li>
   </ul>
+  </div>
 </div>
 <div class="container">
   <div class="home-infos" data-controller="home-infos-appear">

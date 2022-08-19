@@ -35,6 +35,7 @@ export default class extends Controller {
   otherclicked(event) {
     this.subcategoryDivTarget.classList.toggle('display-none');
 
+
     if (this.otherButtonTargets[event.srcElement.id].innerText == 'Autre') {
       this.otherButtonTargets[event.srcElement.id].classList.toggle('active');
     } else {

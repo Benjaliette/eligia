@@ -1,4 +1,6 @@
 class OrderAccount < ApplicationRecord
+  before_save :update_order_state
+
   include AASM
 
   belongs_to :order
@@ -32,7 +34,12 @@ class OrderAccount < ApplicationRecord
     end
   end
 
-  # # State Machine
+  private
+
+  def update_order_state
+    self.order.update_state
+  end
+
   aasm do
     state :documents_missing, initial: true
     state :pending, :resiliation_sent, :resiliation_failed, :resiliation_succeded

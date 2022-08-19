@@ -32,6 +32,10 @@
     box-shadow: 0px 0px 2px lightgrey;
     transition: all ease .07s;
   }
+
+  &.btn-warning {
+    background-color: rgb(238, 101, 77);
+  }
 }
 
 .btn-principal.small {

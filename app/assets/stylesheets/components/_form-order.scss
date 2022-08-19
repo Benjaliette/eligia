@@ -146,9 +146,14 @@
 .other-account {
   margin-top: 30px;
   margin-left: 21px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 75%;
 }
 
 [id^="order_order_accounts_attributes"] {
+  background-color: $light-gray;
   border: 0px solid white;
   border-bottom: 1px solid $gray;
   height: 20px;

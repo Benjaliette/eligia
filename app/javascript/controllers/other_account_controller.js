@@ -1,17 +1,17 @@
 import { Controller } from "@hotwired/stimulus"
 
-let radioCheckNumber = 0;
-let lastclicked;
-
 // Connects to data-controller="other-account"
 export default class extends Controller {
-  static targets = ['checkBoxes', "otherButton", "subcategoryDiv"]
+  static targets = [ "checkBoxes", "otherButton", "subcategoryDiv", "form", "accountInput" ]
 
   static values = {
     order: Object,
     subcategory: Number,
     accountNumber: Number,
   }
+
+  otherCheckNumber = 0
+  currentButton = 0;
 
   connect() {
     try {
@@ -30,21 +30,28 @@ export default class extends Controller {
     }
     catch(err) {
     }
-
   }
 
   otherclicked(event) {
     this.subcategoryDivTarget.classList.toggle('display-none');
-    this.otherButtonTarget.classList.add('active');
+
+    if (this.otherButtonTargets[event.srcElement.id].innerText == 'Autre') {
+      this.otherButtonTargets[event.srcElement.id].classList.toggle('active');
+    } else {
+      this.otherButtonTargets[event.srcElement.id].classList.add('active');
+    }
+
+    this.accountInputTarget.value = ''
+    this.currentButton = event.srcElement.id
   }
 
 
   buttonText(event) {
     if (event.key.length === 1 || event.keyCode === 8) {
       if (event.srcElement.value == '') {
-        this.otherButtonTarget.textContent = 'Autre';
+        this.otherButtonTargets[this.currentButton].textContent = 'Autre';
       } else {
-        this.otherButtonTarget.textContent = event.srcElement.value;
+        this.otherButtonTargets[this.currentButton].textContent = event.srcElement.value;
       };
 
     };
@@ -58,11 +65,38 @@ export default class extends Controller {
 
   accountTyped() {
     this.subcategoryDivTarget.classList.add('display-none');
+
+    if (this.otherButtonTargets.some(button => button.innerText == 'Autre')) {
+      return
+    } else {
+      if (this.otherButtonTarget.textContent != 'Autre') {
+        this.addOtherButton()
+      } else {
+        this.otherButtonTarget.classList.remove('active');
+      }
+    }
   }
 
   removeAccount() {
     this.subcategoryDivTarget.classList.add('display-none');
     this.otherButtonTarget.textContent = 'Autre';
     this.otherButtonTarget.classList.remove('active');
+  }
+
+  addOtherButton() {
+    this.otherCheckNumber++
+
+    const otherButton = `
+    <label class="string optional account-other-button active"
+           id=${this.otherCheckNumber}
+           data-action="click->other-account#otherclicked"
+           data-other-account-target="otherButton"
+           for="order_order_accounts_attributes_0_autre">
+      Autre
+    </label>
+    `
+    this.subcategoryDivTarget.insertAdjacentHTML('beforebegin', otherButton)
+
+    this.otherButtonTargets[this.otherCheckNumber].classList.remove('active');
   }
 }

@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  include AASM
+
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
@@ -34,6 +36,12 @@ class Order < ApplicationRecord
     end
   end
 
+  def update_state
+    return unless (self.order_accounts.all { |order_account| order_account.aasm_state == 'resiliation_succeded' } && self.aasm_state != 'done')
+
+    self.declare_done!
+  end
+
   def set_stripe_paiement(success_url, cancel_url)
     customer = set_stripe_customer
     product = set_stripe_product
@@ -57,7 +65,7 @@ class Order < ApplicationRecord
 
   def reject_order_accounts(attributes)
     (attributes['account_id'].blank? && attributes['account_attributes']['name'].blank?) ||
-    self.order_accounts.any? { |order_account| order_account.account.id == attributes['account_id'].to_i }
+      self.order_accounts.any? { |order_account| order_account.account.id == attributes['account_id'].to_i }
   end
 
   def slug_candidates
@@ -68,11 +76,13 @@ class Order < ApplicationRecord
   end
 
   def set_stripe_customer
-    Stripe::Customer.create({
-      email: self.user.email,
-      name: "#{self.user.first_name} #{self.user.last_name}",
-      metadata: { id: self.user.id }
-    })
+    Stripe::Customer.create(
+      {
+        email: self.user.email,
+        name: "#{self.user.first_name} #{self.user.last_name}",
+        metadata: { id: self.user.id }
+      }
+    )
   end
 
   def set_stripe_product
@@ -82,10 +92,21 @@ class Order < ApplicationRecord
   end
 
   def set_stripe_price(product)
-    Stripe::Price.create({
-      unit_amount: self.pack.price_cents,
-      currency: 'eur',
-      product: product.id
-    })
+    Stripe::Price.create(
+      {
+        unit_amount: self.pack.price_cents,
+        currency: 'eur',
+        product: product.id
+      }
+    )
+  end
+
+  aasm do
+    state :pending, initial: true
+    state :done
+
+    event :declare_done do
+      transitions from: :pending, to: :done
+    end
   end
 end

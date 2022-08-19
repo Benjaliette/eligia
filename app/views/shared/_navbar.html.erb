@@ -18,7 +18,7 @@
       </li>
       <li class="nav-item" id="user">
         <% if current_user %>
-          <div class="avatar", data-action="click->navbar-dropdown#dropdown" >
+          <div class="avatar", data-action="click->navbar-dropdown#dropdown click@window->navbar-dropdown#closeDropdown" data-navbar-dropdown-target='avatar'>
             <%= current_user.first_name[0].upcase + current_user.last_name[0].upcase %>
           </div>
           <ul class="navbar-dropdown" data-navbar-dropdown-target="dropdowndiv">

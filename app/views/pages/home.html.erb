@@ -1,33 +1,36 @@
-<% content_for :title, "Eligia" %>
-
 <div class="banner" data-controller="transparent-navbar">
-  <div class="container">
+  <div class="container padding-bottom-three ">
     <h1>Résiliez en 10 minutes tous les <br> abonnements d'un proche disparu</h1>
     <p>Simplifier les démarches pour se concentrer sur le deuil</p>
     <%= link_to "Commencer", new_order_path, class:"btn-call-to-a" %>
+  <p class="important-text padding-top-five padding-bottom-five margin-top-five margin-bottom-five">Eligia est un outil digital permettant de résilier les abonnements d'un proche suite à son décès. Il suffit de se sélectionner les comptes à résilier et fournir les documents demandés. Nous nous occupons du reste et vous fournissons tous les justificatifs nécessaires.</p>
   </div>
 </div>
 
+
 <div class="second-banner">
+<div class="container">
   <h2 class="highlight-green">Pourquoi Eligia ?</h2>
+
   <ul class="second-banner-list-items">
     <li class="second-banner-list-item">
-      <%= image_tag('icon_fast.png', alt:'icone rapidité')%>
+      <%= image_tag('icon-fast.svg', alt:'icone rapidité', class: 'icon-bulletpoint')%>
       <div class="second-banner-text">Démarche effectuée en <span class="highlight-yellow">quelques minutes</span> : il suffit de renseigner les comptes à résilier et de joindre les documents nécessaires</div>
     </li>
     <li class="second-banner-list-item">
-      <%= image_tag('icon_list.png', alt:'icone vaste choix')%>
+      <%= image_tag('icon-list.svg', alt:'icone vaste choix', class: 'icon-bulletpoint')%>
       <div class="second-banner-text"><span class="highlight-yellow">Tous types d'abonnements pris en compte</span> : internet, téléphonie fixe et mobile, journaux, magazines, énergie etc.</div>
     </li>
     <li class="second-banner-list-item">
-      <%= image_tag('icon_price.png', alt:'icone prix attractif')%>
+      <%= image_tag('icon-price.svg', alt:'icone prix attractif', class: 'icon-bulletpoint')%>
       <div class="second-banner-text">Un forfait <span class="highlight-yellow">attractif</span> : nos tarifs s'adaptent à vos besoins</div>
     </li>
     <li class="second-banner-list-item">
-      <%= image_tag('icon_monitoring.png', alt:'icone suivi avec tableau de bord')%>
+      <%= image_tag('icon-dashboard.svg', alt:'icone suivi avec tableau de bord', class: 'icon-bulletpoint')%>
       <div class="second-banner-text">Un suivi <span class="highlight-yellow">facile</span> : grâce à un tableau de bord personnalisé qui vous permet de suivre facilement l'avancée des démarches depuis chez vous</div>
     </li>
   </ul>
+  </div>
 </div>
 <div class="container">
   <div class="home-infos" data-controller="home-infos-appear">
@@ -84,7 +87,7 @@
           <br>
           • L'organisation des obsèques.<br>
         </div>
-        <%= image_tag('funeral.png', alt:'icone funérailles', class: 'icon-infos') %>
+        <%= image_tag('icon-funeral.svg', alt:'icone funérailles', class: 'icon-infos') %>
         <div>
           Ces démarches sont souvent réalisées par les pompes funèbres qui proposent plusieurs sortes d'accompagnement
           personnalisés. Pour vous aider dans vos démarches, vous pouvez consulter la page du gouvernement concernant les <%= link_to 'prestations funéraires', "https://www.economie.gouv.fr/dgccrf/Publications/Vie-pratique/Fiches-pratiques/Prestations-funeraires",
@@ -100,7 +103,7 @@
           • Cloture du compte en banque du défunt avec acte de notoriété. (Pensez néanmoins à noter l'IBAN
           du défunt pour les résiliations qui suivront).
         </div>
-        <%= image_tag('administration.png', alt:'icone tâches administratives', class: 'icon-infos') %>
+        <%= image_tag('icon-administration.svg', alt:'icone tâches administratives', class: 'icon-infos') %>
         <div>
           Suite à ça, les démarches suivantes devront être entreprises :
           <br>
@@ -116,7 +119,7 @@
         <div>
           Enfin, vous devrez résilier ou réattribuer les diverses souscriptions restantes du défunt. En l'absence de notification de l'entreprise concessionnaire, les contrats perdurent et <span class="highlight-blue">leur facturation revient aux héritiers.</span> C'est la raison pour laquelle il est conseiller de s'en occuper aussi vite que possible.
         </div>
-        <%= image_tag('subscription.png', alt:'icone abonnements', class: 'icon-infos') %>
+        <%= image_tag('icon-subscription.svg', alt:'icone abonnements', class: 'icon-infos') %>
         <div>
           <em>Eligia</em> vise à vous décharger de ce poids en s'occupant de toutes ces démarches rapidement et efficacement. Le plus souvent il s'agit de contrats d'énergie (EDF, Engie, TotalEnergies, Eni...), d'abonnements aux télécoms (Orange, SFR, Bouygues, Free...),
           à des médias payants (Canal+, Netflix, BeinSport...) ou encore à des journaux et/ou magazines (Le Monde, Le Figaro, Le Parisien...).

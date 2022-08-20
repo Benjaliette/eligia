@@ -1,0 +1,12 @@
+<%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
+  <!-- Last fake radio button to allow new account form to appear (with a d-none and JS toggle) -->
+  <%= f_order_accounts.simple_fields_for :account, Account.new do |f_account| %>
+    <%= f_account.label "autre", class:'account-other-button display-none', id: id, data: {action:'click->other-account#otherclicked','other-account-target':"otherButton"} %>
+    <%= f_account.input :name, class:'account-other-button', input_html: { data: {'other-account-target':"otherButtonInput"} }, as: :hidden %>
+    <%=
+        f_account.input :subcategory_id, input_html: { value: subcategory.id }, as: :hidden
+        # This hidden field allow us to store the created account in the category
+        # where the other button has been clicked
+      %>
+  <% end %>
+<% end %>

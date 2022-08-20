@@ -1,19 +1,22 @@
 import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="other-account"
+
 export default class extends Controller {
-  static targets = [ "checkBoxes", "otherButton", "subcategoryDiv", "form", "accountInput" ]
+  static targets = [ "checkBoxes", "otherButton", "otherButtonInput", "subcategoryDiv", "form", "accountInput" ]
 
   static values = {
     order: Object,
     subcategory: Number,
     accountNumber: Number,
+    subcategoryNumber: Number,
   }
 
   otherCheckNumber = 0
   currentButton = 0;
 
   connect() {
+
     try {
       this.checkBoxesTargets.forEach((account) => {
         this.orderValue.accounts.forEach((orderAccount) => {
@@ -51,8 +54,10 @@ export default class extends Controller {
     if (event.key.length === 1 || event.keyCode === 8) {
       if (event.srcElement.value == '') {
         this.otherButtonTargets[this.currentButton].textContent = 'Autre';
+        this.otherButtonInputTargets[this.currentButton].value = "";
       } else {
         this.otherButtonTargets[this.currentButton].textContent = event.srcElement.value;
+        this.otherButtonInputTargets[this.currentButton].value = event.srcElement.value;
       };
 
     };
@@ -67,15 +72,12 @@ export default class extends Controller {
   accountTyped() {
     this.subcategoryDivTarget.classList.add('display-none');
 
-    if (this.otherButtonTargets.some(button => button.innerText == 'Autre')) {
-      return
-    } else {
       if (this.otherButtonTarget.textContent != 'Autre') {
         this.addOtherButton()
       } else {
         this.otherButtonTarget.classList.remove('active');
       }
-    }
+
   }
 
   removeAccount() {
@@ -87,16 +89,7 @@ export default class extends Controller {
   addOtherButton() {
     this.otherCheckNumber++
 
-    const otherButton = `
-    <label class="string optional account-other-button active"
-           id=${this.otherCheckNumber}
-           data-action="click->other-account#otherclicked"
-           data-other-account-target="otherButton"
-           for="order_order_accounts_attributes_0_autre">
-      Autre
-    </label>
-    `
-    this.subcategoryDivTarget.insertAdjacentHTML('beforebegin', otherButton)
+    this.otherButtonTargets[this.otherCheckNumber].classList.remove('display-none')
 
     this.otherButtonTargets[this.otherCheckNumber].classList.remove('active');
   }

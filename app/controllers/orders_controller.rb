@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.pack = @order.determine_pack_type
     @order.amount = @order.pack.price
-    raise
+
     if @order.save
       set_order_documents_to_order
 

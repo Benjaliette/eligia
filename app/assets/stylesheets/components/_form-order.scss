@@ -31,6 +31,7 @@
   input {
     padding: 0 10px;
   }
+
   .form-name-input {
     // position: absolute;
     // left: 300px;
@@ -317,6 +318,12 @@
     border-radius: 5px;
     width: fit-content;
     margin-top: 10px;
+
+    &:hover{
+      transform: scale(1.07);
+      box-shadow: 0px 0px 4px lightgray;
+      transition: all .07s ease;
+    }
   }
 
   .label-document-input-selected{
@@ -355,4 +362,11 @@
     display: inline-block;
     flex-grow: 1;
   }
+}
+
+.doc-input{
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 4px;
+  border: solid 2px $light-green;
 }

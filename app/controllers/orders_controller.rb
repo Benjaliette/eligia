@@ -145,7 +145,8 @@ class OrdersController < ApplicationController
       order_documents_attributes: [
         :id,
         :document_id,
-        :document_file
+        :document_file,
+        :document_input
       ]
     )
   end

@@ -1,7 +1,29 @@
-$footer-height: 70px;
-
+// General purpose sizess (margin, padding etc)
 $level-one: 4px;
 $level-two: 8px;
 $level-three: 16px;
 $level-four: 24px;
 $level-five: 32px;
+
+// Footer
+$footer-height: 70px;
+
+// Font-sizes :
+
+@media (max-width: 900px) {
+  p{
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 500px) {
+  p{
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  p{
+    font-size: 14px;
+  }
+}

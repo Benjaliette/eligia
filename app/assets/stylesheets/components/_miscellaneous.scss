@@ -1,7 +1,7 @@
 // Les classes qu'on peut être ammenés à ajouter on the fly sur les composants html
 
 .display-none {
-  display: none;
+  display: none !important;
 }
 
 
@@ -9,92 +9,95 @@
 
 // No
 .no-margin {
-  margin: 0;
+  margin: 0 !important;
 }
 
 // All around
 .margin-one {
-  margin: $level-one;
+  margin: $level-one !important;
 }
 .margin-two {
-  margin: $level-two;
+  margin: $level-two !important;
 }
 .margin-three {
-  margin: $level-three;
+  margin: $level-three !important;
 }
 .margin-four {
-  margin: $level-four;
+  margin: $level-four !important;
 }
 .margin-five {
-  margin: $level-five;
+  margin: $level-five !important;
 }
 
 // Top
 .margin-top-one {
-  margin-top: $level-one;
+  margin-top: $level-one !important;
 }
 .margin-top-two {
-  margin-top: $level-two;
+  margin-top: $level-two !important;
 }
 .margin-top-three {
-  margin-top: $level-three;
+  margin-top: $level-three !important;
 }
 .margin-top-four {
-  margin-top: $level-four;
+  margin-top: $level-four !important;
 }
 .margin-top-five {
-  margin-top: $level-five;
+  margin-top: $level-five !important;
 }
 
 // Right
 .margin-right-one {
-  margin-right: $level-one;
+  margin-right: $level-one !important;
 }
 .margin-right-two {
-  margin-right: $level-two;
+  margin-right: $level-two !important;
 }
 .margin-right-three {
-  margin-right: $level-three;
+  margin-right: $level-three !important;
 }
 .margin-right-four {
-  margin-right: $level-four;
+  margin-right: $level-four !important;
 }
 .margin-right-five {
-  margin-right: $level-five;
+  margin-right: $level-five !important;
 }
 
 // Bottom
+.margin-bottom-zero {
+  margin-bottom: 0px !important;
+}
 .margin-bottom-one {
-  margin-bottom: $level-one;
+  margin-bottom: $level-one !important;
 }
 .margin-bottom-two {
-  margin-bottom: $level-two;
+  margin-bottom: $level-two !important;
 }
 .margin-bottom-three {
-  margin-bottom: $level-three;
+  margin-bottom: $level-three !important;
 }
 .margin-bottom-four {
-  margin-bottom: $level-four;
+  margin-bottom: $level-four !important;
 }
 .margin-bottom-five {
-  margin-bottom: $level-five;
+  margin-bottom: $level-five !important;
 }
 
 // Left
 .margin-left-one {
-  margin-left: $level-one;
+  margin-left: $level-one !important;
 }
 .margin-left-two {
-  margin-left: $level-two;
+  margin-left: $level-two !important;
 }
 .margin-left-three {
-  margin-left: $level-three;
+  margin-left: $level-three !important;
 }
 .margin-left-four {
-  margin-left: $level-four;
+  margin-left: $level-four !important;
 }
 .margin-left-five {
-  margin-left: $level-five;
+  margin-left: $level-five !important;
 }
 
 
@@ -102,140 +105,140 @@
 
 // No
 .no-padding {
-  padding: 0;
+  padding: 0 !important;
 }
 
 // All around
 .padding-one {
-  padding: $level-one;
+  padding: $level-one !important;
 }
 .padding-two {
-  padding: $level-two;
+  padding: $level-two !important;
 }
 .padding-three {
-  padding: $level-three;
+  padding: $level-three !important;
 }
 .padding-four {
-  padding: $level-four;
+  padding: $level-four !important;
 }
 .padding-five {
-  padding: $level-five;
+  padding: $level-five !important;
 }
 
 // Top
 .padding-top-one {
-  padding-top: $level-one;
+  padding-top: $level-one !important;
 }
 .padding-top-two {
-  padding-top: $level-two;
+  padding-top: $level-two !important;
 }
 .padding-top-three {
-  padding-top: $level-three;
+  padding-top: $level-three !important;
 }
 .padding-top-four {
-  padding-top: $level-four;
+  padding-top: $level-four !important;
 }
 .padding-top-five {
-  padding-top: $level-five;
+  padding-top: $level-five !important;
 }
 
 // Right
 .padding-right-one {
-  padding-right: $level-one;
+  padding-right: $level-one !important;
 }
 .padding-right-two {
-  padding-right: $level-two;
+  padding-right: $level-two !important;
 }
 .padding-right-three {
-  padding-right: $level-three;
+  padding-right: $level-three !important;
 }
 .padding-right-four {
-  padding-right: $level-four;
+  padding-right: $level-four !important;
 }
 .padding-right-five {
-  padding-right: $level-five;
+  padding-right: $level-five !important;
 }
 
 // Bottom
 .padding-bottom-one {
-  padding-bottom: $level-one;
+  padding-bottom: $level-one !important;
 }
 .padding-bottom-two {
-  padding-bottom: $level-two;
+  padding-bottom: $level-two !important;
 }
 .padding-bottom-three {
-  padding-bottom: $level-three;
+  padding-bottom: $level-three !important;
 }
 .padding-bottom-four {
-  padding-bottom: $level-four;
+  padding-bottom: $level-four !important;
 }
 .padding-bottom-five {
-  padding-bottom: $level-five;
+  padding-bottom: $level-five !important;
 }
 
 // Left
 .padding-left-one {
-  padding-left: $level-one;
+  padding-left: $level-one !important;
 }
 .padding-left-two {
-  padding-left: $level-two;
+  padding-left: $level-two !important;
 }
 .padding-left-three {
-  padding-left: $level-three;
+  padding-left: $level-three !important;
 }
 .padding-left-four {
-  padding-left: $level-four;
+  padding-left: $level-four !important;
 }
 .padding-left-five {
-  padding-left: $level-five;
+  padding-left: $level-five !important;
 }
 
 // // // // // Text
 
 .bold{
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 .color-green {
-  color: $green;
+  color: $green !important;
 }
 
 .background-green {
-  background-color: $green;
+  background-color: $green !important;
 }
 
 .bold-link {
-  font-weight: bold;
+  font-weight: bold !important;
 
   &:hover {
-    color: $blue;
-    text-decoration: underline;
+    color: $blue !important;
+    text-decoration: underline !important;
   }
 }
 
 
 //Alignments
 .align-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .disabled {
-  color: $light-gray;
+  color: $light-gray !important;
   cursor: initial !important;
 }
 
 .underline {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
 .d-flex{
-  display: flex;
+  display: flex !important;
 }
 
 .justify-content-center{
-  justify-content: center;
+  justify-content: center !important;
 }
 
 .align-items-center{
-  align-items: center;
+  align-items: center !important;
 }

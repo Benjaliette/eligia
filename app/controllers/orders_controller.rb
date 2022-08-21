@@ -7,9 +7,8 @@ class OrdersController < ApplicationController
   before_action :set_categories, only: %i[change new create]
   after_action :send_confirmation_mail, only: :success
 
-  add_breadcrumb "1. Résiliations", :change_order_path, only: %i[edit recap]
-  add_breadcrumb "2. Informations nécessaires", :edit_order_path, only: :recap
-
+  add_breadcrumb "<div class=' step other-step'>1. Résiliations</div>".html_safe, :change_order_path, only: %i[edit recap]
+  add_breadcrumb "<div class=' step other-step'>2. Informations nécessaires</div>".html_safe, :edit_order_path, only: :recap
   add_breadcrumb "Démarches", :user_path, only: :show
 
   def index
@@ -28,9 +27,9 @@ class OrdersController < ApplicationController
   def change
     @order_accounts = jsonify_order_accounts
 
-    add_breadcrumb "<div class='current-step'>1. Résiliations</div>".html_safe
-    add_breadcrumb "2. Informations nécessaires"
-    add_breadcrumb "3. Validation"
+    add_breadcrumb "<div class='step current-step'>1. Résiliations</div>".html_safe
+    add_breadcrumb "<div class='step other-step'>2. Informations nécessaires</div>".html_safe
+    add_breadcrumb "<div class='step other-step'>3. Validation</div>".html_safe
 
     render :new
   end
@@ -60,8 +59,9 @@ class OrdersController < ApplicationController
     @order_documents = @order.order_documents
     @order_documents_json = jsonify_order_documents
 
-    add_breadcrumb "<div class='current-step'>2. Informations nécessaires</div>".html_safe
-    add_breadcrumb "3. Validation"
+    # add_breadcrumb "<div class='other-step'>1. Résiliations</div>".html_safe
+    add_breadcrumb "<div class='step current-step'>2. Informations nécessaires</div>".html_safe
+    add_breadcrumb "<div class='step other-step'>3. Validation</div>".html_safe
   end
 
   def update
@@ -72,7 +72,7 @@ class OrdersController < ApplicationController
   end
 
   def recap
-    add_breadcrumb "<div class='current-step'>3. Validation</div>".html_safe
+    add_breadcrumb "<div class='step current-step'>3. Validation</div>".html_safe
   end
 
   def paiement

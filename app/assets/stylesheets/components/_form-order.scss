@@ -86,6 +86,15 @@
 
 .form-subcategory{
   text-align: left;
+
+  .hidden {
+    appearance: none;
+    background-color: initial;
+    cursor: default;
+    display: none !important;
+    padding: initial;
+    border: initial;
+  }
 }
 
 .account-radio-button{

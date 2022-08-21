@@ -89,6 +89,22 @@
     margin-bottom: 30px;
   }
 
+  .show-password-devise{
+    margin: 5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+
+    .input{
+      flex-grow: 1;
+    }
+
+    .fa-solid{
+      margin-right: 5px;
+    }
+  }
+
   @media (max-width: 900px) {
     .form-inputs > .input{
       width: 70%;

@@ -4,7 +4,7 @@
 <div class="container">
   <div class="fullscreen">
 
-    <div class="steps"><%= render_breadcrumbs tag: :h3, separator: "" %></div>
+    <div class="steps"><%= render_breadcrumbs tag: :p, separator: "" %></div>
 
     <div class="form-order-div">
       <h3>Dernière étape</h3>
@@ -36,10 +36,12 @@
         </div>
         <div class="order-divs">
           <% @order.order_documents.each do |order_document| %>
-            <li class="order-div-item document">
-              <div><%= order_document.document.name %> :</div>
-              <div class="document-created-<%= order_document.document_file.attached? %>"><%= order_document.document_file.attached? ? " OK" : " Document manquant"%></div>
-            </li>
+            <ul>
+              <li class="order-div-item document">
+                <div><%= order_document.document.name %> :</div>
+                <div class="document-created-<%= order_document.document_file.attached? %>"><%= order_document.document_file.attached? ? " OK" : " Document manquant"%></div>
+              </li>
+            </ul>
           <% end %>
         </div>
       </div>

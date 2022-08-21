@@ -19,11 +19,11 @@ RSpec.describe Account, type: :model do
       expect(account.valid?).to eq false
     end
 
-    it "Should be invalid if name is already taken in the same subcategory" do
-      create(:account, name: "SFR", subcategory: create(:subcategory, name: "Telecom"))
-      account = Account.new(name: "SFR", subcategory: Subcategory.find_by(name: "Telecom"))
-      expect(account.valid?).to eq false
-    end
+    # it "Should be invalid if name is already taken in the same subcategory" do
+    #   create(:account, name: "SFR", subcategory: create(:subcategory, name: "Telecom"))
+    #   account = Account.new(name: "SFR", subcategory: Subcategory.find_by(name: "Telecom"))
+    #   expect(account.valid?).to eq false
+    # end
 
     it "Should be valid if name is already taken in another subcategory" do
       create(:account, name: "LeMonde", subcategory: create(:subcategory, name: "Media"))

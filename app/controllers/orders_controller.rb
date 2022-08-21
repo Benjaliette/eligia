@@ -37,6 +37,7 @@ class OrdersController < ApplicationController
 
   def create
     @categories = Category.all
+
     @order = Order.new(order_params)
     @order.pack = @order.determine_pack_type
     @order.amount = @order.pack.price
@@ -46,6 +47,8 @@ class OrdersController < ApplicationController
 
       redirect_to edit_order_path(@order)
     else
+      @order_accounts = jsonify_order_accounts
+
       flash[:alert] = "Attention, il manque des informations"
       render :new
     end

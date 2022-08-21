@@ -22,17 +22,13 @@ export default class extends Controller {
         this.orderValue.accounts.forEach((orderAccount) => {
           if (account.value == orderAccount.account_id) {
             account.setAttribute('checked', true);
-          } else if (orderAccount.account_id >= Math.floor(this.accountNumberValue) + 1) {
-            if (this.subcategoryValue == orderAccount.account_subcategory) {
-
-
-            };
-          };
+          }
         });
       });
 
       if (this.otherAccountValue != 0) {
         let i = 0
+
 
         this.orderValue.accounts.forEach((orderAccount) => {
           if (orderAccount.account_id > this.accountNumberValue || orderAccount.account_id == null) {

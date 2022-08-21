@@ -195,11 +195,23 @@ button {
     margin: 10px;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
     .order-btn{
       width: 100%;
-      text-align: center !important;
+      text-align: center;
       margin: 0px;
     }
+  }
+}
+
+// To see password
+
+.show-password-btn{
+  color: #757575 ;
+  margin-left: 10px ;
+  cursor: pointer;
+
+  &:hover{
+    color: #000;
   }
 }

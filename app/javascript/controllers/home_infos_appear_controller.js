@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = [ "timelineItems", "checkpoints", "infoItems", "arrowLeft", "arrowRight" ]
 
   transition(event) {
-    console.log(event)
     if(Array.from(event.srcElement.classList).includes('next') || Array.from(event.srcElement.parentElement.classList).includes('next')) {
       this.slideLeft(this.timelineItemsTargets)
       this.slideLeft(this.infoItemsTargets)

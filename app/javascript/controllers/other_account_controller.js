@@ -1,71 +1,117 @@
 import { Controller } from "@hotwired/stimulus"
 
-let radioCheckNumber = 0;
-let lastclicked;
-
 // Connects to data-controller="other-account"
+
 export default class extends Controller {
-  static targets = ['radioButtons', "otherButton", "subcategoryDiv"]
+  static targets = [ "checkBoxes", "otherButton", "otherButtonInput", "subcategoryDiv", "form", "accountInput" ]
 
   static values = {
     order: Object,
     subcategory: Number,
     accountNumber: Number,
+    subcategoryNumber: Number,
+    otherAccount: Number,
   }
+
+  otherCheckNumber = 0
+  currentButton = 0;
 
   connect() {
-    this.radioButtonsTargets.forEach((account) => {
-      this.orderValue.accounts.forEach((orderAccount) => {
-        if (account.value == orderAccount.account_id) {
-          account.setAttribute('checked', true)
-        } else if (orderAccount.account_id >= Math.floor(this.accountNumberValue) + 1) {
-          if (this.subcategoryValue == orderAccount.account_subcategory) {
-            this.otherButtonTarget.classList.add('active')
-            this.otherButtonTarget.innerText = orderAccount.account_name.replace('_', ' ')
+    try {
+      this.checkBoxesTargets.forEach((account) => {
+        this.orderValue.accounts.forEach((orderAccount) => {
+          if (account.value == orderAccount.account_id) {
+            account.setAttribute('checked', true);
+          } else if (orderAccount.account_id >= Math.floor(this.accountNumberValue) + 1) {
+            if (this.subcategoryValue == orderAccount.account_subcategory) {
+
+
+            };
+          };
+        });
+      });
+
+      if (this.otherAccountValue != 0) {
+        let i = 0
+
+        this.orderValue.accounts.forEach((orderAccount) => {
+          if (orderAccount.account_id > this.accountNumberValue || orderAccount.account_id == null) {
+            this.otherButtonTargets[i].classList.remove('display-none')
+            this.otherButtonTargets[i].classList.add('active');
+            if (this.otherButtonTargets[i].innerText == 'Autre' ) {
+              this.otherButtonTargets[i].innerText = orderAccount.account_name.replace('_', ' ');
+            }
+
+            i++
           }
-        }
-      })
-    })
+        })
+
+        this.otherButtonTargets[i].classList.remove('display-none')
+      }
+    } catch(err) {
+    }
   }
+
 
   otherclicked(event) {
-    this.radioButtonsTargets.forEach(radioButton => {
-      radioButton.checked = false
-    });
-
     this.subcategoryDivTarget.classList.toggle('display-none');
-    console.log(this.otherButtonTarget.innerText)
-    if (this.otherButtonTarget.innerText == 'Autre' || !this.otherButtonTarget.classList.contains('active')) {
-      this.otherButtonTarget.classList.toggle('active');
-    }
 
-    lastclicked = event.target;
-  }
 
-  radioclicked(event) {
-    radioCheckNumber ++
-
-    this.subcategoryDivTarget.classList.add('display-none');
-    this.otherButtonTarget.classList.remove('active');
-
-    if (radioCheckNumber % 2 === 0 && lastclicked === event.target) {
-      event.target.checked = false
+    if (this.otherButtonTargets[event.srcElement.id].innerText == 'Autre' && this.currentButton != event.srcElement.id) {
+      this.otherButtonTargets[event.srcElement.id].classList.toggle('active');
     } else {
-      event.target.checked = true
+      this.otherButtonTargets[event.srcElement.id].classList.add('active');
     }
 
-    lastclicked = event.target;
+    this.accountInputTarget.value = ''
+    this.currentButton = event.srcElement.id
   }
+
 
   buttonText(event) {
-    if (event.key.length === 1) {
-      this.otherButtonTarget.textContent = event.srcElement.value;
-    }
+    if (event.key.length === 1 || event.keyCode === 8) {
+      if (event.srcElement.value == '') {
+        this.otherButtonTargets[this.currentButton].textContent = 'Autre';
+        this.otherButtonInputTargets[this.currentButton].value = "";
+      } else {
+        this.otherButtonTargets[this.currentButton].textContent = event.srcElement.value;
+        this.otherButtonInputTargets[this.currentButton].value = event.srcElement.value;
+      };
+
+    };
   }
 
   preventSubmit(event) {
     if(event.keyCode === 13) {
       event.preventDefault()
+    };
+  }
+
+  accountTyped() {
+    this.subcategoryDivTarget.classList.add('display-none');
+
+    if (this.otherButtonTarget.textContent != 'Autre') {
+      this.addOtherButton()
+    } else {
+      this.otherButtonTarget.classList.remove('active');
+    }
+  }
+
+  removeAccount() {
+    this.subcategoryDivTarget.classList.add('display-none');
+    this.otherButtonTargets[this.currentButton] = 'Autre';
+    this.otherButtonTargets[this.currentButton].classList.remove('active');
+  }
+
+  addOtherButton() {
+    const array = this.otherButtonTargets.filter(other => !other.classList.contains('display-none'))
+
+    if (!array.some(item => item.innerText == 'Autre')) {
+      this.otherCheckNumber++
+
+      this.otherButtonTargets[this.otherCheckNumber].classList.remove('display-none')
+
+      this.otherButtonTargets[this.otherCheckNumber].classList.remove('active');
     }
   }
 }

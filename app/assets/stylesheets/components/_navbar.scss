@@ -125,6 +125,7 @@ $navbar-height:100px;
   i {
     position: relative;
     z-index: 1;
+    cursor: pointer;
   }
 }
 
@@ -146,4 +147,5 @@ $navbar-height:100px;
   font-size: 26px;
   font-weight: bold;
   margin: 80px;
+  cursor: pointer;
 }

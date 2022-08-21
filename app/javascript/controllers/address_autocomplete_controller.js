@@ -24,7 +24,6 @@ export default class extends Controller {
   }
 
   #setInputValue(event) {
-    console.log(event)
     this.addressTarget.value = event.result["place_name"]
   }
 

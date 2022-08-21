@@ -47,6 +47,8 @@ class OrdersController < ApplicationController
 
       redirect_to edit_order_path(@order)
     else
+      @order_accounts = jsonify_order_accounts
+
       flash[:alert] = "Attention, il manque des informations"
       render :new
     end

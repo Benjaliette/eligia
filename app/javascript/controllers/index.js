@@ -31,9 +31,6 @@ application.register("navbar-dropdown", NavbarDropdownController)
 import NavbarResponsivityController from "./navbar_responsivity_controller"
 application.register("navbar-responsivity", NavbarResponsivityController)
 
-import OrderStepController from "./order_step_controller"
-application.register("order-step", OrderStepController)
-
 import OtherAccountController from "./other_account_controller"
 application.register("other-account", OtherAccountController)
 

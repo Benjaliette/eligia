@@ -194,4 +194,12 @@ button {
   .btn-principal.small {
     margin: 10px;
   }
+
+  @media (max-width: 400px) {
+    .order-btn{
+      width: 100%;
+      text-align: center !important;
+      margin: 0px;
+    }
+  }
 }

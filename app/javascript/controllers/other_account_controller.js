@@ -10,12 +10,14 @@ export default class extends Controller {
     subcategory: Number,
     accountNumber: Number,
     subcategoryNumber: Number,
+    otherAccount: Number,
   }
 
   otherCheckNumber = 0
   currentButton = 0;
 
   connect() {
+
 
     try {
       this.checkBoxesTargets.forEach((account) => {
@@ -24,14 +26,32 @@ export default class extends Controller {
             account.setAttribute('checked', true);
           } else if (orderAccount.account_id >= Math.floor(this.accountNumberValue) + 1) {
             if (this.subcategoryValue == orderAccount.account_subcategory) {
-              this.otherButtonTarget.classList.add('active');
-              this.otherButtonTarget.innerText = orderAccount.account_name.replace('_', ' ');
+
+
             };
           };
         });
       });
+
     }
     catch(err) {
+    }
+    if (this.otherAccountValue != 0) {
+      let i = 0
+
+      this.orderValue.accounts.forEach((orderAccount) => {
+        if (orderAccount.account_id > this.accountNumberValue) {
+          this.otherButtonTargets[i].classList.remove('display-none')
+          this.otherButtonTargets[i].classList.add('active');
+          if (this.otherButtonTargets[i].innerText == 'Autre' ) {
+            this.otherButtonTargets[i].innerText = orderAccount.account_name.replace('_', ' ');
+          }
+
+          i++
+        }
+      })
+
+      this.otherButtonTargets[i].classList.remove('display-none')
     }
   }
 
@@ -39,7 +59,7 @@ export default class extends Controller {
     this.subcategoryDivTarget.classList.toggle('display-none');
 
 
-    if (this.otherButtonTargets[event.srcElement.id].innerText == 'Autre') {
+    if (this.otherButtonTargets[event.srcElement.id].innerText == 'Autre' && this.currentButton != event.srcElement.id) {
       this.otherButtonTargets[event.srcElement.id].classList.toggle('active');
     } else {
       this.otherButtonTargets[event.srcElement.id].classList.add('active');
@@ -82,8 +102,8 @@ export default class extends Controller {
 
   removeAccount() {
     this.subcategoryDivTarget.classList.add('display-none');
-    this.otherButtonTarget.textContent = 'Autre';
-    this.otherButtonTarget.classList.remove('active');
+    this.otherButtonTargets[this.currentButton] = 'Autre';
+    this.otherButtonTargets[this.currentButton].classList.remove('active');
   }
 
   addOtherButton() {

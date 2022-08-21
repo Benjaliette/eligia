@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_16_105555) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_18_074809) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -102,6 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_105555) do
     t.integer "amount_cents", default: 0, null: false
     t.string "checkout_session_id"
     t.string "slug"
+    t.string "aasm_state"
     t.index ["pack_id"], name: "index_orders_on_pack_id"
     t.index ["slug"], name: "index_orders_on_slug", unique: true
     t.index ["user_id"], name: "index_orders_on_user_id"

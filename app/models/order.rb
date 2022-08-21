@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  include AASM
+
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
@@ -32,6 +34,12 @@ class Order < ApplicationRecord
     when 8..15 then return Pack.order(created_at: :desc).find_by(level: 2)
     else return Pack.order(created_at: :desc).find_by(level: 3)
     end
+  end
+
+  def update_state
+    return unless (self.order_accounts.all { |order_account| order_account.aasm_state == 'resiliation_succeded' } && self.aasm_state != 'done')
+
+    self.declare_done!
   end
 
   def set_stripe_paiement(success_url, cancel_url)
@@ -72,11 +80,13 @@ class Order < ApplicationRecord
   end
 
   def set_stripe_customer
-    Stripe::Customer.create({
-      email: self.user.email,
-      name: "#{self.user.first_name} #{self.user.last_name}",
-      metadata: { id: self.user.id }
-    })
+    Stripe::Customer.create(
+      {
+        email: self.user.email,
+        name: "#{self.user.first_name} #{self.user.last_name}",
+        metadata: { id: self.user.id }
+      }
+    )
   end
 
   def set_stripe_product
@@ -86,10 +96,21 @@ class Order < ApplicationRecord
   end
 
   def set_stripe_price(product)
-    Stripe::Price.create({
-      unit_amount: self.pack.price_cents,
-      currency: 'eur',
-      product: product.id
-    })
+    Stripe::Price.create(
+      {
+        unit_amount: self.pack.price_cents,
+        currency: 'eur',
+        product: product.id
+      }
+    )
+  end
+
+  aasm do
+    state :pending, initial: true
+    state :done
+
+    event :declare_done do
+      transitions from: :pending, to: :done
+    end
   end
 end

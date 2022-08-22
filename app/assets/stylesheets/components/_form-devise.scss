@@ -93,11 +93,12 @@
     margin: 5px auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 70%;
+    justify-content: center;
+    width: 100%;
 
     .input{
-      flex-grow: 1;
+      width: 50%;
+      margin-left: 20px;
     }
 
     .fa-solid{
@@ -118,6 +119,10 @@
     a {
       font-size: 14px;
     }
+    .show-password-devise > .input{
+      width: 70%;
+      margin-left: 27px;
+    }
   }
 
   @media (max-width: 500px) {
@@ -132,6 +137,14 @@
     }
     a {
       font-size: 12px;
+    }
+    .show-password-devise{
+      justify-content: space-between;
+      width: 90%;
+    }
+    .show-password-devise > .input{
+      margin-left: 0px;
+      flex-grow: 1;
     }
   }
 }

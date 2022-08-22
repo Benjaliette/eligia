@@ -2,6 +2,6 @@ class UserMailer < ApplicationMailer
   def welcome
     @user = params[:user]
 
-    mail to: @user.email, subject: "Confirmation de votre inscription à Eligia"
+    mail to: @user.email, subject: "Eligia - Confirmation de votre inscription"
   end
 end

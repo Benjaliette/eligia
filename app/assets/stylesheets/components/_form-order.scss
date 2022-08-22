@@ -124,7 +124,7 @@
     transition: all .07s ease;
   }
 
-  input:checked + .account-radio-button-text{
+  input:checked.active + .account-radio-button-text{
     background-color: $light-green;
     border: 2px solid $green;
   }

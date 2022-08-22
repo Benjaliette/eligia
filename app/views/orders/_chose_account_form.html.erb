@@ -8,7 +8,7 @@
   <% Account.validated_accounts_from_subcategory(subcategory).each do |account| %>
     <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
       <%= f_order_accounts.collection_radio_buttons(:account_id, [account], :id, :name, {item_wrapper_class:'account-radio-button'}) do |b_account| %>
-        <%= b_account.label {b_account.radio_button(data:{'other-account-target':"checkBoxes"}) + content_tag(:span, b_account.text, class:'account-radio-button-text')} %>
+        <%= b_account.label {b_account.radio_button(data:{'other-account-target':"checkBoxes", action:'click->other-account#radioClicked' }) + content_tag(:span, b_account.text, class:'account-radio-button-text')} %>
       <% end %>
     <% end %>
   <% end %>

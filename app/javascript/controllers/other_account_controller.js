@@ -48,7 +48,6 @@ export default class extends Controller {
     }
   }
 
-
   otherclicked(event) {
     this.subcategoryDivTarget.classList.toggle('display-none');
 
@@ -63,6 +62,12 @@ export default class extends Controller {
     this.currentButton = event.srcElement.id
   }
 
+  radioClicked(event) {
+    event.srcElement.classList.toggle('active')
+    if (!event.srcElement.classList.contains('active')) {
+      event.srcElement.checked = false
+    }
+  }
 
   buttonText(event) {
     if (event.key.length === 1 || event.keyCode === 8) {

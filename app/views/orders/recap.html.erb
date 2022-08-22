@@ -38,7 +38,15 @@
           <% @order.order_documents.each do |order_document| %>
             <div class="order-div-item document">
               <div><%= order_document.document.name %> :</div>
-              <div class="document-created-<%= order_document.document_file.attached? %>"><%= order_document.document_file.attached? ? " OK" : " Document manquant"%></div>
+              <% if order_document.document.format == 'pdf' %>
+                <div class="document-created-<%= order_document.document_file.attached? %>">
+                  <%= order_document.document_file.attached? ? " OK" : " Document manquant"%>
+                </div>
+              <% else %>
+                <div class="document-created-<%= order_document.document_input.present? %>">
+                  <%= order_document.document_input ? "OK" : " Information manquante"%>
+                </div>
+              <% end %>
             </div>
           <% end %>
         </div>

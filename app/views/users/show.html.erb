@@ -7,7 +7,7 @@
 
     <%= render 'account_infos', user: current_user, resource: current_user %>
 
-    <h3 class="no-margin padding-top-five padding-bottom-five">Vos démarches</h3>
+    <h3 class="no-margin padding-top-five padding-bottom-two">Vos démarches</h3>
 
     <% @orders.each do |order| %>
       <%= link_to order_path(order) do  %>

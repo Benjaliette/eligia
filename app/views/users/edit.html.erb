@@ -8,20 +8,32 @@
     <%= simple_form_for(@current_user, html: { "data-turbo": "false", method: :patch }) do |f| %>
       <%= f.error_notification %>
 
-      <div class="form-inputs">
+      <div class="form-inputs" data-controller='show-password'>
         <div class="form-inputs-block">
           <%= f.label 'Nouveau mot de passe' %>
-          <%= f.input :password,
-                      required: true,
-                      label: false,
-                      placeholder:'**********'%>
+          <div class='d-flex align-items-center' data-controller='show-password'>
+            <%= f.input :password,
+                        required: true,
+                        label: false,
+                        placeholder:'**********',
+                        input_html: { data: { 'show-password-target':'field' } }%>
+            <div class="show-password-btn" data-action='click->show-password#show'>
+              <i class="fa-solid fa-eye"></i>
+            </div>
+          </div>
         </div>
         <div class="form-inputs-block confirm">
           <%= f.label 'Confirmation du mot de passe' %>
-          <%= f.input :password_confirmation,
-                      required: true,
-                      label: false,
-                      placeholder:'**********'%>
+          <div class='d-flex align-items-center' data-controller='show-password'>
+            <%= f.input :password_confirmation,
+                        required: true,
+                        label: false,
+                        placeholder:'**********',
+                        input_html: { data: { 'show-password-target':'field' } }%>
+            <div class="show-password-btn" data-action='click->show-password#show'>
+              <i class="fa-solid fa-eye"></i>
+            </div>
+          </div>
         </div>
       </div>
 

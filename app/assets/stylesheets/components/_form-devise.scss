@@ -89,6 +89,23 @@
     margin-bottom: 30px;
   }
 
+  .show-password-devise{
+    margin: 5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    .input{
+      width: 50%;
+      margin-left: 20px;
+    }
+
+    .fa-solid{
+      margin-right: 5px;
+    }
+  }
+
   @media (max-width: 900px) {
     .form-inputs > .input{
       width: 70%;
@@ -101,6 +118,10 @@
     }
     a {
       font-size: 14px;
+    }
+    .show-password-devise > .input{
+      width: 70%;
+      margin-left: 27px;
     }
   }
 
@@ -116,6 +137,14 @@
     }
     a {
       font-size: 12px;
+    }
+    .show-password-devise{
+      justify-content: space-between;
+      width: 90%;
+    }
+    .show-password-devise > .input{
+      margin-left: 0px;
+      flex-grow: 1;
     }
   }
 }

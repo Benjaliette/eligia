@@ -22,7 +22,13 @@ class TemplatePdf
       move_down 10
       text "Merci"
     end
-    args[:order_account].order_documents.select{|order_document| order_document.document_file.attached?}.each do |order_document|
+    move_down 30
+    text "Informations nécessaires:"
+    move_down 20
+    args[:order_account].order_documents.select{ |order_document| order_document.document.format == "text" }.each do |order_document|
+      text "#{order_document.document.name} : #{order_document.document_input}"
+    end
+    args[:order_account].order_documents.select{ |order_document| order_document.document_file.attached? }.each do |order_document|
       move_down 20
       image StringIO.open(order_document.document_file.download), height: 300
     end

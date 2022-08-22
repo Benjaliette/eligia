@@ -4,7 +4,7 @@
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
       <%= f.error_notification %>
 
-      <div class="form-inputs">
+      <div class="form-inputs ">
         <%= f.input :first_name,
                     required: true,
                     label: false,
@@ -18,15 +18,27 @@
                     autofocus: true,
                     label: false,
                     placeholder:'Adresse email'%>
-        <%= f.input :password,
-                    required: true,
-                    # hint: ("#{@minimum_password_length} 6 caractères minimum" if @minimum_password_length),
-                    label: false,
-                    placeholder:'Mot de Passe' %>
-        <%= f.input :password_confirmation,
-                    required: true,
-                    label: false,
-                    placeholder:'Confirmation du mot de passe' %>
+        <div class='show-password-devise' data-controller='show-password'>
+          <%= f.input :password,
+                      required: true,
+                      label: false,
+                      placeholder:'Mot de Passe',
+                      input_html: { data: { 'show-password-target':'field' } } %>
+          <div class="show-password-btn" data-action='click->show-password#show'>
+            <i class="fa-solid fa-eye"></i>
+          </div>
+        </div>
+
+        <div class='show-password-devise' data-controller='show-password'>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      label: false,
+                      placeholder:'Confirmation du mot de passe',
+                      input_html: { data: { 'show-password-target':'field' } } %>
+          <div class="show-password-btn" data-action='click->show-password#show'>
+            <i class="fa-solid fa-eye"></i>
+          </div>
+        </div>
       </div>
 
       <div class="form-actions">

@@ -4,7 +4,6 @@
   display: none !important;
 }
 
-
 // // // // // //  Margins
 
 // No
@@ -233,6 +232,10 @@
 
 .d-flex{
   display: flex !important;
+}
+
+.flex-column{
+  flex-direction: column;
 }
 
 .justify-content-center{

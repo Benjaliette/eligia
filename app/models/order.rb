@@ -91,7 +91,7 @@ class Order < ApplicationRecord
 
   def set_stripe_product
     Stripe::Product.create(
-      name: "Vous avez choisi la formule #{self.pack.title}"
+      name: "Vous souhaitez résilier #{self.order_accounts.count} comptes. \n Il s'agit donc d'une formule '#{self.pack.title}'"
     )
   end
 

@@ -306,26 +306,6 @@
     flex-direction: column;
   }
 
-  .hidden-document-input{
-    // Ne pas retirer, c'est pour masquer l'input simple form de base sans le as: :hidden
-    display: none;
-  }
-
-  .label-document-input{
-    cursor: pointer;
-    padding: 10px 30px;
-    border: 2px solid $light-green;
-    border-radius: 5px;
-    width: fit-content;
-    margin-top: 10px;
-
-    &:hover{
-      transform: scale(1.07);
-      box-shadow: 0px 0px 4px lightgray;
-      transition: all .07s ease;
-    }
-  }
-
   .label-document-input-selected{
     background-color: $light-green;
   }
@@ -349,6 +329,11 @@
     margin-left: 10px;
     flex-grow: 1;
   }
+}
+
+.hidden-document-input{
+  // Ne pas retirer, c'est pour masquer l'input simple form de base sans le as: :hidden
+  display: none;
 }
 
 @media (max-width: 500px) {

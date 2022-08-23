@@ -17,14 +17,17 @@ Rails.application.routes.draw do
   end
   get '/orders/', to: 'orders#new'
 
-  resources :order_documents, only: :create
   resources :users, only: %i[show index edit update] do
     member do
       get 'control_password'
       patch 'control_password_check'
     end
   end
-  resources :order_accounts, only: %i[show edit]
+
+  resources :order_accounts, only: :show do
+    resources :order_documents, only: %i[index update]
+  end
+  resources :order_documents, only: :create
 
   resources :pages do
     collection do

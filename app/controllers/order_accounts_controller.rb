@@ -1,5 +1,5 @@
 class OrderAccountsController < ApplicationController
-  before_action :set_order_account, only: %i[show]
+  before_action :set_order_account, only: %i[show edit update]
 
   def show
     pdf = OrderAccountPdf.new(@order_account)

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def show
     # .order = tri activerecord
-    @orders = @current_user.orders.order(:deceased_last_name, :deceased_first_name)
+    @orders = @current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
   end
 
   def control_password

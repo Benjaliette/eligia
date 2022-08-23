@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    update_order_account_status(@order)
     add_breadcrumb "#{@order.deceased_last_name.capitalize}-#{@order.deceased_first_name.first}"
   end
 
@@ -161,7 +162,7 @@ class OrdersController < ApplicationController
 
   def update_order_account_status(order)
     order.order_accounts.each do |order_account|
-      order_account.declare_pending! if order_account.order_documents.all? { |o_d| o_d.document_file.attached? }
+      order_account.declare_pending! if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input)}
     end
   end
 

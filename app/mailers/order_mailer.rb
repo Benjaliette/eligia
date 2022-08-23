@@ -3,6 +3,6 @@ class OrderMailer < ApplicationMailer
     @user = params[:user]
     @order = params[:order]
 
-    mail to: @user.email, subject: "Confirmation de votre commande chez Eligia"
+    mail to: @user.email, subject: "Eligia - Confirmation de votre demande de résiliation"
   end
 end

@@ -11,7 +11,7 @@
 
   <% if order_account.aasm_state == 'documents_missing' %>
     <div class = "d-flex justify-content-center align-items-center">
-      <%= link_to "Ajouter", edit_order_path(order_account.order), class: 'btn-second'  %>
+      <%= link_to "Ajouter", edit_order_account_path(order_account.order), class: 'btn-second'  %>
     </div>
   <% end %>
 

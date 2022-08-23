@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       patch 'control_password_check'
     end
   end
-  resources :order_accounts, only: [:show]
+  resources :order_accounts, only: %i[show edit]
 
   resources :pages do
     collection do

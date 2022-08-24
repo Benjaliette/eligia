@@ -113,7 +113,7 @@ class OrdersController < ApplicationController
       {
         account_id: order_account.account.id,
         account_name: order_account.account.name.gsub(' ', '_'),
-        account_subcategory: order_account.account.subcategory.id,
+        account_subcategory: order_account.account.subcategory.id
       }
     end
 
@@ -123,7 +123,7 @@ class OrdersController < ApplicationController
   def jsonify_order_documents
     documents = @order_documents.map do |order_document|
       {
-        document: order_document.document_file.attached?,
+        document: order_document.document_file.attached?
       }
     end
 

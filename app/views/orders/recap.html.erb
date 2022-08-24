@@ -9,15 +9,16 @@
     <div class="form-order-div">
       <h3>Dernière étape</h3>
       <p>
-        Il ne vous reste plus qu'à valider toutes les informations.<br>
-        Ensuite, nous nous occupons du reste.
+        Il ne vous reste plus nous fournir les informations nécessaires.<br>
+        <br>
+        Touts les champs ci-dessous sont nécessaires. <strong>Vous pouvez néanmoins procéder au paiement sans touts les saisir. Il vous sera possible d'ajouter les documents manquants depuis votre espace personnel.</strong>
       </p>
 
       <div class="main-order-divs">
         <div class="order-divs">
           <ul class="order-div-list no-padding">
             <% @order.order_accounts.each do |order_account| %>
-              <li class="order-div-item">
+              <li class="order-div-item d-flex">
                 <% if order_account.account.status == "non_validated" %>
                   <div class="order-div-list-style-type-non-validated">
                     <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
@@ -40,11 +41,11 @@
               <div><%= order_document.document.name %> :</div>
               <% if order_document.document.format == 'pdf' %>
                 <div class="document-created-<%= order_document.document_file.attached? %>">
-                  <%= order_document.document_file.attached? ? " OK" : " Document manquant"%>
+                  <%= order_document.document_file.attached? ? "OK" : "Document manquant"%>
                 </div>
               <% else %>
                 <div class="document-created-<%= order_document.document_input.present? %>">
-                  <%= order_document.document_input.present? ? " OK" : " Information manquante"%>
+                  <%= order_document.document_input.present? ? "OK" : "Information manquante"%>
                 </div>
               <% end %>
             </div>

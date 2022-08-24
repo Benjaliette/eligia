@@ -1,0 +1,35 @@
+<div class="fullscreen">
+  <div class="container">
+    <h2 class="no-margin padding-four"> Documents et informations à fournir </h2>
+
+    <div class="form-order-div">
+
+      <% if @order_documents_to_complete.empty? %>
+      <div class='align-center'>
+          <p><strong>Tous les documents ont été fournis</strong></p>
+          <%= link_to "Retour vers mes démarches", order_path(@order_account.order), class:'btn-second' %>
+        </div>
+      <% end %>
+
+
+      <% @order_documents_to_complete.each do |order_document| %>
+        <%= simple_form_for [@order_account, order_document], data: { turbo: false } do |f| %>
+          <div class="insert-document" data-controller="add-file loading-spinner">
+            <div class="document-name highlight-yellow d-inline-block"><%= order_document.document.name %></div>
+            <% if order_document.document.format == 'pdf' %>
+              <div data-check-document-target='infoDiv'></div>
+              <div class="document-btn-and-name">
+                <%= f.input :document_file, label: "Ajouter", as: :file, input_html:{accept: '.png, .jpg, .jpeg', class:'hidden-document-input', :'data-action' => "change->add-file#added", :'data-add-file-target' => 'input'}, label_html:{class:'label-document-input d-inline-block margin-bottom-two', :'data-add-file-target' => 'label', :'data-check-document-target' => 'documentForm'} %>
+                <div class="file-name" data-add-file-target="fileNameDiv"></div>
+              <div class="lds-dual-ring display-none" data-loading-spinner-target='spinner'></div>
+              </div>
+            <% else %>
+              <%= f.input :document_input, label:"#{order_document.document.name} :", input_html: { class:'doc-input hidden-document-input' } %>
+            <% end %>
+              <%= f.submit "Valider", class:'file optional btn-second small d-inline-block margin-top-two', data: {"loading-spinner-target":"btn", action:"click->loading-spinner#load"}%>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

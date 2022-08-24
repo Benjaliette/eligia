@@ -60,6 +60,13 @@
   }
 }
 
+.btn-second.small {
+  padding: 5px 15px;
+  font-weight: regular;
+  font-size: 12px;
+}
+
+
 
 .button-hover:hover {
   font-weight: bold;
@@ -213,5 +220,23 @@ button {
 
   &:hover{
     color: #000;
+  }
+}
+
+// Document input
+
+.label-document-input{
+  cursor: pointer;
+  padding: 10px 30px;
+  border: 2px solid $light-green;
+  border-radius: 5px;
+  width: fit-content;
+  margin-top: 10px;
+  background-color: white;
+
+  &:hover{
+    transform: scale(1.07);
+    box-shadow: 0px 0px 4px lightgray;
+    transition: all .07s ease;
   }
 }

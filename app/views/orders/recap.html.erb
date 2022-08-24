@@ -44,7 +44,7 @@
                 </div>
               <% else %>
                 <div class="document-created-<%= order_document.document_input.present? %>">
-                  <%= order_document.document_input ? "OK" : " Information manquante"%>
+                  <%= order_document.document_input.present? ? " OK" : " Information manquante"%>
                 </div>
               <% end %>
             </div>

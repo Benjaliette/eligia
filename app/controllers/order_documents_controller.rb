@@ -11,6 +11,7 @@ class OrderDocumentsController < ApplicationController
     @order_document.update(order_document_params)
     if @order_document.save
       redirect_to order_account_order_documents_path(@order_account), status: :see_other
+      flash[:alert] = "Document enregistré"
     else
       render order_account_order_documents_path(@order_account), status: :unprocessable_entity
     end

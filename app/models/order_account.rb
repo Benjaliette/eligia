@@ -26,7 +26,7 @@ class OrderAccount < ApplicationRecord
 
   def state_to_french
     case self.aasm_state
-      when "pending" then "En attente"
+      when "pending" then "En traitement"
       when "documents_missing" then "Document(s) manquant(s)"
       when "resiliation_sent" then "Demande de résiliation envoyée"
       when "resiliation_failed" then "Erreur"

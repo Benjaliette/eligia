@@ -53,7 +53,6 @@ numero_contrat_sfr = Document.create(name: 'Numéro de contrat SFR', format: 'te
 numero_contrat_red = Document.create(name: 'Numéro de contrat RED by SFR', format: 'text')
 numero_contrat_nordnet = Document.create(name: 'Numéro de contrat Nordnet', format: 'text')
 numero_contrat_sosh = Document.create(name: 'Numéro de contrat Sosh', format: 'text')
-numero_contrat_sfr = Document.create(name: 'Numéro de contrat SFR', format: 'text')
 numero_contrat_bouygues = Document.create(name: 'Numéro de contrat Bouygues', format: 'text')
 numero_contrat_sncf = Document.create(name: 'Numéro de contrat SNCF', format: 'text')
 numero_contrat_tbm = Document.create(name: 'Numéro de contrat TBM', format: 'text')

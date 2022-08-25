@@ -116,6 +116,7 @@
     border: 2px solid $light-green;
     border-radius: 5px;
     display: inline-block;
+    font-size: 90%;
   }
 
   .account-radio-button-text:hover{
@@ -127,6 +128,15 @@
   input:checked.active + .account-radio-button-text{
     background-color: $light-green;
     border: 2px solid $green;
+  }
+}
+
+@media (max-width: 500px) {
+  .account-radio-button{
+    input + .account-radio-button-text{
+      width: 90%;
+      margin: 5px;
+    }
   }
 }
 
@@ -150,6 +160,13 @@
   &.active{
     background-color: $light-green;
     border: 2px solid $green;
+  }
+}
+
+@media (max-width: 500px) {
+  .account-other-button{
+    width: 90%;
+    margin: 5px;
   }
 }
 
@@ -185,6 +202,11 @@
   .main-order-divs {
     flex-direction: column;
     align-items: center;
+  }
+
+  .order-divs {
+    margin: 0px;
+    margin-bottom: 20px;
   }
 
   .other-account{
@@ -225,7 +247,6 @@
   .form-subcategory{
     text-align: center;
   }
-
 }
 
 @media (max-width: 500px) {

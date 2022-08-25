@@ -26,7 +26,7 @@
               <div class="lds-dual-ring display-none" data-loading-spinner-target='spinner'></div>
               </div>
             <% else %>
-              <%= f.input :document_input, label:"#{order_document.document.name} :", input_html: { class:'doc-input hidden-document-input' } %>
+              <%= f.input :document_input, label:"#{order_document.document.name} :", input_html: { class:'doc-input' } %>
             <% end %>
               <%= f.submit "Valider", class:'file optional btn-second small d-inline-block margin-top-two', data: {"loading-spinner-target":"btn", action:"click->loading-spinner#load"}%>
           </div>

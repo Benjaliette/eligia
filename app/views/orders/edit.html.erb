@@ -23,7 +23,7 @@
               <% if order_document.document.format == 'pdf' %>
                 <div data-check-document-target='infoDiv'></div>
                 <div class="document-btn-and-name">
-                  <%= fod.input :document_file, label: "Ajouter", as: :file, input_html:{accept: '.png, .jpg, .jpeg', class:'hidden-document-input', :'data-action' => "change->add-file#added", :'data-add-file-target' => 'input'}, label_html:{class:'label-document-input', :'data-add-file-target' => 'label', :'data-check-document-target' => 'documentForm'} %>
+                  <%= fod.input :document_file, label: "Ajouter", as: :file, input_html:{accept: '.png, .jpg, .jpeg, .pdf', class:'hidden-document-input', :'data-action' => "change->add-file#added", :'data-add-file-target' => 'input'}, label_html:{class:'label-document-input', :'data-add-file-target' => 'label', :'data-check-document-target' => 'documentForm'} %>
                   <div class="file-name" data-add-file-target="fileNameDiv"></div>
                 </div>
               <% else %>

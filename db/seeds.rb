@@ -591,27 +591,27 @@ AccountDocument.new(account: account, document: acte_deces)
 AccountDocument.new(account: account, document: mail)
 AccountDocument.new(account: account, document: iban)
 
-account = Account.create(name: 'EDF', subcategory: Subcategory.find_by(name: 'Electricite'), status: 'validated')
+account = Account.create(name: 'EDF', subcategory: Subcategory.find_by(name: 'Électricité'), status: 'validated')
 AccountDocument.new(account: account, document: acte_deces)
 AccountDocument.new(account: account, document: compteur_elec)
 
-account = Account.create(name: 'TotalEnergies', subcategory: Subcategory.find_by(name: 'Electricite'), status: 'validated')
+account = Account.create(name: 'TotalEnergies', subcategory: Subcategory.find_by(name: 'Électricité'), status: 'validated')
 AccountDocument.new(account: account, document: acte_deces)
 AccountDocument.new(account: account, document: compteur_elec)
 
-account = Account.create(name: 'Cdiscount énergie', subcategory: Subcategory.find_by(name: 'Electricite'), status: 'validated')
+account = Account.create(name: 'Cdiscount énergie', subcategory: Subcategory.find_by(name: 'Électricité'), status: 'validated')
 AccountDocument.new(account: account, document: acte_deces)
 AccountDocument.new(account: account, document: compteur_elec)
 
-account = Account.create(name: 'Happ-e', subcategory: Subcategory.find_by(name: 'Electricite'), status: 'validated')
+account = Account.create(name: 'Happ-e', subcategory: Subcategory.find_by(name: 'Électricité'), status: 'validated')
 AccountDocument.new(account: account, document: acte_deces)
 AccountDocument.new(account: account, document: compteur_elec)
 
-account = Account.create(name: 'Sowee', subcategory: Subcategory.find_by(name: 'Electricite'), status: 'validated')
+account = Account.create(name: 'Sowee', subcategory: Subcategory.find_by(name: 'Électricité'), status: 'validated')
 AccountDocument.new(account: account, document: acte_deces)
 AccountDocument.new(account: account, document: compteur_elec)
 
-account = Account.create(name: 'GEG', subcategory: Subcategory.find_by(name: 'Electricite'), status: 'validated')
+account = Account.create(name: 'GEG', subcategory: Subcategory.find_by(name: 'Électricité'), status: 'validated')
 AccountDocument.new(account: account, document: acte_deces)
 AccountDocument.new(account: account, document: compteur_elec)
 
@@ -686,7 +686,7 @@ AccountDocument.new(account: account, document: acte_deces)
 AccountDocument.new(account: account, document: mail)
 AccountDocument.new(account: account, document: numero_contrat_rtm)
 
-puts Account.count == 126 ? "🟩 Accounts créées avec succès" : "🟥 Erreur dans la création des accounts"
+puts Account.count == 132 ? "🟩 Accounts créées avec succès" : "🟥 Erreur dans la création des accounts"
 
 puts "👷🏼 Création des Packs"
 Pack.create(

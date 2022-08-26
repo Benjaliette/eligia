@@ -2,7 +2,7 @@
                               data-other-account-order-value=<%= order_accounts %>
                               data-other-account-subcategory-value=<%= subcategory.id %>
                               data-other-account-account-number-value=<%= Account.where(status: 'validated').count %>
-                              data-other-account-other-account-value=<%= @order.order_accounts.select { |o_a| o_a.account.subcategory == subcategory }.size %>>
+                              data-other-account-other-account-value=<%= @order.order_accounts.select { |o_a| o_a.account.subcategory == subcategory && o_a.account.status == 'non_validated' }.size %>>
 
   <!-- First nested form for order_accounts (created as nested attribute for order) -->
   <% Account.validated_accounts_from_subcategory(subcategory).order(:name).each do |account| %>

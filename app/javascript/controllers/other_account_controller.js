@@ -22,6 +22,7 @@ export default class extends Controller {
         this.orderValue.accounts.forEach((orderAccount) => {
           if (account.value == orderAccount.account_id) {
             account.setAttribute('checked', true);
+            account.classList.add('active');
           }
         });
       });
@@ -29,13 +30,12 @@ export default class extends Controller {
       if (this.otherAccountValue != 0) {
         let i = 0
 
-
         this.orderValue.accounts.forEach((orderAccount) => {
-          if (orderAccount.account_id > this.accountNumberValue || orderAccount.account_id == null) {
+          if ((orderAccount.account_id == null || orderAccount.account_valid == 'non_validated') && this.subcategoryValue == orderAccount.account_subcategory) {
             this.otherButtonTargets[i].classList.remove('display-none')
             this.otherButtonTargets[i].classList.add('active');
             if (this.otherButtonTargets[i].innerText == 'Autre' ) {
-              this.otherButtonTargets[i].innerText = orderAccount.account_name.replace('_', ' ');
+              this.otherButtonTargets[i].innerText = orderAccount.account_name.replaceAll('_', ' ');
             }
 
             i++

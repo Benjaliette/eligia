@@ -163,7 +163,7 @@ class OrdersController < ApplicationController
 
   def update_order_account_status(order)
     order.order_accounts.each do |order_account|
-      order_account.declare_pending! if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input)}
+      order_account.declare_pending! if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?)}
     end
   end
 

@@ -10,7 +10,8 @@ StripeEvent.signing_secret = Rails.configuration.stripe[:signing_secret]
 # 3 lines above used to change order status
 StripeEvent.configure do |events|
   events.subscribe 'checkout.session.completed' do |event|
-    order = Order.find_by(checkout_session_id: event.data.object.id)
+    user = User.find_by(email: event.data.object.customer_details.email)
+    order = user.orders.last
     order.update(paid: true)
   end
 end

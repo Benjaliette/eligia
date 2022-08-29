@@ -47,13 +47,18 @@
         <li class="toggle-nav-item">
           <%= link_to 'Nous contacter', new_message_path %>
         </li>
-        <li class="toggle-nav-item">
-          <% if current_user %>
+        <% if current_user %>
+          <li class="toggle-nav-item">
             <%= link_to 'Mon compte', user_path(current_user) %>
-          <% else %>
+          </li>
+          <li class="toggle-nav-item">
+            <%= button_to 'Déconnexion', destroy_user_session_path, method: :delete %>
+          </li>
+        <% else %>
+          <li class="toggle-nav-item">
             <%= link_to 'Connexion/Inscription', new_user_session_path %>
-          <% end %>
-        </li>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

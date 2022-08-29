@@ -148,4 +148,11 @@ $navbar-height:100px;
   font-weight: bold;
   margin: 80px;
   cursor: pointer;
+
+  button {
+    background: inherit;
+    border-radius: inherit;
+    font-weight: bold;
+    color: $gray;
+  }
 }

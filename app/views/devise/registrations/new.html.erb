@@ -7,6 +7,7 @@
       <div class="form-inputs ">
         <%= f.input :first_name,
                     required: true,
+                    autofocus: true,
                     label: false,
                     placeholder:'Prénom' %>
         <%= f.input :last_name,
@@ -15,7 +16,6 @@
                     placeholder:'Nom' %>
         <%= f.input :email,
                     required: true,
-                    autofocus: true,
                     label: false,
                     placeholder:'Adresse email'%>
         <%= f.input :phone_number,
@@ -29,7 +29,7 @@
                       label: false,
                       placeholder:'Mot de Passe',
                       input_html: { data: { 'show-password-target':'field' } } %>
-          <div class="show-password-btn" data-action='click->show-password#show'>
+          <div class="show-password-btn" data-action='click->show-password#show' data-show-password-target='eye'>
             <i class="fa-solid fa-eye"></i>
           </div>
         </div>
@@ -40,7 +40,7 @@
                       label: false,
                       placeholder:'Confirmation du mot de passe',
                       input_html: { data: { 'show-password-target':'field' } } %>
-          <div class="show-password-btn" data-action='click->show-password#show'>
+          <div class="show-password-btn" data-action='click->show-password#show' data-show-password-target='eye'>
             <i class="fa-solid fa-eye"></i>
           </div>
         </div>

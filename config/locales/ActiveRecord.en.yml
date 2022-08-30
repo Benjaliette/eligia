@@ -17,12 +17,3 @@ en:
               blank: "Veuillez entrer un prénom"
             last_name:
               blank: "Veuillez entrer un nom de famille"
-        message:
-          attributes:
-            email:
-              blank: "Veuillez entrer une adresse email"
-              invalid: "Adresse email invalide"
-            name:
-              blank: "Veuillez entrer votre nom"
-            body:
-              blank: "Veuillez entrer un message"

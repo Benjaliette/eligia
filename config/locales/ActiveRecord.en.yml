@@ -17,22 +17,3 @@ en:
               blank: "Veuillez entrer un prénom"
             last_name:
               blank: "Veuillez entrer un nom de famille"
-        # pdf:
-        #   attributes:
-        #     name:
-        #       blank: "Veuillez entrer un nom pour le pdf"
-        #       taken: "Nom déjà attribué"
-        #     attachment:
-        #       blank: "Veuillez inclure un fichier"
-        # data_element:
-        #   attributes:
-        #     name:
-        #       blank: "Précisez un nom"
-        #       taken: "Nom déjà existant"
-        #     color:
-        #       blank: "Attribuez une couleur à l'élément"
-        # template:
-        #   attributes:
-        #     name:
-        #       blank: "Précisez un nom"
-        #       taken: "Nom déjà attribué"

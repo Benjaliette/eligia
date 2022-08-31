@@ -1,18 +1,20 @@
 <% content_for :title, "Validation demande - Eligia" %>
 
 
-<div class="container">
-  <div class="fullscreen">
+<div data-controller="remove-navbar remove-footer">
+  <div class="fullscreen order-parts">
 
-    <div class="steps"><%= render_breadcrumbs tag: :p, separator: "" %></div>
+    <div class="form-order-steps">
+      <div class="steps"><%= render_breadcrumbs tag: :p, separator: "" %></div>
+    </div>
 
     <div class="form-order-div">
-      <h3>Dernière étape</h3>
-      <p>
-        Il ne vous reste plus qu'à nous fournir les informations nécessaires.<br>
-        <br>
-        Tous les champs ci-dessous sont nécessaires. <strong>Vous pouvez néanmoins procéder au paiement sans tous les saisir. Il vous sera possible, par la suite, d'ajouter les documents manquants depuis votre espace personnel.</strong>
-      </p>
+      <div class="form-order-infos">
+        <div class="form-order-infos-title">
+          <div class="avatar-order">3</div>
+          <h2>Récapitulatif / Confirmation</h2>
+        </div>
+      </div>
 
       <div class="main-order-divs">
         <div class="order-divs">
@@ -82,6 +84,18 @@
         </div>
       <% end %>
     </div>
+
+    <aside class="form-order-right">
+      <div class='form-order-aside' style="background-image: url(<%= image_path 'pot-fleur.svg' %>)">
+        <div class="logo">
+          <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+        </div>
+        <p>
+          Vous pouvez revenir à l'étape 1 pour rajouter d'<strong>autres comptes</strong> (avant paiement).<br><br>
+          Pour rajouter les <strong>documents manquants</strong>, vous pourrez le faire en revenant à l'étape 2 ou depuis votre espace personnel (après paiement).
+        </p>
+      </div>
+    </aside>
   </div>
 </div>
 

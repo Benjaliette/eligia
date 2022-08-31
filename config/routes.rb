@@ -7,9 +7,11 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resources :orders, except: :index do
+  resources :orders, except: %i[index update] do
     member do
       get 'change'
+      patch 'update'
+      patch 'update_documents'
       get 'recap'
       get 'success'
       get 'paiement'

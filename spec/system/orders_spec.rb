@@ -15,7 +15,7 @@ RSpec.describe "orders", type: :system do
       expect(page).to have_text("Prénom du défunt")
     end
 
-    it "Create order" do
+    it "Can fill the three steps of the form and pay" do
       create(:pack, title: 'packTitle1', level: 1)
       create(:pack, title: 'packTitle2', level: 2)
       create(:pack, title: 'packTitle3', level: 3)
@@ -29,6 +29,26 @@ RSpec.describe "orders", type: :system do
       page.find(class: 'account-radio-button-text', text: Account.last.name).click
       page.find(class: 'learn-more').click
       expect(page).to have_text("fournir")
+      page.find(class: 'learn-more').click
+      expect(page).to have_text("Récapitulatif")
+      page.find(class: 'learn-more').click
+      sleep 10
+      expect(page).to have_text("Pay with card")
+      fill_in "cardNumber", with: "4242424242424242"
+      fill_in "cardExpiry", with: "03/26"
+      fill_in "cardCvc", with: "032"
+      fill_in "billingName", with: "Joe Tester"
+      (fill_in "billingAddressLine1", with: "21 Rue Parlement Saint-Pierre").native.send_keys(:return)
+      fill_in "billingPostalCode", with: "33000"
+      fill_in "billingLocality", with: "Bordeaux"
+      page.find(class: 'SubmitButton-IconContainer').click
+      sleep 20
+      expect(page).to have_text("Merci Tester Joe")
+    end
+
+    it "Navigates to user dashboard" do
+      visit "/users/Joe"
+      expect(page).to have_text("Bienvenue sur votre espace")
     end
   end
 end

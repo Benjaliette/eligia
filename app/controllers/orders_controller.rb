@@ -5,13 +5,16 @@ class OrdersController < ApplicationController
 
   before_action :set_order, only: %i[show change edit update recap success paiement]
   before_action :set_categories, only: %i[change new create]
+
   after_action :send_confirmation_mail, only: :success
+  after_action :order_pundit, only: %i[show new change create edit update paiement recap success]
 
   add_breadcrumb "<div class=' step other-step'>1. Résiliations</div>".html_safe, :change_order_path, only: %i[edit recap]
   add_breadcrumb "<div class=' step other-step'>2. Informations nécessaires</div>".html_safe, :edit_order_path, only: :recap
   add_breadcrumb "Démarches", :user_path, only: :show
 
   def index
+    # Use to avoid 500 after a refresh when rendering new (see routes)
   end
 
   def show
@@ -110,6 +113,10 @@ class OrdersController < ApplicationController
 
   def set_categories
     @categories = Category.all
+  end
+
+  def order_pundit
+    authorize @order
   end
 
   def jsonify_order_accounts

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show control_password control_password_check edit update]
 
+  after_action :user_pundit, only: %i[show control_password control_password_check edit update]
+
   def index
   end
 
@@ -39,6 +41,10 @@ class UsersController < ApplicationController
 
   def set_user
     @current_user = User.friendly.find(current_user.id)
+  end
+
+  def user_pundit
+    authorize @current_user
   end
 
   def check_password_params

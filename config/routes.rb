@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       get 'paiement'
     end
   end
+
+  # Redirect to orders/new if there is a refresh after a render :new
   get '/orders/', to: 'orders#new'
 
   resources :users, only: %i[show index edit update] do

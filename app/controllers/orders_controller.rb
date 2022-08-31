@@ -23,6 +23,10 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @categories = Category.all
+
+    add_breadcrumb "<div class='step current-step'>1. Résiliations</div>".html_safe
+    add_breadcrumb "<div class='step other-step'>2. Informations nécessaires</div>".html_safe
+    add_breadcrumb "<div class='step other-step'>3. Validation</div>".html_safe
   end
 
   def change

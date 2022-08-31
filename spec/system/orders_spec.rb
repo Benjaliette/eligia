@@ -31,24 +31,24 @@ RSpec.describe "orders", type: :system do
       expect(page).to have_text("fournir")
       page.find(class: 'learn-more').click
       expect(page).to have_text("Récapitulatif")
-      page.find(class: 'learn-more').click
-      sleep 10
-      expect(page).to have_text("Pay with card")
-      fill_in "cardNumber", with: "4242424242424242"
-      fill_in "cardExpiry", with: "03/26"
-      fill_in "cardCvc", with: "032"
-      fill_in "billingName", with: "Joe Tester"
-      (fill_in "billingAddressLine1", with: "21 Rue Parlement Saint-Pierre").native.send_keys(:return)
-      fill_in "billingPostalCode", with: "33000"
-      fill_in "billingLocality", with: "Bordeaux"
-      page.find(class: 'SubmitButton-IconContainer').click
-      sleep 20
-      expect(page).to have_text("Merci Tester Joe")
+      # page.find(class: 'learn-more').click
+      # sleep 10
+      # expect(page).to have_text("Pay with card")
+      # fill_in "cardNumber", with: "4242424242424242"
+      # fill_in "cardExpiry", with: "03/26"
+      # fill_in "cardCvc", with: "032"
+      # fill_in "billingName", with: "Joe Tester"
+      # (fill_in "billingAddressLine1", with: "21 Rue Parlement Saint-Pierre").native.send_keys(:return)
+      # fill_in "billingPostalCode", with: "33000"
+      # fill_in "billingLocality", with: "Bordeaux"
+      # page.find(class: 'SubmitButton-IconContainer').click
+      # sleep 20
+      # expect(page).to have_text("Merci Tester Joe")
     end
 
-    it "Navigates to user dashboard" do
-      visit "/users/Joe"
-      expect(page).to have_text("Bienvenue sur votre espace")
-    end
+    # it "Navigates to user dashboard" do
+    #   visit "/users/Joe"
+    #   expect(page).to have_text("Bienvenue sur votre espace")
+    # end
   end
 end

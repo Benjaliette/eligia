@@ -1,12 +1,19 @@
 //////////////// ORDER CREATION
 
+.order-parts {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+.form-order-steps {
+  background-color: #fbfbfb;
+}
+
 .form-order-div {
   background: white;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px grey;
   padding: 50px 30px;
   max-width: 100%;
-  margin-bottom: 50px;
+  height: 100vh;
   .error{
     font-size: 12px;
     color: red;
@@ -22,6 +29,12 @@
 
 .form-order-infos {
   margin-bottom: 80px;
+
+  .form-order-infos-title {
+    display: flex;
+    align-items: center;
+    margin: 40px 0;
+  }
 }
 
 .form-name-div {
@@ -375,4 +388,21 @@
   margin-left: 10px;
   border-radius: 4px;
   border: solid 2px $light-green;
+}
+
+.form-order-aside {
+  height: 100vh;
+  background-size: 117%;
+  background-position-x: -41%;
+  background-position-y: 100%;
+  background-repeat: no-repeat;
+  position: fixed;
+  top: 0;
+  width: 16vw;
+  padding: 10px 30px;
+  color: $gray;
+
+  p {
+    text-align: center;
+  }
 }

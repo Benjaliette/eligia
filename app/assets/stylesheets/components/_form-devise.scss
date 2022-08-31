@@ -28,6 +28,10 @@
         width: 270px;
         text-align: left;
       }
+
+      .input {
+        width: 100%;
+      }
     }
 
     .form-inputs-block-address {
@@ -40,6 +44,21 @@
         width: 270px;
         text-align: left;
         padding-top: 10px;
+      }
+
+      input {
+        &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+          color: black;
+          opacity: 1; /* Firefox */
+        }
+
+        &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+          color: black;
+        }
+
+        &::-ms-input-placeholder { /* Microsoft Edge */
+          color: black;
+        }
       }
     }
   }

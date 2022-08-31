@@ -12,7 +12,7 @@ RSpec.describe "orders", type: :system do
   context "When creating an order" do
     it "Accesses the orders/new page" do
       visit "/orders/new"
-      expect(page).to have_text("Première étape")
+      expect(page).to have_text("Prénom du défunt")
     end
 
     it "Create order" do
@@ -28,7 +28,7 @@ RSpec.describe "orders", type: :system do
       fill_in "order[deceased_last_name]", with: "Halliday"
       page.find(class: 'account-radio-button-text', text: Account.last.name).click
       page.find(class: 'learn-more').click
-      expect(page).to have_text("Deuxième étape")
+      expect(page).to have_text("fournir")
     end
   end
 end

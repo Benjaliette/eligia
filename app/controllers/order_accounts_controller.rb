@@ -8,6 +8,8 @@ class OrderAccountsController < ApplicationController
               filename: "export.pdf",
               type: 'application/pdf',
               disposition: 'inline'
+
+    authorize @order_account
   end
 
   private

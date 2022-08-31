@@ -46,15 +46,16 @@
       <% end %>
     </div>
 
-    <aside class="form-order-right">
-      <div class='form-order-aside' style="background-image: url(<%= image_path 'pot-fleur.svg' %>)">
-        <div class="logo">
-          <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
-        </div>
-        <p>
-          Ce sont les informations minimum et suffisantes pour démarrer la résiliation. <strong>Vous pourrez néanmoins ajouter les champs manquants depuis votre espace personnel.</strong>
-        </p>
+    <div class='form-order-right'>
+      <div class="logo">
+        <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
       </div>
-    </aside>
+      <p>
+        Ce sont les <strong>informations minimum nécessaires</strong> à la résiliation de tous vos contrats. <br><br>
+        <strong>Si vous ne disposez pas de toutes les informations </strong> laissez les champs en question vides pour l'instant. Vous pourrez les compléter depuis votre espace personnel.
+      </p>
+      <div class="flower-pot" style="background-image: url(<%= image_path 'pot-fleur.svg' %>)">
+      </div>
+    </div>
   </div>
 </div>

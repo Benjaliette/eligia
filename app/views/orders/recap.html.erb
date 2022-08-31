@@ -17,41 +17,47 @@
       </div>
 
       <div class="main-order-divs">
-        <div class="order-divs">
-          <ul class="order-div-list no-padding">
-            <% @order.order_accounts.each do |order_account| %>
-              <li class="order-div-item d-flex">
-                <% if order_account.account.status == "non_validated" %>
-                  <div class="order-div-list-style-type-non-validated">
-                    <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
-                  </div>
-                  <div><%= order_account.account.name %></div>
-                  <div class="order-div-item-non-validated">A valider</div>
-                <% else %>
-                  <div class="order-div-list-style-type">
-                    <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
-                  </div>
-                  <div><%= order_account.account.name %></div>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="order-divs">
-          <% @order.order_documents.each do |order_document| %>
-            <div class="order-div-item document">
-              <div><%= order_document.document.name %> :</div>
-              <% if order_document.document.format == 'pdf' %>
-                <div class="document-created-<%= order_document.document_file.attached? %>">
-                  <%= order_document.document_file.attached? ? "OK" : "Document manquant"%>
-                </div>
-              <% else %>
-                <div class="document-created-<%= order_document.document_input.present? %>">
-                  <%= order_document.document_input.present? ? "OK" : "Information manquante"%>
-                </div>
+
+        <div class="order-subdiv">
+          <div class="box">
+            <ul class="order-div-list no-padding">
+              <% @order.order_accounts.each do |order_account| %>
+                <li class="order-div-item d-flex">
+                  <% if order_account.account.status == "non_validated" %>
+                    <div class="order-div-list-style-type-non-validated">
+                      <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
+                    </div>
+                    <div><%= order_account.account.name %></div>
+                    <div class="order-div-item-non-validated">A valider</div>
+                  <% else %>
+                    <div class="order-div-list-style-type">
+                      <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
+                    </div>
+                    <div><%= order_account.account.name %></div>
+                  <% end %>
+                </li>
               <% end %>
-            </div>
-          <% end %>
+            </ul>
+          </div>
+        </div>
+
+        <div class="order-subdiv">
+          <div class="box">
+            <% @order.order_documents.each do |order_document| %>
+              <div class="order-div-item document">
+                <div><%= order_document.document.name %> :</div>
+                <% if order_document.document.format == 'pdf' %>
+                  <div class="document-created-<%= order_document.document_file.attached? %>">
+                    <%= order_document.document_file.attached? ? "OK" : "Document manquant"%>
+                  </div>
+                <% else %>
+                  <div class="document-created-<%= order_document.document_input.present? %>">
+                    <%= order_document.document_input.present? ? "OK" : "Information manquante"%>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
       <% if current_user %>
@@ -85,17 +91,19 @@
       <% end %>
     </div>
 
-    <aside class="form-order-right">
-      <div class='form-order-aside' style="background-image: url(<%= image_path 'pot-fleur.svg' %>)">
-        <div class="logo">
-          <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
-        </div>
-        <p>
-          Vous pouvez revenir à l'étape 1 pour rajouter d'<strong>autres comptes</strong> (avant paiement).<br><br>
-          Pour rajouter les <strong>documents manquants</strong>, vous pourrez le faire en revenant à l'étape 2 ou depuis votre espace personnel (après paiement).
-        </p>
+    <div class='form-order-right'>
+      <div class="logo">
+        <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
       </div>
-    </aside>
+      <p>
+        <strong>Les documents manquants</strong> n'empêchent de continuer la procédure. <br><br>
+        Vous pourrez <strong>compléter les documents depuis votre espace personnel.</strong>
+
+      </p>
+      <div class="flower-pot" style="background-image: url(<%= image_path 'pot-fleur.svg' %>)">
+      </div>
+    </div>
+
   </div>
 </div>
 

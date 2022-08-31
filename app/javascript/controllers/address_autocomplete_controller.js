@@ -3,7 +3,7 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
 // Connects to data-controller="address-autocomplete"
 export default class extends Controller {
-  static targets = [ "address" ]
+  static targets = [ "address", "input" ]
 
   static values = {
     apiKey: String,
@@ -21,6 +21,12 @@ export default class extends Controller {
     this.geocoder.addTo(this.element)
     this.geocoder.on("result", event => this.#setInputValue(event))
     this.geocoder.on("clear", () => this.#clearInputValue())
+
+    if (this.geocoder._inputEl.placeholder === "Chercher") {
+      this.geocoder._inputEl.classList.remove('filled')
+    } else {
+      this.geocoder._inputEl.classList.add('filled')
+    }
   }
 
   #setInputValue(event) {

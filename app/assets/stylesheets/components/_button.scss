@@ -96,6 +96,7 @@ button {
   font-size: inherit;
   font-family: inherit;
   &.learn-more {
+    margin-bottom: 15px;
     width: 12rem;
     height: auto;
     .circle {

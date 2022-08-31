@@ -1,18 +1,19 @@
 <% content_for :title, "Nouvelle démarche - Eligia" %>
 
 
-<div class="container">
+<div class="order-parts" data-controller="remove-navbar remove-footer">
 
-  <div class="steps"><%= render_breadcrumbs tag: :p, separator: "" %></div>
+  <div class="form-order-steps">
+    <div class="steps"><%= render_breadcrumbs tag: :p, separator: "" %></div>
+  </div>
 
   <!-- ==== FORM TO CREATE A NEW ORDER ==== -->
   <div class="form-order-div">
     <div class="form-order-infos">
-      <h2>Première étape</h2>
-      <p>
-        Renseigner les abonnements à résilier.<br>
-        Pour des raisons de simplicité, les documents et informations à fournir seront demandées à l'étape 2.
-      </p>
+      <div class="form-order-infos-title">
+        <div class="avatar-order">1</div>
+        <h2>Contrats à résilier</h2>
+      </div>
     </div>
 
     <%= simple_form_for @order, data: { turbo: :false } do |f_order| %>
@@ -51,4 +52,16 @@
       </div>
     <% end %>
   </div>
+
+  <aside class="form-order-right">
+    <div class='form-order-aside' style="background-image: url(<%= image_path 'pot-fleur.svg' %>)">
+      <div class="logo">
+        <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+      </div>
+      <p>
+        Renseigner les <strong>abonnements à résilier</strong>.<br><br>
+        Pour des raisons de simplicité, les documents et informations à fournir seront demandées à l'étape 2.
+      </p>
+    </div>
+  </aside>
 </div>

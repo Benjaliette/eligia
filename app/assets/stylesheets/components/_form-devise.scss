@@ -46,17 +46,21 @@
         padding-top: 10px;
       }
 
-      input {
-        &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      .input {
+        width: 100%;
+      }
+
+      input.filled {
+        &::placeholder {
           color: black;
-          opacity: 1; /* Firefox */
+          opacity: 1;
         }
 
-        &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        &:-ms-input-placeholder {
           color: black;
         }
 
-        &::-ms-input-placeholder { /* Microsoft Edge */
+        &::-ms-input-placeholder {
           color: black;
         }
       }

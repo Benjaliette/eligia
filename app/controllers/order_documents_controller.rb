@@ -2,8 +2,10 @@ class OrderDocumentsController < ApplicationController
   before_action :set_order_account, only: %i[index update]
   before_action :set_order_document, only: :update
 
+  after_action :order_document_pundit, only: :update
+
   def index
-    all_order_documents = OrderDocument.where(order: @order_account.order)
+    all_order_documents = policy_scope(OrderDocument).where(order: @order_account.order)
     @order_documents_to_complete = all_order_documents.select { |order_document| (order_document.document.format == 'pdf' && !order_document.document_file.attached?) || (order_document.document.format == 'text' && order_document.document_input.blank?)}
   end
 
@@ -25,6 +27,10 @@ class OrderDocumentsController < ApplicationController
 
   def set_order_document
     @order_document = OrderDocument.find(params[:id])
+  end
+
+  def order_document_pundit
+    authorize @order_document
   end
 
   def order_document_params

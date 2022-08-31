@@ -1,7 +1,13 @@
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
+
   before_action :store_user_location!, if: :storable_location?
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  # Pundit: allow-list approach
+  after_action :verify_authorized, except: :index, unless: :skip_pundit?
+  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   add_flash_types :alert, :warning, :success
 
@@ -31,5 +37,9 @@ class ApplicationController < ActionController::Base
   def store_user_location!
     # :user is the scope we are authenticating
     store_location_for(:user, request.fullpath)
+  end
+
+  def skip_pundit?
+    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)|(^messages$)/
   end
 end

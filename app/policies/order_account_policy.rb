@@ -6,7 +6,7 @@ class OrderAccountPolicy < ApplicationPolicy
     # end
   end
 
-  def show
-    raise
+  def show?
+    true
   end
 end

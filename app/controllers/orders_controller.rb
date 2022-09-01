@@ -9,8 +9,6 @@ class OrdersController < ApplicationController
   after_action :send_confirmation_mail, only: :success
   after_action :order_pundit, only: %i[show new change create edit update update_documents paiement recap success]
 
-  add_breadcrumb "<div class=' step other-step'>Étape 1 :<br><br>Résiliations</div>".html_safe, :change_order_path, only: %i[edit recap]
-  add_breadcrumb "<div class=' step other-step'>Étape 2 :<br><br>Informations nécessaires</div>".html_safe, :edit_order_path, only: :recap
   add_breadcrumb "Démarches", :user_path, only: :show
 
   def index
@@ -22,15 +20,10 @@ class OrdersController < ApplicationController
     add_breadcrumb "#{@order.deceased_last_name.capitalize}-#{@order.deceased_first_name.first}"
   end
 
-
   # === First step in order creation (account) === #
   def new
     @order = Order.new
     @categories = Category.all
-
-    add_breadcrumb "<div class='step current-step'>Étape 1 :<br><br>Résiliations</div>".html_safe
-    add_breadcrumb "<div class='step other-step'>Étape 2 :<br><br>Informations nécessaires</div>".html_safe
-    add_breadcrumb "<div class='step other-step'>Étape 3 :<br><br>Validation</div>".html_safe
   end
 
   def create
@@ -56,11 +49,6 @@ class OrdersController < ApplicationController
   # === Going back to first step in order creation === #
   def change
     @order_accounts = jsonify_order_accounts
-
-    add_breadcrumb "<div class='step current-step'>Étape 1 :<br><br>Résiliations</div>".html_safe
-    add_breadcrumb "<div class='step other-step'>Étape 2 :<br><br>Informations nécessaires</div>".html_safe
-    add_breadcrumb "<div class='step other-step'>Étape 3 :<br><br>Validation</div>".html_safe
-
     render :new
   end
 
@@ -78,9 +66,6 @@ class OrdersController < ApplicationController
 
     @order_documents = @order.order_documents
     @order_documents_json = jsonify_order_documents
-
-    add_breadcrumb "<div class='step current-step'>Étape 2 :<br><br>Informations nécessaires</div>".html_safe
-    add_breadcrumb "<div class='step other-step'>Étape 3 :<br><br>Validation</div>".html_safe
   end
 
   def update_documents
@@ -93,7 +78,6 @@ class OrdersController < ApplicationController
 
   # === Third step in order creation (recap) === #
   def recap
-    add_breadcrumb "<div class='step current-step'>Étape 3 :<br><br>Validation</div>".html_safe
   end
 
   def paiement

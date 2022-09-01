@@ -9,6 +9,10 @@
 .form-order-steps {
   position: sticky;
   background-color: #fbfbfb;
+
+  .logo {
+    display: none;
+  }
 }
 
 .form-order-div {
@@ -33,6 +37,10 @@
 .form-order-infos {
   background-color: $light-green;
   padding: 20px 0px 30px 32px;
+
+  .logo {
+    display: none;
+  }
 }
 
 .form-order-content{
@@ -143,7 +151,26 @@
   }
 }
 
+.account-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1200px) {
+  .account-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .account-radio-button{
+  text-align: center;
+  width: 100%;
 
   input{
     position: absolute;
@@ -154,7 +181,7 @@
     text-align: center;
     vertical-align: baseline;
     cursor: pointer;
-    width: 140px;
+    width: 70%;
     height: 20px;
     padding: 10px;
     margin: 20px;
@@ -188,7 +215,7 @@
 .account-other-button{
   text-align: center;
   cursor: pointer;
-  width: 140px;
+  width: 70%;
   height: 20px;
   padding: 10px;
   margin: 20px;
@@ -272,7 +299,6 @@
 
   .account-radio-button{
     input + .account-radio-button-text {
-      width: 90px;
       font-size: 14px;
       white-space: nowrap;
       overflow: hidden;
@@ -281,7 +307,6 @@
   }
 
   .account-other-button{
-    width: 90px;
     font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
@@ -294,12 +319,6 @@
 }
 
 @media (max-width: 500px) {
-
-  .form-order-div {
-    text-align: center;
-    padding: 20px 5px;
-  }
-
   .form-name-div{
     margin: 10px 5px;
 
@@ -317,18 +336,9 @@
     }
   }
 
-  .order-divs {
-    margin: 5px 0 10px 0;
-    width: 90%;
-    border: 0px solid white;
-    border-top: solid lightgrey 1px;
-    box-shadow: 0px 0px 0px lightgray;
-    border-radius: 0px;
-  }
-
   .account-radio-button{
     input + .account-radio-button-text {
-      width: 90px;
+      width: 80%;
       font-size: 14px;
       white-space: nowrap;
       overflow: hidden;
@@ -337,7 +347,7 @@
   }
 
   .account-other-button{
-    width: 90px;
+    width: 80%;
     font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
@@ -439,5 +449,46 @@
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
+  }
+}
+
+@media (max-width: 900px) {
+  .order-parts {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .form-order-right {
+    display: none
+  }
+
+  .form-order-steps {
+    .logo {
+      display: flex;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .order-parts {
+    grid-template-columns: 3fr;
+  }
+
+  .form-order-steps {
+    display: none;
+  }
+
+  .form-order-infos {
+    .logo {
+      display: block;
+    }
+  }
+
+  .form-order-div {
+    text-align: center;
+    padding: 0px;
   }
 }

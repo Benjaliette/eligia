@@ -176,6 +176,11 @@ button {
       text-align: center;
       text-transform: uppercase;
     }
+
+    .button-text.small{
+      font-size: 12px;
+      padding: 0.5rem 0;
+    }
   }
   &:hover {
     .circle {

@@ -42,3 +42,8 @@ a {
     text-decoration: inherit;
   }
 }
+
+input:focus{
+  outline-color: $blue;
+  box-shadow: 0px 0px 4px lightgray;
+}

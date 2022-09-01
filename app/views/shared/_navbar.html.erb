@@ -1,8 +1,7 @@
 <div class="navbar"
      data-controller="navbar-responsivity"
      data-action="resize@window->navbar-responsivity#toggle">
-  <div class="container"
-       data-controller="navbar-dropdown">
+  <div class="d-flex justify-content-space-between padding-left-five padding-right-five" data-controller="navbar-dropdown">
     <div class="logo">
       <%= link_to root_path do %>
         <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>

@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
   resources :pages do
     collection do
-      get :price, 'tarifs'
+      get :price, path: 'tarifs'
     end
   end
 

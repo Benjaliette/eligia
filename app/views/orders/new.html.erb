@@ -7,7 +7,6 @@
     <div class="steps"><%= render_breadcrumbs tag: :p, separator: "" %></div>
   </div>
 
-  <!-- ==== FORM TO CREATE A NEW ORDER ==== -->
   <div class="form-order-div">
     <div class="form-order-infos">
       <div class="form-order-infos-title">
@@ -27,12 +26,10 @@
         <%= f_order.input :deceased_last_name, label: 'Nom du défunt', input_html: { class: 'form-name-input' } %>
       </div>
 
-      <!-- ==== Sections for type of accounts(categories) ==== -->
       <% @categories.each do |category| %>
         <div class="order-divs">
           <h3 class="highlight-green fit-content"><%= category.name %></h3>
 
-          <!-- ==== Sections for subtype of accounts (subcategories) inside categories ==== -->
           <% category.subcategories.each do |subcategory| %>
             <div class="box subcategory-div" data-controller="subcategory-dropdown">
               <div class='subcategory-title'>

@@ -82,21 +82,11 @@
 
 @media (max-width: 900px) {
   .steps {
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 500px) {
-  .steps {
-    padding: 20px 0px 20px 0px;
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 400px) {
-  .steps {
-    padding: 10px 0px 10px 0px;
-    font-size: 12px;
+    .step {
+      p {
+        font-size: 14px;
+      }
+    }
   }
 }
 

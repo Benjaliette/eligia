@@ -22,14 +22,18 @@
             <%= current_user.first_name[0].upcase + current_user.last_name[0].upcase %>
           </div>
           <ul class="navbar-dropdown" data-navbar-dropdown-target="dropdowndiv">
+            <%= link_to user_path(current_user) do  %>
             <li>
               <i class="fa-solid fa-house-user fa-xl"></i>
-              <%= link_to "Mon compte", user_path(current_user) %>
+              <div>Mon compte</div>
             </li>
-            <li>
-              <i class="fa-solid fa-right-from-bracket fa-xl"></i>
-              <%= button_to 'Déconnexion', destroy_user_session_path, method: :delete, class: "button-hover"  %>
-            </li>
+            <% end %>
+            <%= button_to destroy_user_session_path, method: :delete, class: "button-hover" do %>
+              <li>
+                <i class="fa-solid fa-right-from-bracket fa-xl"></i>
+                <div>Déconnexion</div>
+              </li>
+            <% end %>
           </ul>
         <% else %>
           <%= link_to 'Connexion/Inscription', new_user_session_path %>

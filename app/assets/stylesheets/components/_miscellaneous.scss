@@ -250,6 +250,10 @@
   justify-content: center !important;
 }
 
+.justify-content-space-between{
+  justify-content: space-between !important;
+}
+
 .align-items-center{
   align-items: center !important;
 }
@@ -258,4 +262,10 @@
 
 .fit-content{
   width: fit-content;
+}
+
+// Font sizes
+
+.font-size-larger{
+  font-size: larger;
 }

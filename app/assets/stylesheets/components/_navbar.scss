@@ -112,6 +112,10 @@ $navbar-height:100px;
     filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
   }
 
+  button {
+    width: 100%;
+  }
+
 }
 
 .navbar-dropdown-visible{

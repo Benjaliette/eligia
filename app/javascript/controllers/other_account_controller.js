@@ -52,7 +52,7 @@ export default class extends Controller {
     this.subcategoryDivTarget.classList.toggle('display-none');
 
 
-    if (this.otherButtonTargets[event.srcElement.id].innerText == 'Autre' && this.currentButton != event.srcElement.id) {
+    if (this.otherButtonTargets[event.srcElement.id].innerText == 'Autre') {
       this.otherButtonTargets[event.srcElement.id].classList.toggle('active');
     } else {
       this.otherButtonTargets[event.srcElement.id].classList.add('active');

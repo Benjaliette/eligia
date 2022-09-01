@@ -4,7 +4,20 @@
 <div class="order-parts" data-controller="remove-navbar remove-footer">
 
   <div class="form-order-steps">
-    <div class="steps"><%= render_breadcrumbs tag: :p, separator: "" %></div>
+    <div class="steps">
+      <div class='step current-step'>
+        <p>Étape 1 :</p>
+        <p>Résiliations</p>
+      </div>
+      <div class='step'>
+        <p>Étape 2 :</p>
+        <p>Informations nécessaires</p>
+      </div>
+      <div class='step'>
+        <p>Étape 3 :</p>
+        <p>Validation</p>
+      </div>
+    </div>
   </div>
 
   <!-- ==== FORM TO CREATE A NEW ORDER ==== -->

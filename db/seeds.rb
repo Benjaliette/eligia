@@ -18,9 +18,10 @@ puts User.count == 3 ? "🟩 Users créées avec succès" : "🟥 Erreur dans la
 puts "👷🏼 Création des catégories"
 Category.create(name: 'Télécoms')
 Category.create(name: 'Médias')
+Category.create(name: 'Comptes en ligne')
 Category.create(name: 'Énergie')
 Category.create(name: 'Divers')
-puts Category.count == 4 ? "🟩 Catégories créées avec succès" : "🟥 Erreur dans la création des catégories"
+puts Category.count == 5 ? "🟩 Catégories créées avec succès" : "🟥 Erreur dans la création des catégories"
 
 puts "👷🏼 Création des sous-catégories"
 Subcategory.create(name: 'Ligne mobile', category: Category.find_by(name: 'Télécoms'))
@@ -29,12 +30,14 @@ Subcategory.create(name: 'Internet', category: Category.find_by(name: 'Télécom
 Subcategory.create(name: 'Journaux/Magazines', category: Category.find_by(name: 'Médias'))
 Subcategory.create(name: 'Télévision', category: Category.find_by(name: 'Médias'))
 Subcategory.create(name: 'Plateformes de streaming', category: Category.find_by(name: 'Médias'))
+Subcategory.create(name: 'Réseaux sociaux', category: Category.find_by(name: 'Comptes en ligne'))
+Subcategory.create(name: 'Divers', category: Category.find_by(name: 'Comptes en ligne'))
 Subcategory.create(name: 'Électricité', category: Category.find_by(name: 'Énergie'))
 Subcategory.create(name: 'Gaz', category: Category.find_by(name: 'Énergie'))
 Subcategory.create(name: 'Eau', category: Category.find_by(name: 'Énergie'))
 Subcategory.create(name: 'Transports', category: Category.find_by(name: 'Divers'))
 Subcategory.create(name: 'Autres', category: Category.find_by(name: 'Divers'))
-puts Subcategory.count == 11 ? "🟩 Sous-catégories créées avec succès" : "🟥 Erreur dans la création des sous-catégories"
+puts Subcategory.count == 13 ? "🟩 Sous-catégories créées avec succès" : "🟥 Erreur dans la création des sous-catégories"
 
 puts "👷🏼 Création des documents"
 acte_deces = Document.create(name: 'Certificat de décès', format: 'pdf')
@@ -590,6 +593,42 @@ AccountDocument.create(account: account, document: acte_deces)
 AccountDocument.create(account: account, document: mail)
 AccountDocument.create(account: account, document: iban)
 
+account = Account.create(name: "Facebook", subcategory: Subcategory.find_by(name: 'Réseaux sociaux'), status: 'validated')
+AccountDocument.create(account: account, document: acte_deces)
+AccountDocument.create(account: account, document: mail)
+
+account = Account.create(name: "Twitter", subcategory: Subcategory.find_by(name: 'Réseaux sociaux'), status: 'validated')
+AccountDocument.create(account: account, document: acte_deces)
+AccountDocument.create(account: account, document: mail)
+
+account = Account.create(name: "Instagram", subcategory: Subcategory.find_by(name: 'Réseaux sociaux'), status: 'validated')
+AccountDocument.create(account: account, document: acte_deces)
+AccountDocument.create(account: account, document: mail)
+
+account = Account.create(name: "Snapchat", subcategory: Subcategory.find_by(name: 'Réseaux sociaux'), status: 'validated')
+AccountDocument.create(account: account, document: acte_deces)
+AccountDocument.create(account: account, document: mail)
+
+account = Account.create(name: "Tik Tok", subcategory: Subcategory.find_by(name: 'Réseaux sociaux'), status: 'validated')
+AccountDocument.create(account: account, document: acte_deces)
+AccountDocument.create(account: account, document: mail)
+
+account = Account.create(name: "Twitch", subcategory: Subcategory.find_by(name: 'Réseaux sociaux'), status: 'validated')
+AccountDocument.create(account: account, document: acte_deces)
+AccountDocument.create(account: account, document: mail)
+
+account = Account.create(name: "Google", subcategory: Subcategory.find_by(name: 'Divers'), status: 'validated')
+AccountDocument.create(account: account, document: acte_deces)
+AccountDocument.create(account: account, document: mail)
+
+account = Account.create(name: "Amazon", subcategory: Subcategory.find_by(name: 'Divers'), status: 'validated')
+AccountDocument.create(account: account, document: acte_deces)
+AccountDocument.create(account: account, document: mail)
+
+account = Account.create(name: "CDiscount", subcategory: Subcategory.find_by(name: 'Divers'), status: 'validated')
+AccountDocument.create(account: account, document: acte_deces)
+AccountDocument.create(account: account, document: mail)
+
 account = Account.create(name: 'EDF', subcategory: Subcategory.find_by(name: 'Électricité'), status: 'validated')
 AccountDocument.create(account: account, document: acte_deces)
 AccountDocument.create(account: account, document: compteur_elec)
@@ -685,7 +724,7 @@ AccountDocument.create(account: account, document: acte_deces)
 AccountDocument.create(account: account, document: mail)
 AccountDocument.create(account: account, document: numero_contrat_rtm)
 
-puts Account.count == 132 ? "🟩 Accounts créées avec succès" : "🟥 Erreur dans la création des accounts"
+puts Account.count == 141 ? "🟩 Accounts créées avec succès" : "🟥 Erreur dans la création des accounts"
 
 puts "👷🏼 Création des Packs"
 Pack.create(

@@ -20,7 +20,6 @@
     </div>
   </div>
 
-  <!-- ==== FORM TO CREATE A NEW ORDER ==== -->
   <div class="form-order-div">
 
     <div class="form-order-infos">
@@ -39,19 +38,21 @@
           <%= f_order.input :deceased_last_name, label: 'Nom du défunt', input_html: { class: 'form-name-input' } %>
         </div>
 
-        <!-- ==== Sections for type of accounts(categories) ==== -->
-        <% @categories.each do |category| %>
-          <div class="order-divs">
-            <h3 class="highlight-green fit-content"><%= category.name %></h3>
+      <% @categories.each do |category| %>
+        <div class="order-divs">
+          <h3 class="highlight-green fit-content"><%= category.name %></h3>
 
-            <!-- ==== Sections for subtype of accounts (subcategories) inside categories ==== -->
-            <% category.subcategories.each do |subcategory| %>
-              <h4><%= subcategory.name %></h4>
-
-              <!-- Inside, one nested form (put in partial)-->
-              <!-- => for new order_accounts, ie. accounts to cancel) -->
-              <%= render 'chose_account_form', category: category, f_order: f_order, subcategory: subcategory, order_accounts: @order_accounts %>
-            <% end %>
+          <% category.subcategories.each do |subcategory| %>
+            <div class="box subcategory-div" data-controller="subcategory-dropdown">
+              <div class='subcategory-title'>
+                <h4><%= subcategory.name %></h4>
+                <div class="toggle-btn" data-action='click->subcategory-dropdown#toggle' data-subcategory-dropdown-target='button'></div>
+              </div>
+              <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts'>
+                <%= render 'chose_account_form', category: category, f_order: f_order, subcategory: subcategory, order_accounts: @order_accounts %>
+              </div>
+            </div>
+           <% end %>
           </div>
         <% end %>
         <div class="order-btn">

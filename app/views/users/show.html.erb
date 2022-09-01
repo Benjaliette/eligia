@@ -1,18 +1,26 @@
 <% content_for :title, "Mon espace - Eligia" %>
 
+  <div class="user-dashboard-grid">
 
-<div class="container">
-  <div class="fullscreen">
-    <h2 class="no-margin padding-top-five padding-bottom-five">Bienvenue sur votre espace</h2>
+    <div class="user-dashboard-navigation">
 
-    <%= render 'account_infos', user: current_user, resource: current_user %>
+      <div class='tab current-tab'>
+        <p>Mes démarches</p>
+      </div>
+      <div class='tab other-tab'>
+        <p>Informations personnelles</p>
+      </div>
+    </div>
 
-    <h3 class="no-margin padding-top-five padding-bottom-two">Vos démarches</h3>
+    <div class="user-dashboard-content">
 
-    <% @orders.each do |order| %>
-      <%= link_to order_path(order) do  %>
-        <%= render "order_dashboard_card", order: order %>
+      <% @orders.each do |order| %>
+        <%= link_to order_path(order) do %>
+          <%= render "order_dashboard_card", order: order %>
+        <% end %>
       <% end %>
-    <% end %>
+
+    </div>
+
+
   </div>
-</div>

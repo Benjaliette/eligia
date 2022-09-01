@@ -50,3 +50,38 @@
     font-style: italic;
   }
 }
+
+// User dashboard
+
+.user-dashboard-grid{
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
+}
+
+.user-dashboard-navigation{
+  background-color: $off-white;
+}
+
+.tab {
+  padding: 5px 0px 5px 10px;
+  border-top: solid $light-gray 2px ;
+  border-bottom: solid $light-gray 2px ;
+}
+
+.current-tab{
+  background-color: $yellow;
+  font-weight: bolder;
+}
+
+.other-tab:hover{
+  cursor: pointer;
+  background-color: white;
+  // font-size: larger;
+  font-weight: bolder;
+  transition: all ease .07s;
+}
+
+.user-dashboard-content{
+  padding-top: 30px;
+}

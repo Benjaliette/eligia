@@ -1,54 +1,82 @@
 <% content_for :title, "Nouvelle démarche - Eligia" %>
 
 
-<div class="container">
+<div class="order-parts" data-controller="remove-navbar remove-footer">
 
-  <div class="steps"><%= render_breadcrumbs tag: :p, separator: "" %></div>
+  <div class="form-order-steps">
+    <div class="steps">
+      <div class='step current-step'>
+        <p>Étape 1 :</p>
+        <p>Résiliations</p>
+      </div>
+      <div class='step'>
+        <p>Étape 2 :</p>
+        <p>Informations nécessaires</p>
+      </div>
+      <div class='step'>
+        <p>Étape 3 :</p>
+        <p>Validation</p>
+      </div>
+    </div>
+  </div>
 
-  <!-- ==== FORM TO CREATE A NEW ORDER ==== -->
   <div class="form-order-div">
+
     <div class="form-order-infos">
-      <h2>Première étape</h2>
-      <p>
-        Renseigner les abonnements à résilier.<br>
-        Pour des raisons de simplicité, les documents et informations à fournir seront demandées à l'étape 2.
-      </p>
+      <h1>1. Contrats à résilier</h1>
     </div>
 
-    <%= simple_form_for @order, data: { turbo: :false } do |f_order| %>
-      <%= f_order.error_notification %>
+    <div class="form-order-content">
+      <%= simple_form_for @order, data: { turbo: :false } do |f_order| %>
+        <%= f_order.error_notification %>
 
-      <div class="form-name-div">
-        <%= f_order.input :deceased_first_name,
-                          label: 'Prénom du défunt',
-                          input_html: { class: 'form-name-input' },
-                          autofocus: true %>
-        <%= f_order.input :deceased_last_name, label: 'Nom du défunt', input_html: { class: 'form-name-input' } %>
-      </div>
+        <div class="form-name-div">
+          <%= f_order.input :deceased_first_name,
+                            label: 'Prénom du défunt',
+                            input_html: { class: 'form-name-input' },
+                            autofocus: true %>
+          <%= f_order.input :deceased_last_name, label: 'Nom du défunt', input_html: { class: 'form-name-input' } %>
+        </div>
 
-      <!-- ==== Sections for type of accounts(categories) ==== -->
       <% @categories.each do |category| %>
         <div class="order-divs">
-          <h3 class="highlight-green"><%= category.name %></h3>
+          <h3 class="highlight-green fit-content"><%= category.name %></h3>
 
-          <!-- ==== Sections for subtype of accounts (subcategories) inside categories ==== -->
           <% category.subcategories.each do |subcategory| %>
-            <h4><%= subcategory.name %></h4>
-
-            <!-- Inside, one nested form (put in partial)-->
-            <!-- => for new order_accounts, ie. accounts to cancel) -->
-            <%= render 'chose_account_form', category: category, f_order: f_order, subcategory: subcategory, order_accounts: @order_accounts %>
+            <div class="box subcategory-div" data-controller="subcategory-dropdown">
+              <div class='subcategory-title'>
+                <h4><%= subcategory.name %></h4>
+                <div class="toggle-btn" data-action='click->subcategory-dropdown#toggle' data-subcategory-dropdown-target='button'></div>
+              </div>
+              <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts'>
+                <%= render 'chose_account_form', category: category, f_order: f_order, subcategory: subcategory, order_accounts: @order_accounts %>
+              </div>
+            </div>
+           <% end %>
+          </div>
+        <% end %>
+        <div class="order-btn">
+          <%= button_tag(type: 'submit', class: "learn-more") do %>
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">Valider</span>
           <% end %>
         </div>
       <% end %>
-      <div class="order-btn">
-        <%= button_tag(type: 'submit', class: "learn-more") do %>
-          <span class="circle" aria-hidden="true">
-            <span class="icon arrow"></span>
-          </span>
-          <span class="button-text">Valider</span>
-        <% end %>
-      </div>
-    <% end %>
+    </div>
   </div>
+
+
+  <div class='form-order-right'>
+    <div class="logo">
+      <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+    </div>
+    <p>
+      Renseigner les <strong>abonnements à résilier</strong>.<br><br>
+      Pour des raisons de simplicité, les documents et informations à fournir seront demandées à l'étape 2.
+    </p>
+    <div class="flower-pot" style="background-image: url(<%= image_path 'pot-fleur.svg' %>)"></div>
+  </div>
+
 </div>

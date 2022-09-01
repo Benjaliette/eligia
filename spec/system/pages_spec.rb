@@ -44,13 +44,13 @@ RSpec.describe "pages", type: :system do
     # Access orders#new
     it "Has a link towarts /orders/new" do
       visit "/"
-      expect(page).to have_link(nil, href: '/contact/new')
+      expect(page).to have_link(nil, href: '/orders/new')
     end
 
     it "Can click the link towarts /orders/new" do
       visit "/"
       click_link(nil, href: '/orders/new')
-      expect(page).to have_text("Première étape")
+      expect(page).to have_text("Prénom du défunt")
     end
   end
 end

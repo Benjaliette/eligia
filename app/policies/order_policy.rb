@@ -18,6 +18,10 @@ class OrderPolicy < ApplicationPolicy
     record.paid == false
   end
 
+  def update_documents?
+    record.paid == false
+  end
+
   def change?
     record.paid == false
   end

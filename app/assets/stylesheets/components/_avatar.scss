@@ -28,3 +28,18 @@
   justify-content: center;
   cursor: pointer;
 }
+
+.avatar-order {
+  background: rgb(255,255,255);
+  background: linear-gradient(133deg, rgba(255,255,255,1) 0%, rgba(255,229,76,1) 100%);
+  color: $gray;
+  font-weight: bold;
+  margin-right: 20px;
+  width: 100px;
+  height: 100px;
+  font-size: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

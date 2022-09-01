@@ -40,8 +40,14 @@ application.register("other-account", OtherAccountController)
 import RemoveFooterController from "./remove_footer_controller"
 application.register("remove-footer", RemoveFooterController)
 
+import RemoveNavbarController from "./remove_navbar_controller"
+application.register("remove-navbar", RemoveNavbarController)
+
 import ShowPasswordController from "./show_password_controller"
 application.register("show-password", ShowPasswordController)
+
+import SubcategoryDropdownController from "./subcategory_dropdown_controller"
+application.register("subcategory-dropdown", SubcategoryDropdownController)
 
 import TransparentNavbarController from "./transparent_navbar_controller"
 application.register("transparent-navbar", TransparentNavbarController)

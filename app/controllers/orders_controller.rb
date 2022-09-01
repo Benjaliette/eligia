@@ -1,16 +1,14 @@
 require 'json'
 
 class OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[change new create edit update recap]
+  skip_before_action :authenticate_user!, only: %i[change new create edit update update_documents recap]
 
-  before_action :set_order, only: %i[show change edit update recap success paiement]
+  before_action :set_order, only: %i[show change edit update update_documents recap success paiement]
   before_action :set_categories, only: %i[change new create]
 
   after_action :send_confirmation_mail, only: :success
-  after_action :order_pundit, only: %i[show new change create edit update paiement recap success]
+  after_action :order_pundit, only: %i[show new change create edit update update_documents paiement recap success]
 
-  add_breadcrumb "<div class=' step other-step'>1. Résiliations</div>".html_safe, :change_order_path, only: %i[edit recap]
-  add_breadcrumb "<div class=' step other-step'>2. Informations nécessaires</div>".html_safe, :edit_order_path, only: :recap
   add_breadcrumb "Démarches", :user_path, only: :show
 
   def index
@@ -22,24 +20,10 @@ class OrdersController < ApplicationController
     add_breadcrumb "#{@order.deceased_last_name.capitalize}-#{@order.deceased_first_name.first}"
   end
 
-
+  # === First step in order creation (account) === #
   def new
     @order = Order.new
     @categories = Category.all
-
-    add_breadcrumb "<div class='step current-step'>1. Résiliations</div>".html_safe
-    add_breadcrumb "<div class='step other-step'>2. Informations nécessaires</div>".html_safe
-    add_breadcrumb "<div class='step other-step'>3. Validation</div>".html_safe
-  end
-
-  def change
-    @order_accounts = jsonify_order_accounts
-
-    add_breadcrumb "<div class='step current-step'>1. Résiliations</div>".html_safe
-    add_breadcrumb "<div class='step other-step'>2. Informations nécessaires</div>".html_safe
-    add_breadcrumb "<div class='step other-step'>3. Validation</div>".html_safe
-
-    render :new
   end
 
   def create
@@ -60,27 +44,40 @@ class OrdersController < ApplicationController
       render :new
     end
   end
+  # === End === #
 
-  def edit
-    set_order_documents_to_order
-
-    @order_documents = @order.order_documents
-    @order_documents_json = jsonify_order_documents
-
-    # add_breadcrumb "<div class='other-step'>1. Résiliations</div>".html_safe
-    add_breadcrumb "<div class='step current-step'>2. Informations nécessaires</div>".html_safe
-    add_breadcrumb "<div class='step other-step'>3. Validation</div>".html_safe
+  # === Going back to first step in order creation === #
+  def change
+    @order_accounts = jsonify_order_accounts
+    render :new
   end
 
   def update
     @order.update(order_params)
     update_order_account_status(@order)
 
-    redirect_to recap_order_path(@order)
+    redirect_to edit_order_path(@order)
+  end
+  # === End === #
+
+  # === Second step in order creation (documents) === #
+  def edit
+    set_order_documents_to_order
+
+    @order_documents = @order.order_documents
+    @order_documents_json = jsonify_order_documents
   end
 
+  def update_documents
+    @order.update(order_params)
+    update_order_account_status(@order)
+
+    redirect_to recap_order_path(@order)
+  end
+  # === End === #
+
+  # === Third step in order creation (recap) === #
   def recap
-    add_breadcrumb "<div class='step current-step'>3. Validation</div>".html_safe
   end
 
   def paiement
@@ -98,6 +95,7 @@ class OrdersController < ApplicationController
     end
   end
 
+  # === After paiement page === #
   def success
     session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @customer = Stripe::Customer.retrieve(session.customer)

@@ -39,6 +39,9 @@
               <% end %>
             </ul>
           </div>
+          <div style="text-align: end">
+            <%= link_to "Ajouter un contrat", change_order_path(@order), class:"btn-third small margin-top-three" %>
+          </div>
         </div>
 
         <div class="order-subdiv">
@@ -57,6 +60,9 @@
                 <% end %>
               </div>
             <% end %>
+          </div>
+          <div style="text-align: end">
+            <%= link_to "Ajouter des informations", edit_order_path(@order), class:"btn-third small margin-top-three" %>
           </div>
         </div>
       </div>

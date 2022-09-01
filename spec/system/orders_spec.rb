@@ -11,7 +11,7 @@ RSpec.describe "orders", type: :system do
 
   context "When creating an order" do
     it "Accesses the orders/new page" do
-      visit "/orders/new"
+      visit "/resiliations/contrats"
       expect(page).to have_text("Prénom du défunt")
     end
 

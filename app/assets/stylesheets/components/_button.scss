@@ -94,6 +94,10 @@
   font-weight: bold;
 }
 
+.btn-round{
+  border-radius: 10%/50%;
+}
+
 // BUTTON FOR VALIDATE ORDER
 
 @mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
@@ -102,8 +106,8 @@
 
 .order-btn {
   text-align: right;
-  width: 90%;
-  margin: 50px auto 10px auto;
+  width: 100%;
+  margin: 40px 0px;
 }
 
 button {
@@ -119,7 +123,6 @@ button {
   font-size: inherit;
   font-family: inherit;
   &.learn-more {
-    margin-bottom: 15px;
     width: 12rem;
     height: auto;
     .circle {

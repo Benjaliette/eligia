@@ -1,7 +1,7 @@
 <% content_for :title, "Nouvelle démarche - Eligia" %>
 
 
-<div class="order-parts" data-controller="remove-navbar remove-footer">
+<div class="order-parts" data-controller="remove-footer">
 
   <div class="form-order-steps">
     <div class="steps">
@@ -44,9 +44,9 @@
 
           <% category.subcategories.each do |subcategory| %>
             <div class="box subcategory-div" data-controller="subcategory-dropdown">
-              <div class='subcategory-title'>
+              <div class='subcategory-title' data-action='click->subcategory-dropdown#toggle'>
                 <h4><%= subcategory.name %></h4>
-                <div class="toggle-btn" data-action='click->subcategory-dropdown#toggle' data-subcategory-dropdown-target='button'></div>
+                <div class="toggle-btn" data-subcategory-dropdown-target='button'></div>
               </div>
               <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts'>
                 <%= render 'chose_account_form', category: category, f_order: f_order, subcategory: subcategory, order_accounts: @order_accounts %>

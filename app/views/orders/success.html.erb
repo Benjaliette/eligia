@@ -1,6 +1,6 @@
 <% content_for :title, "Confirmation - Eligia" %>
 
-
+<%= render 'shared/navbar' %>
 <div class="container margin-top-three padding-three" data-controller="remove-footer">
   <% session = Stripe::Checkout::Session.retrieve(params[:session_id]) %>
   <% customer = Stripe::Customer.retrieve(session.customer) %>

@@ -1,7 +1,6 @@
 <% content_for :title, "Validation demande - Eligia" %>
 
-
-<div data-controller="remove-navbar remove-footer">
+<div data-controller="remove-footer">
   <div class="fullscreen order-parts">
 
     <div class="form-order-steps">
@@ -27,7 +26,7 @@
 
     <div class="form-order-div">
       <div class="form-order-infos">
-        <%= link_to change_order_path(@order), class:"btn-third small btn-round margin-bottom-four" do %>
+        <%= link_to edit_order_path(@order), class:"btn-third small btn-round margin-bottom-four" do %>
           <i class="fa-solid fa-arrow-left"></i> Précédent
         <% end %>
         <h1>3. Récapitulatif / Confirmation</h1>

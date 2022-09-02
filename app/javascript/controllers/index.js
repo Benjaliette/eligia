@@ -37,9 +37,6 @@ application.register("navbar-responsivity", NavbarResponsivityController)
 import OtherAccountController from "./other_account_controller"
 application.register("other-account", OtherAccountController)
 
-import RemoveFooterController from "./remove_footer_controller"
-application.register("remove-footer", RemoveFooterController)
-
 import ShowPasswordController from "./show_password_controller"
 application.register("show-password", ShowPasswordController)
 

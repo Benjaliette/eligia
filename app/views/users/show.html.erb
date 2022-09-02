@@ -3,22 +3,21 @@
 <%= render 'shared/navbar' %>
 
 
+<turbo-frame id="content">
   <div class="user-dashboard-grid">
-    <div class="user-dashboard-navigation">
-      <div class="user-dashboard-navigation-top">
-        <p>Bonjour <strong><%= current_user.first_name %></strong><p>
+      <div class="user-dashboard-navigation">
+        <div class="user-dashboard-navigation-top">
+          <p>Bonjour <strong><%= current_user.first_name %></strong><p>
+        </div>
+        <div class='tab other-tab'>
+          <p>Informations personnelles</p>
+        </div>
+        <div class='tab current-tab'>
+          <p>Mes démarches</p>
+        </div>
       </div>
-      <div class='tab current-tab'>
-        <p>Mes démarches</p>
-        <div class="toggle-btn"></div>
-      </div>
-      <div class='tab other-tab'>
-        <p>Informations personnelles</p>
-      </div>
-    </div>
 
 
-    <turbo-frame id="content">
       <div class="user-dashboard-content">
         <% @orders.each do |order| %>
           <%= link_to order_path(order) do %>
@@ -26,5 +25,5 @@
           <% end %>
         <% end %>
       </div>
-    </turbo-frame>
   </div>
+</turbo-frame>

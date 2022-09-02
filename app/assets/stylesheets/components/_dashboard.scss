@@ -97,11 +97,35 @@
 .other-tab:hover{
   cursor: pointer;
   background-color: $super-light-green;
-  // font-size: larger;
   font-weight: bolder;
   transition: all ease .07s;
 }
 
+.tab-details{
+  background-color: #F3FFF0;
+
+  ul{
+    margin: 0px;
+    padding: 10px 10px 10px 30px;
+    list-style: none;
+  }
+
+  li{
+    font-size: smaller;
+    margin: 5px auto 5px auto;
+    cursor: pointer;
+
+    &:hover {
+      color: black;
+      font-weight: bolder;
+    }
+  }
+}
+
+.tab-details.opaque{
+  opacity: 1;
+}
+
 .user-dashboard-content{
-  padding-top: 30px;
+  padding: 30px;
 }

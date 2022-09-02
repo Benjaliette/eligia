@@ -1,18 +1,29 @@
 <% content_for :title, "Mon espace - Eligia" %>
 
 <%= render 'shared/navbar' %>
-<div class="container">
-  <div class="fullscreen">
-    <h2 class="no-margin padding-top-five padding-bottom-five">Bienvenue sur votre espace</h2>
 
-    <%= render 'account_infos', user: current_user, resource: current_user %>
 
-    <h3 class="no-margin padding-top-five padding-bottom-two">Vos démarches</h3>
+<turbo-frame id="content">
+  <div class="user-dashboard-grid">
+      <div class="user-dashboard-navigation">
+        <div class="user-dashboard-navigation-top">
+          <p>Bonjour <strong><%= current_user.first_name %></strong><p>
+        </div>
+        <div class='tab other-tab'>
+          <p>Informations personnelles</p>
+        </div>
+        <div class='tab current-tab'>
+          <p>Mes démarches</p>
+        </div>
+      </div>
 
-    <% @orders.each do |order| %>
-      <%= link_to order_path(order) do  %>
-        <%= render "order_dashboard_card", order: order %>
-      <% end %>
-    <% end %>
+
+      <div class="user-dashboard-content">
+        <% @orders.each do |order| %>
+          <%= link_to order_path(order) do %>
+            <%= render "order_dashboard_card", order: order %>
+          <% end %>
+        <% end %>
+      </div>
   </div>
-</div>
+</turbo-frame>

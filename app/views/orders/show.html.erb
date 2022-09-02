@@ -1,15 +1,40 @@
 <% content_for :title, "Mes démarches - Eligia" %>
-
 <%= render 'shared/navbar' %>
-<div class="container">
-  <div class="fullscreen">
-    <h3 class="no-margin padding-top-three">Dossier de <%= @order.deceased_last_name.upcase %> <%= @order.deceased_first_name %></h3>
-    <div class="dashboard-navigation">
-      <%= render_breadcrumbs tag: :div, separator: ">" %>
+
+<turbo-frame id="content">
+  <div class="user-dashboard-grid">
+    <div class="user-dashboard-navigation">
+      <div class="user-dashboard-navigation-top">
+          <p>Bonjour <strong><%= current_user.first_name %></strong><p>
+      </div>
+      <div class='tab other-tab'>
+        <p>Informations personnelles</p>
+      </div>
+      <%= link_to user_path(current_user) do %>
+        <div class='tab current-tab'>
+          <p>Mes démarches</p>
+        </div>
+      <% end %>
+      <div class="tab-details">
+        <ul>
+          <% @orders.each do |order| %>
+            <li><%= order.deceased_first_name %> <%= order.deceased_last_name %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
 
-    <% @order.order_accounts.each do |order_account| %>
-      <%= render "order_account_card", order_account: order_account %>
-    <% end %>
+    <div class="user-dashboard-content">
+      <h2>Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></h2>
+
+      <div class="order-account-card-title">
+        <p class="align-center">Contrat</p>
+        <p class="align-center">Statut</p>
+      </div>
+
+      <% @order.order_accounts.each do |order_account| %>
+        <%= render "order_account_card", order_account: order_account %>
+      <% end %>
+    </div>
   </div>
-</div>
+<turbo-frame>

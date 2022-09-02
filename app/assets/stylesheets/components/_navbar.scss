@@ -1,17 +1,12 @@
-$navbar-height:100px;
-
 .navbar {
-  background: rgb(237,255,235);
-  background: linear-gradient(86deg, rgba(237,255,235,1) 0%, rgba(143,204,155,1) 49%, rgba(122,181,206,1) 100%);
+  background: $light-green;
   height: $navbar-height;
-  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.1);
-
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
+  position: relative;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 5%;
 }
 
 @media (max-width: 400px) {
@@ -21,21 +16,18 @@ $navbar-height:100px;
 }
 
 .logo img {
-  height: 80px;
-  margin: 10px 0;
+  height: 40px;
 }
 
 .nav-items {
-  margin: 0;
-  padding: 0;
-  width: 55%;
+  height: $navbar-height;
+  margin: 0px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 
   a {
     width: fit-content;
-    padding-bottom: 10px;
 
     &:hover {
       border-bottom: 2px solid $gray;
@@ -44,11 +36,12 @@ $navbar-height:100px;
   }
 
   .nav-item {
-    margin: 0;
+    height: 100%;
     list-style: none;
-    padding: 12px;
+    padding: 0px 15px;
     text-align: center;
     display: flex;
+    justify-content: center;
     align-items: center;
   }
 }

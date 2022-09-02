@@ -1,0 +1,29 @@
+<h3 class="no-margin padding-three"> Documents et informations à fournir </h3>
+
+<div class="form-order-div">
+
+  <% if documents.empty? %>
+    <div class='align-center'>
+      <p><strong>Tous les documents ont été fournis avec succès</strong></p>
+    </div>
+  <% end %>
+
+  <% documents.each do |order_document| %>
+    <%= simple_form_for [order_account, order_document], data: { turbo: false } do |f| %>
+      <div class="document-name highlight-green d-inline-block"><%= order_document.document.name %></div>
+      <div class="insert-document" data-controller="add-file loading-spinner">
+        <% if order_document.document.format == 'pdf' %>
+          <div data-check-document-target='infoDiv'></div>
+          <div class="document-btn-and-name">
+            <%= f.input :document_file, label: "Ajouter", as: :file, input_html:{accept: '.png, .jpg, .jpeg, .pdf', class:'hidden-document-input', :'data-action' => "change->add-file#added", :'data-add-file-target' => 'input'}, label_html:{class:'label-document-input d-inline-block margin-bottom-two', :'data-add-file-target' => 'label', :'data-check-document-target' => 'documentForm'} %>
+            <div class="file-name" data-add-file-target="fileNameDiv"></div>
+            <div class="lds-dual-ring display-none" data-loading-spinner-target='spinner'></div>
+          </div>
+        <% else %>
+          <%= f.input :document_input, label: false, input_html: { class:'doc-input' } %>
+        <% end %>
+        <%= f.submit "Valider", class:'file optional btn-principal small margin-top-two', data: {"loading-spinner-target":"btn", action:"click->loading-spinner#load"} %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

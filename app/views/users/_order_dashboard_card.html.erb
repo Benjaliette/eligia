@@ -1,7 +1,7 @@
 <div class=order-dashboard-card>
 
   <div class="order-card-info">
-    <p>Dossier de <%= order.deceased_first_name %> <%= order.deceased_first_name.upcase %></p>
+    <p>Dossier de <%= order.deceased_first_name %> <%= order.deceased_last_name.upcase %></p>
   </div>
   <div class="order-card-content">
     <p>Créée le : <%= order.created_at.strftime('%d/%m/%y') %></p>

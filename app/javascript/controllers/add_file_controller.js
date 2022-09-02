@@ -20,8 +20,6 @@ export default class extends Controller {
       this.labelTarget.classList.add('label-document-input-selected')
       this.labelTarget.classList.remove('label-document-input-wrong-format')
       this.labelTarget.innerText = 'Modifier'
-
-      console.log(this.labelTarget)
     }
   }
 }

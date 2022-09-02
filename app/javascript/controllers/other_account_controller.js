@@ -49,17 +49,22 @@ export default class extends Controller {
   }
 
   otherclicked(event) {
-    this.subcategoryDivTarget.classList.toggle('display-none');
 
-
-    if (this.otherButtonTargets[event.srcElement.id].innerText == 'Autre') {
-      this.otherButtonTargets[event.srcElement.id].classList.toggle('active');
+    if (this.otherButtonTargets[event.srcElement.id].classList.contains('active')) {
+      this.subcategoryDivTarget.classList.add('display-none')
+      this.otherButtonTargets[event.srcElement.id].classList.remove('active');
+      this.otherButtonTargets[event.srcElement.id].innerText = 'Autre'
+      if (this.otherButtonTargets[Math.floor(event.srcElement.id) + 1].innerText == 'Autre') {
+        this.otherButtonTargets[Math.floor(event.srcElement.id) + 1].classList.add('display-none')
+      }
     } else {
+      this.subcategoryDivTarget.classList.remove('display-none')
       this.otherButtonTargets[event.srcElement.id].classList.add('active');
     }
-
     this.accountInputTarget.value = ''
     this.currentButton = event.srcElement.id
+
+    this.otherCheckNumber = Math.floor(this.currentButton) + 1
   }
 
   radioClicked(event) {
@@ -104,12 +109,11 @@ export default class extends Controller {
     this.otherButtonTargets[this.currentButton].classList.remove('active');
   }
 
-  addOtherButton() {
+  addOtherButton(event) {
     const array = this.otherButtonTargets.filter(other => !other.classList.contains('display-none'))
 
     if (!array.some(item => item.innerText == 'Autre')) {
-      this.otherCheckNumber++
-
+      console.log(this.otherCheckNumber)
       this.otherButtonTargets[this.otherCheckNumber].classList.remove('display-none')
 
       this.otherButtonTargets[this.otherCheckNumber].classList.remove('active');

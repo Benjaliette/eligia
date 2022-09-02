@@ -58,30 +58,30 @@
 
 // Order-account-card
 
-.order-account-card{
-  background-color: white;
-  padding: 10px 50px;
-  margin: 10px 0px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 2px lightgrey;
-  border: solid 1px lightgrey;
+.order-account-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
 
-  .order-account-status{
-    font-size: 12px;
-  }
-}
+  .order-account-card{
+    background-color: white;
+    height: 150px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px lightgrey;
 
-.order-account-card-title{
-  padding: 0px 50px;
-  margin: 5px 0px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-  p {
-    margin-bottom: 5px;
-    font-weight: bolder;
+    .order-account-status{
+      font-size: 12px;
+    }
+
+    .account-name {
+      margin: 0 auto;
+      font-weight: bold;
+    }
   }
 }
 

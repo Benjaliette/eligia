@@ -17,6 +17,13 @@ class OrderAccount < ApplicationRecord
     self.account.account_documents.map(&:document)
   end
 
+  def required_order_documents
+    o_d = self.order.order_documents.select { |order_doc| self.required_documents.include? order_doc.document }
+    req_o_d = o_d.select do |order_document|
+      (order_document.document.format == 'pdf' && !order_document.document_file.attached?) || (order_document.document.format == 'text' && order_document.document_input.blank?)
+    end
+  end
+
   # Retourne un array avec les instances de OrderDocument correspondant aux documents nécessaires de cet order_account
   def order_documents
     OrderDocument.where(order_id: self.order_id, document_id: self.required_documents)

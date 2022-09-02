@@ -28,20 +28,19 @@ class OrdersController < ApplicationController
 
   def create
     @categories = Category.all
-
     @order = Order.new(order_params)
     @order.pack = @order.determine_pack_type
     @order.amount = @order.pack.price
 
-    if @order.save
+    if @order.save && @order.order_accounts.count.positive?
       set_order_documents_to_order
 
       redirect_to edit_order_path(@order)
     else
       @order_accounts = jsonify_order_accounts
 
-      flash[:alert] = "Attention, il manque des informations"
-      render :new
+      flash[:alert] = "Remplissez les champs nécessaires et sélectionnez au moins un contrat à résilier."
+      render :new, status: :unprocessable_entity
     end
   end
   # === End === #
@@ -69,9 +68,9 @@ class OrdersController < ApplicationController
   end
 
   def update_documents
-    @order.update(order_params)
-    update_order_account_status(@order)
+    @order.update(order_params) if params[:order]
 
+    update_order_account_status(@order)
     redirect_to recap_order_path(@order)
   end
   # === End === #

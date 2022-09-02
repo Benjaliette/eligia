@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
   def show
     update_order_account_status(@order)
     add_breadcrumb "#{@order.deceased_last_name.capitalize}-#{@order.deceased_first_name.first}"
+    @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
   end
 
   # === First step in order creation (account) === #

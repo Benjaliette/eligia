@@ -56,27 +56,42 @@
 .user-dashboard-grid{
   display: grid;
   grid-template-columns: 1fr 5fr;
-  min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
+  min-height: calc(100vh - #{$navbar-height});
 }
 
 .user-dashboard-navigation{
-  background-color: $off-white;
+  background-color: white;
+  border-right: 1px solid $super-light-gray;
+
+  .greetings{
+    padding: 40px 0px 40px 5px;
+    font-size: larger;
+  }
 }
 
 .tab {
-  padding: 5px 0px 5px 10px;
-  border-top: solid $light-gray 2px ;
-  border-bottom: solid $light-gray 2px ;
+  padding: 5px 5px 5px 10px;
+  border-top: solid $super-light-gray 1px ;
+  border-bottom: solid $super-light-gray 1px ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .toggle-btn{
+    border-color: $gray;
+    transform: rotate(-135deg);
+    margin-right: 5px;
+  }
 }
 
 .current-tab{
-  background-color: $yellow;
+  background-color: $light-green;
   font-weight: bolder;
 }
 
 .other-tab:hover{
   cursor: pointer;
-  background-color: white;
+  background-color: $super-light-green;
   // font-size: larger;
   font-weight: bolder;
   transition: all ease .07s;

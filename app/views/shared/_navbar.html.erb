@@ -1,45 +1,46 @@
 <div class="navbar"
-     data-controller="navbar-responsivity"
+     data-controller="navbar-responsivity navbar-dropdown"
      data-action="resize@window->navbar-responsivity#toggle">
-  <div class="d-flex justify-content-space-between padding-left-five padding-right-five" data-controller="navbar-dropdown">
     <div class="logo">
       <%= link_to root_path do %>
         <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
       <% end %>
     </div>
-    <ul class="nav-items"
-        data-navbar-responsivity-target="navitems">
-      <li class="nav-item">
-        <%= link_to 'Tarifs', price_pages_path %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Nous contacter', new_message_path %>
-      </li>
-      <li class="nav-item" id="user">
-        <% if current_user %>
-          <div class="avatar", data-action="click->navbar-dropdown#dropdown click@window->navbar-dropdown#closeDropdown" data-navbar-dropdown-target='avatar'>
-            <%= current_user.first_name[0].upcase + current_user.last_name[0].upcase %>
-          </div>
-          <ul class="navbar-dropdown" data-navbar-dropdown-target="dropdowndiv">
-            <%= link_to user_path(current_user) do  %>
-            <li>
-              <i class="fa-solid fa-house-user fa-xl"></i>
-              <div>Mon compte</div>
-            </li>
-            <% end %>
-            <%= button_to destroy_user_session_path, method: :delete, class: "button-hover" do %>
+    <div>
+      <ul class="nav-items"
+          data-navbar-responsivity-target="navitems">
+        <li class="nav-item">
+          <%= link_to 'Tarifs', price_pages_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Nous contacter', new_message_path %>
+        </li>
+        <li class="nav-item" id="user">
+          <% if current_user %>
+            <div class="avatar", data-action="click->navbar-dropdown#dropdown click@window->navbar-dropdown#closeDropdown" data-navbar-dropdown-target='avatar'>
+              <%= current_user.first_name[0].upcase + current_user.last_name[0].upcase %>
+            </div>
+            <ul class="navbar-dropdown" data-navbar-dropdown-target="dropdowndiv">
+              <%= link_to user_path(current_user) do  %>
               <li>
-                <i class="fa-solid fa-right-from-bracket fa-xl"></i>
-                <div>Déconnexion</div>
+                <i class="fa-solid fa-house-user fa-xl"></i>
+                <div>Mon compte</div>
               </li>
-            <% end %>
-          </ul>
-        <% else %>
-          <%= link_to 'Connexion/Inscription', new_user_session_path %>
-        <% end %>
-      </li>
-    </ul>
-    <div class="display-none hamburger"
+              <% end %>
+              <%= button_to destroy_user_session_path, method: :delete, class: "button-hover" do %>
+                <li>
+                  <i class="fa-solid fa-right-from-bracket fa-xl"></i>
+                  <div>Déconnexion</div>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <%= link_to 'Connexion / Inscription', new_user_session_path %>
+          <% end %>
+        </li>
+      </ul>
+
+      <div class="display-none hamburger"
          data-navbar-responsivity-target="hamburger"
          data-action="click->navbar-dropdown#toggleDropdown">
       <i class="fa-solid fa-bars fa-xl" data-navbar-dropdown-target="hamburgerIcon"></i>
@@ -59,7 +60,7 @@
           </li>
         <% else %>
           <li class="toggle-nav-item">
-            <%= link_to 'Connexion/Inscription', new_user_session_path %>
+            <%= link_to 'Connexion / Inscription', new_user_session_path %>
           </li>
         <% end %>
       </ul>

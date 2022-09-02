@@ -4,45 +4,35 @@
                               data-other-account-account-number-value=<%= Account.where(status: 'validated').count %>
                               data-other-account-other-account-value=<%= @order.order_accounts.select { |o_a| o_a.account.subcategory == subcategory && o_a.account.status == 'non_validated' }.size %>>
 
-  <!-- First nested form for order_accounts (created as nested attribute for order) -->
-  <% Account.validated_accounts_from_subcategory(subcategory).order(:name).each do |account| %>
-    <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
-      <%= f_order_accounts.collection_radio_buttons(:account_id, [account], :id, :name, {item_wrapper_class:'account-radio-button'}) do |b_account| %>
-        <%= b_account.label {b_account.radio_button(data:{'other-account-target':"checkBoxes", action:'click->other-account#radioClicked' }) + content_tag(:span, b_account.text, class:'account-radio-button-text')} %>
+  <div class="account-grid">
+    <% Account.validated_accounts_from_subcategory(subcategory).order(:name).each do |account| %>
+      <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
+        <%= f_order_accounts.collection_radio_buttons(:account_id, [account], :id, :name, {item_wrapper_class:'account-radio-button'}) do |b_account| %>
+          <%= b_account.label {b_account.radio_button(data:{'other-account-target':"checkBoxes", action:'click->other-account#radioClicked' }) + content_tag(:span, b_account.text, class:'account-radio-button-text')} %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-
-  <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
-  <!-- Last fake radio button to allow new account form to appear (with a d-none and JS toggle) -->
-    <%= f_order_accounts.simple_fields_for :account, Account.new do |f_account| %>
-      <%= f_account.label "autre", class:'account-other-button', id: 0, item_wrapper_class:'account-radio-button', data: {action:'click->other-account#otherclicked','other-account-target':"otherButton"} %>
-      <%= f_account.input :name, input_html: { data: {'other-account-target':"otherButtonInput"} }, class: 'account-hidden', as: :hidden %>
-      <%=
-          f_account.input :subcategory_id, input_html: { value: subcategory.id }, class: 'account-hidden', as: :hidden
-          # This hidden field allow us to store the created account in the category
-          # where the other button has been clicked
-        %>
+    <span class="account-radio-button">
+      <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
+        <%= f_order_accounts.simple_fields_for :account, Account.new do |f_account| %>
+          <%= f_account.label "autre", class:'account-other-button', id: 0, item_wrapper_class:'account-radio-button', data: {action:'click->other-account#otherclicked','other-account-target':"otherButton"} %>
+          <%= f_account.input :name, input_html: { data: {'other-account-target':"otherButtonInput"} }, class: 'account-hidden', as: :hidden %>
+          <%= f_account.input :subcategory_id, input_html: { value: subcategory.id }, class: 'account-hidden', as: :hidden %>
+        <% end %>
+      <% end %>
+    </span>
+    <% 10.times do |index| %>
+      <span class="account-radio-button"><%= render 'create_new_account_form', f_order: f_order, subcategory: subcategory, id: index + 1 %></span>
     <% end %>
-  <% end %>
+  </div>
 
-  <% 10.times do |index| %>
-    <%= render 'create_new_account_form', f_order: f_order, subcategory: subcategory, id: index + 1 %>
-  <% end %>
+  <div data-other-account-target='subcategoryDiv'
+        class="display-none other-account"
+        data-action='keyup->other-account#buttonText keydown->other-account#preventSubmit'>
 
-    <div data-other-account-target='subcategoryDiv'
-         class="display-none other-account"
-         data-action='keyup->other-account#buttonText keydown->other-account#preventSubmit'>
-
-
-      <!-- Second nested form for new account (created as nested attribute for order_accounts) -->
-
-        <label for="account_name">Compte à résilier ?</label>
-        <input type="text" class="account_name" data-other-account-target="accountInput">
-
-
-
-      <div class='btn-principal small' data-action='click->other-account#accountTyped'>Ajouter</div>
-      <div class='btn-principal small btn-warning' data-action='click->other-account#removeAccount'>Annuler</div>
-    </div>
+    <label for="account_name">Compte à résilier ?</label>
+    <input type="text" class="account_name" data-other-account-target="accountInput">
+    <div class='btn-principal small' data-action='click->other-account#accountTyped'>Ajouter</div>
+    <div class='btn-principal small btn-warning' data-action='click->other-account#removeAccount'>Annuler</div>
+  </div>
 </div>

@@ -1,38 +1,133 @@
-//////////////// ORDER CREATION
-
-.order-parts {
+.account-grid {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  height: 100vh;
+  grid-template-columns: repeat(3, 1fr);
 }
 
-.form-order-steps {
-  position: sticky;
-  background-color: #fbfbfb;
+.account_name {
+  background-color: $light-gray;
+  border: 0px solid white;
+  border-bottom: 1px solid $gray;
+  height: 20px;
+  margin-left: 20px;
+  &:focus {
+    outline: none;
+    border: 0px solid white;
+    border-bottom: 1px solid $gray;
+  }
 }
 
-.form-order-div {
-  overflow-y: scroll;
-  background: white;
-  max-width: 100%;
+.account-other-button{
+  text-align: center;
+  cursor: pointer;
+  width: 70%;
+  height: 20px;
+  padding: 10px;
+  margin: 20px;
+  border: 2px solid $light-green;
+  border-radius: 5px;
+  display: inline-block;
+
+  &:hover{
+    transform: scale(1.07);
+    box-shadow: 0px 0px 4px lightgray;
+    transition: all .07s ease;
+  }
+
+  &.active{
+    background-color: $light-green;
+    border: 2px solid $green;
+  }
+}
+
+.account-radio-button{
+  text-align: center;
+  width: 100%;
+
+  input{
+    position: absolute;
+    transform: scale(0);
+  }
+
+  input + .account-radio-button-text{
+    text-align: center;
+    vertical-align: baseline;
+    cursor: pointer;
+    width: 70%;
+    height: 20px;
+    padding: 10px;
+    margin: 20px;
+    border: 2px solid $light-green;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 90%;
+  }
+
+  .account-radio-button-text:hover{
+    transform: scale(1.07);
+    box-shadow: 0px 0px 4px lightgray;
+    transition: all .07s ease;
+  }
+
+  input:checked.active + .account-radio-button-text{
+    background-color: $light-green;
+    border: 2px solid $green;
+  }
+}
+
+.box {
+  border: solid lightgrey 1px;
+  box-shadow: 0px 0px 2px lightgray;
+  border-radius: 8px;
+  padding-left: 10px;
+
+  h3 {
+    width: fit-content;
+  }
+}
+
+.doc-input{
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 4px;
   border: solid 2px $light-green;
-  border-bottom-width: 3px;
-  .error{
-    font-size: 12px;
-    color: red;
-    margin-left: 15px;
-  }
-
-  .error_notification{
-    color: red;
-    margin-bottom: 30px;
-  }
-
 }
 
-.form-order-infos {
-  background-color: $light-green;
-  padding: 20px 0px 30px 32px;
+.edit_order{
+
+  .document-name {
+    font-weight: bold;
+    margin-bottom: 30px;
+    width: fit-content;
+  }
+
+  .order_order_documents_document_file{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .label-document-input-selected{
+    background-color: $light-green;
+  }
+
+  .label-document-input-wrong-format{
+    background-color: $orange;
+    border-color: $gray;
+    color: white;
+  }
+
+  .document-btn-and-name{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .file-name {
+    font-size: 14px;
+    font-style: italic;
+    margin-left: 10px;
+    flex-grow: 1;
+  }
 }
 
 .form-order-content{
@@ -83,6 +178,88 @@
   }
 }
 
+.form-order-div {
+  overflow-y: scroll;
+  background: white;
+  max-width: 100%;
+  border: solid 2px $light-green;
+  border-bottom-width: 3px;
+  .error{
+    font-size: 12px;
+    color: red;
+    margin-left: 15px;
+  }
+
+  .error_notification{
+    color: red;
+    margin-bottom: 30px;
+  }
+
+}
+
+.form-order-infos {
+  background-color: $light-green;
+  padding: 20px 0px 30px 32px;
+
+  .logo {
+    display: none;
+  }
+}
+
+.form-order-right{
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p{
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20%;
+  }
+
+  .flower-pot{
+    flex-grow: 1;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+.form-order-steps {
+  position: sticky;
+  background-color: #fbfbfb;
+
+  .logo {
+    display: none;
+  }
+}
+
+.form-subcategory{
+  text-align: left;
+
+  .hidden {
+    appearance: none;
+    background-color: initial;
+    cursor: default;
+    display: none !important;
+    padding: initial;
+    border: initial;
+  }
+}
+
+.hidden-document-input{
+  // Ne pas retirer, c'est pour masquer l'input simple form de base sans le as: :hidden
+  display: none;
+}
+
+.insert-document{
+  box-shadow: 0px 0px 2px lightgray;
+  padding: 20px;
+  margin: 20px auto;
+}
+
 .main-order-divs {
   width: 100%;
   display: grid;
@@ -90,15 +267,18 @@
   gap: 5%;
 }
 
-.box {
-  border: solid lightgrey 1px;
-  box-shadow: 0px 0px 2px lightgray;
-  border-radius: 8px;
-  padding-left: 10px;
+.other-account {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 25px;
+}
 
-  h3 {
-    width: fit-content;
-  }
+.order-parts {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  height: 100vh;
 }
 
 .subcategory-div {
@@ -130,122 +310,59 @@
   }
 }
 
-.form-subcategory{
-  text-align: left;
 
-  .hidden {
-    appearance: none;
-    background-color: initial;
-    cursor: default;
-    display: none !important;
-    padding: initial;
-    border: initial;
-  }
-}
+// ======= Media Queries ======= //
 
-.account-radio-button{
 
-  input{
-    position: absolute;
-    transform: scale(0);
-  }
-
-  input + .account-radio-button-text{
-    text-align: center;
-    vertical-align: baseline;
-    cursor: pointer;
-    width: 140px;
-    height: 20px;
-    padding: 10px;
-    margin: 20px;
-    border: 2px solid $light-green;
-    border-radius: 5px;
-    display: inline-block;
-    font-size: 90%;
-  }
-
-  .account-radio-button-text:hover{
-    transform: scale(1.07);
-    box-shadow: 0px 0px 4px lightgray;
-    transition: all .07s ease;
-  }
-
-  input:checked.active + .account-radio-button-text{
-    background-color: $light-green;
-    border: 2px solid $green;
-  }
-}
-
-@media (max-width: 500px) {
-  .account-radio-button{
-    input + .account-radio-button-text{
-      width: 90%;
-      margin: 5px;
-    }
-  }
-}
-
-.account-other-button{
-  text-align: center;
-  cursor: pointer;
-  width: 140px;
-  height: 20px;
-  padding: 10px;
-  margin: 20px;
-  border: 2px solid $light-green;
-  border-radius: 5px;
-  display: inline-block;
-
-  &:hover{
-    transform: scale(1.07);
-    box-shadow: 0px 0px 4px lightgray;
-    transition: all .07s ease;
-  }
-
-  &.active{
-    background-color: $light-green;
-    border: 2px solid $green;
-  }
-}
-
-@media (max-width: 500px) {
-  .account-other-button{
-    width: 90%;
-    margin: 5px;
-  }
-}
-
-.other-account {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
-  margin: 25px;
-}
-
-.account_name {
-  background-color: $light-gray;
-  border: 0px solid white;
-  border-bottom: 1px solid $gray;
-  height: 20px;
-  margin-left: 20px;
-  &:focus {
-    outline: none;
-    border: 0px solid white;
-    border-bottom: 1px solid $gray;
+@media (max-width: 1200px) {
+  .account-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 900px) {
+  .account-other-button{
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .account-radio-button{
+    input + .account-radio-button-text {
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
   .form-name-div{
     .input {
       margin-bottom: 25px;
     }
   }
 
+  .form-order-right {
+    display: none
+  }
+
+  .form-order-steps {
+    .logo {
+      display: flex;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .form-subcategory{
+    text-align: center;
+  }
+
   .main-order-divs {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
   }
 
   .order-divs {
@@ -270,9 +387,69 @@
     }
   }
 
+  .order-parts {
+    grid-template-columns: 1fr 3fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .document-name {
+    margin: 0px auto 30px auto;
+  }
+
+  .edit_order{
+    .document-btn-and-name{
+      justify-content: space-around;
+      flex-direction: column;
+
+      .file-name {
+        height: 50px;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .form-order-div {
+    text-align: center;
+    padding: 0px;
+  }
+
+  .form-order-infos {
+    .logo {
+      display: block;
+    }
+  }
+
+  .form-order-steps {
+    display: none;
+  }
+
+  .order-parts {
+    grid-template-columns: 3fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .account-other-button{
+    width: 80%;
+    margin: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .account-radio-button{
     input + .account-radio-button-text {
-      width: 90px;
+      width: 80%;
+      margin: 5px;
       font-size: 14px;
       white-space: nowrap;
       overflow: hidden;
@@ -280,24 +457,15 @@
     }
   }
 
-  .account-other-button{
-    width: 90px;
-    font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .doc-input {
+    margin-top: 20px;
   }
 
-  .form-subcategory{
-    text-align: center;
-  }
-}
-
-@media (max-width: 500px) {
-
-  .form-order-div {
-    text-align: center;
-    padding: 20px 5px;
+  .file-name {
+    margin-left: 5px;
+    font-size: 12px;
+    display: inline-block;
+    flex-grow: 1;
   }
 
   .form-name-div{
@@ -317,127 +485,15 @@
     }
   }
 
-  .order-divs {
-    margin: 5px 0 10px 0;
-    width: 90%;
-    border: 0px solid white;
-    border-top: solid lightgrey 1px;
-    box-shadow: 0px 0px 0px lightgray;
-    border-radius: 0px;
-  }
-
-  .account-radio-button{
-    input + .account-radio-button-text {
-      width: 90px;
-      font-size: 14px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-
-  .account-other-button{
-    width: 90px;
-    font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .form-order-infos {
+    padding: 10px;
   }
 
   .form-subcategory{
     text-align: center;
   }
-}
 
-//////////// ORDER EDIT : ADD DOCUMENTS
-
-.insert-document{
-  box-shadow: 0px 0px 2px lightgray;
-  padding: 20px;
-  margin: 20px auto;
-}
-
-
-.edit_order{
-
-  .document-name {
-    font-weight: bold;
-    margin-bottom: 30px;
-    width: fit-content;
-  }
-
-  .order_order_documents_document_file{
-    display: flex;
-    flex-direction: column;
-  }
-
-  .label-document-input-selected{
-    background-color: $light-green;
-  }
-
-  .label-document-input-wrong-format{
-    background-color: $orange;
-    border-color: $gray;
-    color: white;
-  }
-
-  .document-btn-and-name{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  .file-name {
-    font-size: 14px;
-    font-style: italic;
-    margin-left: 10px;
-    flex-grow: 1;
-  }
-}
-
-.hidden-document-input{
-  // Ne pas retirer, c'est pour masquer l'input simple form de base sans le as: :hidden
-  display: none;
-}
-
-@media (max-width: 500px) {
   .label-document-input {
-    margin-left: 50px;
-  }
-
-  .file-name {
-    margin-left: 5px;
-    font-size: 12px;
-    display: inline-block;
-    flex-grow: 1;
-  }
-}
-
-.doc-input{
-  padding: 10px;
-  margin-left: 10px;
-  border-radius: 4px;
-  border: solid 2px $light-green;
-}
-
-.form-order-right{
-  position: sticky;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  p{
-    text-align: center;
-    padding: 10px;
-    margin-bottom: 20%;
-  }
-
-  .flower-pot{
-    flex-grow: 1;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
+    margin-left: 0px;
   }
 }

@@ -51,9 +51,11 @@ export default class extends Controller {
   otherclicked(event) {
 
     if (this.otherButtonTargets[event.srcElement.id].classList.contains('active')) {
-      this.subcategoryDivTarget.classList.add('display-none')
       this.otherButtonTargets[event.srcElement.id].classList.remove('active');
       this.otherButtonTargets[event.srcElement.id].innerText = 'Autre'
+      if (this.otherButtonTargets[event.srcElement.id].innerText == 'Autre') {
+        this.subcategoryDivTarget.classList.add('display-none')
+      }
       if (this.otherButtonTargets[Math.floor(event.srcElement.id) + 1].innerText == 'Autre') {
         this.otherButtonTargets[Math.floor(event.srcElement.id) + 1].classList.add('display-none')
       }
@@ -61,9 +63,12 @@ export default class extends Controller {
       this.subcategoryDivTarget.classList.remove('display-none')
       this.otherButtonTargets[event.srcElement.id].classList.add('active');
     }
-    this.accountInputTarget.value = ''
-    this.currentButton = event.srcElement.id
 
+    console.log(this.accountInputTarget.value)
+    this.accountInputTarget.value = ''
+    console.log(this.accountInputTarget.value)
+
+    this.currentButton = event.srcElement.id
     this.otherCheckNumber = Math.floor(this.currentButton) + 1
   }
 

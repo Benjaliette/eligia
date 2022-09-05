@@ -65,11 +65,10 @@ class Order < ApplicationRecord
 
   def reject_order_accounts(attributes)
     if attributes['account_id']
-      attributes['account_id'].blank?
+      attributes['account_id'].blank? || (self.order_accounts.map(&:account).map(&:id).include? attributes['account_id'].to_i)
     elsif attributes['account_attributes']
       attributes['account_attributes']['name'].blank?
-    end ||
-    self.order_accounts.any? { |order_account| order_account.account.id == attributes['account_id'].to_i if order_account.account }
+    end
   end
 
   def slug_candidates

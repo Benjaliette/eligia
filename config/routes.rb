@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   # Redirect to orders/new if there is a refresh after a render :new
-  get '/orders/', to: 'orders#new'
+  get '/resiliations/', to: 'orders#new'
 
   resources :users, path: 'utilisateur', path_names: { edit: 'modification' }, only: %i[show index edit update] do
     member do

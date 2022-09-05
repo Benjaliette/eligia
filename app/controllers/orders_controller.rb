@@ -52,7 +52,17 @@ class OrdersController < ApplicationController
   end
 
   def update
+    old_oa = @order.order_accounts.map(&:account).map(&:id)
+    new_oa = order_params[:order_accounts_attributes].values.reject{ |value| value[:account_id].blank?}.map{|value| value[:account_id].to_i }
     @order.update(order_params)
+
+    unless (old_oa - new_oa).empty?
+      (old_oa - new_oa).each do |oa|
+        # raise
+        @order.order_accounts.find_by(account_id: oa).destroy
+      end
+    end
+
     update_order_account_status(@order)
 
     redirect_to edit_order_path(@order)

@@ -13,50 +13,45 @@ class OrdersController < ApplicationController
   end
 
   def show
-    update_order_account_status(@order)
+    @order.update_order_account_status
   end
 
   def new
     @order = Order.new
-    @categories = Category.all
   end
 
   def create
-    @categories = Category.all
     @order = Order.new(order_params)
-    @order.pack = @order.determine_pack_type
-    @order.amount = @order.pack.price
-
     if @order.save && @order.order_accounts.count.positive?
-      generate_order_documents
+      @order.generate_order_documents
       redirect_to edit_order_path(@order)
     else
-      @order_accounts = jsonify_order_accounts
+      @order_accounts = @order.jsonify_order_accounts
       flash[:alert] = "Remplissez les champs nécessaires et sélectionnez au moins un contrat à résilier."
       render :new, status: :unprocessable_entity
     end
   end
 
   def change
-    @order_accounts = jsonify_order_accounts
+    @order_accounts = @order.jsonify_order_accounts
     render :new
   end
 
   def update
-    order_accounts = @order.clear_order_accounts(order_params)
-    update_order_account_status(@order)
-    generate_order_documents
+    @order.clear_order_accounts(order_params)
+    @order.update_order_account_status
+    @order.generate_order_documents
     redirect_to edit_order_path(@order)
   end
 
   def edit
-    @order_documents_json = jsonify_order_documents
+    @order_documents_json = @order.jsonify_order_documents
   end
 
   def update_documents
     @order.update(order_params) if params[:order]
 
-    update_order_account_status(@order)
+    @order.update_order_account_status
     redirect_to recap_order_path(@order)
   end
 
@@ -95,29 +90,6 @@ class OrdersController < ApplicationController
     authorize @order
   end
 
-  def jsonify_order_accounts
-    accounts = @order.order_accounts.map do |order_account|
-      {
-        account_id: order_account.account.id,
-        account_valid: order_account.account.status,
-        account_name: order_account.account.name.gsub(' ', '_'),
-        account_subcategory: order_account.account.subcategory.id
-      }
-    end
-
-    JSON.generate({ accounts: })
-  end
-
-  def jsonify_order_documents
-    documents = @order.order_documents.map do |order_document|
-      {
-        document: order_document.document_file.attached?
-      }
-    end
-
-    JSON.generate({ documents: })
-  end
-
   def order_params
     params.require(:order).permit(
       :deceased_first_name,
@@ -138,20 +110,6 @@ class OrdersController < ApplicationController
         :document_input
       ]
     )
-  end
-
-  def generate_order_documents
-    # raise
-    @order.order_documents.map(&:delete) unless @order.order_documents.empty?
-    @order.required_documents.each do |required_document|
-      OrderDocument.create(order: @order, document: required_document) if @order.order_documents.none? { |order_document| (order_document.document == required_document) && (!order_document.frozen?) }
-    end
-  end
-
-  def update_order_account_status(order)
-    order.order_accounts.each do |order_account|
-      order_account.declare_pending! if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) }
-    end
   end
 
   def send_confirmation_mail

@@ -20,7 +20,7 @@ class Order < ApplicationRecord
 
   def required_documents
     required_documents = []
-    self.order_accounts.reject(&:frozen?).each do |o_a|
+    self.order_accounts.each do |o_a|
       required_documents << o_a.account.account_documents.map(&:document)
     end
     required_documents.flatten.uniq
@@ -68,15 +68,15 @@ class Order < ApplicationRecord
       (old_oa - new_oa).each do |oa|
         self.order_accounts.find_by(account_id: oa).delete
         self.reload
-        self.order_accounts.each{|oa| p "#{oa.frozen?}"}
       end
     end
   end
 
   def generate_order_documents
     self.order_documents.map(&:delete) unless self.order_documents.empty?
+    self.reload
     self.required_documents.each do |required_document|
-      OrderDocument.create(order: self, document: required_document) if self.order_documents.none? { |order_document| (order_document.document == required_document) && (!order_document.frozen?) }
+      OrderDocument.create(order: self, document: required_document) unless self.order_documents.any? { |order_document| (order_document.document == required_document) }
     end
   end
 

@@ -19,10 +19,8 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :order_accounts, allow_destroy: true, reject_if: :reject_order_accounts
 
   def required_documents
-    # Le but de cette méthode est de lister les documents nécessaires pour une order donnée.
-    # --> En sortie on a un array d'instances de documents
     required_documents = []
-    self.order_accounts.each do |o_a|
+    self.order_accounts.reject(&:frozen?).each do |o_a|
       required_documents << o_a.account.account_documents.map(&:document)
     end
     required_documents.flatten.uniq
@@ -59,6 +57,20 @@ class Order < ApplicationRecord
       success_url: "#{success_url}?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: cancel_url
     )
+  end
+
+  def clear_order_accounts(order_params)
+    old_oa = self.order_accounts.map(&:account).map(&:id)
+    new_oa = order_params[:order_accounts_attributes].values.reject { |value| value[:account_id].blank? }.map { |value| value[:account_id].to_i }
+    self.update(order_params)
+
+    unless (old_oa - new_oa).empty?
+      (old_oa - new_oa).each do |oa|
+        self.order_accounts.find_by(account_id: oa).delete
+        self.reload
+        self.order_accounts.each{|oa| p "#{oa.frozen?}"}
+      end
+    end
   end
 
   private

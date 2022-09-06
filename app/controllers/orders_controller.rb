@@ -9,18 +9,13 @@ class OrdersController < ApplicationController
   after_action :send_confirmation_mail, only: :success
   after_action :order_pundit, only: %i[show new change create edit update update_documents paiement recap success]
 
-  add_breadcrumb "Démarches", :user_path, only: :show
-
   def index
-    # Use to avoid 500 after a refresh when rendering new (see routes)
   end
 
   def show
     update_order_account_status(@order)
-    add_breadcrumb "#{@order.deceased_last_name.capitalize}-#{@order.deceased_first_name.first}"
   end
 
-  # === First step in order creation (account) === #
   def new
     @order = Order.new
     @categories = Category.all
@@ -33,47 +28,28 @@ class OrdersController < ApplicationController
     @order.amount = @order.pack.price
 
     if @order.save && @order.order_accounts.count.positive?
-      set_order_documents_to_order
-
+      generate_order_documents
       redirect_to edit_order_path(@order)
     else
       @order_accounts = jsonify_order_accounts
-
       flash[:alert] = "Remplissez les champs nécessaires et sélectionnez au moins un contrat à résilier."
       render :new, status: :unprocessable_entity
     end
   end
-  # === End === #
 
-  # === Going back to first step in order creation === #
   def change
     @order_accounts = jsonify_order_accounts
     render :new
   end
 
   def update
-    old_oa = @order.order_accounts.map(&:account).map(&:id)
-    new_oa = order_params[:order_accounts_attributes].values.reject{ |value| value[:account_id].blank?}.map{|value| value[:account_id].to_i }
-    @order.update(order_params)
-
-    unless (old_oa - new_oa).empty?
-      (old_oa - new_oa).each do |oa|
-        # raise
-        @order.order_accounts.find_by(account_id: oa).destroy
-      end
-    end
-
+    order_accounts = @order.clear_order_accounts(order_params)
     update_order_account_status(@order)
-
+    generate_order_documents
     redirect_to edit_order_path(@order)
   end
-  # === End === #
 
-  # === Second step in order creation (documents) === #
   def edit
-    set_order_documents_to_order
-
-    @order_documents = @order.order_documents
     @order_documents_json = jsonify_order_documents
   end
 
@@ -83,9 +59,7 @@ class OrdersController < ApplicationController
     update_order_account_status(@order)
     redirect_to recap_order_path(@order)
   end
-  # === End === #
 
-  # === Third step in order creation (recap) === #
   def recap
   end
 
@@ -104,7 +78,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # === After paiement page === #
   def success
   end
 
@@ -132,17 +105,17 @@ class OrdersController < ApplicationController
       }
     end
 
-    JSON.generate({ accounts: accounts })
+    JSON.generate({ accounts: })
   end
 
   def jsonify_order_documents
-    documents = @order_documents.map do |order_document|
+    documents = @order.order_documents.map do |order_document|
       {
         document: order_document.document_file.attached?
       }
     end
 
-    JSON.generate({ documents: documents })
+    JSON.generate({ documents: })
   end
 
   def order_params
@@ -167,17 +140,17 @@ class OrdersController < ApplicationController
     )
   end
 
-  def set_order_documents_to_order
+  def generate_order_documents
+    # raise
+    @order.order_documents.map(&:delete) unless @order.order_documents.empty?
     @order.required_documents.each do |required_document|
-      OrderDocument.create(order: @order, document: required_document) if @order.order_documents.none? do |order_document|
-        order_document.document == required_document
-      end
+      OrderDocument.create(order: @order, document: required_document) if @order.order_documents.none? { |order_document| (order_document.document == required_document) && (!order_document.frozen?) }
     end
   end
 
   def update_order_account_status(order)
     order.order_accounts.each do |order_account|
-      order_account.declare_pending! if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?)}
+      order_account.declare_pending! if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) }
     end
   end
 

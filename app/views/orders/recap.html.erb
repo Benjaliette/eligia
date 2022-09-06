@@ -83,6 +83,12 @@
               </div>
             </div>
             <div class="box">
+
+            <% if @order.order_accounts.map(&:account).map(&:status).include?("non_validated") %>
+              <p class="bold"> Nous vous recontacterons pour résilier les contrats 'à valider'.</p>
+            <% end %>
+
+
               <% @order.order_documents.each do |order_document| %>
                 <div class="order-div-item document">
                   <div><%= order_document.document.name %> :</div>

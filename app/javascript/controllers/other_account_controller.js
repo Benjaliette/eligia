@@ -37,7 +37,7 @@ export default class extends Controller {
             if (this.otherButtonTargets[i].innerText == 'Autre' ) {
               this.otherButtonTargets[i].innerText = orderAccount.account_name.replaceAll('_', ' ');
             }
-
+            this.otherButtonInputTargets[i].value = orderAccount.account_name.replaceAll('_', ' ')
             i++
           }
         })
@@ -64,9 +64,7 @@ export default class extends Controller {
       this.otherButtonTargets[event.srcElement.id].classList.add('active');
     }
 
-    console.log(this.accountInputTarget.value)
     this.accountInputTarget.value = ''
-    console.log(this.accountInputTarget.value)
 
     this.currentButton = event.srcElement.id
     this.otherCheckNumber = Math.floor(this.currentButton) + 1
@@ -114,13 +112,11 @@ export default class extends Controller {
     this.otherButtonTargets[this.currentButton].classList.remove('active');
   }
 
-  addOtherButton(event) {
+  addOtherButton() {
     const array = this.otherButtonTargets.filter(other => !other.classList.contains('display-none'))
 
     if (!array.some(item => item.innerText == 'Autre')) {
-      console.log(this.otherCheckNumber)
       this.otherButtonTargets[this.otherCheckNumber].classList.remove('display-none')
-
       this.otherButtonTargets[this.otherCheckNumber].classList.remove('active');
     }
   }

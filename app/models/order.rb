@@ -6,7 +6,7 @@ class Order < ApplicationRecord
 
   monetize :amount_cents
 
-  belongs_to :pack
+  belongs_to :pack, optional: true
   belongs_to :user, optional: true
   has_many :order_accounts, dependent: :destroy
   has_many :order_documents, dependent: :destroy
@@ -73,9 +73,46 @@ class Order < ApplicationRecord
     end
   end
 
+  def generate_order_documents
+    self.order_documents.map(&:delete) unless self.order_documents.empty?
+    self.required_documents.each do |required_document|
+      OrderDocument.create(order: self, document: required_document) if self.order_documents.none? { |order_document| (order_document.document == required_document) && (!order_document.frozen?) }
+    end
+  end
+
+  def update_order_account_status
+    self.order_accounts.each do |order_account|
+      order_account.declare_pending! if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) }
+    end
+  end
+
+  def jsonify_order_accounts
+    accounts = self.order_accounts.map do |order_account|
+      {
+        account_id: order_account.account.id,
+        account_valid: order_account.account.status,
+        account_name: order_account.account.name.gsub(' ', '_'),
+        account_subcategory: order_account.account.subcategory.id
+      }
+    end
+
+    JSON.generate({ accounts: })
+  end
+
+  def jsonify_order_documents
+    documents = self.order_documents.map do |order_document|
+      {
+        document: order_document.document_file.attached?
+      }
+    end
+
+    JSON.generate({ documents: })
+  end
+
   private
 
   def reject_order_accounts(attributes)
+    # raise
     if attributes['account_id']
       attributes['account_id'].blank? || (self.order_accounts.map(&:account).map(&:id).include? attributes['account_id'].to_i)
     elsif attributes['account_attributes']

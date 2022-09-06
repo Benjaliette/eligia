@@ -1,10 +1,10 @@
 // basic-white-card
 
 .basic-white-card{
+  display: flex;
   border: solid 1px $light-gray;
   border-radius: 8px;
   background-color: white;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -15,35 +15,73 @@
 // Order-dashboard-card
 
 .order-dashboard-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: white;
-  padding: 10px 50px;
-  margin: 10px 0px;
-  border-radius: 8px;
+  margin: 10px auto;
   box-shadow: 0px 0px 2px lightgrey;
   border: solid 1px lightgrey;
+  border-radius: 8px;
   background: white;
+  width: 70%;
 
   &:hover{
-    transform: scale(1.01);
+    // transform: scale(1.01);
     box-shadow: 0px 0px 4px lightgrey;
     transition: all ease .07s;
   }
 }
 
+.order-card-info{
+  background-color: $light-gray ;
+  width: 100%;
+
+  p{
+    padding-left: 20px;
+  }
+}
+
+.order-card-content{
+  position: relative;
+  width: 100%;
+  p{
+    padding-left: 20px;
+  }
+  #details{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
 // Order-account-card
 
-.order-account-card{
-  background-color: white;
-  padding: 10px 50px;
-  margin: 10px 0px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 2px lightgrey;
-  border: solid 1px lightgrey;
+.order-account-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
 
-  .order-account-status{
-    font-size: 12px;
+  .order-account-card{
+    background-color: white;
+    height: 150px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px lightgrey;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .order-account-status{
+      font-size: 12px;
+    }
+
+    .account-name {
+      margin: 0 auto;
+      font-weight: bold;
+    }
   }
 }
 

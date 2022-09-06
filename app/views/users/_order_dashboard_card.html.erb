@@ -1,3 +1,14 @@
 <div class=order-dashboard-card>
-  <strong><%= order.deceased_last_name.upcase %></strong> <%= order.deceased_first_name %>
+
+  <div class="order-card-info">
+    <p>Dossier de <%= order.deceased_first_name %> <%= order.deceased_last_name.upcase %></p>
+  </div>
+  <div class="order-card-content">
+    <p>Créée le : <%= order.created_at.strftime('%d/%m/%y') %></p>
+    <p>Mise à jour le : <%= order.updated_at.strftime('%d/%m/%y') %></p>
+    <p>Nombre de contrats à résilier : <%= order.order_accounts.count %></p>
+    <p>État : <%= order.state_to_french %></p>
+    <div class="btn-second small" id="details"> Voir en détail</div>
+  </div>
+
 </div>

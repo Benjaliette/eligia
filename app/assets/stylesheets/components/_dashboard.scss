@@ -50,3 +50,82 @@
     font-style: italic;
   }
 }
+
+// User dashboard
+
+.user-dashboard-grid{
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  min-height: calc(100vh - #{$navbar-height});
+}
+
+.user-dashboard-navigation{
+  background-color: white;
+  border-right: 1px solid $super-light-gray;
+
+  .user-dashboard-navigation-top{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 20vh;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: larger;
+  }
+}
+
+.tab {
+  padding: 5px 5px 5px 10px;
+  border-top: solid $super-light-gray 1px ;
+  border-bottom: solid $super-light-gray 1px ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .toggle-btn{
+    border-color: $gray;
+    transform: rotate(-135deg);
+    margin-right: 5px;
+  }
+}
+
+.current-tab{
+  background-color: $light-green;
+  font-weight: bolder;
+}
+
+.other-tab:hover{
+  cursor: pointer;
+  background-color: $super-light-green;
+  font-weight: bolder;
+  transition: all ease .07s;
+}
+
+.tab-details{
+  background-color: #F3FFF0;
+
+  ul{
+    margin: 0px;
+    padding: 10px 10px 10px 30px;
+    list-style: none;
+  }
+
+  li{
+    font-size: smaller;
+    margin: 5px auto 5px auto;
+    cursor: pointer;
+
+    &:hover {
+      color: black;
+      font-weight: bolder;
+    }
+  }
+}
+
+.tab-details.opaque{
+  opacity: 1;
+}
+
+.user-dashboard-content{
+  padding: 30px;
+}

@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   end
 
   resources :order_accounts, path: 'contrats', only: :show do
-    resources :order_documents, path: 'documents', only: %i[index update]
+    resources :order_documents, path: 'documents', only: %i[update]
   end
   resources :order_documents, only: :create
 

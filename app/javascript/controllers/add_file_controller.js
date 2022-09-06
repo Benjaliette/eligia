@@ -7,6 +7,7 @@ export default class extends Controller {
   added(){
     const regex = /.*.(?:png|jpg|jpeg|pdf)/
 
+
     if (this.inputTarget.files[0].name.match(regex) === null) {
       this.fileNameDivTarget.innerText = 'ERREUR ! Le format doit être .png, .jpeg ou .jpg'
       this.labelTarget.classList.add('label-document-input-wrong-format')

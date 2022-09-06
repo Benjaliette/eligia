@@ -28,6 +28,9 @@ application.register("home-infos-appear", HomeInfosAppearController)
 import LoadingSpinnerController from "./loading_spinner_controller"
 application.register("loading-spinner", LoadingSpinnerController)
 
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
 import NavbarDropdownController from "./navbar_dropdown_controller"
 application.register("navbar-dropdown", NavbarDropdownController)
 

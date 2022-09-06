@@ -40,6 +40,13 @@ class Order < ApplicationRecord
     self.declare_done!
   end
 
+  def state_to_french
+    case self.aasm_state
+    when "pending" then "En cours de traitement"
+    when "done" then "Tous les contrats ont été traités"
+    end
+  end
+
   def set_stripe_paiement(success_url, cancel_url)
     customer = set_stripe_customer
     product = set_stripe_product

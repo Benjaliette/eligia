@@ -17,20 +17,25 @@ class OrderAccount < ApplicationRecord
     self.account.account_documents.map(&:document)
   end
 
+  def non_uploaded_order_documents
+    o_d = self.order.order_documents.select { |order_doc| self.required_documents.include? order_doc.document }
+    req_o_d = o_d.select do |order_document|
+      (order_document.document.format == 'pdf' && !order_document.document_file.attached?) || (order_document.document.format == 'text' && order_document.document_input.blank?)
+    end
+  end
+
   # Retourne un array avec les instances de OrderDocument correspondant aux documents nécessaires de cet order_account
   def order_documents
     OrderDocument.where(order_id: self.order_id, document_id: self.required_documents)
   end
 
-  # Pour avoir les states en français dans les show et utiliser les classes
-
   def state_to_french
     case self.aasm_state
-      when "pending" then "En traitement"
-      when "documents_missing" then "Document(s) manquant(s)"
-      when "resiliation_sent" then "Demande de résiliation envoyée"
-      when "resiliation_failed" then "Erreur"
-      when "resiliation_succeded" then "Compte résilié"
+    when "pending" then "En traitement"
+    when "documents_missing" then "Document(s) manquant(s)"
+    when "resiliation_sent" then "Demande de résiliation envoyée"
+    when "resiliation_failed" then "Erreur"
+    when "resiliation_succeded" then "Compte résilié"
     end
   end
 

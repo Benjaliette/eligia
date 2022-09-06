@@ -1,0 +1,90 @@
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  margin: 15vh auto;
+  width: 80vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $off-white;
+  padding: 20px;
+
+  .document-name {
+    margin-top: 20px;
+  }
+
+  .modal-content-documents {
+    flex-grow: 1;
+    width: 100%;
+
+    .form-order-div {
+      border: none;
+      background: transparent;
+    }
+
+    .insert-document {
+      box-shadow: none;
+      display: flex;
+      align-items: flex-start;
+      margin: 0px;
+      padding: 20px 0px;
+
+      .document-btn-and-name {
+        margin-left: 10px;
+        margin-right: 20px;
+
+        .file-name {
+          width: min-content;
+          font-size: 12px;
+          font-style: italic;
+        }
+
+        .label-document-input {
+          margin-top: 0px;
+        }
+      }
+
+      .doc-input {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.close {
+  transform: rotate(45deg);
+  color: white;
+  position: absolute;
+  top: 8vh;
+  right: 10vw;
+  font-size: 45px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .modal-content {
+    align-items: flex-start;
+
+    .painting-zoom {
+      width: 100%;
+      height: initial;
+    }
+  }
+}

@@ -17,8 +17,7 @@
     <div class="modal-content">
       <h2><%= order_account.account.name %></h2>
       <div class="modal-content-documents">
-        <% order_documents = order_account.required_order_documents %>
-        <%= render 'update_order_document_modal', documents: order_documents, order_account: order_account %>
+        <%= render 'update_order_document_modal', order_account: order_account %>
       </div>
       <span class="close" data-action="click->modal#modalClose">+</span>
     </div>

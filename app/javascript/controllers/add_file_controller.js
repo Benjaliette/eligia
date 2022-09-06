@@ -9,7 +9,6 @@ export default class extends Controller {
 
 
     if (this.inputTarget.files[0].name.match(regex) === null) {
-      console.log('add1')
       this.fileNameDivTarget.innerText = 'ERREUR ! Le format doit être .png, .jpeg ou .jpg'
       this.labelTarget.classList.add('label-document-input-wrong-format')
       this.labelTarget.innerText = 'Modifier'

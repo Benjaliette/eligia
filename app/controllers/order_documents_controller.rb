@@ -1,18 +1,14 @@
 class OrderDocumentsController < ApplicationController
-  before_action :set_order_account, only: %i[index update]
+  before_action :set_order_account, only: :update
   before_action :set_order_document, only: :update
 
   after_action :order_document_pundit, only: :update
 
-  def index
-    all_order_documents = policy_scope(OrderDocument).where(order: @order_account.order)
-    @order_documents_to_complete = all_order_documents.select { |order_document| (order_document.document.format == 'pdf' && !order_document.document_file.attached?) || (order_document.document.format == 'text' && order_document.document_input.blank?)}
-  end
-
   def update
     @order_document.update(order_document_params)
     if @order_document.save
-      redirect_to order_account_order_documents_path(@order_account), status: :see_other
+      @order_documents = @order_account.non_uploaded_order_documents
+      redirect_to order_path(@order_account.order)
       flash[:alert] = "Document enregistré"
     else
       render order_account_order_documents_path(@order_account), status: :unprocessable_entity

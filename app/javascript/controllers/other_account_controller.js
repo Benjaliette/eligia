@@ -37,7 +37,7 @@ export default class extends Controller {
             if (this.otherButtonTargets[i].innerText == 'Autre' ) {
               this.otherButtonTargets[i].innerText = orderAccount.account_name.replaceAll('_', ' ');
             }
-
+            this.otherButtonInputTargets[i].value = orderAccount.account_name.replaceAll('_', ' ')
             i++
           }
         })
@@ -49,17 +49,25 @@ export default class extends Controller {
   }
 
   otherclicked(event) {
-    this.subcategoryDivTarget.classList.toggle('display-none');
 
-
-    if (this.otherButtonTargets[event.srcElement.id].innerText == 'Autre') {
-      this.otherButtonTargets[event.srcElement.id].classList.toggle('active');
+    if (this.otherButtonTargets[event.srcElement.id].classList.contains('active')) {
+      this.otherButtonTargets[event.srcElement.id].classList.remove('active');
+      this.otherButtonTargets[event.srcElement.id].innerText = 'Autre'
+      if (this.otherButtonTargets[event.srcElement.id].innerText == 'Autre') {
+        this.subcategoryDivTarget.classList.add('display-none')
+      }
+      if (this.otherButtonTargets[Math.floor(event.srcElement.id) + 1].innerText == 'Autre') {
+        this.otherButtonTargets[Math.floor(event.srcElement.id) + 1].classList.add('display-none')
+      }
     } else {
+      this.subcategoryDivTarget.classList.remove('display-none')
       this.otherButtonTargets[event.srcElement.id].classList.add('active');
     }
 
     this.accountInputTarget.value = ''
+
     this.currentButton = event.srcElement.id
+    this.otherCheckNumber = Math.floor(this.currentButton) + 1
   }
 
   radioClicked(event) {
@@ -108,10 +116,7 @@ export default class extends Controller {
     const array = this.otherButtonTargets.filter(other => !other.classList.contains('display-none'))
 
     if (!array.some(item => item.innerText == 'Autre')) {
-      this.otherCheckNumber++
-
       this.otherButtonTargets[this.otherCheckNumber].classList.remove('display-none')
-
       this.otherButtonTargets[this.otherCheckNumber].classList.remove('active');
     }
   }

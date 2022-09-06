@@ -22,9 +22,9 @@ Rails.application.routes.draw do
   end
 
   # Redirect to orders/new if there is a refresh after a render :new
-  get '/orders/', to: 'orders#new'
+  get '/resiliations/', to: 'orders#new'
 
-  resources :users, path: 'utilisateur', path_names: { edit: 'modification' }, only: %i[show index edit update] do
+  resources :users, path: 'utilisateurs', path_names: { edit: 'modification' }, only: %i[show index edit update] do
     member do
       get :control_password, path: 'controle'
       patch 'control_password_check'

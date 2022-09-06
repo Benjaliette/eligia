@@ -6,7 +6,7 @@ class Order < ApplicationRecord
 
   monetize :amount_cents
 
-  belongs_to :pack
+  belongs_to :pack, optional: true
   belongs_to :user, optional: true
   has_many :order_accounts, dependent: :destroy
   has_many :order_documents, dependent: :destroy
@@ -19,8 +19,6 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :order_accounts, allow_destroy: true, reject_if: :reject_order_accounts
 
   def required_documents
-    # Le but de cette méthode est de lister les documents nécessaires pour une order donnée.
-    # --> En sortie on a un array d'instances de documents
     required_documents = []
     self.order_accounts.each do |o_a|
       required_documents << o_a.account.account_documents.map(&:document)
@@ -61,15 +59,65 @@ class Order < ApplicationRecord
     )
   end
 
+  def clear_order_accounts(order_params)
+    old_oa = self.order_accounts.map(&:account).map(&:id)
+    new_oa = order_params[:order_accounts_attributes].values.reject { |value| value[:account_id].blank? }.map { |value| value[:account_id].to_i }
+    self.update(order_params)
+
+    unless (old_oa - new_oa).empty?
+      (old_oa - new_oa).each do |oa|
+        self.order_accounts.find_by(account_id: oa).delete
+        self.reload
+      end
+    end
+  end
+
+  def generate_order_documents
+    self.order_documents.map(&:delete) unless self.order_documents.empty?
+    self.reload
+    self.required_documents.each do |required_document|
+      OrderDocument.create(order: self, document: required_document) unless self.order_documents.any? { |order_document| (order_document.document == required_document) }
+    end
+  end
+
+  def update_order_account_status
+    self.order_accounts.each do |order_account|
+      order_account.declare_pending! if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) }
+    end
+  end
+
+  def jsonify_order_accounts
+    accounts = self.order_accounts.map do |order_account|
+      {
+        account_id: order_account.account.id,
+        account_valid: order_account.account.status,
+        account_name: order_account.account.name.gsub(' ', '_'),
+        account_subcategory: order_account.account.subcategory.id
+      }
+    end
+
+    JSON.generate({ accounts: })
+  end
+
+  def jsonify_order_documents
+    documents = self.order_documents.map do |order_document|
+      {
+        document: order_document.document_file.attached?
+      }
+    end
+
+    JSON.generate({ documents: })
+  end
+
   private
 
   def reject_order_accounts(attributes)
+    # raise
     if attributes['account_id']
-      attributes['account_id'].blank?
+      attributes['account_id'].blank? || (self.order_accounts.map(&:account).map(&:id).include? attributes['account_id'].to_i)
     elsif attributes['account_attributes']
       attributes['account_attributes']['name'].blank?
-    end ||
-    self.order_accounts.any? { |order_account| order_account.account.id == attributes['account_id'].to_i if order_account.account }
+    end
   end
 
   def slug_candidates

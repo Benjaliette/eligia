@@ -38,7 +38,7 @@
       </div>
       <div class="form-order-content">
         <%= simple_form_for @order, url: :update_documents_order, data: { turbo: false } do |f| %>
-          <% @order_documents.each do |order_document| %>
+          <% @order.order_documents.each do |order_document| %>
             <div class="insert-document" data-controller="add-file">
               <%= f.simple_fields_for :order_documents, order_document do |fod| %>
                 <div class="document-name highlight-green"><%= order_document.document.name %></div>

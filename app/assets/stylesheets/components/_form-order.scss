@@ -179,6 +179,7 @@
 }
 
 .form-order-div {
+  position: sticky;
   overflow-y: scroll;
   background: white;
   max-width: 100%;
@@ -194,7 +195,6 @@
     color: red;
     margin-bottom: 30px;
   }
-
 }
 
 .form-order-infos {

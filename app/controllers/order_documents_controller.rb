@@ -5,8 +5,11 @@ class OrderDocumentsController < ApplicationController
   after_action :order_document_pundit, only: :update
 
   def update
+    @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
+    @order_account.order.update_order_account_status
     @order_document.update(order_document_params)
     if @order_document.save
+      p "🟥🟥 in save loop"
       @order_documents = @order_account.non_uploaded_order_documents
       redirect_to order_path(@order_account.order)
       flash[:alert] = "Document enregistré"

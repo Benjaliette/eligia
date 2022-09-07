@@ -26,6 +26,8 @@
 
     <div class="user-dashboard-content">
       <h2>Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></h2>
+      Avancée du dossier : <span class='underline'><%= @order.state_to_french %></span>
+      <br><br>
       <div class='order-account-cards'>
         <% @order.order_accounts.each do |order_account| %>
           <%= render "order_account_card", order_account: order_account %>

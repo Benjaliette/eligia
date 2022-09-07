@@ -35,9 +35,10 @@ class Order < ApplicationRecord
   end
 
   def update_state
-    return unless (self.order_accounts.all? { |order_account| order_account.aasm_state == 'resiliation_succeded' }) && (self.aasm_state == 'resiliation_sent')
+    return unless (self.order_accounts.all? { |order_account| order_account.aasm_state == 'resiliation_succeded' } && self.aasm_state != 'done')
 
     self.declare_done!
+    raise
   end
 
   def state_to_french
@@ -88,10 +89,10 @@ class Order < ApplicationRecord
   end
 
   def update_order_account_status
-    return unless self.aasm_state == 'document_missing'
-
     self.order_accounts.each do |order_account|
-      order_account.declare_pending! if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?)}
+      if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) } && order_account.aasm_state == 'documents_missing'
+        order_account.declare_pending!
+      end
     end
   end
 

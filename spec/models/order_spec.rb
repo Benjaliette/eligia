@@ -93,10 +93,6 @@ RSpec.describe Order, type: :model do
       create(:order_account, order: order, account: sfr)
       create(:account_document, account: sfr, document: create(:document, name: "id"))
       create(:account_document, account: sfr, document: create(:document, name: "certif"))
-      p '🛑'
-      p order
-      p order.order_accounts
-      p '✅'
       expect(order.required_documents.sort).to eq([Document.find_by(name: "id"), Document.find_by(name: "certif")].sort)
     end
 

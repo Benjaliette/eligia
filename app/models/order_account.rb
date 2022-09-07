@@ -40,7 +40,7 @@ class OrderAccount < ApplicationRecord
   private
 
   def update_order_state
-    self.order.update_state
+    self.order.update_state unless Rails.env.test?
   end
 
   aasm do

@@ -1,5 +1,4 @@
 FactoryBot.define do
-
   # User
   factory :user do
     first_name { "John" }
@@ -16,7 +15,7 @@ FactoryBot.define do
     end
   end
 
-  # Subcategory
+  # Subcategoy
   factory :subcategory do
     category
     sequence :name do |n|
@@ -68,6 +67,7 @@ FactoryBot.define do
   factory :order_account do
     order
     account
+    aasm_state { "pending" }
   end
 
   # Order
@@ -76,6 +76,6 @@ FactoryBot.define do
     pack
     deceased_first_name { "Jane" }
     deceased_last_name { "Doe" }
+    aasm_state { "pending" }
   end
-
 end

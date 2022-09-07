@@ -27,7 +27,7 @@ class Order < ApplicationRecord
   end
 
   def determine_pack_type
-    case self.order_accounts.size
+    case self.order_accounts.count
     when 0..7 then return Pack.order(created_at: :desc).find_by(level: 1)
     when 8..15 then return Pack.order(created_at: :desc).find_by(level: 2)
     else return Pack.order(created_at: :desc).find_by(level: 3)
@@ -38,7 +38,6 @@ class Order < ApplicationRecord
     return unless (self.order_accounts.all? { |order_account| order_account.aasm_state == 'resiliation_succeded' } && self.aasm_state != 'done')
 
     self.declare_done!
-    raise
   end
 
   def state_to_french
@@ -122,7 +121,6 @@ class Order < ApplicationRecord
   private
 
   def reject_order_accounts(attributes)
-    # raise
     if attributes['account_id']
       attributes['account_id'].blank? || (self.order_accounts.map(&:account).map(&:id).include? attributes['account_id'].to_i)
     elsif attributes['account_attributes']

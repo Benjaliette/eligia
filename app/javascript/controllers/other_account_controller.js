@@ -53,6 +53,7 @@ export default class extends Controller {
     if (this.otherButtonTargets[event.srcElement.id].classList.contains('active')) {
       this.otherButtonTargets[event.srcElement.id].classList.remove('active');
       this.otherButtonTargets[event.srcElement.id].innerText = 'Autre'
+      this.otherButtonInputTargets[event.srcElement.id].value = ''
       if (this.otherButtonTargets[event.srcElement.id].innerText == 'Autre') {
         this.subcategoryDivTarget.classList.add('display-none')
       }
@@ -65,7 +66,6 @@ export default class extends Controller {
     }
 
     this.accountInputTarget.value = ''
-
     this.currentButton = event.srcElement.id
     this.otherCheckNumber = Math.floor(this.currentButton) + 1
   }
@@ -86,7 +86,6 @@ export default class extends Controller {
         this.otherButtonTargets[this.currentButton].textContent = event.srcElement.value;
         this.otherButtonInputTargets[this.currentButton].value = event.srcElement.value;
       };
-
     };
   }
 

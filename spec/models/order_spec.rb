@@ -108,5 +108,10 @@ RSpec.describe Order, type: :model do
       create(:account_document, account: orange, document: create(:document, name: "doc3"))
       expect(order.required_documents.sort).to eq([Document.find_by(name: "id"), Document.find_by(name: "certif"), Document.find_by(name: "doc3")].sort)
     end
+
+    it "Should have a working state machine" do
+      order = create(:order)
+      expect(order).to transition_from(:pending).to(:done).on_event(:declare_done)
+    end
   end
 end

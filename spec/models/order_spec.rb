@@ -30,7 +30,6 @@ RSpec.describe Order, type: :model do
   end
 
   describe "#determine_pack_type" do
-
     it "Should assign pack #1 for 4 OrderAccounts" do
       create(:pack, title: 'packTitle1', level: 1)
       create(:pack, title: 'packTitle2', level: 2)
@@ -107,6 +106,103 @@ RSpec.describe Order, type: :model do
       create(:account_document, account: orange, document: Document.find_by(name: 'id'))
       create(:account_document, account: orange, document: create(:document, name: "doc3"))
       expect(order.required_documents.sort).to eq([Document.find_by(name: "id"), Document.find_by(name: "certif"), Document.find_by(name: "doc3")].sort)
+    end
+  end
+
+  describe "Filters the right documents" do
+    it "#required_documents" do
+      order = create(:order)
+      orange = create(:account, name: "orange")
+      sfr = create(:account, name: "sfr")
+      certif = create(:document, name: "certif")
+      id = create(:document, name: "id")
+      mail = create(:document, name: "mail", format: "text")
+      create(:account_document, account: sfr, document: certif)
+      create(:account_document, account: orange, document: mail)
+      create(:account_document, account: orange, document: id)
+      create(:order_account, account: orange, order:)
+      create(:order_account, account: sfr, order:)
+      create(:order_document, order:, document: mail)
+      create(:order_document, order:, document: id)
+      create(:order_document, order:, document: certif)
+      expect(order.required_documents).to match_array([certif, id, mail])
+      expect(order.required_documents).not_to match_array([certif])
+      expect(order.required_documents).not_to match_array([certif, id, mail, order])
+    end
+  end
+
+  describe "State machine" do
+    it "Can transition from pending to processing" do
+      order = create(:order)
+      expect(order).to transition_from(:pending).to(:processing).on_event(:declare_processing)
+    end
+
+    it "Cannot transition from pending to done" do
+      order = create(:order)
+      expect(order).not_to transition_from(:pending).to(:done).on_event(:declare_done)
+    end
+
+    it "Can transition from processing to done" do
+      order = create(:order)
+      expect(order).to transition_from(:processing).to(:done).on_event(:declare_done)
+    end
+  end
+
+  describe "Updating state machine" do
+    it "#update_state --> from pending to processing" do
+      order = create(:order)
+      expect(order.aasm_state).to eq "pending"
+      create(:order_account, order:, aasm_state: "resiliation_sent")
+      create(:order_account, order:, aasm_state: "resiliation_sent")
+      order.update_state
+      expect(order.aasm_state).to eq "processing"
+    end
+
+    it "#update_state --> from processing to done" do
+      order = create(:order, aasm_state: "processing")
+      create(:order_account, order:, aasm_state: "resiliation_success")
+      create(:order_account, order:, aasm_state: "resiliation_success")
+      order.update_state
+      expect(order.aasm_state).to eq "done"
+    end
+
+    it "#update_order_account_status" do
+      order = create(:order)
+      orange = create(:account, name: "orange")
+      certif = create(:document, name: "certif", format: "text")
+      id = create(:document, name: "id", format: "text")
+      mail = create(:document, name: "mail", format: "text")
+      create(:account_document, account: orange, document: certif)
+      create(:account_document, account: orange, document: mail)
+      create(:account_document, account: orange, document: id)
+      order_account = create(:order_account, account: orange, order:)
+      create(:order_document, order:, document: mail, document_input: "yellow")
+      create(:order_document, order:, document: id, document_input: "yellow")
+      create(:order_document, order:, document: certif, document_input: "yellow")
+      expect(order_account.aasm_state).to eq "document_missing"
+      order.update_order_account_status
+      order_account.reload
+      expect(order_account.aasm_state).to eq "pending"
+    end
+  end
+
+  describe "Generating order_documents" do
+    it "#generate_order_documents" do
+    order = create(:order)
+    create(:order_document, order:)
+    expect(order.order_documents.count).to eq 1
+    account_1 = create(:account)
+    account_2 = create(:account)
+    doc_1 = create(:document)
+    doc_2 = create(:document)
+    doc_3 = create(:document)
+    create(:account_document, account: account_1, document: doc_1)
+    create(:account_document, account: account_1, document: doc_2)
+    create(:account_document, account: account_2, document: doc_3)
+    create(:order_account, account: account_1, order:)
+    create(:order_account, account: account_2, order:)
+    order.generate_order_documents
+    expect(order.order_documents.count).to eq 3
     end
   end
 end

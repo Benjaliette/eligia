@@ -1,7 +1,7 @@
 <% content_for :title, "Nouvelle démarche - Eligia" %>
 
 <div class="order-parts">
-<div class="form-order-steps">
+  <div class="form-order-steps">
     <div class="steps">
       <div class='step current-step'>
         <p>Étape 1 :</p>
@@ -80,4 +80,11 @@
     </p>
     <div class="flower-pot" style="background-image: url(<%= image_path 'pot-fleur.svg' %>)"></div>
   </div>
+
+  <%= link_to contrats_helps_path, target: "_blank", class: 'btn-third small help-btn' do %>
+    <div>
+      <span>Aide</span>
+      <%= image_tag 'help', alt: "icon aide" %>
+    </div>
+  <% end %>
 </div>

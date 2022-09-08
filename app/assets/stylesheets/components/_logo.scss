@@ -2,3 +2,18 @@
   display: flex;
   justify-content: center;
 }
+
+.help-logo {
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 80px;
+  }
+
+  .help-icon {
+    height: 80px;
+    margin-left: 30px;
+    margin-bottom: 70px;
+  }
+}

@@ -30,7 +30,7 @@ class OrderAccount < ApplicationRecord
   def state_to_french
     case self.aasm_state
     when "pending" then "En traitement"
-    when "documents_missing" then "Document(s) manquant(s)"
+    when "document_missing" then "Document(s) manquant(s)"
     when "resiliation_sent" then "Demande de résiliation envoyée"
     when "resiliation_failed" then "Erreur"
     when "resiliation_succeded" then "Compte résilié"
@@ -44,27 +44,27 @@ class OrderAccount < ApplicationRecord
   end
 
   aasm do
-    state :documents_missing, initial: true
-    state :pending, :resiliation_sent, :resiliation_failed, :resiliation_succeded
+    state :document_missing, initial: true
+    state :pending, :resiliation_sent, :resiliation_failure, :resiliation_success
 
     event :declare_missing do
-      transitions to: :documents_missing
+      transitions to: :document_missing
     end
 
     event :declare_pending do
-      transitions to: :pending
+      transitions from: :document_missing, to: :pending
     end
 
-    event :send_resiliation do
+    event :declare_resiliation_sent do
       transitions from: :pending, to: :resiliation_sent
     end
 
     event :declare_resiliation_success do
-      transitions from: :resiliation_sent, to: :resiliation_succeded
+      transitions from: :resiliation_sent, to: :resiliation_success
     end
 
     event :declare_resiliation_failure do
-      transitions to: :resiliation_failed
+      transitions from: %i[document_missing pending resiliation_sent], to: :resiliation_failure
     end
   end
 end

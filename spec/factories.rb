@@ -67,7 +67,7 @@ FactoryBot.define do
   factory :order_account do
     order
     account
-    aasm_state { "pending" }
+    aasm_state { "document_missing" }
   end
 
   # Order

@@ -8,7 +8,7 @@
       <%= order_account.state_to_french %>
     </span>
   </div>
-  <% if order_account.aasm_state == 'documents_missing' %>
+  <% if order_account.aasm_state == 'document_missing' %>
     <div class='align-center'>
       <div class='btn-third small' data-action='click->modal#modalAppear'>Ajouter</div>
     </div>

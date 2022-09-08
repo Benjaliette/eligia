@@ -12,7 +12,6 @@ class OrderAccount < ApplicationRecord
     attributes['name'].blank?
   end
 
-  # Retourne les documents nécessaires à un order_account
   def required_documents
     self.account.account_documents.map(&:document)
   end
@@ -24,7 +23,6 @@ class OrderAccount < ApplicationRecord
     end
   end
 
-  # Retourne un array avec les instances de OrderDocument correspondant aux documents nécessaires de cet order_account
   def order_documents
     OrderDocument.where(order_id: self.order_id, document_id: self.required_documents)
   end
@@ -42,8 +40,7 @@ class OrderAccount < ApplicationRecord
   private
 
   def update_order_state
-    # return
-    self.order.update_state
+    self.order.update_state unless Rails.env.test?
   end
 
   aasm do

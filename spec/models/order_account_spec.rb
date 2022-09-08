@@ -95,6 +95,26 @@ RSpec.describe OrderAccount, type: :model do
       o_d_id = create(:order_document, order:, document: id)
       o_d_certif = create(:order_document, order:, document: certif)
       expect(order_account.non_uploaded_order_documents).to match_array([o_d_id, o_d_certif])
+      expect(order_account.non_uploaded_order_documents).not_to match_array([o_d_id])
+      expect(order_account.non_uploaded_order_documents).not_to match_array([o_d_id, o_d_certif, id])
+    end
+
+    it "returns the right order_documents" do
+      order = create(:order)
+      orange = create(:account, name: "orange")
+      certif = create(:document, name: "certif")
+      id = create(:document, name: "id")
+      mail = create(:document, name: "mail", format: "text")
+      create(:account_document, account: orange, document: certif)
+      create(:account_document, account: orange, document: mail)
+      create(:account_document, account: orange, document: id)
+      order_account = create(:order_account, account: orange, order:)
+      o_d_mail = create(:order_document, order:, document: mail)
+      o_d_id = create(:order_document, order:, document: id)
+      o_d_certif = create(:order_document, order:, document: certif)
+      expect(order_account.order_documents).to match_array([o_d_id, o_d_certif, o_d_mail])
+      expect(order_account.order_documents).not_to match_array([o_d_id])
+      expect(order_account.order_documents).not_to match_array([o_d_id, o_d_certif, id])
     end
   end
 end

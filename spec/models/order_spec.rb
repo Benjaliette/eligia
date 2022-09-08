@@ -187,7 +187,7 @@ RSpec.describe Order, type: :model do
   end
 
   describe "Generating order_documents" do
-    it "#generate_order_document" do
+    it "#generate_order_documents" do
     order = create(:order)
     create(:order_document, order:)
     expect(order.order_documents.count).to eq 1

@@ -109,23 +109,6 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe "State machine" do
-    it "Can transition from pending to processing" do
-      order = create(:order)
-      expect(order).to transition_from(:pending).to(:processing).on_event(:declare_processing)
-    end
-
-    it "Cannot transition from pending to done" do
-      order = create(:order)
-      expect(order).not_to transition_from(:pending).to(:done).on_event(:declare_done)
-    end
-
-    it "Can transition from processing to done" do
-      order = create(:order)
-      expect(order).to transition_from(:processing).to(:done).on_event(:declare_done)
-    end
-  end
-
   describe "Filters the right documents" do
     it "#required_documents" do
       order = create(:order)
@@ -145,6 +128,42 @@ RSpec.describe Order, type: :model do
       expect(order.required_documents).to match_array([certif, id, mail])
       expect(order.required_documents).not_to match_array([certif])
       expect(order.required_documents).not_to match_array([certif, id, mail, order])
+    end
+  end
+
+  describe "State machine" do
+    it "Can transition from pending to processing" do
+      order = create(:order)
+      expect(order).to transition_from(:pending).to(:processing).on_event(:declare_processing)
+    end
+
+    it "Cannot transition from pending to done" do
+      order = create(:order)
+      expect(order).not_to transition_from(:pending).to(:done).on_event(:declare_done)
+    end
+
+    it "Can transition from processing to done" do
+      order = create(:order)
+      expect(order).to transition_from(:processing).to(:done).on_event(:declare_done)
+    end
+  end
+
+  describe "Updating state machine" do
+    it "#update_state --> from pending to processing" do
+      order = create(:order)
+      expect(order.aasm_state).to eq "pending"
+      create(:order_account, order:, aasm_state: "resiliation_sent")
+      create(:order_account, order:, aasm_state: "resiliation_sent")
+      order.update_state
+      expect(order.aasm_state).to eq "processing"
+    end
+
+    it "#update_state --> from processing to done" do
+      order = create(:order, aasm_state: "processing")
+      create(:order_account, order:, aasm_state: "resiliation_success")
+      create(:order_account, order:, aasm_state: "resiliation_success")
+      order.update_state
+      expect(order.aasm_state).to eq "done"
     end
   end
 end

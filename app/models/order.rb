@@ -37,8 +37,7 @@ class Order < ApplicationRecord
   def update_state
     if self.order_accounts.any? { |order_account| order_account.aasm_state == 'resiliation_sent' } && self.aasm_state == 'pending'
       self.declare_processing!
-      return 6
-    elsif self.order_accounts.all? { |order_account| order_account.aasm_state == 'resiliation_succeded' } && self.aasm_state != 'done'
+    elsif self.order_accounts.all? { |order_account| order_account.aasm_state == 'resiliation_success' } && self.aasm_state != 'done'
       self.declare_done!
     end
   end

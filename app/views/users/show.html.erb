@@ -15,6 +15,13 @@
         <div class='tab current-tab'>
           <p>Mes démarches</p>
         </div>
+         <div class="tab-details">
+        <ul>
+          <% @orders.each do |order| %>
+            <li> <%= link_to "#{order.deceased_first_name} #{order.deceased_last_name}", order_path(order) %></li>
+          <% end %>
+        </ul>
+      </div>
       </div>
 
 

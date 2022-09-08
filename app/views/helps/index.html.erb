@@ -1,0 +1,62 @@
+<% content_for :title, "Centre d'aide - Eligia" %>
+
+<%= render 'help_navbar' %>
+
+<div class="container">
+  <div class="fullscreen">
+    <h1>Bienvenue sur la page d'aide de eligia.</h1>
+
+    <div class="help-cards">
+      <%= link_to contrats_helps_path do %>
+        <div class="help-card">
+          <div class="help-logo">
+            <%= image_tag 'comptes', alt: "logo comptes" %>
+          </div>
+          <h2>Renseignez les comptes du défunt à résilier</h2>
+          <p>Peut-on rajouter des comptes non-existants sur la plateforme ?</p>
+          <p>Est-il possible de changer de compte en cours de route ?</p>
+          <p>Doit-on résilier un contrat par catégorie d'abonnements ?</p>
+          <p></p>
+          <div class="btn-third small">en savoir plus</div>
+        </div>
+      <% end %>
+      <%= link_to documents_helps_path do %>
+        <div class="help-card">
+          <div class="help-logo">
+            <%= image_tag 'documents', alt: "logo documents" %>
+          </div>
+          <h2>Importer les documents demandés</h2>
+          <p>Comment faire si je n'ai pas ces documents ?</p>
+          <p>Est-il possible de modifier ces documents ?</p>
+          <p>Sous quel format doivent être ces documents ?</p>
+          <p></p>
+          <div class="btn-third small">en savoir plus</div>
+        </div>
+      <% end %>
+      <%= link_to recapitulatif_helps_path do %>
+        <div class="help-card">
+          <div class="help-logo">
+            <%= image_tag 'recap', alt: "logo récapitulatif" %>
+          </div>
+          <h2>Être sûr d'avoir tout renseigné au moment de la démarche</h2>
+          <p>Tous les comptes ont-ils été renseignés</p>
+          <p>Tous les documents ont-il été importés ?</p>
+          <p>La connexion au site est-elle obligatoire ?</p>
+          <p></p>
+          <div class="btn-third small">en savoir plus</div>
+        </div>
+      <% end %>
+      <%= link_to tarifs_helps_path do %>
+        <div class="help-card">
+          <div class="help-logo">
+            <%= image_tag 'help', alt: "logo tarifs" %>
+          </div>
+          <h2>Quels sont les tarifs proposés par eligia ?</h2>
+          <div class="btn-third small">en savoir plus</div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/footer' %>

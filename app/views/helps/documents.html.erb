@@ -1,0 +1,57 @@
+<% content_for :title, "Centre d'aide - Eligia" %>
+
+<%= render 'help_navbar' %>
+
+<div class="container">
+  <div class="fullscreen">
+    <div class="help-title">
+      <%= image_tag 'documents', alt: "logo documents" %>
+      <h1>Nous fournir les documents nécessaires</h1>
+    </div>
+    <div class="help-text">
+      <p>
+        L'importation de différents fichiers sur eligia consitue la
+        deuxième étape de votre démarche de résiliations. La liste des documents
+        demandés lors de cette étape est établie grâce au noms des contrats que
+        vous nous avez fourni en amont. Cette liste est donc unique à chaque démarche
+        et est faite de façon à ce que vous nous fournissiez uniquement les documents
+        nécessaires.
+      </p>
+      <p>
+        Les documents peuvent être de plusieurs types :
+      </p>
+      <ul>
+        <li>
+          Sous forme de fichier : que ce soit un document officiel (acte de décès)
+          ou une photo (pour la pièce d'identité par exemple), les fichiers sont
+          téléchargeables <em>via</em> le bouton "Ajouter". Vous verrez alors le nom
+          de votre fichier d'ajouter sur la droite du bouton si celui-ci a bien été
+          importé. Si après quelques secondes/minutes rien ne se passe, vous pouvez
+          réessayer. Si vous n'êtes pas satisfait de l'import du document, vous pouvez
+          modifier ce dernier en cliquant sur "Modifier".<br>
+          Attention, vous ne pouvez pas importer plusieurs fichiers sur un même bouton.
+        </li>
+        <li>
+          Sous forme de texte : dans ce genre de contexte (numéro de téléphone, IBAN,
+          adresse ...), il suffit simplement d'écrire dans l'encadré l'information. Nous
+          vérifierons par la suite que ces informations sont bonnes.
+        </li>
+      </ul>
+      <p>
+        De la même manière que pour la première étape, vous pouvez changer de page, nous
+        gardons enregistrer les informations de votre demande de résiliation.
+      </p>
+      <p>
+        Contrairement à la première étape, l'importation des documents n'est pas
+        indispensable à la création de votre démarche. En effet, si vous n'êtes pas
+        en possession des documents le jour de votre demande, vous pourrez encore
+        ajouter les fichiers, après paiement, sur votre compte personnel (dans la
+        rubrique "Mes démarches" et en sélectionnant la démarche concernée).
+        Attention néanmoins, le(s) document(s) demandé(s) est(sont) nécessaire(s) pour
+        l'envoi de la résiliation à l'entreprise concernée.
+      </p>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/footer' %>

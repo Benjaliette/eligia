@@ -284,3 +284,19 @@ button {
     transform: rotate(135deg);
   }
 }
+
+.help-btn {
+  position: fixed;
+  bottom: 25px;
+  left: 30px;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    height: 20px;
+    margin-left: 10px;
+  }
+}

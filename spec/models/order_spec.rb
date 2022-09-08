@@ -30,7 +30,6 @@ RSpec.describe Order, type: :model do
   end
 
   describe "#determine_pack_type" do
-
     it "Should assign pack #1 for 4 OrderAccounts" do
       create(:pack, title: 'packTitle1', level: 1)
       create(:pack, title: 'packTitle2', level: 2)
@@ -124,6 +123,28 @@ RSpec.describe Order, type: :model do
     it "Can transition from processing to done" do
       order = create(:order)
       expect(order).to transition_from(:processing).to(:done).on_event(:declare_done)
+    end
+  end
+
+  describe "Filters the right documents" do
+    it "#required_documents" do
+      order = create(:order)
+      orange = create(:account, name: "orange")
+      sfr = create(:account, name: "sfr")
+      certif = create(:document, name: "certif")
+      id = create(:document, name: "id")
+      mail = create(:document, name: "mail", format: "text")
+      create(:account_document, account: sfr, document: certif)
+      create(:account_document, account: orange, document: mail)
+      create(:account_document, account: orange, document: id)
+      create(:order_account, account: orange, order:)
+      create(:order_account, account: sfr, order:)
+      create(:order_document, order:, document: mail)
+      create(:order_document, order:, document: id)
+      create(:order_document, order:, document: certif)
+      expect(order.required_documents).to match_array([certif, id, mail])
+      expect(order.required_documents).not_to match_array([certif])
+      expect(order.required_documents).not_to match_array([certif, id, mail, order])
     end
   end
 end

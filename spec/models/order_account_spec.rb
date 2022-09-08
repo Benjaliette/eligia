@@ -69,7 +69,7 @@ RSpec.describe OrderAccount, type: :model do
   end
 
   describe "Fuctions returning docs and order_docs" do
-    it "returns the right required_documents" do
+    it "#required_documents" do
       orange = create(:account, name: "orange")
       certif = create(:document, name: "certif")
       id = create(:document, name: "id")
@@ -81,7 +81,7 @@ RSpec.describe OrderAccount, type: :model do
       expect(order_account.required_documents).to match_array([mail, id, certif])
     end
 
-    it "returns the right non_uploaded_order_documents" do
+    it "#non_uploaded_order_documents" do
       order = create(:order)
       orange = create(:account, name: "orange")
       certif = create(:document, name: "certif")
@@ -99,7 +99,7 @@ RSpec.describe OrderAccount, type: :model do
       expect(order_account.non_uploaded_order_documents).not_to match_array([o_d_id, o_d_certif, id])
     end
 
-    it "returns the right order_documents" do
+    it "#order_documents" do
       order = create(:order)
       orange = create(:account, name: "orange")
       certif = create(:document, name: "certif")

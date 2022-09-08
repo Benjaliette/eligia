@@ -15,7 +15,7 @@ FactoryBot.define do
     end
   end
 
-  # Subcategoy
+  # Subcategory
   factory :subcategory do
     category
     sequence :name do |n|

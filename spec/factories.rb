@@ -34,10 +34,10 @@ FactoryBot.define do
 
   # Document
   factory :document do
+    format { "pdf" }
     sequence :name do |n|
       "documentName#{n}"
     end
-    format { "pdf" }
   end
 
   # Account_document

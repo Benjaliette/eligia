@@ -18,7 +18,7 @@ class OrderAccount < ApplicationRecord
 
   def non_uploaded_order_documents
     o_d = self.order.order_documents.select { |order_doc| self.required_documents.include? order_doc.document }
-    req_o_d = o_d.select do |order_document|
+    o_d.select do |order_document|
       (order_document.document.format == 'pdf' && !order_document.document_file.attached?) || (order_document.document.format == 'text' && order_document.document_input.blank?)
     end
   end
@@ -32,8 +32,8 @@ class OrderAccount < ApplicationRecord
     when "pending" then "En traitement"
     when "document_missing" then "Document(s) manquant(s)"
     when "resiliation_sent" then "Demande de résiliation envoyée"
-    when "resiliation_failed" then "Erreur"
-    when "resiliation_succeded" then "Compte résilié"
+    when "resiliation_failure" then "Erreur"
+    when "resiliation_success" then "Compte résilié"
     end
   end
 

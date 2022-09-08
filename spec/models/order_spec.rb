@@ -108,10 +108,22 @@ RSpec.describe Order, type: :model do
       create(:account_document, account: orange, document: create(:document, name: "doc3"))
       expect(order.required_documents.sort).to eq([Document.find_by(name: "id"), Document.find_by(name: "certif"), Document.find_by(name: "doc3")].sort)
     end
+  end
 
-    it "Should have a working state machine" do
+  describe "State machine" do
+    it "Can transition from pending to processing" do
       order = create(:order)
-      expect(order).to transition_from(:pending).to(:done).on_event(:declare_done)
+      expect(order).to transition_from(:pending).to(:processing).on_event(:declare_processing)
+    end
+
+    it "Cannot transition from pending to done" do
+      order = create(:order)
+      expect(order).not_to transition_from(:pending).to(:done).on_event(:declare_done)
+    end
+
+    it "Can transition from processing to done" do
+      order = create(:order)
+      expect(order).to transition_from(:processing).to(:done).on_event(:declare_done)
     end
   end
 end

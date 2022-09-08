@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       get :control_password, path: 'controle'
       patch 'control_password_check'
     end
+    resources :orders, path: 'resiliations', only: :index
   end
 
   resources :order_accounts, path: 'contrats', only: :show do

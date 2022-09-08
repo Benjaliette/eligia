@@ -60,8 +60,8 @@
 }
 
 .user-dashboard-navigation{
-  background-color: white;
-  border-right: 1px solid $super-light-gray;
+  background-color: $super-light-gray;
+  border-right: 1px solid $light-gray;
 
   .user-dashboard-navigation-top{
     display: flex;

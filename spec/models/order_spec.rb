@@ -165,5 +165,24 @@ RSpec.describe Order, type: :model do
       order.update_state
       expect(order.aasm_state).to eq "done"
     end
+
+    it "#update_order_account_status" do
+      order = create(:order)
+      orange = create(:account, name: "orange")
+      certif = create(:document, name: "certif", format: "text")
+      id = create(:document, name: "id", format: "text")
+      mail = create(:document, name: "mail", format: "text")
+      create(:account_document, account: orange, document: certif)
+      create(:account_document, account: orange, document: mail)
+      create(:account_document, account: orange, document: id)
+      order_account = create(:order_account, account: orange, order:)
+      create(:order_document, order:, document: mail, document_input: "yellow")
+      create(:order_document, order:, document: id, document_input: "yellow")
+      create(:order_document, order:, document: certif, document_input: "yellow")
+      expect(order_account.aasm_state).to eq "document_missing"
+      order.update_order_account_status
+      order_account.reload
+      expect(order_account.aasm_state).to eq "pending"
+    end
   end
 end

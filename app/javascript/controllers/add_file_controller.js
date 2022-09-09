@@ -7,8 +7,8 @@ export default class extends Controller {
   added(){
     const regex = /.*.(?:png|jpg|jpeg|pdf)/
 
-    if (this.inputTarget.files[0].size > 1048576 * 2) {
-      alert("Fichier trop lourd. Taille maximum 2Mb")
+    if (this.inputTarget.files[0].size > 1048576 * 10) {
+      alert("Fichier trop lourd. Taille maximum 10Mb")
       this.inputTarget.value = ''
 
     } else if (this.inputTarget.files[0].name.match(regex) === null) {

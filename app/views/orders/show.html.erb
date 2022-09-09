@@ -7,12 +7,12 @@
       <div class="user-dashboard-navigation-top">
           <p>Bonjour <strong><%= current_user.first_name %></strong><p>
       </div>
-      <div class='tab other-tab'>
-        <p>Informations personnelles</p>
-      </div>
-      <%= link_to user_path(current_user), class: 'tab current-tab' do %>
-          <p>Mes démarches</p>
+      <%= link_to user_path(current_user), class: 'tab other-tab' do %>
+          <p>Informations personnelles</p>
       <% end %>
+      <div class='tab current-tab'>
+          <p>Mes démarches</p>
+      </div>
       <div class="tab-details">
         <ul>
           <% @orders.each do |order| %>

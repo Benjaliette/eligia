@@ -31,9 +31,11 @@ class OrderAccount < ApplicationRecord
     case self.aasm_state
     when "pending" then "En traitement"
     when "document_missing" then "Document(s) manquant(s)"
+    when "documents_missing" then "Document(s) manquant(s)" #Pour les commandes passées avant la modification des aasm_states
     when "resiliation_sent" then "Demande de résiliation envoyée"
     when "resiliation_failure" then "Erreur"
     when "resiliation_success" then "Compte résilié"
+    when "resiliation_succeded" then "Compte résilié" #Pour les commandes passées avant la modification des aasm_states
     end
   end
 

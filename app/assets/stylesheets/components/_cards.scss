@@ -40,6 +40,7 @@
 
   p{
     padding-left: 20px;
+    font-weight: bold;
   }
 }
 
@@ -69,10 +70,22 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 15px lightgrey;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+
+    .order-account-card-infos {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .account-status {
+        flex-grow: 1;
+        display: flex;
+        align-items: flex-end
+      }
+    }
 
     .order-account-status{
       font-size: 12px;
@@ -81,6 +94,8 @@
     .account-name {
       margin: 0 auto;
       font-weight: bold;
+      height: 50px;
+      text-align: center;
     }
   }
 }
@@ -166,12 +181,6 @@
   .icon-infos {
     width: 110px;
     margin: 20px auto;
-  }
-}
-
-@media (max-width: 900px) {
-  .home-infos-list {
-    min-height: 1000px;
   }
 }
 
@@ -287,6 +296,20 @@
 }
 
 @media (max-width: 900px) {
+  .home-infos-list {
+    min-height: 1000px;
+  }
+
+  .order-account-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .order-dashboard-card {
+    p {
+      font-size: 14px;
+    }
+  }
+
   .tarif-card-box {
     flex-direction: column;
     align-items: center;
@@ -304,5 +327,34 @@
     .tarif-card-3 {
       width: 100%;
     }
+  }
+}
+
+@media (max-width: 700px) {
+  .order-account-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .order-card-content{
+    display: flex;
+    flex-direction: column;
+    p{
+      padding-left: 20px;
+    }
+    #details{
+      position: initial;
+      margin: 10px auto;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .order-account-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .order-dashboard-card {
+    margin: 20px 0px;
+    width: 100%;
   }
 }

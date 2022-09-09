@@ -94,6 +94,11 @@
   font-weight: bolder;
 }
 
+.current-order{
+  color: $green;
+  font-weight: bolder;
+}
+
 .other-tab:hover{
   cursor: pointer;
   background-color: $super-light-green;
@@ -106,7 +111,7 @@
 
   ul{
     margin: 0px;
-    padding: 10px 10px 10px 30px;
+    padding: 10px;
     list-style: none;
   }
 
@@ -128,4 +133,63 @@
 
 .user-dashboard-content{
   padding: 30px;
+}
+
+@media (max-width: 900px) {
+  .user-dashboard-grid{
+    grid-template-columns: 1fr;
+    grid-template-rows: 0fr 5fr;
+  }
+
+  .user-dashboard-navigation{
+    display: flex;
+    align-items: center;
+    border-right: none;
+
+    .user-dashboard-navigation-top{
+      flex-grow: 1;
+      height: 100%;
+      padding-left: 30px;
+
+      p {
+        margin: 0px;
+      }
+    }
+
+    .tab {
+      border-top: none;
+      padding: 5px 20px;
+      width: 30%;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .tab-details {
+      display: none;
+    }
+
+    .current-tab {
+      height: 87%;
+    }
+  }
+
+  .user-dashboard-navigation{
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .account-infos {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 700px) {
+  .account-infos {
+    height: 60vh;
+  }
+
+  .account-infos-description {
+    margin-top: 60px;
+  }
 }

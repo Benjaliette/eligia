@@ -172,18 +172,6 @@
   }
 }
 
-@media (max-width: 900px) {
-  .form-div{
-    padding: 15px 25px;
-  }
-}
-
-@media (max-width: 500px) {
-  .form-div{
-    padding: 10px 10px;
-  }
-}
-
 // Style for address geocoder in edit form
 
 .mapboxgl-ctrl-geocoder--icon {
@@ -242,5 +230,33 @@
     margin: 0;
     display: block;
     text-align: left;
+  }
+}
+
+@media (max-width: 900px) {
+  .form-div{
+    padding: 15px 25px;
+  }
+
+  .form-div{
+    margin: 30px auto;
+    width: 85%;
+
+    .form-inputs {
+      .form-inputs-block, .form-inputs-block-address {
+        margin-left: 0px;
+
+        label {
+          width: 170px;
+          text-align: left;
+          font-size: 12px;
+        }
+      }
+    }
+
+  }
+
+  .mapboxgl-ctrl-geocoder--input {
+    font-size: 12px;
   }
 }

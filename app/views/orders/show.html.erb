@@ -10,16 +10,18 @@
       <div class='tab other-tab'>
         <p>Informations personnelles</p>
       </div>
-      <%= link_to user_path(current_user) do %>
-        <div class='tab current-tab'>
+      <%= link_to user_path(current_user), class: 'tab current-tab' do %>
           <p>Mes démarches</p>
-        </div>
       <% end %>
       <div class="tab-details">
         <ul>
           <% @orders.each do |order| %>
-            <li> <%= link_to "#{order.deceased_first_name} #{order.deceased_last_name}", order_path(order) %></li>
-           <% end %>
+            <% if order == @order %>
+              <li class="current-order"><%= link_to "#{order.deceased_first_name} #{order.deceased_last_name}", order_path(order) %></li>
+            <% else %>
+              <li><%= link_to "#{order.deceased_first_name} #{order.deceased_last_name}", order_path(order) %></li>
+            <% end %>
+          <% end %>
         </ul>
       </div>
     </div>

@@ -7,24 +7,24 @@ $level-five: 32px;
 
 // Footer & Navbar
 $footer-height: 70px;
-$navbar-height:60px;
+$navbar-height: 60px;
 
 // Font-sizes :
 
 @media (max-width: 900px) {
-  p{
+  p {
     font-size: 18px;
   }
 }
 
 @media (max-width: 500px) {
-  p{
+  p {
     font-size: 16px;
   }
 }
 
 @media (max-width: 400px) {
-  p{
+  p {
     font-size: 14px;
   }
 }

@@ -43,6 +43,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :helps, path: 'aide', only: :index do
+    collection do
+      get :contrats
+      get :documents
+      get :recapitulatif
+      get :tarifs
+    end
+  end
+
   resources :messages, path: 'contact', path_names: { new: 'nous-contacter' }, only: %i[new create]
 
   mount RailsAdmin::Engine, at: '/admin', as: 'rails_admin'

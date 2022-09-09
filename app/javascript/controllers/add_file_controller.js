@@ -7,14 +7,16 @@ export default class extends Controller {
   added(){
     const regex = /.*.(?:png|jpg|jpeg|pdf)/
 
+    if (this.inputTarget.files[0].size > 1048576 * 2) {
+      alert("Fichier trop lourd. Taille maximum 2Mb")
+      this.inputTarget.value = ''
 
-    if (this.inputTarget.files[0].name.match(regex) === null) {
+    } else if (this.inputTarget.files[0].name.match(regex) === null) {
       this.fileNameDivTarget.innerText = 'ERREUR ! Le format doit être .png, .jpeg ou .jpg'
       this.labelTarget.classList.add('label-document-input-wrong-format')
       this.labelTarget.innerText = 'Modifier'
 
-    }
-    else {
+    } else {
       this.fileNameDivTarget.innerText = this.inputTarget.files[0].name
       this.labelTarget.classList.add('label-document-input-selected')
       this.labelTarget.classList.remove('label-document-input-wrong-format')

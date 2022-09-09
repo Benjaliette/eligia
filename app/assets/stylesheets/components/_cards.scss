@@ -246,6 +246,46 @@
   }
 }
 
+
+// Help cards
+.help-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+
+  .help-card {
+    height: 50vh;
+    border: solid 1px $light-gray;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0px 0px 2px lightgrey;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      text-align: center;
+      font-size: 16px;
+      height: 70px;
+      margin-top: 25px;
+    }
+
+    p {
+      font-size: 14px;
+      font-style: italic;
+      color: $gray;
+    }
+
+    &:hover {
+      transform: scale(1.04);
+      transition: all 0.4s ease;
+    }
+  }
+}
+
 @media (max-width: 900px) {
   .tarif-card-box {
     flex-direction: column;

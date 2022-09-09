@@ -1,0 +1,55 @@
+<% content_for :title, "Centre d'aide - Eligia" %>
+
+<%= render 'help_navbar' %>
+
+<div class="container">
+  <div class="fullscreen">
+    <div class="help-title">
+      <%= image_tag 'recap', alt: "logo récapitulatif" %>
+      <h1>Vérification de vos informations lors de la création de votre démarche</h1>
+    </div>
+    <div class="help-text">
+      <p>
+        La vérification des informations fournies pendant votre demande de résiliation
+        consitue l'étape la plus importante de cette démarche. En effet, vous devez être
+        premièrement sûr des comptes que vous nous avez fourni car vous ne pourrez pas en rajouter
+        après paiement. Ensuite, vous devrez vérifier que vous avez fourni le maximum
+        de documents nécessaires pour que le démarrage des démarches de notre côté se fasse
+        le plus rapidement possible. Enfin, pensez bien à vérifier la mise à jour de la liste
+        des documents demandés lors de l'étape 2. En effet, si vous avez entre temps rajouter
+        des abonnements à résilier, il est possible que cette liste ait changé.
+      </p>
+      <p>
+        Sur cette page, vous serez en présence de deux encadrés :
+      </p>
+      <ul>
+        <li>
+          Le premier vous renseigne tous les abonnements que vous nous avez renseigné. C'est à ce
+          moment qu'il vous faut être sûr de nous avoir communiqué tous les comptes.
+          Si des contrats apparaissent en orange, alors ce sont encore des entreprises inconnues
+          de eligia. Nous nous engageons alors à vérifier ces dernières le plus rapidement possible
+          pour pouvoir ensuite vous communiquer les documents à nous founir (si besoin) et démarrer
+          les démarches le plus rapidement possible
+        </li>
+        <li>
+          Le deuxième vous liste les documents que vous nous avez fourni ou non. Il est encore
+          possible de nous faire passer ces documents avant paiement si vous en avez la
+          possession, toutefois, vous pourrez les importes plus tard sur votre compte
+          (voir <%= link_to 'aide sur les documents', documents_helps_path %>).
+        </li>
+      </ul>
+      <p>
+        Une fois que toutes les informations ont été vérifiées et que vous être prêts à
+        clôturer votre demande, vous devrez vous inscrire (ou connecter) à eligia.fr. Cette inscription
+        est nécessaire pour nous pour pouvoir vous tenir au courant des démarches <em>via</em>
+        votre tableau de bord, et pour vous envoyer un email si problème durant nos
+        communications avec les entreprises concernées. Si vous n'êtes pas encore connecté,
+        vous arriverez sur une page de création de compte. Attention, si vous avez déjà un compte
+        chez nous, vous pourrez cliquer sur le bouton "Déjà inscrit ? Se connecter".<br>
+        Après connexion, vous pourrez revenir sur la page de récapitulatif et commencer le paiement.
+      </p>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/footer' %>

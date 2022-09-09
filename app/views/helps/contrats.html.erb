@@ -1,0 +1,73 @@
+<% content_for :title, "Centre d'aide - Eligia" %>
+
+<%= render 'help_navbar' %>
+
+<div class="container">
+  <div class="fullscreen">
+    <div class="help-title">
+      <%= image_tag 'comptes', alt: "logo comptes" %>
+      <h1>Nous renseigner les différents contrats du défunt</h1>
+    </div>
+    <div class="help-text">
+      <p>
+        Au commencement de la démarche, nous vous proposons de nous fournir la
+        liste des contrats que le défunt avait et que vous souhaitez résilier.
+        La première étape de la création de votre démarche sera uniquement dédiée
+        à la création de cette liste d'abonnements.
+        Grâce à cette liste, nous pourrons ensuite connaitre la liste des documents
+        nécessaires pour l'envoi des demandes de résiliation aux différentes entreprises
+        concernées.
+      </p>
+      <p>Eligia est un service vous permettant la résiliation des contrats de catégories suivantes :</p>
+      <ul>
+        <li>
+          Les télécoms : sont pris en compte les abonnements mobiles, téléphonie
+          fixe et internet (ADSL ou fibre). Si le défunt détenait tous ses abonnements
+          au même endroit (offre groupée par exemple), veuillez renseigner uniquement
+          le compte sous la sous-catégorie "internet".
+        </li>
+        <li>
+          Les médias : ce sont tous les abonnements de types journaux/magazines
+          ou multimédias (chaînes de télévision payantes ou plateformes de streaming).
+          Un très grand nombre de journaux et magazines vous sont proposés, vous pouvez
+          bien entendu en sélectionner plusieurs.
+        </li>
+        <li>
+          Les contrats d'énergie : comprend les contrats d'électricité, de gaz ainsi
+          que de l'eau.
+        </li>
+        <li>
+          Une catégorie divers : les abonnements aux transports publics y sont compris
+          car n'appartenant à aucune autre catégorie. Vous avez aussi la possibilité de
+          rajouter n'importe quel abonnement dont vous ne connaissez pas la catégorie
+          d'appartenance (sous le libellé "Autres").
+        </li>
+      </ul>
+      <p>
+        Pour chaque sous-catégories, nous vous avons laissé la possibilité de rajouter
+        un ou plusieurs noms d'entreprises auxquelles le défunt était abonné et que nous
+        n'avons pas proposé sur cette page. Pour rajouter un compte, nous vous invitons
+        à cliquer sur le bouton "Autre" sous la catégorie souhaitée, à renseigner le nom
+        de l'entreprise après la question "Compte à résilier ?", puis enfin à rajouter
+        ce compte avec le bouton "Ajouter". Si toutefois vous vous êtes trompé et que
+        vous ne voulez finalement plus rajouter de comptes, vous pouvez annuler l'action
+        avec le bouton "Annuler".<br>
+        NB : Le bouton Autre doit être grisé si vous ne voulez pas rajouter de comptes.
+      </p>
+      <p>
+        A la fin de cette étape, vous devrez cliquer sur le bouton "Valider" situé en bas
+        de la page. Vous passerez alors à la deuxième étape de la création de votre démarche.
+        Ne vous en faites pas, ce changement de page n'entraîne pas une fin définitive de l'étape 1.
+        Vous pourrez y revenir par la suite en cliquant sur "Étape 1 : Résiliations" ou
+        sur le bouton "Précédent" situé en haut de chaque page.
+      </p>
+      <p>
+        Attention néanmoins, après fin de la démarche et paiement du service, vous ne pourrez pas
+        rajouter de comptes à résilier, il faut donc vous munir au moment de l'étape 1 de la
+        liste complète des abonnements du défunt.
+      </p>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/footer' %>

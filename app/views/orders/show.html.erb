@@ -10,9 +10,9 @@
       <%= link_to user_path(current_user), class: 'tab other-tab' do %>
           <p>Informations personnelles</p>
       <% end %>
-      <%= link_to user_path(current_user), class: 'tab current-tab' do %>
+      <div class='tab current-tab'>
           <p>Mes démarches</p>
-      <% end %>
+      </div>
       <div class="tab-details">
         <ul>
           <% @orders.each do |order| %>

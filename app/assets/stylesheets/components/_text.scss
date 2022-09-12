@@ -32,3 +32,23 @@
     }
   }
 }
+
+.home-title {
+  &::after {
+    content: "";
+    display: block;
+    width: 75px;
+    margin: 15px auto;
+    border-bottom: 3px solid #8FCC9B;
+  }
+}
+
+.home-subtitle {
+  &::after {
+    content: "";
+    display: block;
+    width: 75px;
+    margin: 15px auto;
+    border-bottom: 3px solid #8FCC9B;
+  }
+}

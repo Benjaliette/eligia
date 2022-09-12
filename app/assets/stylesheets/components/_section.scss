@@ -1,0 +1,16 @@
+#service, #home-infos {
+  padding: 100px 0px;
+  text-align: center;
+  background-color: $off-white;
+}
+
+#function {
+  padding: 100px 0px;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  #function {
+    padding: 50px 0px 100px 0px;
+  }
+}

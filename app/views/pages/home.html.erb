@@ -1,134 +1,211 @@
+<% content_for :scroll_navbar, 'scroll-navbar' %>
+<% content_for :home_navbar, 'home-navbar' %>
 <%= render 'shared/navbar' %>
-<div class="banner" data-controller="transparent-navbar">
-  <div class="container padding-bottom-three ">
+
+<div class="banner">
+  <div class="container">
     <h1>Résiliez en 10 minutes tous les <br> abonnements d'un proche disparu</h1>
     <p id='tagline'>Simplifier les démarches pour se concentrer sur le deuil</p>
     <%= link_to "Commencer", new_order_path, class:"btn-call-to-a" %>
-    <p class="banner-subtext padding-top-five padding-bottom-five margin-top-five margin-bottom-five">Eligia est un outil digital permettant de résilier les abonnements d'un proche suite à son décès. Il suffit de sélectionner les comptes à résilier et fournir les documents demandés. <br><br> Nous nous occupons du reste et vous fournissons tous les justificatifs nécessaires.</p>
   </div>
 </div>
 
 
-<div class="second-banner">
-<div class="container">
-  <h2 class="highlight-green">Pourquoi Eligia ?</h2>
+<section id="service">
+  <div class="container">
+    <h2 class="home-title">Notre service</h2>
 
-  <ul class="second-banner-list-items">
-    <li class="second-banner-list-item">
-      <%= image_tag('icon-fast.svg', alt:'icone rapidité', class: 'icon-bulletpoint')%>
-      <div class="second-banner-text">Démarche effectuée en <span class="highlight-yellow">quelques minutes</span> : il suffit de renseigner les comptes à résilier et de joindre les documents nécessaires</div>
-    </li>
-    <li class="second-banner-list-item">
-      <%= image_tag('icon-list.svg', alt:'icone vaste choix', class: 'icon-bulletpoint')%>
-      <div class="second-banner-text"><span class="highlight-yellow">Tous types d'abonnements pris en compte</span> : internet, téléphonie fixe et mobile, journaux, magazines, énergie etc.</div>
-    </li>
-    <li class="second-banner-list-item">
-      <%= image_tag('icon-price.svg', alt:'icone prix attractif', class: 'icon-bulletpoint')%>
-      <div class="second-banner-text">Un forfait <span class="highlight-yellow">attractif</span> : nos tarifs s'adaptent à vos besoins</div>
-    </li>
-    <li class="second-banner-list-item">
-      <%= image_tag('icon-dashboard.svg', alt:'icone suivi avec tableau de bord', class: 'icon-bulletpoint')%>
-      <div class="second-banner-text">Un suivi <span class="highlight-yellow">facile</span> : grâce à un tableau de bord personnalisé qui vous permet de suivre facilement l'avancée des démarches depuis chez vous</div>
-    </li>
-  </ul>
+    <p>
+      Eligia est un outil digital permettant de résilier les abonnements d'un proche suite à son décès.<br><br>
+      Nous nous occupons de tout et vous tenons au courant de l’avancée des démarches.
+    </p>
+
+    <ul class="service-cards">
+      <li class="service-card">
+        <%= image_tag('icon-fast.svg', alt:'icone rapidité', class: 'service-card-img')%>
+        <div class="service-card-text">Démarche effectuée en <span class="highlight-yellow">quelques minutes</span> : il suffit de renseigner les comptes à résilier et de joindre les documents nécessaires</div>
+      </li>
+      <li class="service-card">
+        <%= image_tag('icon-list.svg', alt:'icone vaste choix', class: 'service-card-img')%>
+        <div class="service-card-text"><span class="highlight-yellow">Tous types d'abonnements pris en compte</span> : internet, téléphonie fixe et mobile, journaux, magazines, énergie etc.</div>
+      </li>
+      <li class="service-card">
+        <%= image_tag('icon-price.svg', alt:'icone prix attractif', class: 'service-card-img')%>
+        <div class="service-card-text">Un forfait <span class="highlight-yellow">attractif</span> : nos tarifs s'adaptent à vos besoins</div>
+      </li>
+      <li class="service-card">
+        <%= image_tag('icon-dashboard.svg', alt:'icone suivi avec tableau de bord', class: 'service-card-img')%>
+        <div class="service-card-text">Un suivi <span class="highlight-yellow">facile</span> : grâce à un tableau de bord personnalisé qui vous permet de suivre facilement l'avancée des démarches depuis chez vous</div>
+      </li>
+    </ul>
   </div>
-</div>
-<div class="container">
-  <div class="home-infos" data-controller="home-infos-appear">
-    <h2><span class="highlight-green">Point information</span> : que faire quand un proche nous a quitté ?</h2>
+</section>
+
+<section id="function" style="background-image: linear-gradient(rgba(255,255,255,0.4),rgba(255,255,255,0.4)), url(<%= image_path 'green-gradient-bg' %>)">
+  <div class="container">
+    <h2 class="home-title">Comment ça fonctionne ?</h2>
+
+    <p>
+      Pour démarrer une démarche sur eligia, il vous suffit de sélectionner les comptes à résilier
+      puis de fournir les documents demandés.<br><br>
+      A partir de ce moment-là, nous prenons le relais.
+    </p>
+
+    <div class="func-grid" data-controller="home-function">
+      <div class="func-nav">
+        <ul class="func-nav-items">
+          <li class="func-nav-item current-item"
+              id="contrats"
+              data-action="click->home-function#infoAppear"
+              data-home-function-target='navItem'>
+            Les contrats
+          </li>
+          <li class="func-nav-item"
+              id="documents"
+              data-action="click->home-function#infoAppear"
+              data-home-function-target='navItem'>
+            Les documents
+            </li>
+          <li class="func-nav-item"
+              id="recapitulatif"
+              data-action="click->home-function#infoAppear"
+              data-home-function-target='navItem'>
+            Le récapitulatif
+          </li>
+          <li class="func-nav-item"
+              id="paiement"
+              data-action="click->home-function#infoAppear"
+              data-home-function-target='navItem'>
+            Le paiement
+          </li>
+        </ul>
+      </div>
+      <div class="func-infos">
+        <div class="func-infos-text" id="contrats" data-home-function-target='infoDiv'>
+          <p>
+            Au commencement de la démarche, nous vous proposons de nous fournir la liste des contrats que
+            le défunt avait et que vous souhaitez résilier.<br><br>
+
+            La première étape de la création de votre démarche sera uniquement
+            dédiée à la création de cette liste d'abonnements.<br><br>
+
+            Grâce à cette liste, nous pourrons ensuite connaitre la liste des documents
+            nécessaires pour l'envoi des demandes de résiliation aux différentes entreprises concernées.
+          </p>
+          <%= link_to 'en savoir plus', contrats_helps_path, target: "_blank", class: 'btn-third small' %>
+        </div>
+        <div class="func-infos-text disapear" id="documents" data-home-function-target='infoDiv'>
+          <p>
+            Après avoir établi la liste des comptes à résilier, vous pourrez nous fournir les
+            documents nécessaires pour démarrer les démarches de résiliation.<br><br>
+
+            Les documents en question seront à importer. Ce processus interviendra lors de la deuxième
+            étape de création de la démarche.<br><br>
+
+            En accord avec les lois européennes de protection des données, ces informations seront
+            automatiquement supprimées de eligia.fr.
+          </p>
+          <%= link_to 'en savoir plus', documents_helps_path, target: "_blank", class: 'btn-third small' %>
+        </div>
+        <div class="func-infos-text disapear" id="recapitulatif" data-home-function-target='infoDiv'>
+          <p>
+            Le récapitulatif est la dernière étape de votre demande. C'est à ce moment là qu'il faudra
+            vérifier que vous nous avez renseigné tous les contrats à résilier ainsi qu'une majorité des
+            informations nécessaires.<br><br>
+
+            Si vous n'avez pas tous les documents en votre possession, vous pourrez toujours nous les
+            fournir après paiement sur votre espace personnel.
+          </p>
+          <%= link_to 'en savoir plus', recapitulatif_helps_path, target: "_blank", class: 'btn-third small' %>
+        </div>
+        <div class="func-infos-text disapear" id="paiement" data-home-function-target='infoDiv'>
+          <p>
+            Eligia propose un système de paiement par forfait qui vous permet de payer votre démarche à un prix juste
+            en fonction du nombre de comptes à résilier.<br><br>
+
+            Après paiement, vous ne pourrez plus rajouter de contrats à résilier, il faudra donc être
+            sûr que vous nous avez fourni la liste complète de ces derniers.
+          </p>
+          <%= link_to 'en savoir plus', tarifs_helps_path, target: "_blank", class: 'btn-third small' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="home-infos">
+  <div class="wide-container">
+    <h2 class="home-title">Que faire après le décès ?</h2>
+
     <p>
       Le décès d'un proche est l'un des moments les plus douloureux de la vie de chacun.
       Nous ne sommes jamais réellement préparés à une pareille douleur.<br><br>
       Néanmoins, en dépit de la peine et de l'émotion,
-      plusieurs démarches doivent êtres entreprises lors du départ d'un proche. Eligia vise à simplifier ce processus douloureux et chronophage pour vous premettre de vous concentrer sur votre deuil. <br><br>
-      L'encadré ci-dessous résume les démarches à entreprendre ainsi que leurs délais :
+      plusieurs démarches doivent êtres entreprises lors du départ d'un proche sous plusieurs délais.
     </p>
-    <div class="timeline-legend-container">
-      <div class="timeline-legend active" data-home-infos-appear-target="timelineItems" data-action="click->home-infos-appear#transition">
-        1ère semaine
+
+    <div class="home-infos-grid">
+      <div class="home-infos-img" style="background-image: url(<%= image_path 'rendez-vous' %>)">
       </div>
-      <div class="timeline-legend next" data-home-infos-appear-target="timelineItems" data-action="click->home-infos-appear#transition">
-        1er mois
-      </div>
-      <div class="timeline-legend next-transparent" data-home-infos-appear-target="timelineItems" data-action="click->home-infos-appear#transition">
-        6 mois
-      </div>
-    </div>
-    <div class="timeline-container">
-      <i class="fa-solid fa-circle-chevron-left fa-xl disabled"
-         data-action="click->home-infos-appear#transitionLeft"
-         data-home-infos-appear-target="arrowLeft"></i>
-      <div class=timeline>
-        <div class="timeline-checkpoint active"
-            data-action="click->home-infos-appear#transition"
-            data-home-infos-appear-target="checkpoints">
-        </div>
-        <div class="timeline-checkpoint next"
-            data-action="click->home-infos-appear#transition"
-            data-home-infos-appear-target="checkpoints">
-        </div>
-        <div class="timeline-checkpoint"
-            data-action="click->home-infos-appear#transition"
-            data-home-infos-appear-target="checkpoints">
-        </div>
-      </div>
-      <i class="fa-solid fa-circle-chevron-right fa-xl"
-         data-action="click->home-infos-appear#transitionRight"
-         data-home-infos-appear-target="arrowRight"></i>
-    </div>
-    <ul class="home-infos-list">
-      <li class="home-infos-list-item active" data-home-infos-appear-target="infoItems" data-action="click->home-infos-appear#transition">
-        <div>
-          Lors de la <span class="highlight-green">première semaine</span> suivant le décès, certaines démarches sont à réaliser en priorité.
-          Parmi elles :<br>
-          <br>
-          • Le constat du décès,<br>
-          <br>
-          • La déclaration du décès en mairie afin de pouvoir récupérer l'acte de décès,<br>
-          <br>
-          • L'organisation des obsèques.<br>
-        </div>
-        <%= image_tag('icon-funeral.svg', alt:'icone funérailles', class: 'icon-infos') %>
-        <div>
+      <div class="home-infos-text">
+        <h3 class="home-title">La première semaine</h3>
+        <p class="home-infos-text-detail">
+          Lors de la première semaine suivant le décès, certaines démarches sont à réaliser en priorité.
+        </p>
+        <p class="home-infos-text-detail">Parmi elles :</p>
+        <ul class="home-infos-text-detail">
+          <li>Le constat du décès,</li>
+          <li>La déclaration du décès en mairie afin de pouvoir récupérer l'acte de décès,</li>
+          <li>L'organisation des obsèques.</li>
+        </ul>
+        <p class="home-infos-text-detail">
           Ces démarches sont souvent réalisées par les pompes funèbres qui proposent plusieurs sortes d'accompagnement
           personnalisés. Pour vous aider dans vos démarches, vous pouvez consulter la page du gouvernement concernant les <%= link_to 'prestations funéraires', "https://www.economie.gouv.fr/dgccrf/Publications/Vie-pratique/Fiches-pratiques/Prestations-funeraires",
               target: :_blank,
               class: 'bold-link' %>
           .
-        </div>
-      </li>
-      <li class="home-infos-list-item next" data-home-infos-appear-target="infoItems" data-action="click->home-infos-appear#transition">
-        <div>
-          Durant le <span class="highlight-yellow">premier mois</span> :<br>
-          <br>
-          • Cloture du compte en banque du défunt avec acte de notoriété. (Pensez néanmoins à noter l'IBAN
-          du défunt pour les résiliations qui suivront).
-        </div>
-        <%= image_tag('icon-administration.svg', alt:'icone tâches administratives', class: 'icon-infos') %>
-        <div>
-          Suite à ça, les démarches suivantes devront être entreprises :
-          <br>
-          <br>
-          • Service des impôts<br>
-          • Caisse de retraite<br>
-          • Potentiel bailleur<br>
-          • Service des immatriculations<br>
-          • Organismes sociaux divers<br>
-        </div>
-      </li>
-      <li class="home-infos-list-item next-transparent" data-home-infos-appear-target="infoItems" data-action="click->home-infos-appear#transition">
-        <div>
-          Enfin, vous devrez résilier ou réattribuer les diverses souscriptions restantes du défunt. En l'absence de notification de l'entreprise concessionnaire, les contrats perdurent et <span class="highlight-blue">leur facturation revient aux héritiers.</span> C'est la raison pour laquelle il est conseillé de s'en occuper aussi vite que possible.
-        </div>
-        <%= image_tag('icon-subscription.svg', alt:'icone abonnements', class: 'icon-infos') %>
-        <div>
+        </p>
+      </div>
+    </div>
+    <div class="home-infos-grid">
+      <div class="home-infos-text home-infos-first-month">
+        <h3 class="home-title">Le premier mois</h3>
+        <p class="home-infos-text-detail">
+          Durant le premier mois, vous devrez réaliser la cloture du compte en banque du défunt
+          avec acte de notoriété. (Pensez néanmoins à noter l'IBAN du défunt pour les résiliations qui suivront).
+        </p>
+        <p class="home-infos-text-detail">Suite à ça, les démarches suivantes devront être entreprises :</p>
+        <ul class="home-infos-text-detail">
+          <li>Service des impôts</li>
+          <li>Caisse de retraite</li>
+          <li>Potentiel bailleur</li>
+          <li>Service des immatriculations</li>
+          <li>Organismes sociaux divers</li>
+        </ul>
+      </div>
+      <div class="home-infos-img home-infos-first-month" style="background-image: url(<%= image_path 'handshake' %>)">
+      </div>
+    </div>
+    <div class="home-infos-grid">
+      <div class="home-infos-img" style="background-image: url(<%= image_path 'couple' %>)">
+      </div>
+      <div class="home-infos-text">
+        <h3 class="home-title">Les mois qui suivent</h3>
+        <p class="home-infos-text-detail">
+          Enfin, vous devrez résilier ou réattribuer les diverses souscriptions restantes du défunt.
+          En l'absence de notification de l'entreprise concessionnaire, les contrats perdurent et
+          leur facturation revient aux héritiers.
+          C'est la raison pour laquelle il est conseillé de s'en occuper aussi vite que possible.
+        </p>
+        <p class="home-infos-text-detail">
           <strong><em>Eligia</em> vise à vous décharger de ce poids en s'occupant de toutes ces démarches rapidement et efficacement.</strong><br>
           Le plus souvent il s'agit de contrats d'énergie (EDF, Engie, TotalEnergies, Eni...), d'abonnements télécoms (Orange, SFR, Bouygues, Free...),
-          à des médias payants (Canal+, Netflix, BeinSport...) ou encore à des journaux et/ ou magazines (Le Monde, Le Figaro, Le Parisien...).
-        </div>
-      </li>
-    </ul>
+          à des médias payants (Canal+, Netflix, BeinSport...) ou encore à des journaux et/ou magazines (Le Monde, Le Figaro, Le Parisien...).
+        </p>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
 
 <%= render 'shared/footer' %>

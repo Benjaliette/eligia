@@ -22,6 +22,9 @@ application.register("footer-responsivity", FooterResponsivityController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import HomeFunctionController from "./home_function_controller"
+application.register("home-function", HomeFunctionController)
+
 import HomeInfosAppearController from "./home_infos_appear_controller"
 application.register("home-infos-appear", HomeInfosAppearController)
 
@@ -40,11 +43,11 @@ application.register("navbar-responsivity", NavbarResponsivityController)
 import OtherAccountController from "./other_account_controller"
 application.register("other-account", OtherAccountController)
 
+import ScrollNavbarController from "./scroll_navbar_controller"
+application.register("scroll-navbar", ScrollNavbarController)
+
 import ShowPasswordController from "./show_password_controller"
 application.register("show-password", ShowPasswordController)
 
 import SubcategoryDropdownController from "./subcategory_dropdown_controller"
 application.register("subcategory-dropdown", SubcategoryDropdownController)
-
-import TransparentNavbarController from "./transparent_navbar_controller"
-application.register("transparent-navbar", TransparentNavbarController)

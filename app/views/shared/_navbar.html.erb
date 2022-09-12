@@ -1,6 +1,7 @@
-<div class="navbar"
-     data-controller="navbar-responsivity navbar-dropdown"
-     data-action="resize@window->navbar-responsivity#toggle">
+<div class="navbar <%= yield(:home_navbar) %>"
+     data-controller="navbar-responsivity navbar-dropdown <%= yield(:scroll_navbar) %>"
+     data-action="resize@window->navbar-responsivity#toggle scroll@window->scroll-navbar#changeBackground"
+     data-scroll-navbar-target='navbar'>
     <div class="logo">
       <%= link_to root_path do %>
         <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>

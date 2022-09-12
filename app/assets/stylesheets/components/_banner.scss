@@ -1,99 +1,34 @@
-.banner .container {
-  padding: 150px 0;
-  h1 {
-    margin: 0;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    font-size: 32px;
-    font-weight: bold;
-  }
-  #tagline {
-    margin: 40px 0;
-    font-size: 22px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  }
+.banner {
+  background: conic-gradient(from 244.13deg at 157.71% -58.21%, rgba(122, 181, 206, 0.22) -4.22deg, rgba(161, 219, 209, 0.37) 0.8deg, #FAFDFA 11.29deg, #92CD9E 33.63deg, rgba(255, 255, 255, 0) 309.47deg, rgba(255, 229, 76, 0.41) 328.17deg, rgba(220, 252, 94, 0.33) 332.9deg, rgba(143, 204, 155, 0.47) 347.23deg, rgba(122, 181, 206, 0.22) 355.78deg, rgba(161, 219, 209, 0.37) 360.8deg);
+  background-blend-mode: multiply;
 
-  .banner-subtext {
-    font-size: 18px;
-    line-height: 1.5;
-  }
-}
-
-.second-banner {
-  padding: 0px auto 100px auto;
-  margin: 20px auto 120px auto;
-  color: $gray;
-  background-image: asset-url('margueritte_banner.svg');
-  background-size: contain;
-  background-position: left;
-  background-repeat: no-repeat;
-
-  h2 {
-    text-align: center;
-    margin: 0 auto 50px auto;
-    width: 220px;
-  }
-
-  .second-banner-list-items {
-    .second-banner-list-item {
-      img {
-        margin-right: 26px;
-      }
-
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      list-style: none;
-      margin-bottom: 50px;
-
+  .container {
+    padding: 150px 0;
+    h1 {
+      margin: 0;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+      font-size: 32px;
+      font-weight: bold;
+    }
+    #tagline {
+      margin: 40px 0;
+      font-size: 22px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     }
 
-  }
-
-  .second-banner-text {
-    text-align: justify;
-  }
-
-  ul{
-    padding-inline-start: 0px;
-  }
-
-  .icon-bulletpoint{
-    width: 50px;
+    .banner-subtext {
+      font-size: 18px;
+      line-height: 1.5;
+    }
   }
 }
 
 @media (max-width: 900px) {
-  .second-banner {
-    width: 100%;
-    margin: 0;
-    margin-bottom: 150px;
-    padding: 0;
-    height: fit-content;
-  }
 
-  .second-banner-list-items {
-    margin: 15px auto 15px auto;
-
-    .second-banner-list-item {
-      margin: 0 auto 50px auto;
-      width: 100%;
-    }
-  }
 }
 
 @media (max-width: 400px) {
   .banner {
     padding: 0 20px;
-  }
-
-  .second-banner-list-items {
-    .second-banner-list-item {
-      img {
-        margin-bottom: 26px;
-        margin-right: 0;
-      }
-
-      flex-direction: column;
-    }
   }
 }

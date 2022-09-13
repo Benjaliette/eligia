@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :orders, dependent: :destroy
+  has_many :notifications, through: :orders
 
   validates :first_name, :last_name,
             presence: true,

@@ -1,25 +1,82 @@
 <% content_for :title, "Mon espace - Eligia" %>
 
+<% content_for :scroll_navbar, 'scroll-navbar' %>
+<% content_for :home_navbar, 'home-navbar' %>
 <%= render 'shared/navbar' %>
 
-
 <turbo-frame id="content">
-  <div class="user-dashboard-grid">
-    <div class="user-dashboard-navigation">
-      <div class="user-dashboard-navigation-top">
-        <p>Bonjour <strong><%= current_user.first_name %></strong><p>
-      </div>
-      <div class='tab current-tab'>
-        <p>Informations personnelles</p>
-      </div>
-      <%= link_to user_orders_path(current_user), class: 'tab other-tab' do %>
-          <p>Mes démarches</p>
-      <% end %>
-    </div>
 
+  <div class="banner user-banner">
+    <div class="container">
+      <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
+      <p><em>Bienvenue sur votre espace personnel</em></p>
 
-    <div class="user-dashboard-content">
-      <%= render 'account_infos', user: current_user %>
+      <div class="main-user-card">
+        <div class="main-user-card-grid">
+          <div class="main-user-card-last-order">
+            <div class='underline'>Dernière démarche :</div>
+            <div><%= "#{@last_order.deceased_first_name} #{@last_order.deceased_last_name}" %></div>
+            <div>Créée le <%= @orders.last.created_at.strftime('%d/%m/%y') %></div>
+          </div>
+          <div class="main-user-card-last-order">
+            <div class='underline'>Statut :</div>
+            <div><%= @last_order.state_to_french %></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="container">
+    <div class="user-dashboard-grid">
+      <div class="user-dashboard-left">
+        <section id="user-orders">
+          <h2 class="dashboard-title">Vos démarches</h2>
+          <div class="user-dashboard-content">
+            <% @orders.each do |order| %>
+              <%= link_to order_path(order) do %>
+                <%= render "orders/order_dashboard_card", order: order %>
+              <% end %>
+            <% end %>
+          </div>
+        </section>
+        <section id="user-infos">
+          <h2 class="dashboard-title">Vos informations personnelles</h2>
+
+            <div class="account-infos-title">
+            </div>
+            <div class="account-infos-description">
+              <div class="margin-bottom-five"><span class='underline'>Mail :</span> <%= @current_user.email %></div>
+              <div class="margin-bottom-five"><span class='underline'>Nom :</span> <%= "#{@current_user.first_name} #{@current_user.last_name}" %></div>
+              <div class="margin-bottom-five"><span class='underline'>Adresse de facturation :</span>
+                <% if @current_user.address %>
+                  <%= @current_user.address %>
+                <% else %>
+                  <span class="account-infos-description-address">Vous n'avez pas encore renseigné d'adresse</span>
+                <% end %>
+              </div>
+              <div class="margin-bottom-five">Mot de passe : ************</div>
+              <%= link_to "Modifier vos informations", edit_user_registration_path(@current_user), class: 'btn-principal small' %>
+            </div>
+        </section>
+      </div>
+      <div class="user-dashboard-right">
+        <div class="notification-card">
+          <h2 class="home-subtitle">Notifications</h2>
+          <ul class="notification-list">
+            <% @notifications.each do |notification| %>
+              <li class="notification-list-item">
+                <div class="notification-content"><%= notification.content %></div>
+                <% notification_time = (Date.today - notification.created_at.to_datetime).to_i %>
+                <div class="notification-date"><%= notification_time < 1 ? "Aujourd'hui" : "Il y a #{notification_time} jours" %></div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </turbo-frame>
+
+<%= render 'shared/footer' %>

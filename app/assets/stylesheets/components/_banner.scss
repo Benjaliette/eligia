@@ -21,6 +21,11 @@
       line-height: 1.5;
     }
   }
+
+  &.user-banner {
+    height: 45vh;
+    position: relative;
+  }
 }
 
 @media (max-width: 900px) {

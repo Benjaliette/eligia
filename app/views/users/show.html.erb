@@ -14,14 +14,21 @@
       <div class="main-user-card">
         <div class="main-user-card-grid">
           <div class="main-user-card-last-order">
-            <div class='underline'>Dernière démarche :</div>
-            <div><%= "#{@last_order.deceased_first_name} #{@last_order.deceased_last_name}" %></div>
-            <div>Créée le <%= @orders.last.created_at.strftime('%d/%m/%y') %></div>
+            <% if @last_order %>
+              <div class='underline'>Dernière démarche :</div>
+              <div><%= "#{@last_order.deceased_first_name} #{@last_order.deceased_last_name}" %></div>
+              <div>Créée le <%= @orders.last.created_at.strftime('%d/%m/%y') %></div>
+            <% else %>
+              <div>Vous n'avez pas encore réalisé de démarche</div>
+            <% end %>
           </div>
-          <div class="main-user-card-last-order">
-            <div class='underline'>Statut :</div>
-            <div><%= @last_order.state_to_french %></div>
-          </div>
+
+          <% if @last_order %>
+            <div class="main-user-card-last-order">
+              <div class='underline'>Statut :</div>
+              <div><%= @last_order.state_to_french %></div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

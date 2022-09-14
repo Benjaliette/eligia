@@ -21,12 +21,7 @@
       text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     }
 
-    .banner-subtext {
-      font-size: 18px;
-      line-height: 1.5;
-    }
-
-    .btn-call-to-a{
+    .btn-call-to-a {
       margin-left: 0px;
     }
   }
@@ -34,9 +29,13 @@
   &.user-banner {
     height: 45vh;
     position: relative;
+
+    .container {
+      padding: 40vh 0 10vh 0;
+    }
   }
 
-  .banner-image{
+  .banner-image {
     width: 40%;
   }
 }
@@ -50,14 +49,28 @@
 @media (max-width: 900px) {
   .banner {
     background: $mobile-gradient-bg;
+    padding: 0px 10vw;
+
+    &.user-banner {
+      .container {
+        padding: 25vh 0 10vh 0;
+      }
+    }
    }
-   
+
   .banner-image{
     display: none;
   }
 }
 
 @media (max-width: 500px) {
+  .banner {
+    &.user-banner {
+      .container {
+        padding: 44vh 0 10vh 0;
+      }
+    }
+   }
 }
 
 @media (max-width: 400px) {

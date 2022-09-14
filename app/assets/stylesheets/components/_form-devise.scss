@@ -1,13 +1,9 @@
 .form-div{
   text-align: center;
-  background-color: white;
-  box-shadow: 0px 0px 4px lightgray;
-  border-radius: 8px;
-  margin: 0px auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  padding: 20px 50px;
-  width: 80%;
+  height: 80vh;
+  margin-left: 40%;
+  background: $off-white;
+  padding: 100px 50px;
 
   form{
     margin-top: 50px;
@@ -129,46 +125,9 @@
     }
   }
 
-  @media (max-width: 900px) {
-    .form-inputs > .input{
-      width: 70%;
-    }
-    .input > input {
-      font-size: 14px;
-    }
-    label.checkbox{
-      font-size: 14px;
-    }
-    a {
-      font-size: 14px;
-    }
-    .show-password-devise > .input{
-      width: 70%;
-      margin-left: 27px;
-    }
-  }
-
-  @media (max-width: 500px) {
-    .form-inputs > .input{
-      width: 90%;
-    }
-    .input > input {
-      font-size: 12px;
-    }
-    label.checkbox{
-      font-size: 12px;
-    }
-    a {
-      font-size: 12px;
-    }
-    .show-password-devise{
-      justify-content: space-between;
-      width: 90%;
-    }
-    .show-password-devise > .input{
-      margin-left: 0px;
-      flex-grow: 1;
-    }
+  &.doubled-form {
+    height: fit-content;
+    padding: 60px;
   }
 }
 
@@ -208,39 +167,10 @@
   }
 }
 
-// Style for user edit password
-
-.user_password {
-  &.field_without_errors {
-    width: initial;
-  }
-}
-
-.user_password_confirmation {
-  &.field_with_errors {
-    width: initial;
-    display: block;
-
-    input {
-      width: initial;
-    }
-  }
-
-  .error {
-    margin: 0;
-    display: block;
-    text-align: left;
-  }
-}
-
 @media (max-width: 900px) {
   .form-div{
-    padding: 15px 25px;
-  }
-
-  .form-div{
-    margin: 30px auto;
-    width: 85%;
+    padding: 100px 50px;
+    min-height: 160vh;
 
     .form-inputs {
       .form-inputs-block, .form-inputs-block-address {
@@ -249,14 +179,71 @@
         label {
           width: 170px;
           text-align: left;
-          font-size: 12px;
         }
       }
     }
+  }
 
+  .form-inputs > .input{
+    width: 70%;
   }
 
   .mapboxgl-ctrl-geocoder--input {
+    font-size: 1px;
+  }
+
+  .show-password-devise > .input{
+    width: 70%;
+    margin-left: 27px;
+  }
+}
+
+@media (max-width: 700px) {
+  .form-div{
+    text-align: center;
+    box-shadow: 0px 0px 4px lightgray;
+    border-radius: 8px;
+    background: $off-white;
+    margin: 0px auto;
+    padding: 20px 50px;
+    width: 60vw;
+    height: fit-content;
+    min-height: 55vh;
+
+    .form-inputs > .input {
+      width: 85%;
+    }
+
+    .show-password-devise > .input{
+      width: 85%;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .form-inputs > .input {
+    width: 90%;
+  }
+  .input > input {
     font-size: 12px;
+  }
+  label.checkbox{
+    font-size: 12px;
+  }
+  a {
+    font-size: 12px;
+  }
+  .show-password-devise{
+    justify-content: space-between;
+    width: 90%;
+  }
+  .show-password-devise > .input{
+    margin-left: 0px;
+    flex-grow: 1;
+  }
+
+  .form-div{
+    padding: 20px;
+    width: 70vw;
   }
 }

@@ -1,26 +1,28 @@
 <% content_for :title, "Contact - Eligia" %>
 
+<% content_for :scroll_navbar, 'scroll-navbar' %>
+<% content_for :home_navbar, 'home-navbar' %>
 <%= render 'shared/navbar' %>
-<div class="container">
-  <div class="fullscreen">
-    <div class="form-order-div margin-top-five">
-      <div class='form-order-infos'>
-        <h2>N'hésitez pas à entrer en contact avec nous</h2>
-        <p>
-          Pour en savoir plus sur notre service ou pour poser n'importe quelle question,
-          veuillez remplir le formulaire ci-dessous
-        </p>
-      </div>
+<div class="true-fullscreen gradient-bg mobile-contact-grid">
+  <div class="contact-grid">
+    <div class='contact-form-part'>
+      <h2 class="dashboard-title">Contactez nous</h2>
+      <p class="margin-top-five margin-bottom-five">
+        Pour en savoir plus sur notre service ou pour poser n'importe quelle question,
+        veuillez remplir le formulaire ci-dessous
+      </p>
 
       <%= simple_form_for @message do |f| %>
-        <div class="form-name-div">
-          <%= f.input :name,
-                          label: 'Votre nom',
-                          input_html: { class: 'form-name-input' },
-                          autofocus: true %>
-          <%= f.input :email,
-                          label: 'Votre email',
-                          input_html: { class: 'form-name-input' } %>
+        <div class="contact-form">
+          <div class="contact-form-head">
+            <%= f.input :name,
+                            label: 'Votre nom',
+                            input_html: { class: 'form-name-input' },
+                            autofocus: true %>
+            <%= f.input :email,
+                            label: 'Votre email',
+                            input_html: { class: 'form-name-input' } %>
+          </div>
           <%= f.input :body,
                           label: 'Votre message',
                           as: :text,

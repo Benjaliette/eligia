@@ -2,34 +2,19 @@
 <%= render 'shared/navbar' %>
 
 <turbo-frame id="content">
-  <div class="user-dashboard-grid">
-    <div class="user-dashboard-navigation">
-      <div class="user-dashboard-navigation-top">
-          <p>Bonjour <strong><%= current_user.first_name %></strong><p>
-      </div>
-      <%= link_to user_path(current_user), class: 'tab other-tab' do %>
-          <p>Informations personnelles</p>
-      <% end %>
-      <div class='tab current-tab'>
-          <p>Mes démarches</p>
-      </div>
-      <div class="tab-details">
-        <ul>
-          <% @orders.each do |order| %>
-            <% if order == @order %>
-              <li class="current-order"><%= link_to "#{order.deceased_first_name} #{order.deceased_last_name}", order_path(order) %></li>
-            <% else %>
-              <li><%= link_to "#{order.deceased_first_name} #{order.deceased_last_name}", order_path(order) %></li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-    </div>
 
+  <div class="banner user-banner">
+    <div class="container">
+      <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
+      <p><em>Bienvenue sur votre espace personnel</em></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <%= link_to '← retour', user_path(@current_user), class: 'btn-third small margin-top-five' %>
     <div class="user-dashboard-content">
-      <h2>Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></h2>
-      Avancée du dossier : <span class='underline'><%= @order.state_to_french %></span>
-      <br><br>
+      <h2 class="dashboard-title">Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></h2>
+      <span class='underline'>Avancée du dossier :</span> <%= @order.state_to_french %>
       <div class='order-account-cards'>
         <% @order.order_accounts.each do |order_account| %>
           <%= render "order_account_card", order_account: order_account %>
@@ -37,4 +22,10 @@
       </div>
     </div>
   </div>
+
+
+</turbo-frame>
+
+<turbo-frame id="content">
+
 <turbo-frame>

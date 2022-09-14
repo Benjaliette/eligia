@@ -54,8 +54,22 @@
 
 .user-dashboard-grid{
   display: grid;
-  grid-template-columns: 1fr 5fr;
-  min-height: calc(100vh - #{$navbar-height});
+  grid-template-columns: 1.5fr 1fr;
+  margin-top: 20vh;
+  grid-gap: 40px;
+
+  .user-dashboard-content{
+    width: 100%;
+  }
+}
+
+.user-dashboard-content{
+  width: 100%;
+  margin-top: 75px;
+
+  h2 {
+    margin-bottom: 50px;
+  }
 }
 
 .user-dashboard-navigation{
@@ -130,9 +144,7 @@
   opacity: 1;
 }
 
-.user-dashboard-content{
-  padding: 30px;
-}
+
 
 @media (max-width: 900px) {
   .user-dashboard-grid{

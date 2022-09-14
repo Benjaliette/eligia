@@ -49,7 +49,7 @@ RSpec.describe "orders", type: :system do
 
     it "Navigates to user dashboard" do
       visit "/utilisateurs/Joe"
-      expect(page).to have_text("Bonjour Tester")
+      expect(page).to have_text("Tester Joe")
     end
   end
 end

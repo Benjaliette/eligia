@@ -72,7 +72,7 @@
   text-decoration: none;
   padding: 10px 30px;
   border-radius: 10px;
-  display: inline-block;
+  display: inline;
   cursor: pointer;
 
   &:hover{
@@ -84,8 +84,8 @@
 
 .btn-third.small {
   padding: 5px 15px;
-  font-weight: regular;
   font-size: 12px;
+  height: fit-content;
 }
 
 

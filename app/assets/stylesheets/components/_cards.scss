@@ -105,7 +105,6 @@
   width: 100%;
   height: 25vh;
   margin: 3vh auto;
-
   border-radius: 10px;
   background: $super-light-gray;
   box-shadow: 0px 2px 4px grey;
@@ -117,7 +116,6 @@
 
   .main-user-card-grid {
     width: 100%;
-
     display: grid;
     grid-template-columns: 1fr 1fr;
 
@@ -133,13 +131,10 @@
 
 .notification-card {
   height: 70vh;
-  width: 100%;
-
   border-radius: 10px;
   background: white;
   box-shadow: 0px 2px 4px grey;
   padding: 15px;
-
   position: sticky;
   top: 100px;
 
@@ -150,7 +145,6 @@
     .notification-list-item {
       margin: 5px 0px;
       padding-bottom: 20px;
-
       border-bottom: 1px solid $gray;
 
       &:last-child {
@@ -339,7 +333,6 @@
     box-shadow: 0px 0px 2px lightgrey;
 
     padding: 20px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -370,9 +363,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 50px;
-
   list-style: none;
-
   padding: 50px;
 
   .service-card {
@@ -381,7 +372,6 @@
     border: 1px solid $gray;
     border-radius: 10px;
     padding: 20px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -400,6 +390,13 @@
 @media (max-width: 900px) {
   .home-infos-list {
     min-height: 1000px;
+  }
+
+  .main-user-card {
+    width: 80%;
+    position: absolute;
+    left: 10vw;
+    top: 33vh;
   }
 
   .order-account-cards {
@@ -455,6 +452,21 @@
 }
 
 @media (max-width: 500px) {
+  .main-user-card {
+    position: initial;
+    width: 100%;
+
+    .main-user-card-grid {
+      .main-user-card-last-order {
+        padding: 5px 15px;
+
+        &:first-child {
+          border-right: 0px solid $gray;
+        }
+      }
+    }
+  }
+
   .order-account-cards {
     grid-template-columns: 1fr;
   }

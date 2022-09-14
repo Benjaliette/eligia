@@ -89,7 +89,7 @@
       </div>
       <div class="func-infos">
         <div class="func-infos-text" id="contrats" data-home-function-target='infoDiv'>
-          <h3>Choisir les contrats</h3>
+          <h3>1. Choisir les contrats</h3>
           <p>
             La première étape consiste à sélectionner les contrats du défunt que vous souhaitez résilier. <br><br>
 
@@ -103,7 +103,7 @@
 
         </div>
         <div class="func-infos-text disapear" id="documents" data-home-function-target='infoDiv'>
-          <h3>Saisir les informations nécessaires</h3>
+          <h3>2. Saisir les informations nécessaires</h3>
           <p>
             Après avoir établi la liste des comptes à résilier, vous pourrez nous fournir les
             documents nécessaires pour démarrer les démarches de résiliation.<br><br>
@@ -112,29 +112,31 @@
             automatiquement supprimées de eligia.fr à la clôture de votre dossier.
           </p>
           <div class="d-flex align-items-flex-end">
-            <%= image_tag('icon-upload', class:'icon-infos', alt:'icone sélection contrats') %>
+            <%= image_tag('icon-upload', class:'icon-infos', alt:'icone saisie des informations') %>
             <%= link_to 'en savoir plus', contrats_helps_path, target: "_blank", class: 'btn-third small' %>
           </div>        </div>
         <div class="func-infos-text disapear" id="recapitulatif" data-home-function-target='infoDiv'>
+        <h3>3. Récapitulatif</h3>
           <p>
-            Le récapitulatif est la dernière étape de votre demande. C'est à ce moment là qu'il faudra
-            vérifier que vous nous avez renseigné tous les contrats à résilier ainsi qu'une majorité des
-            informations nécessaires.<br><br>
+            Le récapitulatif permet de valider la commande. Vérifiez que vous avez saisi tous les contrats à résilier, après cette étape il ne sera plus possible d'en rajouter !<br><br>
 
-            Si vous n'avez pas tous les documents en votre possession, vous pourrez toujours nous les
-            fournir après paiement sur votre espace personnel.
+            Les informations et documents manquants peuvent être ajoutés après paiement depuis votre espace personnel.
           </p>
-          <%= link_to 'en savoir plus', recapitulatif_helps_path, target: "_blank", class: 'btn-third small' %>
+          <div class="d-flex align-items-flex-end">
+            <%= image_tag('icon-recap', class:'icon-infos', alt:'icone récapitulatif') %>
+            <%= link_to 'en savoir plus', contrats_helps_path, target: "_blank", class: 'btn-third small' %>
+          </div>
         </div>
         <div class="func-infos-text disapear" id="paiement" data-home-function-target='infoDiv'>
+        <h3>4. Paiement</h3>
           <p>
-            Eligia propose un système de paiement par forfait qui vous permet de payer votre démarche à un prix juste
-            en fonction du nombre de comptes à résilier.<br><br>
-
-            Après paiement, vous ne pourrez plus rajouter de contrats à résilier, il faudra donc être
-            sûr que vous nous avez fourni la liste complète de ces derniers.
+            Le paiement s'effectue par carte à travers une interface 100% sécurisée, directement depuis le site. <br><br>
+            Eligia propose une tarification qui s'adapte au nombre de comptes à résilier.
           </p>
-          <%= link_to 'en savoir plus', tarifs_helps_path, target: "_blank", class: 'btn-third small' %>
+          <div class="d-flex align-items-flex-end">
+            <%= image_tag('icon-paiement', class:'icon-infos', alt:'icone paiement') %>
+            <%= link_to 'en savoir plus', contrats_helps_path, target: "_blank", class: 'btn-third small' %>
+          </div>
         </div>
       </div>
     </div>

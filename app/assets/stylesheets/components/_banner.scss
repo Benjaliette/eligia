@@ -1,14 +1,20 @@
 .banner {
+  display: flex;
+  padding: 0px 150px 0px 150px;
+  justify-content: center;
+  align-items: center;
   background: $gradient-bg;
 
   .container {
     padding: 20vh 0 10vh 0;
+
     h1 {
       margin: 0;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
       font-size: 32px;
       font-weight: bold;
     }
+
     #tagline {
       margin: 40px 0;
       font-size: 22px;
@@ -19,11 +25,25 @@
       font-size: 18px;
       line-height: 1.5;
     }
+
+    .btn-call-to-a{
+      margin-left: 0px;
+    }
   }
 
   &.user-banner {
     height: 45vh;
     position: relative;
+  }
+
+  .banner-image{
+    width: 40%;
+  }
+}
+
+@media(min-width:901px){
+  .container{
+    width: 650px;
   }
 }
 
@@ -31,6 +51,10 @@
   .banner {
     background: $mobile-gradient-bg;
    }
+   
+  .banner-image{
+    display: none;
+  }
 }
 
 @media (max-width: 500px) {

@@ -1,7 +1,10 @@
-<h3 class="no-margin padding-three"> Documents et informations à fournir </h3>
+<% @order_documents = order_account.non_uploaded_order_documents %>
+
+<% unless @order_documents.empty? %>
+  <h3 class="no-margin padding-three"> Documents et informations à fournir </h3>
+<% end %>
 
 <div class="form-order-div">
-  <% @order_documents = order_account.non_uploaded_order_documents %>
 
     <% if @order_documents.empty? %>
       <div class='align-center'>

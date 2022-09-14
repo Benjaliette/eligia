@@ -133,7 +133,6 @@
 
 .notification-card {
   height: 70vh;
-  width: 100%;
 
   border-radius: 10px;
   background: white;
@@ -402,6 +401,14 @@
     min-height: 1000px;
   }
 
+  .main-user-card {
+    width: 80%;
+
+    position: absolute;
+    left: 10vw;
+    top: 33vh;
+  }
+
   .order-account-cards {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -455,6 +462,21 @@
 }
 
 @media (max-width: 500px) {
+  .main-user-card {
+    position: initial;
+    width: 100%;
+
+    .main-user-card-grid {
+      .main-user-card-last-order {
+        padding: 5px 15px;
+
+        &:first-child {
+          border-right: 0px solid $gray;
+        }
+      }
+    }
+  }
+
   .order-account-cards {
     grid-template-columns: 1fr;
   }

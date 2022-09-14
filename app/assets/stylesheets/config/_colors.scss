@@ -1,5 +1,6 @@
 $red: #FD1015;
 $blue: #7AB5CE;
+$strong-blue: #00587d;
 $yellow: #ffe54c;
 $orange: #ff7700;
 $green: #244d2c;
@@ -9,4 +10,7 @@ $ultra-light-green: #FAFFFA;
 $gray: #333333;
 $light-gray: #dfdede;
 $super-light-gray: #F4F4F4;
-$off-white: #fbfbfb
+$off-white: #fbfbfb;
+
+$gradient-bg: conic-gradient(from 244.13deg at 157.71% -58.21%, rgba(122, 181, 206, 0.22) -4.22deg, rgba(161, 219, 209, 0.37) 0.8deg, #FAFDFA 11.29deg, #92CD9E 33.63deg, rgba(255, 255, 255, 0) 309.47deg, rgba(255, 229, 76, 0.41) 328.17deg, rgba(220, 252, 94, 0.33) 332.9deg, rgba(143, 204, 155, 0.47) 347.23deg, rgba(122, 181, 206, 0.22) 355.78deg, rgba(161, 219, 209, 0.37) 360.8deg);
+$mobile-gradient-bg: conic-gradient(from 244.13deg at 157.71% -58.21%, rgba(122, 181, 206, 0.22) -4.22deg, rgba(161, 219, 209, 0.37) 0.8deg, #FAFDFA 11.29deg, #92CD9E 33.63deg, rgba(255, 229, 76, 0.41) 276.56deg, rgba(255, 255, 255, 0) 309.47deg, rgba(220, 252, 94, 0.33) 310.94deg, rgba(143, 204, 155, 0.47) 339.6deg, rgba(122, 181, 206, 0.22) 355.78deg, rgba(161, 219, 209, 0.37) 360.8deg);

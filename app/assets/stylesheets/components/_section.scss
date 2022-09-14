@@ -7,6 +7,13 @@
 #function {
   padding: 100px 0px;
   text-align: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#user-orders, #user-infos {
+  margin-bottom: 100px;
 }
 
 @media (max-width: 500px) {

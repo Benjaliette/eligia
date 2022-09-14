@@ -1,4 +1,9 @@
 FactoryBot.define do
+  factory :notification do
+    content { "MyString" }
+    order { nil }
+  end
+
   # User
   factory :user do
     first_name { "John" }

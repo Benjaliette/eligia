@@ -10,6 +10,7 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
   has_many :order_accounts, dependent: :destroy
   has_many :order_documents, dependent: :destroy
+  has_many :notifications
 
   validates :deceased_first_name, :deceased_last_name,
             presence: { message: "Veuillez saisir ce champ" },
@@ -37,8 +38,16 @@ class Order < ApplicationRecord
   def update_state
     if self.order_accounts.any? { |order_account| order_account.aasm_state == 'resiliation_sent' } && self.aasm_state == 'pending'
       self.declare_processing!
+      Notification.create(
+        content: "Nous avons envoyé toutes les demandes demandées de résiliation pour les contrats de #{self.deceased_first_name} #{self.deceased_last_name}",
+        order: self
+      )
     elsif self.order_accounts.all? { |order_account| order_account.aasm_state == 'resiliation_success' } && self.aasm_state != 'done'
       self.declare_done!
+      Notification.create(
+        content: "Tous les contrats de #{self.deceased_first_name} #{self.deceased_last_name} ont été résiliés.",
+        order: self
+      )
     end
   end
 

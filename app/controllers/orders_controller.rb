@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
   after_action :order_pundit, only: %i[show new change create edit update update_documents paiement recap success]
 
   def index
-    @orders = policy_scope(Order).where(paid: true).order(:deceased_last_name, :deceased_first_name)
   end
 
   def show

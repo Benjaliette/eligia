@@ -167,31 +167,6 @@
   }
 }
 
-// Style for user edit password
-
-.user_password {
-  &.field_without_errors {
-    width: initial;
-  }
-}
-
-.user_password_confirmation {
-  &.field_with_errors {
-    width: initial;
-    display: block;
-
-    input {
-      width: initial;
-    }
-  }
-
-  .error {
-    margin: 0;
-    display: block;
-    text-align: left;
-  }
-}
-
 @media (max-width: 900px) {
   .form-div{
     padding: 100px 50px;

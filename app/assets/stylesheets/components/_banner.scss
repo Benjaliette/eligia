@@ -1,14 +1,21 @@
 .banner {
+  height: 70vh;
+  display: flex;
+  padding: 0px 150px 0px 150px;
+  justify-content: center;
+  align-items: center;
   background: conic-gradient(from 244.13deg at 157.71% -58.21%, rgba(122, 181, 206, 0.22) -4.22deg, rgba(161, 219, 209, 0.37) 0.8deg, #FAFDFA 11.29deg, #92CD9E 33.63deg, rgba(255, 255, 255, 0) 309.47deg, rgba(255, 229, 76, 0.41) 328.17deg, rgba(220, 252, 94, 0.33) 332.9deg, rgba(143, 204, 155, 0.47) 347.23deg, rgba(122, 181, 206, 0.22) 355.78deg, rgba(161, 219, 209, 0.37) 360.8deg);
 
   .container {
     padding: 20vh 0 10vh 0;
+
     h1 {
       margin: 0;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
       font-size: 32px;
       font-weight: bold;
     }
+
     #tagline {
       margin: 40px 0;
       font-size: 22px;
@@ -19,17 +26,35 @@
       font-size: 18px;
       line-height: 1.5;
     }
+
+    .btn-call-to-a{
+      margin-left: 0px;
+    }
   }
 
   &.user-banner {
     height: 45vh;
     position: relative;
   }
+
+  .banner-image{
+    width: 40%;
+  }
+}
+
+@media(min-width:901px){
+  .container{
+    width: 650px;
+  }
 }
 
 @media (max-width: 900px) {
   .banner {
     background: conic-gradient(from 244.13deg at 157.71% -58.21%, rgba(122, 181, 206, 0.22) -4.22deg, rgba(161, 219, 209, 0.37) 0.8deg, #FAFDFA 11.29deg, #92CD9E 33.63deg, rgba(255, 229, 76, 0.41) 276.56deg, rgba(255, 255, 255, 0) 309.47deg, rgba(220, 252, 94, 0.33) 310.94deg, rgba(143, 204, 155, 0.47) 339.6deg, rgba(122, 181, 206, 0.22) 355.78deg, rgba(161, 219, 209, 0.37) 360.8deg);
+  }
+
+  .banner-image{
+    display: none;
   }
 }
 

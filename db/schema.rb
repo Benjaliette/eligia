@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_13_122848) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_123205) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -125,6 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_13_122848) do
     t.integer "price_cents", default: 0, null: false
     t.integer "level", null: false
     t.text "description"
+    t.string "quantity_text"
   end
 
   create_table "subcategories", force: :cascade do |t|

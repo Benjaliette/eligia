@@ -83,16 +83,20 @@
 // List for homepage function section
 .func-grid {
   display: grid;
-  grid-template-columns: 2fr 5fr;
+  grid-template-columns: 3fr 5fr;
   margin-top: 70px;
 
+  // .title{
+  //   background-color: $super-light-green;
+  //   padding: 20px 0px 20px 0px;
+  //   border: solid 1px $super-light-green;  }
+
   .func-nav {
-    padding: 20px;
+    padding-right: px;
     text-align: left;
 
     .func-nav-items {
       list-style: none;
-      padding: 1px;
       border-right: 3px solid $super-light-green;
 
       .func-nav-item {
@@ -101,16 +105,14 @@
         cursor: pointer;
 
         &:hover{
-          p {
-            transform: scale(1.02);
-            transition: all ease .07s;
-            text-shadow: 0px 1px 1px $light-gray;
-          }
+          transform: scale(1.03);
+          transition: all ease .07s;
+          text-shadow: 0px 1px 1px $light-gray;
         }
 
         &.current-item {
           font-weight: bold;
-          background-color: $super-light-green;
+          padding-left: 20px;
         }
       }
     }
@@ -118,7 +120,7 @@
 
   .func-infos {
     text-align: justify;
-    padding: 50px 40px;
+    padding-left: 40px;
     position: relative;
 
     .func-infos-text {

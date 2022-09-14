@@ -8,7 +8,7 @@
       <p id='tagline'>Simplifier les démarches pour se concentrer sur le deuil</p>
       <%= link_to "Commencer", new_order_path, class:"btn-call-to-a" %>
   </div>
-    <%= image_tag('illustration-banner-home.svg', class:'banner-image') %>
+    <%= image_tag('illustration-banner-home.svg', class:'banner-image', alt:'icone résiliation') %>
 </div>
 
 
@@ -64,54 +64,56 @@
               id="contrats"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            <p>Étape 1 : les contrats</p>
+            Étape 1 : les contrats
           </li>
           <li class="func-nav-item"
               id="documents"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            <p>Étape 2 : les documents</p>
+            Étape 2 : les documents
             </li>
           <li class="func-nav-item"
               id="recapitulatif"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            <p>Étape 3 : le récapitulatif</p>
+            Étape 3 : le récapitulatif
           </li>
           <li class="func-nav-item"
               id="paiement"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            <p>Étape 4 : le paiement</p>
+            Étape 4 : le paiement
           </li>
         </ul>
       </div>
       <div class="func-infos">
         <div class="func-infos-text" id="contrats" data-home-function-target='infoDiv'>
+          <h3>Choisir les contrats</h3>
           <p>
-            Au commencement de la démarche, il vous est demandé de sélectionner les contrats du défunt que vous souhaitez résilier.
+            La première étape consiste à sélectionner les contrats du défunt que vous souhaitez résilier. <br><br>
 
-            La première étape de la création de votre démarche sera uniquement
-            dédiée à la création de cette liste d'abonnements.<br><br>
-
-            Grâce à cette liste, nous pourrons ensuite connaitre la liste des documents
-            nécessaires pour l'envoi des demandes de résiliation aux différentes entreprises concernées.
+            Grâce à cette liste, nous pourrons ensuite vous demander les informations et documents
+            nécessaires à la résiliation des divers contrats.
           </p>
-          <%= link_to 'en savoir plus', contrats_helps_path, target: "_blank", class: 'btn-third small' %>
+          <div class="d-flex align-items-flex-end">
+            <%= image_tag('icon-subscription', class:'icon-infos', alt:'icone sélection contrats') %>
+            <%= link_to 'en savoir plus', contrats_helps_path, target: "_blank", class: 'btn-third small' %>
+          </div>
+
         </div>
         <div class="func-infos-text disapear" id="documents" data-home-function-target='infoDiv'>
+          <h3>Saisir les informations nécessaires</h3>
           <p>
             Après avoir établi la liste des comptes à résilier, vous pourrez nous fournir les
             documents nécessaires pour démarrer les démarches de résiliation.<br><br>
 
-            Les documents en question seront à importer. Ce processus interviendra lors de la deuxième
-            étape de création de la démarche.<br><br>
-
-            En accord avec les lois européennes de protection des données, ces informations seront
-            automatiquement supprimées de eligia.fr.
+            En accord avec les lois européennes de protection des données RGPD, ces informations seront
+            automatiquement supprimées de eligia.fr à la clôture de votre dossier.
           </p>
-          <%= link_to 'en savoir plus', documents_helps_path, target: "_blank", class: 'btn-third small' %>
-        </div>
+          <div class="d-flex align-items-flex-end">
+            <%= image_tag('icon-upload', class:'icon-infos', alt:'icone sélection contrats') %>
+            <%= link_to 'en savoir plus', contrats_helps_path, target: "_blank", class: 'btn-third small' %>
+          </div>        </div>
         <div class="func-infos-text disapear" id="recapitulatif" data-home-function-target='infoDiv'>
           <p>
             Le récapitulatif est la dernière étape de votre demande. C'est à ce moment là qu'il faudra

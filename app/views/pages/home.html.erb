@@ -17,14 +17,14 @@
     <h2 class="home-title">Notre service</h2>
 
     <p>
-      Eligia est un outil digital permettant de résilier les abonnements d'un proche suite à son décès.<br><br>
-      Nous nous occupons de tout et vous tenons au courant de l’avancée des démarches.
+      <em>Eligia</em> est un outil digital permettant de résilier les abonnements d'un proche suite à son décès.<br><br>
+      <strong>Nous nous occupons de tout. Vous pouvez suivre l'avancée des démarches en temps réel.</strong>
     </p>
 
     <ul class="service-cards">
       <li class="service-card">
         <%= image_tag('icon-fast.svg', alt:'icone rapidité', class: 'service-card-img')%>
-        <div class="service-card-text">Démarche effectuée en <span class="highlight-yellow">quelques minutes</span> : il suffit de renseigner les comptes à résilier et de joindre les documents nécessaires</div>
+        <div class="service-card-text">Demande en ligne effectuée en <span class="highlight-yellow">quelques minutes</span> : <br> il suffit de renseigner les comptes à résilier et de joindre les documents nécessaires !</div>
       </li>
       <li class="service-card">
         <%= image_tag('icon-list.svg', alt:'icone vaste choix', class: 'service-card-img')%>
@@ -32,11 +32,11 @@
       </li>
       <li class="service-card">
         <%= image_tag('icon-price.svg', alt:'icone prix attractif', class: 'service-card-img')%>
-        <div class="service-card-text">Un forfait <span class="highlight-yellow">attractif</span> : nos tarifs s'adaptent à vos besoins</div>
+        <div class="service-card-text"><span class="highlight-yellow">Un prix attractif</span> : nos tarifs s'adaptent à vos besoins</div>
       </li>
       <li class="service-card">
         <%= image_tag('icon-dashboard.svg', alt:'icone suivi avec tableau de bord', class: 'service-card-img')%>
-        <div class="service-card-text">Un suivi <span class="highlight-yellow">facile</span> : grâce à un tableau de bord personnalisé qui vous permet de suivre facilement l'avancée des démarches depuis chez vous</div>
+        <div class="service-card-text"><span class="highlight-yellow">Un suivi en direct</span> : grâce à un tableau de bord personnalisé qui vous permet de suivre facilement l'avancée des démarches depuis chez vous</div>
       </li>
     </ul>
   </div>
@@ -45,47 +45,51 @@
 <section id="function" style="background-image: linear-gradient(rgba(255,255,255,0.4),rgba(255,255,255,0.4)), url(<%= image_path 'green-gradient-bg' %>)">
   <div class="container">
     <h2 class="home-title">Comment ça fonctionne ?</h2>
-
-    <p>
-      Pour démarrer une démarche sur eligia, il vous suffit de sélectionner les comptes à résilier
-      puis de fournir les documents demandés.<br><br>
-      A partir de ce moment-là, nous prenons le relais.
+    <p class="padding-top-three padding-bottom-three">
+      <strong>Pour démarrer une démarche sur eligia, il vous suffit de sélectionner les comptes à résilier
+      puis de fournir les documents demandés.</strong>
     </p>
+    <p>
+      A partir de ce moment-là, <span class='underline'>nous prenons le relais.</span>
+    </p>
+
 
     <div class="func-grid" data-controller="home-function">
       <div class="func-nav">
         <ul class="func-nav-items">
+          <li>
+            <p class="padding-two highlight-yellow bold align-center">Une procédure en 4 étapes<p>
+          </li>
           <li class="func-nav-item current-item"
               id="contrats"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            Les contrats
+            <p>Étape 1 : les contrats</p>
           </li>
           <li class="func-nav-item"
               id="documents"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            Les documents
+            <p>Étape 2 : les documents</p>
             </li>
           <li class="func-nav-item"
               id="recapitulatif"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            Le récapitulatif
+            <p>Étape 3 : le récapitulatif</p>
           </li>
           <li class="func-nav-item"
               id="paiement"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            Le paiement
+            <p>Étape 4 : le paiement</p>
           </li>
         </ul>
       </div>
       <div class="func-infos">
         <div class="func-infos-text" id="contrats" data-home-function-target='infoDiv'>
           <p>
-            Au commencement de la démarche, nous vous proposons de nous fournir la liste des contrats que
-            le défunt avait et que vous souhaitez résilier.<br><br>
+            Au commencement de la démarche, il vous est demandé de sélectionner les contrats du défunt que vous souhaitez résilier.
 
             La première étape de la création de votre démarche sera uniquement
             dédiée à la création de cette liste d'abonnements.<br><br>

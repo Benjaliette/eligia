@@ -477,6 +477,8 @@
     width: 100%;
 
     .main-user-card-grid {
+      grid-template-columns: 1fr;
+
       .main-user-card-last-order {
         padding: 5px 15px;
 

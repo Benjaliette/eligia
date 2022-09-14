@@ -278,7 +278,17 @@
   font-size: larger;
 }
 
+.font-size-smaller{
+  font-size: smaller;
+}
+
 // Position
 .on-top {
   z-index: 20;
+}
+
+
+// Background
+.gradient-bg {
+  background: $gradient-bg;
 }

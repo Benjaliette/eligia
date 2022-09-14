@@ -311,16 +311,22 @@
     }
 
     .tarif-card-top{
-      font-size: 22px;
+      font-size: 26px;
       font-weight: bold;
       height: 30%;
       width: 20%;
     }
 
 
-    .tarif-card-description {
-      justify-content: flex-start;
-      flex-grow: 1;
+    .tarif-card-quantity > p {
+      text-align: center;
+      font-size: larger;
+      font-weight: 600;
+    }
+
+    .tarif-card-description > p {
+      padding-top: 30px;
+      text-align: center;
     }
   }
 
@@ -441,11 +447,15 @@
           width: 75%;
         }
 
+        .tarif-card-quantity > p {
+          padding: 15px;
+        }
+
         .tarif-card-description {
-          display: flex;
-          align-items: center;
           p {
             font-size: 14px;
+            text-align: center;
+            padding-top: 15px;
           }
         }
       }

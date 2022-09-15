@@ -38,7 +38,7 @@ class Order < ApplicationRecord
   def update_state
     if self.order_accounts.all? { |order_account| order_account.resiliation_sent? } && self.pending?
       self.declare_processing!
-    elsif self.order_accounts.all? { |order_account| order_account.resiliation_success? } && self.aasm_state.processing?
+    elsif self.order_accounts.all? { |order_account| order_account.resiliation_success? } && self.processing?
       self.declare_done!
     end
   end
@@ -92,7 +92,7 @@ class Order < ApplicationRecord
 
   def update_order_account_status
     self.order_accounts.each do |order_account|
-      if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) } && order_account.aasm_state == 'document_missing'
+      if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) } && order_account.document_missing?
         order_account.declare_pending!
       end
     end

@@ -46,7 +46,7 @@
 // ==== LIST FOR ORDER CREATION STEPS (PARTIAL) ==== //
 
 .steps {
-  position: fixed;
+  // position: fixed;
   top: 0;
   width: 14vw;
   display: flex;
@@ -214,6 +214,8 @@
   }
 
   .steps {
+    padding: 10px;
+
     .step {
       p {
         font-size: 14px;

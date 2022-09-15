@@ -143,8 +143,6 @@
   }
 
   .form-name-input {
-    // position: absolute;
-    // left: 300px;
     margin: 10px 0 20px 20px;
     height: 30px;
     width: 300px;
@@ -179,9 +177,10 @@
 }
 
 .form-order-div {
-  position: sticky;
-  overflow-y: scroll;
-  background: white;
+  // position: sticky;
+  overflow-y:scroll;
+  // background: white;
+  background: aqua;
   max-width: 100%;
   border: solid 2px $light-green;
   border-bottom-width: 3px;
@@ -207,7 +206,9 @@
 }
 
 .form-order-right{
-  position: sticky;
+  overflow: hidden;
+  height: 100vh;
+  background-color: cornflowerblue;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -228,8 +229,10 @@
 }
 
 .form-order-steps {
-  position: sticky;
-  background-color: #fbfbfb;
+  // position: sticky;
+  // background-color: #fbfbfb;
+  height: 100vh;
+  background-color: pink;
 
   .logo {
     display: none;
@@ -362,7 +365,7 @@
   }
 
   .form-order-right {
-    display: none
+    display: none;
   }
 
   .form-order-steps {

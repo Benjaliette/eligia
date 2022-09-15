@@ -34,12 +34,10 @@ h1, h2, h3, h4 {
   min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
 }
 
-.true-fullscreen{
-  min-height: 100vh;
-
-  h2 {
-    margin-top: 50px;
-  }
+.fullscreen-no-footer{
+  min-height: calc(100vh - #{$navbar-height});
+  position: fixed;
+  width: 100vw;
 }
 
 a {
@@ -54,10 +52,4 @@ a {
 input:focus{
   outline-color: $blue;
   box-shadow: 0px 0px 4px lightgray;
-}
-
-@media (max-width: 900px) {
-  .true-fullscreen {
-    min-height: 160vh;
-  }
 }

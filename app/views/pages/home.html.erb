@@ -8,7 +8,7 @@
       <p id='tagline'>Simplifier les démarches pour se concentrer sur le deuil</p>
       <%= link_to "Commencer", new_order_path, class:"btn-call-to-a" %>
   </div>
-    <%= image_tag('illustration-banner-home.svg', class:'banner-image') %>
+    <%= image_tag('illustration-banner-home.svg', class:'banner-image', alt:'icone résiliation') %>
 </div>
 
 
@@ -17,14 +17,14 @@
     <h2 class="home-title">Notre service</h2>
 
     <p>
-      Eligia est un outil digital permettant de résilier les abonnements d'un proche suite à son décès.<br><br>
-      Nous nous occupons de tout et vous tenons au courant de l’avancée des démarches.
+      <em>Eligia</em> est un outil digital permettant de résilier les abonnements d'un proche suite à son décès.<br><br>
+      <strong>Nous nous occupons de tout. Vous pouvez suivre l'avancée des démarches en temps réel.</strong>
     </p>
 
     <ul class="service-cards">
       <li class="service-card">
         <%= image_tag('icon-fast.svg', alt:'icone rapidité', class: 'service-card-img')%>
-        <div class="service-card-text">Démarche effectuée en <span class="highlight-yellow">quelques minutes</span> : il suffit de renseigner les comptes à résilier et de joindre les documents nécessaires</div>
+        <div class="service-card-text">Demande en ligne effectuée en <span class="highlight-yellow">quelques minutes</span> : <br> il suffit de renseigner les comptes à résilier et de joindre les documents nécessaires !</div>
       </li>
       <li class="service-card">
         <%= image_tag('icon-list.svg', alt:'icone vaste choix', class: 'service-card-img')%>
@@ -32,11 +32,11 @@
       </li>
       <li class="service-card">
         <%= image_tag('icon-price.svg', alt:'icone prix attractif', class: 'service-card-img')%>
-        <div class="service-card-text">Un forfait <span class="highlight-yellow">attractif</span> : nos tarifs s'adaptent à vos besoins</div>
+        <div class="service-card-text"><span class="highlight-yellow">Un prix attractif</span> : nos tarifs s'adaptent à vos besoins</div>
       </li>
       <li class="service-card">
         <%= image_tag('icon-dashboard.svg', alt:'icone suivi avec tableau de bord', class: 'service-card-img')%>
-        <div class="service-card-text">Un suivi <span class="highlight-yellow">facile</span> : grâce à un tableau de bord personnalisé qui vous permet de suivre facilement l'avancée des démarches depuis chez vous</div>
+        <div class="service-card-text"><span class="highlight-yellow">Un suivi en direct</span> : grâce à un tableau de bord personnalisé qui vous permet de suivre facilement l'avancée des démarches depuis chez vous</div>
       </li>
     </ul>
   </div>
@@ -45,89 +45,98 @@
 <section id="function" style="background-image: linear-gradient(rgba(255,255,255,0.4),rgba(255,255,255,0.4)), url(<%= image_path 'green-gradient-bg' %>)">
   <div class="container">
     <h2 class="home-title">Comment ça fonctionne ?</h2>
-
-    <p>
-      Pour démarrer une démarche sur eligia, il vous suffit de sélectionner les comptes à résilier
-      puis de fournir les documents demandés.<br><br>
-      A partir de ce moment-là, nous prenons le relais.
+    <p class="padding-top-three padding-bottom-three">
+      <strong>Pour démarrer une démarche sur eligia, il vous suffit de sélectionner les comptes à résilier
+      puis de fournir les documents demandés.</strong>
     </p>
+    <p>
+      A partir de ce moment-là, <span class='underline'>nous prenons le relais.</span>
+    </p>
+
 
     <div class="func-grid" data-controller="home-function">
       <div class="func-nav">
         <ul class="func-nav-items">
+          <li>
+            <p class="title">Une procédure en 4 étapes<p>
+          </li>
           <li class="func-nav-item current-item"
               id="contrats"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            Les contrats
+            Étape 1 : les contrats
           </li>
+
           <li class="func-nav-item"
               id="documents"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            Les documents
+            Étape 2 : les documents
             </li>
           <li class="func-nav-item"
               id="recapitulatif"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            Le récapitulatif
+            Étape 3 : le récapitulatif
           </li>
           <li class="func-nav-item"
               id="paiement"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            Le paiement
+            Étape 4 : le paiement
           </li>
         </ul>
       </div>
       <div class="func-infos">
         <div class="func-infos-text" id="contrats" data-home-function-target='infoDiv'>
+          <h3>1. Choisir les contrats</h3>
           <p>
-            Au commencement de la démarche, nous vous proposons de nous fournir la liste des contrats que
-            le défunt avait et que vous souhaitez résilier.<br><br>
+            La première étape consiste à sélectionner les contrats du défunt que vous souhaitez résilier. <br><br>
 
-            La première étape de la création de votre démarche sera uniquement
-            dédiée à la création de cette liste d'abonnements.<br><br>
-
-            Grâce à cette liste, nous pourrons ensuite connaitre la liste des documents
-            nécessaires pour l'envoi des demandes de résiliation aux différentes entreprises concernées.
+            Grâce à cette liste, nous pourrons ensuite vous demander les informations et documents
+            nécessaires à la résiliation des divers contrats.
           </p>
-          <%= link_to 'en savoir plus', contrats_helps_path, target: "_blank", class: 'btn-third small' %>
+          <div class="d-flex align-items-flex-end">
+            <%= image_tag('icon-subscription', class:'icon-infos', alt:'icone sélection contrats') %>
+            <%= link_to 'en savoir plus', contrats_helps_path, target: "_blank", class: 'btn-third small' %>
+          </div>
+
         </div>
         <div class="func-infos-text disapear" id="documents" data-home-function-target='infoDiv'>
+          <h3>2. Saisir les informations nécessaires</h3>
           <p>
             Après avoir établi la liste des comptes à résilier, vous pourrez nous fournir les
             documents nécessaires pour démarrer les démarches de résiliation.<br><br>
 
-            Les documents en question seront à importer. Ce processus interviendra lors de la deuxième
-            étape de création de la démarche.<br><br>
-
-            En accord avec les lois européennes de protection des données, ces informations seront
-            automatiquement supprimées de eligia.fr.
+            En accord avec les lois européennes de protection des données RGPD, ces informations seront
+            automatiquement supprimées de eligia.fr à la clôture de votre dossier.
           </p>
-          <%= link_to 'en savoir plus', documents_helps_path, target: "_blank", class: 'btn-third small' %>
-        </div>
+          <div class="d-flex align-items-flex-end">
+            <%= image_tag('icon-upload', class:'icon-infos', alt:'icone saisie des informations') %>
+            <%= link_to 'en savoir plus', contrats_helps_path, target: "_blank", class: 'btn-third small' %>
+          </div>        </div>
         <div class="func-infos-text disapear" id="recapitulatif" data-home-function-target='infoDiv'>
+        <h3>3. Récapitulatif</h3>
           <p>
-            Le récapitulatif est la dernière étape de votre demande. C'est à ce moment là qu'il faudra
-            vérifier que vous nous avez renseigné tous les contrats à résilier ainsi qu'une majorité des
-            informations nécessaires.<br><br>
+            Le récapitulatif permet de valider la commande. Vérifiez que vous avez saisi tous les contrats à résilier, après cette étape il ne sera plus possible d'en rajouter !<br><br>
 
-            Si vous n'avez pas tous les documents en votre possession, vous pourrez toujours nous les
-            fournir après paiement sur votre espace personnel.
+            Les informations et documents manquants peuvent être ajoutés après paiement depuis votre espace personnel.
           </p>
-          <%= link_to 'en savoir plus', recapitulatif_helps_path, target: "_blank", class: 'btn-third small' %>
+          <div class="d-flex align-items-flex-end">
+            <%= image_tag('icon-recap', class:'icon-infos', alt:'icone récapitulatif') %>
+            <%= link_to 'en savoir plus', contrats_helps_path, target: "_blank", class: 'btn-third small' %>
+          </div>
         </div>
         <div class="func-infos-text disapear" id="paiement" data-home-function-target='infoDiv'>
+        <h3>4. Paiement</h3>
           <p>
-            Eligia propose un système de paiement par forfait qui vous permet de payer votre démarche à un prix juste
-            en fonction du nombre de comptes à résilier.<br><br>
-
-            Après paiement, vous ne pourrez plus rajouter de contrats à résilier, il faudra donc être
-            sûr que vous nous avez fourni la liste complète de ces derniers.
+            Le paiement s'effectue par carte à travers une interface 100% sécurisée, directement depuis le site. <br><br>
+            Eligia propose une tarification qui s'adapte au nombre de comptes à résilier.
           </p>
-          <%= link_to 'en savoir plus', tarifs_helps_path, target: "_blank", class: 'btn-third small' %>
+          <div class="d-flex align-items-flex-end">
+            <%= image_tag('icon-paiement', class:'icon-infos', alt:'icone paiement') %>
+            <%= link_to 'en savoir plus', contrats_helps_path, target: "_blank", class: 'btn-third small' %>
+          </div>
         </div>
       </div>
     </div>
@@ -141,48 +150,45 @@
     <p>
       Le décès d'un proche est l'un des moments les plus douloureux de la vie de chacun.
       Nous ne sommes jamais réellement préparés à une pareille douleur.<br><br>
-      Néanmoins, en dépit de la peine et de l'émotion,
-      plusieurs démarches doivent êtres entreprises lors du départ d'un proche sous plusieurs délais.
+      Néanmoins, en dépit de la peine et de l'émotion, plusieurs démarches doivent êtres entreprises lors du départ d'un proche. Puisque les délais varient, nous vous proposons un résumé ci-dessous :
     </p>
 
     <div class="home-infos-grid">
       <div class="home-infos-img" style="background-image: url(<%= image_path 'rendez-vous' %>)">
       </div>
       <div class="home-infos-text">
-        <h3 class="home-title">La première semaine</h3>
-        <p class="home-infos-text-detail">
-          Lors de la première semaine suivant le décès, certaines démarches sont à réaliser en priorité.
-        </p>
-        <p class="home-infos-text-detail">Parmi elles :</p>
+        <h3 class="home-title">Dans les premières 24h</h3>
         <ul class="home-infos-text-detail">
-          <li>Le constat du décès,</li>
-          <li>La déclaration du décès en mairie afin de pouvoir récupérer l'acte de décès,</li>
-          <li>L'organisation des obsèques.</li>
+          <li>Faire constater le décès et aborder les questions relatives au don d’organes et don du corps</li>
+          <li>Déclarer le décès dans la mairie du lieu de décès pour récupérer l'acte de décès</li>
         </ul>
         <p class="home-infos-text-detail">
-          Ces démarches sont souvent réalisées par les pompes funèbres qui proposent plusieurs sortes d'accompagnement
-          personnalisés. Pour vous aider dans vos démarches, vous pouvez consulter la page du gouvernement concernant les <%= link_to 'prestations funéraires', "https://www.economie.gouv.fr/dgccrf/Publications/Vie-pratique/Fiches-pratiques/Prestations-funeraires",
+          Certains contrats des services de Pompes Funèbres prévoient de se charger de la déclaration de décès à la mairie. Lors d’un décès dans un centre hospitalier, une clinique ou un hospice ; l’établissement effectue gratuitement cette démarche.
+          <br><br>
+          Pour vous aider dans vos démarches, vous pouvez consulter la page du gouvernement concernant les <%= link_to 'prestations funéraires.', "https://www.economie.gouv.fr/dgccrf/Publications/Vie-pratique/Fiches-pratiques/Prestations-funeraires",
               target: :_blank,
-              class: 'bold-link' %>
-          .
+              class: 'bold-link underline' %>
         </p>
       </div>
     </div>
     <div class="home-infos-grid">
       <div class="home-infos-text home-infos-first-month">
-        <h3 class="home-title">Le premier mois</h3>
-        <p class="home-infos-text-detail">
-          Durant le premier mois, vous devrez réaliser la cloture du compte en banque du défunt
-          avec acte de notoriété. (Pensez néanmoins à noter l'IBAN du défunt pour les résiliations qui suivront).
-        </p>
-        <p class="home-infos-text-detail">Suite à ça, les démarches suivantes devront être entreprises :</p>
+        <h3 class="home-title">Lors de la première semaine</h3>
         <ul class="home-infos-text-detail">
-          <li>Service des impôts</li>
-          <li>Caisse de retraite</li>
-          <li>Potentiel bailleur</li>
-          <li>Service des immatriculations</li>
-          <li>Organismes sociaux divers</li>
+          <li> Légalement, les obsèques doivent avoir lieu dans les six jours suivant le décès, il vous faudra donc organiser les funérailles. Si la personne disparue était encore en activité, il faut prévenir son employeur (ou les ASSEDIC). Triez et conservez les papiers du défunt. Ils vous seront utiles.</li>
+          <br>
+          <li>Il est également recommandé de notifier dès que possible la banque du défunt. Dès lors, deux scénarios se présentent :</li>
+          <br>
+            <ul>
+              <li><span class="underline">S'il s'agit d'un compte individuel,</span> il est immédiatement gelé. <br> La banque n'y enregistre donc plus aucune opération de dépôt ou de retrait. Toutefois, la banque accepte le règlement des frais suivants (et dans la limite de 5 000 €) : frais concernant les funérailles, frais de soins apportés au défunt lors de sa dernière maladie, impôts dus par le défunt.</li>
+              <li><span class="underline">S'il s'agit d'un compte joint,</span> la convention de compte prévoit ce que devient le compte bancaire. En principe, le compte reste ouvert (sauf contre ordre), et profite aux cotitulaires survivants. Dans l'éventualité où il n'y aurait qu'un cotitulaire survivant, le compte devient automatiquement un compte bancaire individuel.</li>
+            </ul>
         </ul>
+        <p class="home-infos-text-detail">
+          Plus d'informations <%= link_to ' sur le site du gouvernement', "https://www.service-public.fr/particuliers/vosdroits/F1451#:~:text=D%C3%A8s%20que%20la%20banque%20est%20inform%C3%A9e%20du%20d%C3%A9c%C3%A8s%20d'un,l'ensemble%20de%20la%20succession.",
+              target: :_blank,
+              class: 'bold-link underline' %>
+        </p>
       </div>
       <div class="home-infos-img home-infos-first-month" style="background-image: url(<%= image_path 'handshake' %>)">
       </div>
@@ -191,12 +197,20 @@
       <div class="home-infos-img" style="background-image: url(<%= image_path 'couple' %>)">
       </div>
       <div class="home-infos-text">
-        <h3 class="home-title">Les mois qui suivent</h3>
+        <h3 class="home-title">Durant les mois qui suivent</h3>
         <p class="home-infos-text-detail">
-          Enfin, vous devrez résilier ou réattribuer les diverses souscriptions restantes du défunt.
-          En l'absence de notification de l'entreprise concessionnaire, les contrats perdurent et
-          leur facturation revient aux héritiers.
-          C'est la raison pour laquelle il est conseillé de s'en occuper aussi vite que possible.
+          Il est nécessaire de notifier diverses administrations publiques et privées telles que :
+        </p>
+        <ul class="home-infos-text-detail">
+          <li>Le service des impôts</li>
+          <li>La caisse de retraite</li>
+          <li>Le bailleur</li>
+          <li>Le service des immatriculations</li>
+          <li>Les divers organismes sociaux concernés</li>
+        </ul>
+        <p class="home-infos-text-detail">
+          Enfin, il faut notifier toutes les entreprises concessionaires auprès desquelles le defunt payait une souscription. <strong>En l'absence de notification des entreprises, les contrats perdurent et leur facturation revient aux héritiers.</strong>
+          <span class="underline">C'est la raison pour laquelle il est conseillé de s'en occuper aussi vite que possible.</span>
         </p>
         <p class="home-infos-text-detail">
           <strong><em>Eligia</em> vise à vous décharger de ce poids en s'occupant de toutes ces démarches rapidement et efficacement.</strong><br>

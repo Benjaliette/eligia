@@ -728,25 +728,24 @@ puts Account.count == 141 ? "🟩 Accounts créées avec succès" : "🟥 Erreur
 
 puts "👷🏼 Création des Packs"
 Pack.create(
-  title: 'Forfait initial',
-  price: 100, level: 1,
-  description: "Le forfait initial vous permet de résilier jusqu'à 7 comptes.
-                Il est idéal si le défunt en possédait peu ou si une personne
-                tierce s'est déjà occupé de quelques résiliations."
+  title: 'Initial',
+  price: 100,
+  level: 1,
+  quantity_text: "Jusqu'à 7 contrats",
+  description: "Idéal pour un nombre de contrats limité"
 )
 Pack.create(
-  title: 'Forfait premium',
+  title: 'Premium',
   price: 160,
   level: 2,
-  description: "Le forfait premium inclut la résiliation jusqu'à 15 comptes.
-                Il correspond au nombre moyen de démarches à effectuer."
+  quantity_text: "Jusqu'à 12 contrats",
+  description: "La solution abordable, pour le plus grand nombre !"
 )
 Pack.create(
-  title: 'Forfait illimité',
+  title: 'Illimité',
   price: 200,
   level: 3,
-  description: "Le forfait illimité vous permet de résilier tous les comptes de
-                votre proche, sans nombre limite. Si ce dernier possédait beaucoup
-                d'abonnements, nous vous conseillons d'opter pour ce forfait."
+  quantity_text: "Au-delà de 12 contrats",
+  description: "Pour traiter un maximum de contrats, l'esprit tranquille"
 )
 puts Pack.count == 3 ? "🟩 Packs créées avec succès" : "🟥 Erreur dans la création des Packs"

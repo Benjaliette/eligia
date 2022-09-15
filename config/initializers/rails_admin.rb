@@ -1,3 +1,123 @@
+module RailsAdmin
+  module Config
+    module Actions
+      # common config for custom actions
+      class Cmsaction < RailsAdmin::Config::Actions::Base
+        register_instance_option :member do
+          true
+        end
+        register_instance_option :only do
+          [OrderAccount, Order]
+        end
+        register_instance_option :visible? do
+          authorized?
+        end
+        register_instance_option :controller do
+          object = bindings[:object]
+        end
+      end
+
+      class Pending < Cmsaction
+        RailsAdmin::Config::Actions.register(self)
+        register_instance_option :visible? do
+          bindings[:object].document_missing? if bindings[:object].class == OrderAccount
+        end
+
+        register_instance_option :link_icon do
+          "fa fa-pause-circle"
+        end
+        register_instance_option :controller do
+          Proc.new do
+            object.declare_pending!
+            flash[:notice] = "#{object.account.name} mis en attente"
+            redirect_to show_path
+          end
+        end
+      end
+      class ResiliationSend < Cmsaction
+        RailsAdmin::Config::Actions.register(self)
+        register_instance_option :visible? do
+          bindings[:object].pending? if bindings[:object].class == OrderAccount
+        end
+        register_instance_option :link_icon do
+          'fa fa-location-arrow'
+        end
+        register_instance_option :controller do
+          Proc.new do
+            object.declare_resiliation_sent!
+            flash[:notice] = "Demande de résiliation de #{object.account.name} envoyée"
+            redirect_to show_path
+          end
+        end
+      end
+      class ResiliationSuccess < Cmsaction
+        RailsAdmin::Config::Actions.register(self)
+        register_instance_option :visible? do
+          bindings[:object].resiliation_sent? if bindings[:object].class == OrderAccount
+        end
+        register_instance_option :link_icon do
+          "fa fa-check-circle"
+        end
+        register_instance_option :controller do
+          Proc.new do
+            object.declare_resiliation_success!
+            flash[:notice] = "Résiliation de #{object.account.name} acceptée"
+            redirect_to show_path
+          end
+        end
+      end
+      class ResiliationFailure < Cmsaction
+        RailsAdmin::Config::Actions.register(self)
+        register_instance_option :visible? do
+          bindings[:object].resiliation_sent? if bindings[:object].class == OrderAccount
+        end
+        register_instance_option :link_icon do
+          "fa fa-times-circle"
+        end
+        register_instance_option :controller do
+          Proc.new do
+            object.declare_resiliation_failure!
+            flash[:notice] = "Résiliation de #{object.account.name} échouée"
+            redirect_to show_path
+          end
+        end
+      end
+      class Processing < Cmsaction
+        RailsAdmin::Config::Actions.register(self)
+        register_instance_option :visible? do
+          bindings[:object].pending? if bindings[:object].class == Order
+        end
+        register_instance_option :link_icon do
+          "fa fa-location-arrow"
+        end
+        register_instance_option :controller do
+          Proc.new do
+            object.declare_processing!
+            flash[:notice] = "Résiliations de la démarche de #{object.deceased_first_name} #{object.deceased_last_name} en attente"
+            redirect_to show_path
+          end
+        end
+      end
+      class Done < Cmsaction
+        RailsAdmin::Config::Actions.register(self)
+        register_instance_option :visible? do
+          bindings[:object].processing? if bindings[:object].class == Order
+        end
+        register_instance_option :link_icon do
+          "fa fa-check-circle"
+        end
+        register_instance_option :controller do
+          Proc.new do
+            object.declare_done!
+            flash[:notice] = "Résiliations de la démarche de #{object.deceased_first_name} #{object.deceased_last_name} terminées"
+            redirect_to show_path
+          end
+        end
+      end
+    end
+  end
+end
+
 RailsAdmin.config do |config|
   config.asset_source = :sprockets
 
@@ -34,6 +154,12 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
+    pending
+    resiliation_send
+    resiliation_success
+    resiliation_failure
+    processing
+    done
 
     ## With an audit adapter, you can add:
     # history_index
@@ -42,7 +168,7 @@ RailsAdmin.config do |config|
     ## == Personalized Non-Admin Alert
     config.authorize_with do
       unless current_user.admin?
-        flash[:alert] = 'Sorry, no admin access for you.'
+        flash[:alert] = 'Vous devez être administrateur de eligia pour accéder à cette page'
         redirect_to main_app.root_path
       end
     end

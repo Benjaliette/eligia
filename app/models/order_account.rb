@@ -8,6 +8,12 @@ class OrderAccount < ApplicationRecord
 
   accepts_nested_attributes_for :account, allow_destroy: true, reject_if: :reject_accounts
 
+  rails_admin do
+    configure :aasm_state do
+      read_only true
+    end
+  end
+
   def reject_accounts(attributes)
     attributes['name'].blank?
   end

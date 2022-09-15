@@ -69,16 +69,20 @@
       </div>
       <div class="user-dashboard-right">
         <div class="notification-card">
-          <h2 class="home-subtitle">Notifications</h2>
-          <ul class="notification-list">
-            <% @notifications.each do |notification| %>
-              <li class="notification-list-item">
-                <div class="notification-content"><%= notification.content %></div>
-                <% notification_time = (Date.today - notification.created_at.to_datetime).to_i %>
-                <div class="notification-date"><%= notification_time < 1 ? "Aujourd'hui" : "Il y a #{notification_time} jours" %></div>
-              </li>
-            <% end %>
-          </ul>
+          <div class="notification-head">
+            <h2 class="home-subtitle">Notifications</h2>
+          </div>
+          <div class="notification-body">
+            <ul class="notification-list">
+              <% @notifications.each do |notification| %>
+                <li class="notification-list-item">
+                  <div class="notification-content"><%= notification.content %></div>
+                  <% notification_time = (Date.today - notification.created_at.to_datetime).to_i %>
+                  <div class="notification-date"><%= notification_time < 1 ? "Aujourd'hui" : "Il y a #{notification_time} jours" %></div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

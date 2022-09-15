@@ -1,4 +1,5 @@
 if Rails.env.development?
+  Notification.destroy_all
   Order.destroy_all
   Account.destroy_all
   AccountDocument.destroy_all

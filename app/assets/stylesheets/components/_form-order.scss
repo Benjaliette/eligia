@@ -177,12 +177,10 @@
 }
 
 .form-order-div {
-  // position: sticky;
   overflow-y:scroll;
-  // background: white;
-  background: aqua;
+  background: white;
   max-width: 100%;
-  border: solid 2px $light-green;
+  border: solid 2px $super-light-green;
   border-bottom-width: 3px;
   .error{
     font-size: 12px;
@@ -197,7 +195,7 @@
 }
 
 .form-order-infos {
-  background-color: $light-green;
+  background: $second-gradient-bg;
   padding: 20px 0px 30px 32px;
 
   .logo {
@@ -208,7 +206,6 @@
 .form-order-right{
   overflow: hidden;
   height: 100vh;
-  background-color: cornflowerblue;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -229,10 +226,8 @@
 }
 
 .form-order-steps {
-  // position: sticky;
-  // background-color: #fbfbfb;
+  background-color: #fbfbfb;
   height: 100vh;
-  background-color: pink;
 
   .logo {
     display: none;

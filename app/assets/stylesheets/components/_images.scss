@@ -1,0 +1,12 @@
+.login-image{
+  width: 30%;
+  position: absolute;
+  bottom: 218px;
+  left: 44px;
+}
+
+@media(max-width: 700px){
+  .login-image{
+    display: none;
+  }
+}

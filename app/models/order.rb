@@ -179,7 +179,7 @@ class Order < ApplicationRecord
 
   def notify_processing
     Notification.create(
-      content: "Nous avons envoyé toutes les demandes demandées de résiliation pour les contrats de #{self.deceased_first_name} #{self.deceased_last_name}",
+      content: "Les résiliations sont en cours de traitement pour les contrats de #{self.deceased_first_name} #{self.deceased_last_name}",
       order: self
     )
   end

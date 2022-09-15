@@ -296,3 +296,9 @@
 .gradient-bg {
   background: $gradient-bg;
 }
+
+@media (max-width: 700px) {
+  .gradient-bg {
+    background: $second-gradient-bg;
+  }
+}

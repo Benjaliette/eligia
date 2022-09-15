@@ -1,8 +1,12 @@
 <% content_for :title, "Mes informations - Eligia" %>
+
+<% content_for :scroll_navbar, 'scroll-navbar' %>
+<% content_for :home_navbar, 'home-navbar' %>
 <%= render 'shared/navbar' %>
-<div class="container" data-controller="remove-footer">
+
+<div class="true-fullscreen gradient-bg mobile-contact-grid">
   <div class="form-div">
-    <h2>Mettre à jour ses informations</h2>
+    <h2 class='home-title'>Mettre à jour ses informations</h2>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { "data-turbo": "false", method: :put }) do |f| %>
       <%= f.error_notification %>

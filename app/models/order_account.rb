@@ -58,15 +58,29 @@ class OrderAccount < ApplicationRecord
     end
 
     event :declare_resiliation_sent do
-      transitions from: :pending, to: :resiliation_sent
+      transitions from: :pending, to: :resiliation_sent, after: Proc.new { notify_resiliation_send }
     end
 
     event :declare_resiliation_success do
-      transitions from: :resiliation_sent, to: :resiliation_success
+      transitions from: :resiliation_sent, to: :resiliation_success, after: Proc.new { notify_resiliation_success }
     end
 
     event :declare_resiliation_failure do
       transitions from: %i[document_missing pending resiliation_sent], to: :resiliation_failure
     end
+  end
+
+  def notify_resiliation_send
+    Notification.create(
+      content: "Demande de résiliation du contrat #{self.account.name} envoyée",
+      order: self.order
+    )
+  end
+
+  def notify_resiliation_success
+    Notification.create(
+      content: "Contrat '#{self.account.name}' résilié",
+      order: self.order
+    )
   end
 end

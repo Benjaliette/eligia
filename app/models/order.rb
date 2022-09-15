@@ -36,18 +36,10 @@ class Order < ApplicationRecord
   end
 
   def update_state
-    if self.order_accounts.any? { |order_account| order_account.aasm_state == 'resiliation_sent' } && self.aasm_state == 'pending'
+    if self.order_accounts.all? { |order_account| order_account.resiliation_sent? } && self.pending?
       self.declare_processing!
-      Notification.create(
-        content: "Nous avons envoyé toutes les demandes demandées de résiliation pour les contrats de #{self.deceased_first_name} #{self.deceased_last_name}",
-        order: self
-      )
-    elsif self.order_accounts.all? { |order_account| order_account.aasm_state == 'resiliation_success' } && self.aasm_state != 'done'
+    elsif self.order_accounts.all? { |order_account| order_account.resiliation_success? } && self.processing?
       self.declare_done!
-      Notification.create(
-        content: "Tous les contrats de #{self.deceased_first_name} #{self.deceased_last_name} ont été résiliés.",
-        order: self
-      )
     end
   end
 
@@ -100,7 +92,7 @@ class Order < ApplicationRecord
 
   def update_order_account_status
     self.order_accounts.each do |order_account|
-      if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) } && order_account.aasm_state == 'document_missing'
+      if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) } && order_account.document_missing?
         order_account.declare_pending!
       end
     end
@@ -177,10 +169,25 @@ class Order < ApplicationRecord
     state :processing, :done
 
     event :declare_processing do
-      transitions from: :pending, to: :processing
+      transitions from: :pending, to: :processing, after: Proc.new { notify_processing }
     end
+
     event :declare_done do
-      transitions from: :processing, to: :done
+      transitions from: :processing, to: :done, after: Proc.new { notify_done }
     end
+  end
+
+  def notify_processing
+    Notification.create(
+      content: "Les résiliations sont en cours de traitement pour les contrats de #{self.deceased_first_name} #{self.deceased_last_name}",
+      order: self
+    )
+  end
+
+  def notify_done
+    Notification.create(
+      content: "Tous les contrats de #{self.deceased_first_name} #{self.deceased_last_name} ont été résiliés.",
+      order: self
+    )
   end
 end

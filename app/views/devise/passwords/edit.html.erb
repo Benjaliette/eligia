@@ -1,33 +1,40 @@
-<div class="container" data-controller="remove-footer">
-  <div class="form-div">
-    <h3>Changez votre mot de passe</h3>
+<% content_for :title, "Connexion - Eligia" %>
+<% content_for :scroll_navbar, 'scroll-navbar' %>
+<% content_for :home_navbar, 'home-navbar' %>
+<%= render 'shared/navbar' %>
 
-    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { "data-turbo": "false", method: :put }) do |f| %>
-      <%= f.error_notification %>
+  <div class="fullscreen-no-footer gradient-bg mobile-contact-grid">
+    <%= image_tag("login.svg", alt:'login logo', class:'login-image') %>
+    <div class="form-div">
+      <h3>Changez votre mot de passe</h3>
 
-      <%= f.input :reset_password_token, as: :hidden %>
-      <%= f.full_error :reset_password_token %>
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { "data-turbo": "false", method: :put }) do |f| %>
+        <%= f.error_notification %>
 
-      <div class="form-inputs">
-        <div class="form-inputs-block">
-          <%= f.label 'Nouveau mot de passe' %>
-          <%= f.input :password,
-                      required: true,
-                      label: false,
-                      placeholder:'**********'%>
+        <%= f.input :reset_password_token, as: :hidden %>
+        <%= f.full_error :reset_password_token %>
+
+        <div class="form-inputs">
+          <div class="form-inputs-block">
+            <%= f.label 'Nouveau mot de passe' %>
+            <%= f.input :password,
+                        required: true,
+                        label: false,
+                        placeholder:'**********'%>
+          </div>
+          <div class="form-inputs-block confirm">
+            <%= f.label 'Confirmation du mot de passe' %>
+            <%= f.input :password_confirmation,
+                        required: true,
+                        label: false,
+                        placeholder:'**********'%>
+          </div>
         </div>
-        <div class="form-inputs-block confirm">
-          <%= f.label 'Confirmation du mot de passe' %>
-          <%= f.input :password_confirmation,
-                      required: true,
-                      label: false,
-                      placeholder:'**********'%>
-        </div>
-      </div>
 
-      <div class="form-actions">
-        <%= f.button :submit, "Changer mon mot de passe", class: 'btn-principal' %>
-      </div>
-    <% end %>
+        <div class="form-actions">
+          <%= f.button :submit, "Changer mon mot de passe", class: 'btn-principal' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

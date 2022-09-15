@@ -1,5 +1,10 @@
-<div class="container" data-controller="remove-footer">
-  <div class="fullscreen">
+<% content_for :title, "Connexion - Eligia" %>
+<% content_for :scroll_navbar, 'scroll-navbar' %>
+<% content_for :home_navbar, 'home-navbar' %>
+<%= render 'shared/navbar' %>
+
+  <div class="fullscreen-no-footer gradient-bg mobile-contact-grid">
+    <%= image_tag("login.svg", alt:'login logo', class:'login-image') %>
     <div class="form-div">
       <h3>Mot de passe oublié</h3>
 

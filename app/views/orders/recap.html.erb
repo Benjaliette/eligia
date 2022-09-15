@@ -44,12 +44,10 @@
           <div class="order-subdiv">
             <div class="d-flex justify-content-space-between">
             <h3 class="margin-bottom-three">Contrats</h3>
-              <div class="align-start">
-                <%= link_to change_order_path(@order), class:"btn-third small margin-top-three" do %>
-                  <span class="bold padding-right-two font-size-larger">+</span>
-                  <span>Ajouter</span>
-                <% end %>
-              </div>
+              <%= link_to change_order_path(@order), class:"btn-third small margin-top-three" do %>
+                <span class="bold padding-right-two font-size-larger">+</span>
+                <span>Ajouter</span>
+              <% end %>
             </div>
             <div class="box">
               <ul class="order-div-list no-padding">
@@ -75,12 +73,10 @@
           <div>
             <div class="d-flex justify-content-space-between">
               <h3 class="margin-bottom-three">Documents</h3>
-              <div class="align-start">
                 <%= link_to edit_order_path(@order), class:"btn-third small margin-top-three" do %>
                   <span class="bold padding-right-two font-size-larger">+</span>
                   <span>Ajouter</span>
                 <% end %>
-              </div>
             </div>
             <div class="box">
 

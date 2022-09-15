@@ -10,9 +10,7 @@
     <div>
       <ul class="nav-items"
           data-navbar-responsivity-target="navitems">
-        <li class="nav-item">
-          <%= link_to "Commencer une démarche", new_order_path, class:"btn-principal small" %>
-        </li>
+        <%= yield(:order_new_btn) %>
         <li class="nav-item">
           <%= link_to 'Tarifs', price_pages_path %>
         </li>

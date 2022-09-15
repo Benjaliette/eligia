@@ -4,13 +4,13 @@
 <turbo-frame id="content">
 
   <div class="banner user-banner">
-    <div class="container">
+    <div class="container padding-top-five">
       <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
       <p><em>Bienvenue sur votre espace personnel</em></p>
     </div>
   </div>
 
-  <div class="container">
+  <div class="container padding-top-five">
     <%= link_to '← retour', user_path(@current_user), class: 'btn-third small margin-top-five foreground' %>
     <div class="user-dashboard-content">
       <h2 class="dashboard-title">Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></h2>
@@ -25,7 +25,3 @@
 
 
 </turbo-frame>
-
-<turbo-frame id="content">
-
-<turbo-frame>

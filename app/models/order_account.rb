@@ -72,7 +72,7 @@ class OrderAccount < ApplicationRecord
 
   def notify_resiliation_send
     Notification.create(
-      content: "Le demande de résiliation auprès de #{self.account.name} a été envoyée",
+      content: "Demande de résiliation du contrat #{self.account.name} envoyée",
       order: self.order
     )
   end

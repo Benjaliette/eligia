@@ -31,3 +31,17 @@
 
 en:
   hello: "Hello world"
+  admin:
+    actions:
+      pending:
+        menu: 'Mettre en attente'
+      resiliation_send:
+        menu: 'Envoyer Résiliation'
+      resiliation_success:
+        menu: 'Résiliation réussie ?'
+      resiliation_failure:
+        menu: 'Résiliation ratée ?'
+      processing:
+        menu: 'Envoi de toutes les résiliations'
+      done:
+        menu: 'Démarche terminée'

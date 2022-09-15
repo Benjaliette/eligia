@@ -169,11 +169,11 @@ class Order < ApplicationRecord
     state :processing, :done
 
     event :declare_processing do
-      transitions from: :pending, to: :processing, after: Proc.new { notifiy_processing }
+      transitions from: :pending, to: :processing, after: Proc.new { notify_processing }
     end
 
     event :declare_done do
-      transitions from: :processing, to: :done, after: Proc.new { notifiy_done }
+      transitions from: :processing, to: :done, after: Proc.new { notify_done }
     end
   end
 

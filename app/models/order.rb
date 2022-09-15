@@ -38,16 +38,8 @@ class Order < ApplicationRecord
   def update_state
     if self.order_accounts.any? { |order_account| order_account.aasm_state == 'resiliation_sent' } && self.aasm_state == 'pending'
       self.declare_processing!
-      Notification.create(
-        content: "Nous avons envoyé toutes les demandes demandées de résiliation pour les contrats de #{self.deceased_first_name} #{self.deceased_last_name}",
-        order: self
-      )
     elsif self.order_accounts.all? { |order_account| order_account.aasm_state == 'resiliation_success' } && self.aasm_state != 'done'
       self.declare_done!
-      Notification.create(
-        content: "Tous les contrats de #{self.deceased_first_name} #{self.deceased_last_name} ont été résiliés.",
-        order: self
-      )
     end
   end
 
@@ -177,10 +169,25 @@ class Order < ApplicationRecord
     state :processing, :done
 
     event :declare_processing do
-      transitions from: :pending, to: :processing
+      transitions from: :pending, to: :processing, after: Proc.new { notifiy_processing }
     end
+
     event :declare_done do
-      transitions from: :processing, to: :done
+      transitions from: :processing, to: :done, after: Proc.new { notifiy_done }
     end
+  end
+
+  def notify_processing
+    Notification.create(
+      content: "Nous avons envoyé toutes les demandes demandées de résiliation pour les contrats de #{self.deceased_first_name} #{self.deceased_last_name}",
+      order: self
+    )
+  end
+
+  def notify_done
+    Notification.create(
+      content: "Tous les contrats de #{self.deceased_first_name} #{self.deceased_last_name} ont été résiliés.",
+      order: self
+    )
   end
 end

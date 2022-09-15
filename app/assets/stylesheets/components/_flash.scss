@@ -1,8 +1,8 @@
 .flash {
   width: fit-content;
-  margin: 20px;
+  margin: 20px 20px 0px 10px;
   padding: 12px;
-  position: sticky;
+  position: fixed;
   bottom: 10px;
   border-radius: 5px;
   box-shadow: 0 0 15px 5px #ccc;
@@ -33,16 +33,16 @@
 }
 
 .alert {
-  background: #fff09b;
-  border: 2px solid $yellow;
+  background: $yellow;
+  border: 2px solid $gray;
 }
 
 .warning {
   background: #ff9b9b;
-  border: 2px solid red;
+  border: 2px solid $gray;
 }
 
 .success {
-  background: #b2ff9b;
-  border: 2px solid green;
+  background: $light-green;
+  border: 2px solid $gray;
 }

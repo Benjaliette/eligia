@@ -1,6 +1,6 @@
 .form-div{
   text-align: center;
-  height: 80vh;
+  height: calc(100vh - #{$navbar-height});
   margin-left: 40%;
   background: $off-white;
   padding: 100px 50px;
@@ -170,7 +170,6 @@
 @media (max-width: 900px) {
   .form-div{
     padding: 100px 50px;
-    min-height: 160vh;
 
     .form-inputs {
       .form-inputs-block, .form-inputs-block-address {

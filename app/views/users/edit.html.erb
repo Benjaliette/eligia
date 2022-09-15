@@ -1,18 +1,17 @@
 <% content_for :title, "Changer mon mot de passe - Eligia" %>
-
 <% content_for :scroll_navbar, 'scroll-navbar' %>
 <% content_for :home_navbar, 'home-navbar' %>
 <%= render 'shared/navbar' %>
 
-<div class="true-fullscreen gradient-bg mobile-contact-grid">
+<div class="fullscreen-no-footer gradient-bg mobile-contact-grid">
+  <%= image_tag("login.svg", alt:'login logo', class:'login-image') %>
   <turbo-frame id='password'>
-    <div class="form-div doubled-form">
+    <div class="form-div">
       <h2 class='home-title'>Confirmation du mot de passe actuel</h2>
 
-      <div class='bold'>Mot de passe confirmé</div>
-    </div>
+      <div class='bold padding-top-five padding-bottom-five'>Mot de passe confirmé</div>
 
-    <div class="form-div doubled-form">
+
       <h2 class='home-title'>Mettre à jour le mot de passe</h2>
 
       <%= simple_form_for(@current_user, html: { "data-turbo": "false", method: :patch }) do |f| %>
@@ -51,6 +50,6 @@
           <%= f.button :submit, "Confirmer", class: 'btn-principal' %>
         </div>
       <% end %>
-    </div>
+     </div>
   </turbo-frame>
 </div>

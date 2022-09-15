@@ -1,10 +1,11 @@
 <% content_for :title, "Mes informations - Eligia" %>
-
 <% content_for :scroll_navbar, 'scroll-navbar' %>
 <% content_for :home_navbar, 'home-navbar' %>
 <%= render 'shared/navbar' %>
 
-<div class="true-fullscreen gradient-bg mobile-contact-grid">
+<div class="fullscreen-no-footer gradient-bg mobile-contact-grid">
+  <%= image_tag("login.svg", alt:'login logo', class:'login-image') %>
+
   <div class="form-div">
     <h2 class='home-title'>Mettre à jour ses informations</h2>
 

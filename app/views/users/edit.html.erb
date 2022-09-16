@@ -1,13 +1,13 @@
 <% content_for :title, "Changer mon mot de passe - Eligia" %>
 <% content_for :scroll_navbar, 'scroll-navbar' %>
-<% content_for :home_navbar, 'home-navbar' %>
+<% content_for :home_navbar, 'home-navbar position-sticky' %>
 <%= render 'shared/navbar' %>
 
 <div class="fullscreen-no-footer gradient-bg mobile-contact-grid">
   <%= image_tag("login.svg", alt:'login logo', class:'login-image') %>
   <turbo-frame id='password'>
     <div class="form-div">
-      <h2 class='home-title'>Confirmation du mot de passe actuel</h2>
+      <h2 class='home-title no-margin padding-top-fifty'>Confirmation du mot de passe actuel</h2>
 
       <div class='bold padding-top-five padding-bottom-five'>Mot de passe confirmé</div>
 

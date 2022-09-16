@@ -1,9 +1,8 @@
 .form-div{
   text-align: center;
-  // height: calc(100vh - #{$navbar-height});
+  height: calc(100vh - #{$navbar-height});
   margin-left: 40%;
   background: $off-white;
-  padding: 100px 50px;
 
   form{
     margin-top: 50px;

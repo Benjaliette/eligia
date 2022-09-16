@@ -140,6 +140,9 @@
 .padding-top-five {
   padding-top: $level-five !important;
 }
+.padding-top-fifty {
+  padding-top: 50px !important;
+}
 
 // Right
 .padding-right-one {
@@ -263,46 +266,46 @@
 }
 
 .align-items-flex-end{
-  align-items: flex-end;
+  align-items: flex-end !important;
 }
 
 .centered {
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 
 // Width
 
 .fit-content{
-  width: fit-content;
+  width: fit-content !important;
 }
 
 // Font sizes
 
 .font-size-larger{
-  font-size: larger;
+  font-size: larger !important;
 }
 
 .font-size-smaller{
-  font-size: smaller;
+  font-size: smaller !important;
 }
 
 // Position
 .foreground {
-  z-index: 20;
+  z-index: 20 !important;
 }
 
-// .position-fixed{
-//   position: fixed;
-// }
+.position-sticky{
+  position: sticky !important;
+}
 
 
 // Background
 .gradient-bg {
-  background: $gradient-bg;
+  background: $gradient-bg !important;
 }
 
 @media (max-width: 700px) {
   .gradient-bg {
-    background: $second-gradient-bg;
+    background: $second-gradient-bg !important;
   }
 }

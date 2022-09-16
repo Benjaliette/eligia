@@ -1,11 +1,10 @@
 <% content_for :title, "Contact - Eligia" %>
 <% content_for :scroll_navbar, 'scroll-navbar' %>
-<% content_for :home_navbar, 'home-navbar' %>
+<% content_for :home_navbar, 'home-navbar position-sticky' %>
 <%= render 'shared/navbar' %>
 
-<div class="gradient-bg">
+<div class="gradient-bg mobile-contact-form">
   <%= image_tag("login.svg", alt:'login logo', class:'login-image view-bottom') %>
-  <div class="mobile-contact-grid">
     <div class='contact-form-part'>
       <h2 class="dashboard-title">Contactez nous</h2>
       <p class="margin-top-five margin-bottom-five">
@@ -33,6 +32,5 @@
           <%= f.submit 'Envoyer', class: 'btn-principal' %>
         </div>
       <% end %>
-    </div>
   </div>
 </div>

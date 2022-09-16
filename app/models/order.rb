@@ -83,10 +83,13 @@ class Order < ApplicationRecord
   end
 
   def generate_order_documents
-    self.order_documents.map(&:delete) unless self.order_documents.empty?
-    self.reload
-    self.required_documents.each do |required_document|
-      OrderDocument.create(order: self, document: required_document) unless self.order_documents.any? { |order_document| (order_document.document == required_document) }
+    order = self
+    order.order_documents.each do |order_document|
+      order_document.delete unless order.required_documents.include?(order_document.document)
+    end
+    order.reload
+    order.required_documents.each do |required_document|
+      OrderDocument.create(order: order, document: required_document) unless order.order_documents.any? { |order_document| (order_document.document == required_document) }
     end
   end
 

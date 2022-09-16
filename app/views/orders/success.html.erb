@@ -1,26 +1,29 @@
 <% content_for :title, "Confirmation - Eligia" %>
 
+<% content_for :home_navbar, 'home-navbar' %>
 <%= render 'shared/navbar' %>
-<div class="container margin-top-three padding-three" data-controller="remove-footer">
-  <% session = Stripe::Checkout::Session.retrieve(params[:session_id]) %>
-  <% customer = Stripe::Customer.retrieve(session.customer) %>
-  <% customer = Stripe::Customer.update(customer.id, {address: {
-    "city": session.customer_details.address.city,
-    "country": session.customer_details.address.country,
-    "line1": session.customer_details.address.line1,
-    "line2": session.customer_details.address.line2,
-    "postal_code": session.customer_details.address.postal_code,
-    "state": session.customer_details.address.state
-  }}) %>
-  <% user = current_user %>
-  <% user.add_address!(customer.address) %>
+<div class='vh-100 gradient-bg'>
+  <div class="container success-card-container">
+    <% session = Stripe::Checkout::Session.retrieve(params[:session_id]) %>
+    <% customer = Stripe::Customer.retrieve(session.customer) %>
+    <% customer = Stripe::Customer.update(customer.id, {address: {
+      "city": session.customer_details.address.city,
+      "country": session.customer_details.address.country,
+      "line1": session.customer_details.address.line1,
+      "line2": session.customer_details.address.line2,
+      "postal_code": session.customer_details.address.postal_code,
+      "state": session.customer_details.address.state
+    }}) %>
+    <% user = current_user %>
+    <% user.add_address!(customer.address) %>
 
-  <div class= "basic-white-card padding-five margin-top-five">
-    <h3 class="color-green">Merci <%= customer.name %> pour votre commande</h3>
+    <div class= "basic-white-card padding-five margin-top-five">
+      <h3 class="color-green">Merci <%= customer.name %> pour votre commande</h3>
 
-    <p>Un mail de confirmation vous a été envoyé à <%= user.email %></p>
+      <p>Un mail de confirmation vous a été envoyé à <%= user.email %></p>
 
-    <p>Pour voir le détail de votre commande, allez sur <%= link_to "mon compte", user_path(current_user), class: 'bold-link underline' %></p>
-    <p>Pour retourner à la page d'accueil, <%= link_to "cliquez ici", root_path, class: 'bold-link underline' %></p>
+      <p>Pour voir le détail de votre commande, allez sur <%= link_to "mon compte", user_path(current_user), class: 'bold-link underline' %></p>
+      <p>Pour retourner à la page d'accueil, <%= link_to "cliquez ici", root_path, class: 'bold-link underline' %></p>
+    </div>
   </div>
 </div>

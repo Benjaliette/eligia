@@ -249,9 +249,18 @@ button {
   color: #757575 ;
   margin-left: 10px ;
   cursor: pointer;
+  position: absolute;
+  right: -40px;
+  top: 10px;
 
   &:hover{
     color: #000;
+  }
+}
+
+@media (max-width: 500px) {
+  .show-password-btn{
+    right: -30px;
   }
 }
 

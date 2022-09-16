@@ -3,38 +3,40 @@
 <% content_for :home_navbar, 'home-navbar position-sticky' %>
 <%= render 'shared/navbar' %>
 
-  <div class="fullscreen-no-footer gradient-bg mobile-contact-grid">
+  <div class="wh-100 gradient-bg">
     <%= image_tag("login.svg", alt:'login logo', class:'login-image') %>
     <div class="form-div">
-      <h3 class='home-title no-margin padding-top-fifty'>Changez votre mot de passe</h3>
+      <div class="form-text">
+        <h3 class='home-title no-margin padding-top-fifty'>Changez votre mot de passe</h3>
 
-      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { "data-turbo": "false", method: :put }) do |f| %>
-        <%= f.error_notification %>
+        <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { "data-turbo": "false", method: :put }) do |f| %>
+          <%= f.error_notification %>
 
-        <%= f.input :reset_password_token, as: :hidden %>
-        <%= f.full_error :reset_password_token %>
+          <%= f.input :reset_password_token, as: :hidden %>
+          <%= f.full_error :reset_password_token %>
 
-        <div class="form-inputs">
-          <div class="form-inputs-block">
-            <%= f.label 'Nouveau mot de passe' %>
-            <%= f.input :password,
-                        required: true,
-                        label: false,
-                        placeholder:'**********'%>
+          <div class="form-inputs">
+            <div class="form-inputs-block">
+              <%= f.label 'Nouveau mot de passe' %>
+              <%= f.input :password,
+                          required: true,
+                          label: false,
+                          placeholder:'**********'%>
+            </div>
+            <div class="form-inputs-block confirm">
+              <%= f.label 'Confirmation du mot de passe' %>
+              <%= f.input :password_confirmation,
+                          required: true,
+                          label: false,
+                          placeholder:'**********'%>
+            </div>
           </div>
-          <div class="form-inputs-block confirm">
-            <%= f.label 'Confirmation du mot de passe' %>
-            <%= f.input :password_confirmation,
-                        required: true,
-                        label: false,
-                        placeholder:'**********'%>
-          </div>
-        </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Changer mon mot de passe", class: 'btn-principal' %>
-        </div>
-      <% end %>
+          <div class="form-actions">
+            <%= f.button :submit, "Changer mon mot de passe", class: 'btn-principal' %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

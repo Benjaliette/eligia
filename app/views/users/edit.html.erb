@@ -3,11 +3,12 @@
 <% content_for :home_navbar, 'home-navbar position-sticky' %>
 <%= render 'shared/navbar' %>
 
-<div class="fullscreen-no-footer gradient-bg mobile-contact-grid">
+<div class="wh-100 gradient-bg">
   <%= image_tag("login.svg", alt:'login logo', class:'login-image') %>
   <turbo-frame id='password'>
     <div class="form-div">
-      <h2 class='home-title no-margin padding-top-fifty'>Confirmation du mot de passe actuel</h2>
+      <div class="form-text">
+      <h2 class='home-title no-margin'>Confirmation du mot de passe actuel</h2>
 
       <div class='bold padding-top-five padding-bottom-five'>Mot de passe confirmé</div>
 
@@ -51,5 +52,6 @@
         </div>
       <% end %>
      </div>
+    </div>
   </turbo-frame>
 </div>

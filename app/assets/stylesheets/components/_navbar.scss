@@ -21,6 +21,7 @@
   }
 
   &.help-navbar {
+    background: $gradient-bg;
     height: 200px;
     justify-content: center;
 
@@ -35,6 +36,10 @@
 @media (max-width: 400px) {
   .navbar {
     padding: 0 20px;
+
+    &.help-navbar {
+      background: $mobile-gradient-bg;
+    }
   }
 }
 

@@ -83,3 +83,15 @@
     align-items: flex-start;
   }
 }
+
+@media (max-width: 500px) {
+  .modal-content {
+    .modal-content-documents {
+      .insert-document {
+        align-items: center;
+        flex-direction: column;
+      }
+    }
+
+  }
+}

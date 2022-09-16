@@ -109,14 +109,19 @@
 
   .show-password-devise{
     margin: 5px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+    width: 50%;
+    position: relative;
+
+    .input > input {
+      border: solid 1px lightgray;
+      border-radius: 4px;
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+    }
 
     .input{
-      width: 50%;
-      margin-left: 20px;
+      width: 90%;
     }
 
     .fa-solid{
@@ -128,6 +133,10 @@
     height: fit-content;
     padding: 60px;
   }
+}
+
+.devise-link:hover {
+  font-weight: bold;
 }
 
 // Style for address geocoder in edit form
@@ -191,8 +200,7 @@
   }
 
   .show-password-devise > .input{
-    width: 70%;
-    margin-left: 27px;
+    width: 90%;
   }
 }
 
@@ -212,7 +220,7 @@
       width: 85%;
     }
 
-    .show-password-devise > .input{
+    .show-password-devise {
       width: 85%;
     }
   }

@@ -6,12 +6,13 @@
   </li>
 <% end %>
 <% content_for :scroll_navbar, 'scroll-navbar' %>
-<%= render 'shared/navbar' %>
+<% content_for :home_navbar, 'home-navbar' %>
 
-<div class="fullscreen-no-footer gradient-bg">
+<div class=" vh-100 gradient-bg">
+  <%= render 'shared/navbar' %>
   <div class="wide-container padding-top-five">
 
-    <h2 class="dashboard-title">Notre tarification</h2>
+    <h2 class="dashboard-title margin-top-five">Notre tarification</h2>
     <strong>Des tarifs clairs et modulaires, pour s'adapter à tous vos besoins.</strong>
 
 

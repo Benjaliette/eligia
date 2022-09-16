@@ -231,11 +231,17 @@
 }
 
 .form-order-steps {
+  position: relative;
   background-color: #fbfbfb;
   height: 100vh;
 
   .logo {
+    width: 100%;
+    text-align: center;
     display: none;
+    position: absolute;
+    bottom: 20px;
+
   }
 }
 

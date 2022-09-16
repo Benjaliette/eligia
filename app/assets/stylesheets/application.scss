@@ -36,13 +36,11 @@ h1, h2, h3, h4 {
 
 .fullscreen-no-footer{
   min-height: calc(100vh - #{$navbar-height});
-  position: fixed;
   width: 100vw;
 }
 
 .vh-100{
   min-height: 100vh;
-  position: fixed;
   width: 100vw;
 }
 

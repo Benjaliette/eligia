@@ -181,3 +181,11 @@
     color: $gray;
   }
 }
+
+@media (max-width: 900px) {
+  .toggle-nav-item {
+    a {
+      font-size: 26px;
+    }
+  }
+}

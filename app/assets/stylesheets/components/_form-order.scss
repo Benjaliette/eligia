@@ -8,7 +8,7 @@
   border: 0px solid white;
   border-bottom: 1px solid $gray;
   height: 20px;
-  margin-left: 20px;
+  margin: 0 20px;
   &:focus {
     outline: none;
     border: 0px solid white;
@@ -26,6 +26,8 @@
   border: 2px solid $light-green;
   border-radius: 5px;
   display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:hover{
     transform: scale(1.07);
@@ -60,6 +62,9 @@
     border-radius: 5px;
     display: inline-block;
     font-size: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .account-radio-button-text:hover{
@@ -285,10 +290,9 @@
 
 .other-account {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 80%;
-  margin: 25px;
+  width: 90%;
+  margin: 20px;
 }
 
 .order-parts {
@@ -339,18 +343,21 @@
 @media (max-width: 900px) {
   .account-other-button{
     font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+    &:hover {
+      transform: scale(1)
+    }
   }
 
   .account-radio-button{
     input + .account-radio-button-text {
       font-size: 14px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+
+      &:hover {
+        transform: scale(1)
+      }
     }
+
   }
 
   .form-name-div{

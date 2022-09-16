@@ -12,6 +12,9 @@
           data-navbar-responsivity-target="navitems">
         <%= yield(:order_new_btn) %>
         <li class="nav-item">
+          <%= link_to 'Accueil', root_path %>
+        </li>
+        <li class="nav-item">
           <%= link_to 'Tarifs', price_pages_path %>
         </li>
         <li class="nav-item">
@@ -47,6 +50,9 @@
          data-action="click->navbar-dropdown#toggleDropdown">
       <i class="fa-solid fa-bars fa-xl" data-navbar-dropdown-target="hamburgerIcon"></i>
       <ul class="toggle-nav-items display-none" data-navbar-dropdown-target="toggleDropdowndiv">
+        <li class="toggle-nav-item">
+          <%= link_to 'Accueil', root_path %>
+        </li>
         <li class="toggle-nav-item">
           <%= link_to 'Tarifs', price_pages_path %>
         </li>

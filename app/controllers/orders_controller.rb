@@ -42,7 +42,6 @@ class OrdersController < ApplicationController
   def update
     @order.clear_order_accounts(order_params)
     @order.update_order_account_status
-    # raise
     @order.generate_order_documents
     redirect_to edit_order_path(@order)
   end

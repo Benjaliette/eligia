@@ -17,6 +17,7 @@ module Eligia
     config.load_defaults 7.0
     # To ordanize models with subfolders :
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '**/')]
+    config.middleware.use Rack::Deflater
 
     # config.asset_host = 'https://www.eligia.fr/'
 

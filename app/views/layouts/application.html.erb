@@ -24,7 +24,6 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "render_blocking_resources", "data-turbo-track": "reload", defer: true %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
@@ -32,4 +31,5 @@
     <%= yield %>
     <%= render 'shared/flash' %>
   </body>
+  <%= stylesheet_link_tag "render_blocking_resources", "data-turbo-track": "reload" %>
   </html>

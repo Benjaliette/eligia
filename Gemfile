@@ -36,6 +36,9 @@ gem 'friendly_id', '~> 5.4.0'
 # Geocoder is used to store address in users and allow them to have an autocompletion when entering their address
 gem "geocoder"
 
+# GCS is used to store in a secure way all of the datas/documents
+gem 'google-cloud-storage', '~> 1.41'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

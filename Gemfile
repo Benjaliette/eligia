@@ -21,6 +21,9 @@ gem "breadcrumbs_on_rails"
 # Use cloudinary to store pictures and documents on the cloud
 gem 'cloudinary'
 
+# Merge pdfs to include user uploaded documents in order_account pdf show
+gem 'combine_pdf'
+
 # Used devise to code the users table
 gem "devise"
 

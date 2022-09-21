@@ -4,7 +4,8 @@ class OrderAccountsController < ApplicationController
   def show
     pdf = OrderAccountPdf.new(@order_account)
     pdf.resiliation_pdf
-    send_data pdf.render,
+    merged_pdf = pdf.build_and_merge
+    send_data merged_pdf,
               filename: "export.pdf",
               type: 'application/pdf',
               disposition: 'inline'

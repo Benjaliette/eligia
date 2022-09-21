@@ -9,10 +9,10 @@ class OrderAccountPdf < TemplatePdf
 
   def build_and_merge
     merged_pdf = CombinePDF.new
-    # merged_pdf << CombinePDF.parse(self.render)
+    merged_pdf << CombinePDF.parse(self.render)
     @order_account.order_documents.each do |order_document|
       if order_document.pdf?
-        merged_pdf << CombinePDF.parse(Net::HTTP.get_response(URI.parse(order_document.document_file.url)).body)
+        merged_pdf << CombinePDF.parse(Net::HTTP.get_response(URI.parse(order_document.document_file.url)).body, allow_optional_content: true)
       end
     end
     merged_pdf.save("test_pdf.pdf")

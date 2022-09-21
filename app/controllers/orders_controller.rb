@@ -58,6 +58,7 @@ class OrdersController < ApplicationController
   end
 
   def recap
+    @order.order_documents.each { |od| od.move_file }
   end
 
   def paiement

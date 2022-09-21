@@ -1,10 +1,13 @@
 class OrderAccount < ApplicationRecord
   before_save :update_order_state
 
+  after_update :rename_resiliation_file
+
   include AASM
 
   belongs_to :order
   belongs_to :account
+  has_one_attached :resiliation_file
 
   accepts_nested_attributes_for :account, allow_destroy: true, reject_if: :reject_accounts
 
@@ -60,7 +63,7 @@ class OrderAccount < ApplicationRecord
     end
 
     event :declare_pending do
-      transitions from: :document_missing, to: :pending
+      transitions from: :document_missing, to: :pending, after: Proc.new { create_resiliation_file }
     end
 
     event :declare_resiliation_sent do
@@ -88,5 +91,27 @@ class OrderAccount < ApplicationRecord
       content: "Contrat '#{self.account.name}' résilié",
       order: self.order
     )
+  end
+
+  def create_resiliation_file
+    pdf = OrderAccountPdf.new(self)
+    pdf.resiliation_pdf
+  end
+
+  def rename_resiliation_file
+    bucket_name = "eligia_cloud_storage"
+    file_name = self.resiliation_file.blob.key
+    order_name = "#{self.order.deceased_first_name}_#{self.order.deceased_last_name}"
+    new_name = "#{order_name}/#{self.account.name}/#{self.updated_at.strftime('%y%m%d')}_Résiliation_#{self.account.name.gsub(' ', '_')}.#{self.resiliation_file.filename.extension}"
+
+    storage = Google::Cloud::Storage.new
+    bucket  = storage.bucket bucket_name, skip_lookup: true
+    p "🛑 #{bucket.file}"
+    file = bucket.file file_name
+    renamed_file = file.copy new_name
+
+    self.resiliation_file.update(key: renamed_file.name)
+
+    file.delete
   end
 end

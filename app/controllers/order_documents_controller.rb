@@ -14,6 +14,7 @@ class OrderDocumentsController < ApplicationController
                   contrat #{@order_account.account.name}",
         order: @order_account.order
       )
+      @order_document.rename_document_file
       @order_documents = @order_account.non_uploaded_order_documents
       redirect_to order_path(@order_account.order)
       flash[:alert] = "Document enregistré"

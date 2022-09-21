@@ -1,6 +1,7 @@
 class OrderDocument < ApplicationRecord
-  has_one_attached :document_file
+  require "google/cloud/storage"
 
+  has_one_attached :document_file
   belongs_to :document
   belongs_to :order
 
@@ -10,9 +11,7 @@ class OrderDocument < ApplicationRecord
     self.document_file.blob.content_type == 'application/pdf'
   end
 
-  def move_file
-    require "google/cloud/storage"
-
+  def rename_document_file
     if self.document_file.attached?
       bucket_name = "eligia_cloud_storage"
       file_name = self.document_file.blob.key
@@ -24,6 +23,8 @@ class OrderDocument < ApplicationRecord
       file    = bucket.file file_name
 
       renamed_file = file.copy new_name
+
+      self.document_file.update(key: renamed_file.name)
 
       file.delete
     end

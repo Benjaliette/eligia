@@ -21,7 +21,7 @@ class TemplatePdf
       text "Nous sommes au regret de vous informer du décès de votre client #{args[:order_account].order.deceased_first_name} #{args[:order_account].order.deceased_last_name}. Ainsi, nous vous demandons par ce courier la résiliation imédiate de sa/ ses souscription(s) auprès de votre entreprise."
       move_down 10
       text "Vous trouverez joint toutes les informations nécessaires à la résiliation du contrat."
-      text "Pour toute requête ou si des informations manquent, veuillez contacter ELIGIA : 7 rue Flornoy, 33000 Bordeaux, contact@eligia.fr, 0627997323."
+      text "Pour toute requête ou si des informations manquent, veuillez contacter ELIGIA : 6 rue Flornoy, 33000 Bordeaux, contact@eligia.fr, 0627997323."
       move_down 10
       text "En l'absence de nouvelle de votre part sous 5 jours ouvrés suite à réception de ce courier, le contrat sera considéré de notre côté comme résilié."
       move_down 10

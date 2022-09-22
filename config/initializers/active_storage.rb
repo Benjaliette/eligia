@@ -5,8 +5,6 @@ Rails.application.config.after_initialize do
     after_create_commit :callbacks
 
     def callbacks
-      p "arnold"
-      p record
       if record_type == "OrderAccount"
         record.rename_resiliation_file
       end

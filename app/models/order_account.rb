@@ -5,6 +5,8 @@ class OrderAccount < ApplicationRecord
 
   belongs_to :order
   belongs_to :account
+  has_many :notifications, dependent: :destroy
+
   has_one_attached :resiliation_file
 
   accepts_nested_attributes_for :account, allow_destroy: true, reject_if: :reject_accounts

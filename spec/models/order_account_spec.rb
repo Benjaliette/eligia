@@ -21,7 +21,7 @@ RSpec.describe OrderAccount, type: :model do
   describe "State machine" do
     it "Can transition from document_missing to pending and resiliation_failure" do
       order_account = create(:order_account)
-      expect(order_account).to transition_from(:document_missing).to(:pending).on_event(:declare_pending)
+      expect(order_account).to allow_event(:declare_pending)
       expect(order_account).to transition_from(:document_missing).to(:resiliation_failure).on_event(:declare_resiliation_failure)
     end
 
@@ -57,7 +57,7 @@ RSpec.describe OrderAccount, type: :model do
       my_user = create(:user, email: "marc.delesalle@eligia.fr")
       order_account = create(:order_account)
       expect(order_account.state_to_french).to eq "Document(s) manquant(s)"
-      order_account.declare_pending
+      order_account.update(aasm_state: "pending")
       expect(order_account.state_to_french).to eq "En traitement"
       order_account.declare_resiliation_sent
       expect(order_account.state_to_french).to eq "Demande de résiliation envoyée"
@@ -65,6 +65,23 @@ RSpec.describe OrderAccount, type: :model do
       expect(order_account.state_to_french).to eq "Compte résilié"
       order_account = create(:order_account, aasm_state: 'resiliation_failure', order: create(:order, user: my_user))
       expect(order_account.state_to_french).to eq "Erreur"
+    end
+
+    it "#update_state" do
+      order = create(:order)
+      orange = create(:account, name: "orange")
+      certif = create(:document, name: "certif", format: "text")
+      id = create(:document, name: "id", format: "text")
+      mail = create(:document, name: "mail", format: "text")
+      create(:account_document, account: orange, document: certif)
+      create(:account_document, account: orange, document: mail)
+      create(:account_document, account: orange, document: id)
+      create(:order_document, order:, document: mail, document_input: "yellow")
+      create(:order_document, order:, document: id, document_input: "yellow")
+      create(:order_document, order:, document: certif, document_input: "yellow")
+      order_account = create(:order_account, account: orange, order:)
+      expect(order_account.aasm_state).to eq "document_missing"
+      expect { order_account.update_state }.to raise_error NoMethodError
     end
   end
 

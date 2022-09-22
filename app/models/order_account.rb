@@ -53,6 +53,22 @@ class OrderAccount < ApplicationRecord
       self.declare_pending!
   end
 
+  def rename_resiliation_file
+    return unless self.resiliation_file.attached?
+
+    bucket_name = "eligia_cloud_storage"
+    file_name = self.resiliation_file.blob.key
+    order_name = "#{self.order.deceased_first_name}_#{self.order.deceased_last_name}"
+    new_name = "#{order_name}/#{self.account.name}/#{self.updated_at.strftime('%y%m%d')}_Résiliation_#{self.account.name.gsub(' ', '_')}.#{self.resiliation_file.filename.extension}"
+
+    storage = Google::Cloud::Storage.new
+    bucket  = storage.bucket bucket_name, skip_lookup: true
+    file = bucket.file file_name
+    renamed_file = file.copy new_name
+
+    file.delete
+  end
+
   private
 
   def update_order_state
@@ -102,21 +118,5 @@ class OrderAccount < ApplicationRecord
     pdf = OrderAccountPdf.new(self)
     pdf.resiliation_pdf
     pdf.build_and_upload
-  end
-
-  def rename_resiliation_file
-    return unless self.resiliation_file.attached?
-
-    bucket_name = "eligia_cloud_storage"
-    file_name = self.resiliation_file.blob.key
-    order_name = "#{self.order.deceased_first_name}_#{self.order.deceased_last_name}"
-    new_name = "#{order_name}/#{self.account.name}/#{self.updated_at.strftime('%y%m%d')}_Résiliation_#{self.account.name.gsub(' ', '_')}.#{self.resiliation_file.filename.extension}"
-
-    storage = Google::Cloud::Storage.new
-    bucket  = storage.bucket bucket_name, skip_lookup: true
-    file = bucket.file file_name
-    renamed_file = file.copy new_name
-
-    file.delete
   end
 end

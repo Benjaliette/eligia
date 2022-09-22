@@ -10,7 +10,7 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
   has_many :order_accounts, dependent: :destroy
   has_many :order_documents, dependent: :destroy
-  has_many :notifications
+  has_many :notifications, dependent: :destroy
 
   validates :deceased_first_name, :deceased_last_name,
             presence: { message: "Veuillez saisir ce champ" },
@@ -94,11 +94,7 @@ class Order < ApplicationRecord
   end
 
   def update_order_account_status
-    self.order_accounts.each do |order_account|
-      if order_account.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) } && order_account.document_missing?
-        order_account.declare_pending!
-      end
-    end
+    self.order_accounts.each { |o_a| o_a.update_state }
   end
 
   def jsonify_order_accounts

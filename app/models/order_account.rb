@@ -1,8 +1,6 @@
 class OrderAccount < ApplicationRecord
   before_save :update_order_state
 
-  after_update :rename_resiliation_file
-
   include AASM
 
   belongs_to :order
@@ -48,10 +46,17 @@ class OrderAccount < ApplicationRecord
     end
   end
 
-  private
+  # private
 
   def update_order_state
     self.order.update_state unless Rails.env.test?
+  end
+
+  def update_state
+    # Nom assez mal choisi pour l'instant vu qu'on fait juste un update vers pending.
+    return unless self.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) } && self.document_missing?
+
+      self.declare_pending!
   end
 
   aasm do
@@ -96,9 +101,23 @@ class OrderAccount < ApplicationRecord
   def create_resiliation_file
     pdf = OrderAccountPdf.new(self)
     pdf.resiliation_pdf
+    pdf.build_and_upload
+    # self.rename_resiliation_file
   end
 
   def rename_resiliation_file
+    # self.resiliation_file.download
+    p "🛑 OUSTIDE 🛑"
+    p self.resiliation_file.attached?
+    p self.aasm_state == 'pending'
+    p self.aasm_state
+    p "file_name : #{self.resiliation_file.blob.key}"
+
+    return unless self.resiliation_file.attached?
+
+    p "🛑 INSIDE 🛑"
+    p self.resiliation_file.attached?
+
     bucket_name = "eligia_cloud_storage"
     file_name = self.resiliation_file.blob.key
     order_name = "#{self.order.deceased_first_name}_#{self.order.deceased_last_name}"
@@ -106,11 +125,8 @@ class OrderAccount < ApplicationRecord
 
     storage = Google::Cloud::Storage.new
     bucket  = storage.bucket bucket_name, skip_lookup: true
-    p "🛑 #{bucket.file}"
     file = bucket.file file_name
     renamed_file = file.copy new_name
-
-    self.resiliation_file.update(key: renamed_file.name)
 
     file.delete
   end

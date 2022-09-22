@@ -93,6 +93,13 @@ class Order < ApplicationRecord
     end
   end
 
+  def non_uploaded_order_documents
+    o_d = self.order_documents.select { |order_doc| self.required_documents.include? order_doc.document }
+    o_d.select do |order_document|
+      (order_document.document.format == 'pdf' && !order_document.document_file.attached?) || (order_document.document.format == 'text' && order_document.document_input.blank?)
+    end
+  end
+
   def update_order_account_status
     self.order_accounts.each { |o_a| o_a.update_state }
   end

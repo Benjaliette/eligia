@@ -11,11 +11,12 @@ class OrderDocumentsController < ApplicationController
     if @order_document.update(order_document_params)
       Notification.create(
         content: "Vous avez ajouté le document #{@order_document.document.name} pour la résiliation du
-                  contrat #{@order_account.account.name}",
-        order: @order_account.order
+                  contrat #{@order_account.account.name} de #{@order_account.order.deceased_first_name} #{@order_account.order.deceased_last_name}",
+        order: @order_account.order,
+        order_account: @order_account
       )
       @order_document.rename_document_file
-      @order_documents = @order_account.non_uploaded_order_documents
+      @order_documents = @order_account.order_documents
       redirect_to order_path(@order_account.order)
       flash[:alert] = "Document enregistré"
     else

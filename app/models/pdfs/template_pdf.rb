@@ -2,7 +2,7 @@ class TemplatePdf
   include Prawn::View
 
   def resiliation_pdf(args)
-    stroke_axis
+    # stroke_axis
     bounding_box([0, 715], width: 150, height: 100) do
       # stroke_bounds
       text "ELIGIA SARL,"
@@ -10,12 +10,12 @@ class TemplatePdf
       text "Au nom de #{args[:order_account].order.deceased_first_name} #{args[:order_account].order.deceased_last_name}"
     end
     bounding_box([350, 670], width: 200, height: 100) do
-      stroke_bounds
+      # stroke_bounds
       text "A l'attention de"
       text "ADRESSE D'EXPEDITION"
     end
     bounding_box([0, 550], width: 550, height: 550) do
-      stroke_bounds
+      # stroke_bounds
       text "Bonjour"
       move_down 10
       text "Nous sommes au regret de vous informer du décès de votre client #{args[:order_account].order.deceased_first_name} #{args[:order_account].order.deceased_last_name}. Ainsi, nous vous demandons par ce courier la résiliation imédiate de sa/ ses souscription(s) auprès de votre entreprise."

@@ -6,9 +6,12 @@ class OrderDocumentsController < ApplicationController
 
   def update
     @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
-    @order_account.order.update_order_account_status
+    @order_account.update_state
     @order_account.reload
+    # @order_account.resiliation_file.download
+    p "🚀yolo"
     if @order_document.update(order_document_params)
+    p "✅ add doc"
       Notification.create(
         content: "Vous avez ajouté le document #{@order_document.document.name} pour la résiliation du
                   contrat #{@order_account.account.name}",

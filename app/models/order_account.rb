@@ -68,6 +68,8 @@ class OrderAccount < ApplicationRecord
     file = bucket.file file_name
     renamed_file = file.copy new_name
 
+    self.resiliation_file.update(key: renamed_file.name)
+
     file.delete
   end
 

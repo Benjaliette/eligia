@@ -9,4 +9,8 @@ class OrderDocumentPolicy < ApplicationPolicy
   def update?
     record.order.user == user
   end
+
+  def update_documents?
+    record.order.user == user
+  end
 end

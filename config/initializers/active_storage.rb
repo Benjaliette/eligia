@@ -7,6 +7,8 @@ Rails.application.config.after_initialize do
     def callbacks
       if record_type == "OrderAccount"
         record.rename_resiliation_file
+      elsif record_type == "OrderDocument"
+        record.rename_document_file
       end
     end
   end

@@ -21,6 +21,9 @@ gem "breadcrumbs_on_rails"
 # Use cloudinary to store pictures and documents on the cloud
 gem 'cloudinary'
 
+# Merge pdfs to include user uploaded documents in order_account pdf show
+gem 'combine_pdf'
+
 # Used devise to code the users table
 gem "devise"
 
@@ -35,6 +38,9 @@ gem 'friendly_id', '~> 5.4.0'
 
 # Geocoder is used to store address in users and allow them to have an autocompletion when entering their address
 gem "geocoder"
+
+# GCS is used to store in a secure way all of the datas/documents
+gem 'google-cloud-storage', '~> 1.41'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

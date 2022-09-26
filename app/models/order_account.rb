@@ -1,9 +1,9 @@
 class OrderAccount < ApplicationRecord
-  before_save :update_order_state
+  # before_save :update_order_state
 
   include AASM
 
-  belongs_to :order
+  belongs_to :order, optional: true
   belongs_to :account
   has_many :notifications, dependent: :destroy
 

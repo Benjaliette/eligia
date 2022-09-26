@@ -213,7 +213,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
   p{
@@ -303,7 +303,7 @@
 
 .order-parts {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 2fr 6fr 3fr;
   height: 100vh;
 }
 

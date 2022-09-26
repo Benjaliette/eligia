@@ -1,5 +1,6 @@
 <% content_for :title, "Nouvelle démarche - Eligia" %>
 
+
 <div class="order-parts">
   <div class="form-order-steps">
     <div class="steps">
@@ -27,37 +28,41 @@
         <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
       </div>
       <h1>1. Contrats à résilier</h1>
+      <p>
+        Renseigner les <strong>abonnements à résilier</strong>.<br><br>
+        Pour des raisons de simplicité, les documents et informations à fournir seront demandées à l'étape 2.
+      </p>
     </div>
 
     <div class="form-order-content">
-      <%= simple_form_for @order, data: { turbo: :false } do |f_order| %>
-        <%= f_order.error_notification %>
 
-        <div class="form-name-div">
-          <%= f_order.input :deceased_first_name,
-                            label: 'Prénom du défunt',
-                            input_html: { class: 'form-name-input' },
-                            autofocus: true %>
-          <%= f_order.input :deceased_last_name, label: 'Nom du défunt', input_html: { class: 'form-name-input' } %>
-        </div>
+      <% category = @categories.first %>
+      <div class="order-divs">
+        <h3 class="highlight-green fit-content"><%= category.name %></h3>
 
-      <% @categories.each do |category| %>
-        <div class="order-divs">
-          <h3 class="highlight-green fit-content"><%= category.name %></h3>
-
-          <% category.subcategories.each do |subcategory| %>
-            <div class="box subcategory-div" data-controller="subcategory-dropdown">
-              <div class='subcategory-title' data-action='click->subcategory-dropdown#toggle'>
-                <h4><%= subcategory.name %></h4>
-                <div class="toggle-btn" data-subcategory-dropdown-target='button'></div>
-              </div>
-              <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts'>
-                <%= render 'chose_account_form', category: category, f_order: f_order, subcategory: subcategory, order_accounts: @order_accounts %>
-              </div>
-            </div>
-           <% end %>
+        <% subcategory = category.subcategories.first %>
+        <div class="box subcategory-div" data-controller="subcategory-dropdown">
+          <div class='subcategory-title' data-action='click->subcategory-dropdown#toggle'>
+            <h4><%= subcategory.name %></h4>
+            <div class="toggle-btn" data-subcategory-dropdown-target='button'></div>
           </div>
-        <% end %>
+          <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts'>
+            <%= render 'chose_account_form', category: category, subcategory: subcategory, order_accounts: @order_accounts, order: @order %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='form-order-right'>
+      <div class="logo">
+        <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+      </div>
+      <div id='test'></div>
+      <% @order.order_accounts.each do |order_account| %>
+        <%= render 'order_accounts/account_card', order_account: order_account %>
+      <% end %>
+      <%= simple_form_for @order do |f_order| %>
         <div class="order-btn">
           <%= button_tag(type: 'submit', class: "learn-more") do %>
             <span class="circle" aria-hidden="true">
@@ -67,18 +72,7 @@
           <% end %>
         </div>
       <% end %>
-    </div>
-  </div>
 
-  <div class='form-order-right'>
-    <div class="logo">
-      <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
-    </div>
-    <p>
-      Renseigner les <strong>abonnements à résilier</strong>.<br><br>
-      Pour des raisons de simplicité, les documents et informations à fournir seront demandées à l'étape 2.
-    </p>
-    <div class="flower-pot" style="background-image: url(<%= image_path 'pot-fleur.svg' %>)"></div>
   </div>
 
   <%= link_to contrats_helps_path, target: "_blank", class: 'btn-third small help-btn' do %>

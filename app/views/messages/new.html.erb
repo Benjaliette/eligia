@@ -3,17 +3,15 @@
 <% content_for :home_navbar, 'home-navbar position-sticky' %>
 <%= render 'shared/navbar' %>
 
-<div class="gradient-bg mobile-contact-form">
+<div class="gradient-bg">
   <%= image_tag("login.svg", alt:'login logo', class:'login-image view-bottom') %>
-    <div class='contact-form-part'>
-      <h2 class="dashboard-title">Contactez nous</h2>
-      <p class="margin-top-five margin-bottom-five">
-        Pour en savoir plus sur notre service ou pour poser n'importe quelle question,
-        veuillez remplir le formulaire ci-dessous
-      </p>
+  <div class="contact-form">
+    <div class="contact-form-text">
 
-      <%= simple_form_for @message do |f| %>
-        <div class="contact-form">
+        <h2 class="home-title no-margin margin-bottom-five">Contactez nous</h2>
+        <p> Pour en savoir plus sur notre service ou pour poser n'importe quelle question, veuillez remplir le formulaire ci-dessous</p>
+
+        <%= simple_form_for @message do |f| %>
           <div class="contact-form-head">
             <%= f.input :name,
                             label: 'Votre nom',
@@ -27,10 +25,11 @@
                           label: 'Votre message',
                           as: :text,
                           input_html: { class: 'form-name-input-text' } %>
-        </div>
-        <div class="form-actions align-center">
-          <%= f.submit 'Envoyer', class: 'btn-principal' %>
-        </div>
-      <% end %>
+
+          <div class="form-actions align-center">
+            <%= f.submit 'Envoyer', class: 'btn btn-principal', id:'submit-btn' %>
+          </div>
+        <% end %>
+    </div>
   </div>
 </div>

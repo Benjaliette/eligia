@@ -2,9 +2,10 @@
 <% content_for :home_navbar, 'home-navbar' %>
 <% content_for :order_new_btn do %>
   <li class="nav-item">
-    <%= link_to "Commencer une démarche", new_order_path, class:"btn-principal small" %>
+    <%= link_to "Commencer une démarche", new_order_path, class:"btn-principal small", data:{'scroll-navbar-target':'button'} %>
   </li>
 <% end %>
+<% content_for :accueil_btn, 'display-none' %>
 <%= render 'shared/navbar' %>
 
 <div class="banner">

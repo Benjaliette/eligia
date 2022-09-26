@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend "order_accounts", partial: "account_card", locals: { oa: @order_account } %>
+<%= turbo_stream.update OrderAccount.new, "" %>

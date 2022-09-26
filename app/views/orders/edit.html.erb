@@ -37,6 +37,13 @@
     </div>
     <div class="form-order-content">
       <%= simple_form_for @order, url: :update_documents_order, data: { turbo: false } do |f| %>
+        <div class="form-name-div">
+          <%= f.input :deceased_first_name,
+                            label: 'Prénom du défunt',
+                            input_html: { class: 'form-name-input' },
+                            autofocus: true %>
+          <%= f.input :deceased_last_name, label: 'Nom du défunt', input_html: { class: 'form-name-input' } %>
+        </div>
         <% @order.order_documents.each do |order_document| %>
           <div class="insert-document" data-controller="add-file">
             <%= f.simple_fields_for :order_documents, order_document do |fod| %>

@@ -11,7 +11,7 @@
       <ul class="nav-items"
           data-navbar-responsivity-target="navitems">
         <%= yield(:order_new_btn) %>
-        <li class="nav-item">
+        <li class="nav-item <%= yield(:accueil_btn)%>">
           <%= link_to 'Accueil', root_path %>
         </li>
         <li class="nav-item">

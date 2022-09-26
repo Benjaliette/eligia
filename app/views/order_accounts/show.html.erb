@@ -1,0 +1,39 @@
+<% content_for :title, "Mes démarches - Eligia" %>
+<%= render 'shared/navbar' %>
+
+<turbo-frame id="content">
+
+  <div class="banner user-banner">
+    <div class="container padding-top-five">
+      <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
+      <p><em>Bienvenue sur votre espace personnel</em></p>
+    </div>
+  </div>
+
+  <div class="container padding-top-five">
+    <%= link_to '← retour', user_path(@current_user), class: 'btn-third small margin-top-five foreground' %>
+    <div class="user-dashboard-content">
+      <h2 class="dashboard-title">Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></h2>
+      <span class='underline'>Avancée du dossier :</span> <%= @order.state_to_french %>
+      <div class='order-account-cards'>
+        <% @order.order_accounts.each do |order_account| %>
+          <%= render "orders/order_account_card", order_account: order_account %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" data-modal-target='modal'>
+    <div class="modal-content">
+      <h2><%= @order_account.account.name %></h2>
+      <div class="modal-content-documents">
+      <turbo-frame id="modal-<%=@order_account.id%>">
+          <%= render 'update_order_document_modal', order_account: @order_account %>
+      </turbo-frame>
+      </div>
+      <%= link_to "+", order_path(@order), class:'close'  %>
+    </div>
+  </div>
+
+
+</turbo-frame>

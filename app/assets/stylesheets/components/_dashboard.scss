@@ -87,6 +87,19 @@
   }
 }
 
+// Order dashboard
+.order-dashboard-section {
+  margin-top: 20vh;
+
+  .order-documents-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 50px;
+
+    margin-top: 10vh;
+  }
+}
+
 @media (max-width: 900px) {
   .user-dashboard-grid{
     grid-template-columns: 1fr;

@@ -156,6 +156,10 @@
     padding: 0px;
     list-style: none;
 
+    a:hover {
+      text-decoration: underline;
+    }
+
     .notification-list-item {
       margin: 5px 0px;
       padding-bottom: 20px;

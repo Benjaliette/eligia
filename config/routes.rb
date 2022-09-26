@@ -19,6 +19,15 @@ Rails.application.routes.draw do
       get 'success'
       get 'paiement'
     end
+    resources :order_documents, path: 'documents', only: %i[update] do
+      member do
+        patch 'update_documents'
+      end
+    end
+
+    resources :order_accounts, path: 'contrats', only: :show do
+      resources :order_documents, path: 'documents', only: %i[update]
+    end
   end
 
   # Redirect to orders/new if there is a refresh after a render :new
@@ -32,9 +41,6 @@ Rails.application.routes.draw do
     resources :orders, path: 'resiliations', only: :index
   end
 
-  resources :order_accounts, path: 'contrats', only: :show do
-    resources :order_documents, path: 'documents', only: %i[update]
-  end
   resources :order_documents, only: :create
 
   resources :pages do

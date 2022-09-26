@@ -76,7 +76,9 @@
             <ul class="notification-list">
               <% @notifications.each do |notification| %>
                 <li class="notification-list-item">
-                  <div class="notification-content"><%= notification.content %></div>
+                  <%= link_to notification.order_account ? order_order_account_path(notification.order, notification.order_account) : order_path(notification.order) do %>
+                    <div class="notification-content"><%= notification.content %></div>
+                  <% end %>
                   <% notification_time = (Date.today - notification.created_at.to_datetime).to_i %>
                   <div class="notification-date"><%= notification_time < 1 ? "Aujourd'hui" : "Il y a #{notification_time} jours" %></div>
                 </li>

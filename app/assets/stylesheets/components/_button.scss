@@ -96,6 +96,12 @@
   border-radius: 10%/50%;
 }
 
+.btn-order {
+  display: flex;
+  justify-content: center;
+  margin: 7vh auto;
+}
+
 // BUTTON FOR VALIDATE ORDER
 
 @mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
@@ -320,8 +326,7 @@ button {
 }
 
 @media (max-width: 900px) {
-  .help-btn {
-    right: 30px;
-    left: initial;
+  .btn-order {
+    margin: 0px;
   }
 }

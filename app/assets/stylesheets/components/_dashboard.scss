@@ -56,15 +56,11 @@
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   grid-gap: 40px;
-
-  .user-dashboard-content{
-    width: 100%;
-  }
 }
 
 .user-dashboard-content{
   width: 100%;
-  margin-top: 75px;
+  margin-top: 20px;
 
   h2 {
     margin-bottom: 50px;

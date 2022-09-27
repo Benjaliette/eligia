@@ -58,7 +58,6 @@ class OrdersController < ApplicationController
   end
 
   def recap
-    @order.order_documents.each { |od| od.rename_document_file }
   end
 
   def paiement

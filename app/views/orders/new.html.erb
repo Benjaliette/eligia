@@ -24,6 +24,9 @@
 
   <div class="form-order-div">
     <div class="form-order-infos">
+      <%= button_to order_path(@order), method: :delete, class:"btn-third small btn-round margin-bottom-four" do %>
+        ← retour à l'accueil
+      <% end %>
       <div class="logo">
         <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
       </div>
@@ -35,22 +38,23 @@
     </div>
 
     <div class="form-order-content">
+      <% @categories.each do |category| %>
+        <div class="order-divs">
+          <h3 class="highlight-green fit-content"><%= category.name %></h3>
 
-      <% category = @categories.first %>
-      <div class="order-divs">
-        <h3 class="highlight-green fit-content"><%= category.name %></h3>
-
-        <% subcategory = category.subcategories.first %>
-        <div class="box subcategory-div" data-controller="subcategory-dropdown">
-          <div class='subcategory-title' data-action='click->subcategory-dropdown#toggle'>
-            <h4><%= subcategory.name %></h4>
-            <div class="toggle-btn" data-subcategory-dropdown-target='button'></div>
-          </div>
-          <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts'>
-            <%= render 'chose_account_form', category: category, subcategory: subcategory, order_accounts: @order_accounts, order: @order %>
-          </div>
+          <% category.subcategories.each do |subcategory| %>
+            <div class="box subcategory-div" data-controller="subcategory-dropdown">
+              <div class='subcategory-title' data-action='click->subcategory-dropdown#toggle'>
+                <h4><%= subcategory.name %></h4>
+                <div class="toggle-btn" data-subcategory-dropdown-target='button'></div>
+              </div>
+              <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts'>
+                <%= render 'chose_account_form', category: category, subcategory: subcategory, order_accounts: @order_accounts, order: @order %>
+              </div>
+            </div>
+          <% end %>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 

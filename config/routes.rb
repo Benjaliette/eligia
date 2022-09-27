@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :order_accounts, only: :create
+  resources :order_accounts, only: %i[create destroy]
 
   # Redirect to orders/new if there is a refresh after a render :new
   get '/resiliations/', to: 'orders#new'

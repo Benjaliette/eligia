@@ -10,7 +10,7 @@
       <div class='account-card'>
         <div class="account-card-title">
           <% if account.logo.attached?  %>
-            <div class="account-avatar" style="background-image:url(<%= cl_image_path account.logo.key %>)"></div>
+            <div class="account-avatar" style="background-image:url(<%= account.logo.url %>)"></div>
           <% else %>
             <div class="account-avatar" style="background: #464646;">
               <span style='color: white;'><%= account.name.upcase.split.map { |word| word[0] }.join %></span>

@@ -43,6 +43,8 @@
       font-size: 80%;
       color: white;
       margin-right: 10px;
+      background-size: cover;
+      background-position: center;
     }
 
     .account-card-name {
@@ -70,6 +72,7 @@
 
   &.small {
     height: 5vh;
+    position: relative;
   }
 }
 

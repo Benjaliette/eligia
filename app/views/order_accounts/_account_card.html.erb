@@ -1,4 +1,4 @@
-<div class="account-card small">
+<div class="account-card small" id=<%= dom_id order_account %>>
   <div class="account-card-title">
     <% if order_account.account.logo.attached?  %>
       <div class="account-avatar" style="background-image:url(<%= cl_image_path order_account.account.logo.key %>);"></div>
@@ -9,4 +9,8 @@
     <% end %>
     <div class='account-card-name'><%= order_account.account.name %></div>
   </div>
+  <%= button_to "+",
+      order_account_path(order_account),
+      method: :delete,
+      class: "close-btn" %>
 </div>

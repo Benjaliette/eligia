@@ -135,13 +135,15 @@
 }
 
 .notification-card {
-  height: 70vh;
-  border-radius: 10px;
-  background: white;
-  box-shadow: 0px 2px 4px grey;
+  height: fit-content;
+  max-height: 80vh;
   padding: 15px;
   position: sticky;
-  top: 100px;
+  margin-top: 60px;
+  box-shadow: 0px 4px 8px lightgrey;
+  border: solid 1px lightgrey;
+  border-radius: 8px;
+  background: white;
 
   .notification-head {
     background-color: white;

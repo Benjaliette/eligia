@@ -29,6 +29,9 @@
 }
 
 // Top
+.margin-top-zero{
+  margin-top: 0px;
+}
 .margin-top-one {
   margin-top: $level-one !important;
 }
@@ -125,6 +128,9 @@
 }
 
 // Top
+.padding-top-zero {
+  padding-top: 0px !important;
+}
 .padding-top-one {
   padding-top: $level-one !important;
 }
@@ -162,6 +168,9 @@
 }
 
 // Bottom
+.padding-bottom-zero {
+  padding-bottom: 0px !important;
+}
 .padding-bottom-one {
   padding-bottom: $level-one !important;
 }

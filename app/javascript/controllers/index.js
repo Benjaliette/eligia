@@ -40,6 +40,9 @@ application.register("navbar-dropdown", NavbarDropdownController)
 import NavbarResponsivityController from "./navbar_responsivity_controller"
 application.register("navbar-responsivity", NavbarResponsivityController)
 
+import OrderAccountCreationController from "./order_account_creation_controller"
+application.register("order-account-creation", OrderAccountCreationController)
+
 import OtherAccountController from "./other_account_controller"
 application.register("other-account", OtherAccountController)
 

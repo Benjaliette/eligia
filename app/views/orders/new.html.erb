@@ -64,10 +64,14 @@
         <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
       </div>
       <h3>Contrats sélectionnés :</h3>
-      <div id='account-list' class='account-grid small'></div>
-      <% @order.order_accounts.each do |order_account| %>
-        <%= render 'order_accounts/account_card', order_account: order_account %>
-      <% end %>
+      <div class="box account-box">
+        <div id='account-list' class='account-grid small'></div>
+        <div id='account-list' class='account-grid small'>
+          <% @order.order_accounts.each do |order_account| %>
+            <%= render 'order_accounts/account_list_card', order_account: order_account %>
+          <% end %>
+        </div>
+      </div>
     </div>
     <%= simple_form_for @order do |f_order| %>
       <div class="order-btn">

@@ -9,21 +9,17 @@
 
       <div class='account-card'>
         <div class="account-card-title">
-          <% if account.logo.attached?  %>
-            <div class="account-avatar" style="background-image:url(<%= account.logo.url %>)"></div>
-          <% else %>
+          <% if account.logo_url.nil?  %>
             <div class="account-avatar" style="background: #464646;">
               <span style='color: white;'><%= account.name.upcase.split.map { |word| word[0] }.join %></span>
             </div>
+          <% else %>
+            <div class="account-avatar" style="background-image:url('<%= account.logo_url %>')"></div>
           <% end %>
           <div class='account-card-name'><%= account.name %></div>
         </div>
-        <div class="account-card-submit">
-          <%= simple_form_for OrderAccount.new do |f_order_accounts| %>
-            <%= f_order_accounts.input :account_id, input_html: { value: account.id }, as: :hidden %>
-            <%= f_order_accounts.input :order_id, input_html: { value: order.id }, as: :hidden %>
-            <%= f_order_accounts.submit 'ajouter →', class: 'account-card-btn' %>
-          <% end %>
+        <div class="account-card-submit" id=<%= dom_id account %> data-controller="order-account-creation">
+          <%= render 'order_accounts/account_card', order: order, account: account %>
         </div>
       </div>
     <% end %>

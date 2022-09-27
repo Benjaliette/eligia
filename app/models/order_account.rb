@@ -3,7 +3,7 @@ class OrderAccount < ApplicationRecord
 
   include AASM
 
-  belongs_to :order, optional: true
+  belongs_to :order
   belongs_to :account
   has_many :notifications, dependent: :destroy
 

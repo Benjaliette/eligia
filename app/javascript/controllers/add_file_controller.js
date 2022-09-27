@@ -5,14 +5,14 @@ export default class extends Controller {
   static targets = ['input', 'label', 'fileNameDiv']
 
   added(){
-    const regex = /.*.(?:png|jpg|jpeg|pdf)/
+    const regex = /.*.(?:png|jpg|jpeg|pdf|JPG|JPEG|PNG|PDF)/
 
     if (this.inputTarget.files[0].size > 1048576 * 10) {
       alert("Fichier trop lourd. Taille maximum 10Mb")
       this.inputTarget.value = ''
 
     } else if (this.inputTarget.files[0].name.match(regex) === null) {
-      this.fileNameDivTarget.innerText = 'ERREUR ! Le format doit être .png, .jpeg ou .jpg'
+      this.fileNameDivTarget.innerText = 'ERREUR ! Le format doit être .png, .jpeg .jpg ou .pdf'
       this.labelTarget.classList.add('label-document-input-wrong-format')
       this.labelTarget.innerText = 'Modifier'
 

@@ -18,6 +18,7 @@
       <p class="no-margin padding-top-two margin-left-five"> <%= @order.state_to_french %> </p>
     </div>
       <div class="order-dashboard-section">
+      <% order_documents_to_add = @order.non_uploaded_order_documents %>
         <% unless @order.non_uploaded_order_documents.empty? %>
           <h3 class="home-subtitle">Documents/informations restants à ajouter :</h3>
           <div class='order-documents-grid'>

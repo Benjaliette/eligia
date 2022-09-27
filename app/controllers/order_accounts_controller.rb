@@ -1,8 +1,8 @@
 class OrderAccountsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[create]
-  before_action :set_order_account, only: %i[show edit update]
+  skip_before_action :authenticate_user!, only: %i[create destroy]
+  before_action :set_order_account, only: %i[show edit update destroy]
   before_action :set_order, only: %i[show]
-  after_action :set_pundit_order_account, only: %i[show create]
+  after_action :set_pundit_order_account, only: %i[show create destroy]
 
   def show
     @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
@@ -12,7 +12,7 @@ class OrderAccountsController < ApplicationController
   end
 
   def create
-    @order_account = OrderAccount.new(order_account_params)
+    @order_account = OrderAccount.create(order_account_params)
 
     respond_to do |format|
       format.turbo_stream do
@@ -20,6 +20,15 @@ class OrderAccountsController < ApplicationController
           locals: { order_account: @order_account })
       end
       format.html { redirect_to new_order_path, notice: "Le compte a bien été ajouté à la liste" }
+    end
+  end
+
+  def destroy
+    @order_account.destroy
+
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@order_account) }
+      format.html         { redirect_to messages_url }
     end
   end
 

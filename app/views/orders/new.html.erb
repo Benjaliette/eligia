@@ -55,24 +55,26 @@
   </div>
 
   <div class='form-order-right'>
+    <div class="form-order-right-list">
       <div class="logo">
         <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
       </div>
-      <div id='test'></div>
+      <h3>Contrats sélectionnés :</h3>
+      <div id='account-list' class='account-grid small'></div>
       <% @order.order_accounts.each do |order_account| %>
         <%= render 'order_accounts/account_card', order_account: order_account %>
       <% end %>
-      <%= simple_form_for @order do |f_order| %>
-        <div class="order-btn">
-          <%= button_tag(type: 'submit', class: "learn-more") do %>
-            <span class="circle" aria-hidden="true">
-              <span class="icon arrow"></span>
-            </span>
-            <span class="button-text">Valider</span>
-          <% end %>
-        </div>
-      <% end %>
-
+    </div>
+    <%= simple_form_for @order do |f_order| %>
+      <div class="order-btn">
+        <%= button_tag(type: 'submit', class: "learn-more") do %>
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Valider</span>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <%= link_to contrats_helps_path, target: "_blank", class: 'btn-third small help-btn' do %>

@@ -1,6 +1,11 @@
 .account-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+
+  &.small {
+    grid-template-columns: 1fr;
+  }
 }
 
 .account_name {
@@ -83,7 +88,7 @@
   border: solid lightgrey 1px;
   box-shadow: 0px 0px 2px lightgray;
   border-radius: 8px;
-  padding-left: 10px;
+  padding: 10px;
 
   h3 {
     width: fit-content;
@@ -211,10 +216,23 @@
 .form-order-right{
   overflow: hidden;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+
+  .form-order-right-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 80vh;
+
+    h3 {
+      text-align: left;
+      margin-top: 50px;
+    }
+  }
+
+  #account-list {
+    margin-top: 5px;
+  }
 
   p{
     text-align: center;

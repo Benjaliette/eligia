@@ -4,6 +4,8 @@ class Account < ApplicationRecord
   has_many :order_accounts, dependent: :destroy
   belongs_to :subcategory
 
+  has_one_attached :logo
+
   validates :name, presence: true #, uniqueness: { scope: :subcategory }
 
   def self.validated_accounts_from_subcategory(subcategory)

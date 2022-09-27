@@ -3,6 +3,11 @@
 
 <div class="order-parts">
   <div class="form-order-steps">
+    <div class="btn-order">
+      <%= button_to order_path(@order), method: :delete, class:"btn-third small btn-round" do %>
+        ← retour à l'accueil
+      <% end %>
+    </div>
     <div class="steps">
       <div class='step current-step'>
         <p>Étape 1 :</p>
@@ -24,13 +29,18 @@
 
   <div class="form-order-div">
     <div class="form-order-infos">
-      <%= button_to order_path(@order), method: :delete, class:"btn-third small btn-round margin-bottom-four" do %>
-        ← retour à l'accueil
-      <% end %>
-      <div class="logo">
-        <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+      <div class="mobile-steps">
+        <div class="btn-order">
+          <%= button_to order_path(@order), method: :delete, class:"btn-third small btn-round" do %>
+            ← retour à l'accueil
+          <% end %>
+        </div>
+        <div class="logo">
+          <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+        </div>
       </div>
-      <h1>1. Contrats à résilier</h1>
+      <div class="mobile-step-title">Étape 1 :</div>
+      <h1>Contrats à résilier</h1>
       <p>
         Renseigner les <strong>abonnements à résilier</strong>.<br><br>
         Pour des raisons de simplicité, les documents et informations à fournir seront demandées à l'étape 2.
@@ -40,7 +50,7 @@
     <div class="form-order-content">
       <% @categories.each do |category| %>
         <div class="order-divs">
-          <h3 class="highlight-green fit-content"><%= category.name %></h3>
+          <h3><%= category.name %></h3>
 
           <% category.subcategories.each do |subcategory| %>
             <div class="box subcategory-div" data-controller="subcategory-dropdown">

@@ -2,25 +2,24 @@
 <%= render 'shared/navbar' %>
 
 <turbo-frame id="content">
-
+<div class="fullscreen-no-navbar">
   <div class="banner user-banner">
-    <div class="container padding-top-five">
+    <div class="container padding-top-zero padding-bottom-zero">
       <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
       <p><em>Bienvenue sur votre espace personnel</em></p>
+      <%= link_to '← retour', user_path(@current_user), class: 'btn-third small margin-top-one foreground position-absolute' %>
     </div>
   </div>
 
   <div class="container padding-top-five">
-    <%= link_to '← retour', user_path(@current_user), class: 'btn-third small margin-top-five foreground' %>
     <div class="user-dashboard-content">
-      <h2 class="dashboard-title">Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></h2>
-      <span class='underline'>Avancée du dossier :</span> <%= @order.state_to_french %>
+    <div class="d-flex">
+      <h2 class="dashboard-title margin-top-zero margin-bottom-zero">Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></h2>
+      <p class="no-margin padding-top-two margin-left-five"> <%= @order.state_to_french %> </p>
+    </div>
       <div class="order-dashboard-section">
-        <h3 class="home-subtitle">Documents/informations restants à ajouter :</h3>
-        <% order_documents_to_add = @order.non_uploaded_order_documents %>
-        <% if order_documents_to_add.empty? %>
-          <div class='italic margin-top-five align-center'>Tous les documents nécessaires ont été ajoutés</div>
-        <% else %>
+        <% unless @order.non_uploaded_order_documents.empty? %>
+          <h3 class="home-subtitle">Documents/informations restants à ajouter :</h3>
           <div class='order-documents-grid'>
             <% order_documents_to_add.each do |order_document| %>
               <%= simple_form_for [@order, order_document], url: update_documents_order_order_document_path(@order, order_document), html: { id: order_document } do |f| %>

@@ -307,9 +307,14 @@
   z-index: 20 !important;
 }
 
-.position-sticky{
+.position-fixed{
   position: fixed !important;
 }
+
+.position-absolute{
+  position: absolute !important;
+}
+
 
 
 // Background

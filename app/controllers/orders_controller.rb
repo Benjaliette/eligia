@@ -41,8 +41,9 @@ class OrdersController < ApplicationController
 
   def update
     @order.clear_order_accounts(order_params)
-    @order.update_order_account_status
     @order.generate_order_documents
+    @order.update_order_account_status
+    @order.reload
     redirect_to edit_order_path(@order)
   end
 

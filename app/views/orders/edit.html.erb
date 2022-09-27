@@ -53,16 +53,18 @@
             <% end %>
           </div>
         <% end %>
-        <div class="order-btn" data-controller="loading-spinner" data-action="click->loading-spinner#load" >
-          <%= button_tag(type: 'submit', class: "learn-more", data: {"loading-spinner-target":"btn"}) do %>
-            <span class="circle" aria-hidden="true">
-              <span class="icon arrow"></span>
-            </span>
-            <span class="button-text">
-                Valider
-            </span>
-          <% end %>
-          <div class="lds-dual-ring display-none" data-loading-spinner-target='spinner'></div>
+        <div class="order-btn">
+          <div class="fit-content"data-controller="loading-spinner" data-action="click->loading-spinner#load">
+            <%= button_tag(type: 'submit', class: "learn-more", data: {"loading-spinner-target":"btn"}) do %>
+              <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+              </span>
+              <span class="button-text">
+                  Valider
+              </span>
+            <% end %>
+            <div class="lds-dual-ring display-none" data-loading-spinner-target='spinner'></div>
+          </div>
         </div>
       <% end %>
     </div>

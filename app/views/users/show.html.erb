@@ -10,27 +10,6 @@
     <div class="container">
       <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
       <p><em>Bienvenue sur votre espace personnel</em></p>
-
-      <div class="main-user-card">
-        <div class="main-user-card-grid">
-          <div class="main-user-card-last-order">
-            <% if @last_order %>
-              <div class='underline'>Dernière démarche :</div>
-              <div><%= "#{@last_order.deceased_first_name} #{@last_order.deceased_last_name}" %></div>
-              <div>Créée le <%= @orders.last.created_at.strftime('%d/%m/%y') %></div>
-            <% else %>
-              <div>Vous n'avez pas encore réalisé de démarche</div>
-            <% end %>
-          </div>
-
-          <% if @last_order %>
-            <div class="main-user-card-last-order">
-              <div class='underline'>Statut :</div>
-              <div><%= @last_order.state_to_french %></div>
-            </div>
-          <% end %>
-        </div>
-      </div>
     </div>
   </div>
 

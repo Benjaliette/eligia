@@ -1,3 +1,12 @@
-<div>
-  <%= order_account.account.name %>
+<div class="account-card small">
+  <div class="account-card-title">
+    <% if order_account.account.logo.attached?  %>
+      <div class="account-avatar" style="background-image:url(<%= cl_image_path order_account.account.logo.key %>);"></div>
+    <% else %>
+      <div class="account-avatar" style="background: #464646;">
+        <span style='color: white;'><%= order_account.account.name.upcase.split.map { |word| word[0] }.join %></span>
+      </div>
+    <% end %>
+    <div class='account-card-name'><%= order_account.account.name %></div>
+  </div>
 </div>

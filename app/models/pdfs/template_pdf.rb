@@ -30,7 +30,6 @@ class TemplatePdf
       move_down 30
       text "Informations nécessaires à la résiliation :"
       move_down 20
-      text "#{args[:order_account].order_documents.map(&:document).map(&:name)}"
       args[:order_account].order_documents.select { |order_document| order_document.document.format == "text" }.each do |order_document|
         text "#{order_document.document.name} : #{order_document.document_input}"
       end

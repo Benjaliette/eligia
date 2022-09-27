@@ -16,7 +16,7 @@ class OrderAccountsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.append('account-list', partial: "order_accounts/account_card",
+        render turbo_stream: turbo_stream.append('account-list', partial: "order_accounts/account_list_card",
           locals: { order_account: @order_account })
       end
       format.html { redirect_to new_order_path, notice: "Le compte a bien été ajouté à la liste" }
@@ -24,11 +24,18 @@ class OrderAccountsController < ApplicationController
   end
 
   def destroy
+    @order = @order_account.order
     @order_account.destroy
 
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@order_account) }
-      format.html         { redirect_to messages_url }
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.remove(@order_account),
+          turbo_stream.update(@order_account.account, partial: "order_accounts/account_card",
+            locals: { order: @order, account: @order_account.account })
+        ]
+      end
+      format.html { render 'order/new' }
     end
   end
 

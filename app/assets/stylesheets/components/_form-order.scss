@@ -95,6 +95,12 @@
   }
 }
 
+.account-box {
+  width: 85%;
+  height: 80vh;
+  overflow-y: scroll;
+}
+
 .doc-input{
   padding: 10px;
   margin-left: 10px;
@@ -231,7 +237,8 @@
   }
 
   #account-list {
-    margin-top: 5px;
+    margin-top: 20px;
+    width: 100%;
   }
 
   p{

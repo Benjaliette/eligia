@@ -91,6 +91,7 @@ class Order < ApplicationRecord
     order.required_documents.each do |required_document|
       OrderDocument.create(order: order, document: required_document) unless order.order_documents.any? { |order_document| (order_document.document == required_document) }
     end
+    order.reload
   end
 
   def non_uploaded_order_documents

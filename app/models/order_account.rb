@@ -73,6 +73,12 @@ class OrderAccount < ApplicationRecord
     file.delete
   end
 
+  def create_resiliation_file
+    pdf = OrderAccountPdf.new(self)
+    pdf.resiliation_pdf
+    pdf.build_and_upload
+  end
+
   private
 
   def update_order_state
@@ -116,11 +122,5 @@ class OrderAccount < ApplicationRecord
       content: "Contrat '#{self.account.name}' de #{self.order.deceased_first_name} #{self.order.deceased_last_name} résilié",
       order: self.order
     )
-  end
-
-  def create_resiliation_file
-    pdf = OrderAccountPdf.new(self)
-    pdf.resiliation_pdf
-    pdf.build_and_upload
   end
 end

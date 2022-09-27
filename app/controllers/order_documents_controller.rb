@@ -34,7 +34,7 @@ class OrderDocumentsController < ApplicationController
       Notification.create(
         content: "Vous avez ajouté le document #{@order_document.document.name} pour votre démarche
                  concernant #{@order.deceased_first_name} #{@order.deceased_last_name}",
-        order: @order,
+        order: @order
       )
       @order_documents = @order.order_documents
       redirect_to order_path(@order)

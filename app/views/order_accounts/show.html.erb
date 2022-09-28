@@ -11,7 +11,7 @@
   </div>
 
   <div class="container padding-top-five">
-    <%= link_to '← retour', user_path(@current_user), class: 'btn-third small margin-top-five foreground' %>
+    <%= link_to '← retour', user_path(@current_user), class: 'btn-third small margin-top-five' %>
     <div class="user-dashboard-content">
       <h2 class="dashboard-title">Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></h2>
       <span class='underline'>Avancée du dossier :</span> <%= @order.state_to_french %>
@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="modal" data-modal-target='modal'>
+  <div class="modal foreground" data-modal-target='modal'>
     <div class="modal-content">
       <h2><%= @order_account.account.name %></h2>
       <div class="modal-content-documents">

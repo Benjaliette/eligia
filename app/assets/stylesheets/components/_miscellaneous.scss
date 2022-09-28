@@ -306,6 +306,9 @@
 .foreground {
   z-index: 20 !important;
 }
+.background {
+  z-index: -1 !important;
+}
 
 .position-fixed{
   position: fixed !important;

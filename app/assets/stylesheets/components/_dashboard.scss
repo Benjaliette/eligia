@@ -82,14 +82,16 @@
   }
 }
 
+.personal-info{
+  margin: 50px auto;
+}
+
 // Order dashboard
 .order-dashboard-section {
-  margin-top: 20px;
-
   .order-documents-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 50px;
+    grid-column-gap: 10px;
   }
 }
 

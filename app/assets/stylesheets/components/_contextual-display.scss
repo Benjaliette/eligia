@@ -45,3 +45,16 @@
 .order-account-state-resiliation_success{
   color: $light-green;
 }
+
+// Order Status Coloring
+.order-state-pending{
+  color: $orange;
+}
+
+.order-state-processing{
+  color: $blue;
+}
+
+.order-state-done{
+  color: $green;
+}

@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = [ 'navbar', 'button' ]
 
   connect() {
-    // this.changeBackground()
+    this.changeBackground()
   }
 
   changeBackground() {

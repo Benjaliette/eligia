@@ -5,9 +5,9 @@
 <div class="fullscreen-no-navbar">
 <div class="banner user-banner">
     <div class="container padding-top-zero padding-bottom-zero">
-      <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %> > <span class="unbold"> Dossier de <%= @order.deceased_first_name %></span> <%= @order.deceased_last_name %></h1>
+      <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %> > <span class="unbold font-size-smaller"> <%= @order.deceased_first_name %> <%= @order.deceased_last_name.upcase %></span></h1>
       <p class="margin-bottom-zero margin-top-one"><em><%= @order.state_to_french %></em></p>
-      <%= link_to '← retour', user_path(@current_user), class: 'btn-third small margin-top-two position-absolute' %>
+      <%= link_to '← retour', user_path(@current_user), class: 'btn-second small margin-top-two position-absolute' %>
     </div>
   </div>
 
@@ -20,7 +20,7 @@
           <div class='order-documents-grid'>
             <% order_documents_to_add.each do |order_document| %>
               <%= simple_form_for [@order, order_document], url: update_documents_order_order_document_path(@order, order_document), html: { id: order_document } do |f| %>
-                <div class="insert-document modal-update" data-controller="loading-spinner">
+                <div class="insert-document" data-controller="loading-spinner">
                 <div class="document-name d-inline-block"><p class='margin-top-zero'><%= order_document.document.name %></p></div>
                   <% if order_document.document.format == 'pdf' %>
                     <div data-check-document-target='infoDiv'></div>
@@ -37,11 +37,11 @@
                                   }
                         %>
                       <div class="file-name" data-add-file-target="fileNameDiv"></div>
-                      <div class="lds-dual-ring display-none" data-loading-spinner-target='spinner'></div>
                     </div>
                   <% else %>
                     <%= f.input :document_input, label: false, input_html: { class:'doc-input margin-left-zero' } %>
                   <% end %>
+                  <div class="lds-dual-ring display-none" data-loading-spinner-target='spinner'></div>
                   <%= f.submit "Valider", class:'file optional btn-third small margin-top-two', data: {"loading-spinner-target":"btn", action:"click->loading-spinner#load"} %>
                 </div>
               <% end %>

@@ -4,9 +4,47 @@
 
   .search-title {
     margin-right: 10px;
+    font-weight: bold;
   }
 
   .search-bar {
-    background-color: blue;
+    margin: 10px 0;
+    position: relative;
+    z-index: 1;
+
+    .search-bar-input {
+      padding: 0px 10px;
+      height: 30px;
+      width: 19vw;
+      border-radius: 5px;
+      border: 1px solid $blue;
+    }
+  }
+
+  #account-search-results {
+    position: absolute;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: $blue;
+    border-radius: 0px 0px 5px 5px;
+    left: 0px;
+    top: 20px;
+    width: calc(99% - 20px);
+    z-index: -1;
+    padding: 0 10px;
+
+    font-size: 14px;
+    background-color: white;
+
+  }
+
+  .clear-search {
+    transform: rotate(45deg);
+    color: rgba($color: $gray, $alpha: 0.3);
+    cursor: pointer;
+    position: absolute;
+    font-size: 32px;
+    top: -5px;
+    right: 5px;
   }
 }

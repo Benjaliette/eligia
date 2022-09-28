@@ -39,9 +39,8 @@ class OrdersController < ApplicationController
       @order.generate_order_documents
       redirect_to edit_order_path(@order)
     else
-      @order_accounts = @order.jsonify_order_accounts
       flash[:alert] = "Veuillez sélectionner au moins un contrat à résilier."
-      render :new, status: :unprocessable_entity
+      render :created, status: :unprocessable_entity
     end
   end
 

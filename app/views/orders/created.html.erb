@@ -54,15 +54,29 @@
             Chercher un compte :
           </div>
           <div class="search-bar" data-controller="account-search-autocomplete">
-            <%= simple_form_for :account, url: accounts_path, data: { account_search_autocomplete_target: 'form', action: 'input#account-search-autocomplete->submitForm' } do |form| %>
+            <%= simple_form_for :account, url: accounts_path, data: { account_search_autocomplete_target: 'form' } do |form| %>
 
-              <%= form.input :name, label: false, input_html: { data: { account_search_autocomplete_target: 'input' }} %>
-              <%= form.input :order_id, input_html: { value: @order.id }, as: :hidden %>
+              <%= form.input :name,
+                             label: false,
+                             input_html: {
+                               data: {
+                                 action: 'keyup->account-search-autocomplete#submitForm',
+                                 account_search_autocomplete_target: 'input'
+                               },
+                               class: 'search-bar-input',
+                             } %>
+              <%= form.input :order_id,
+                             input_html: {
+                               value: @order.id
+                             },
+                             as: :hidden %>
 
             <% end %>
+
+            <div class="clear-search" data-action="click->account-search-autocomplete#clearInput">+</div>
+            <div id="account-search-results"></div>
           </div>
 
-          <div id="account-search-results"></div>
         </div>
 
       <% @categories.each do |category| %>

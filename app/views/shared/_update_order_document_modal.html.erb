@@ -41,11 +41,11 @@
                             }
                   %>
                 <div class="file-name" data-add-file-target="fileNameDiv"></div>
-                <div class="lds-dual-ring display-none" data-loading-spinner-target='spinner'></div>
               </div>
             <% else %>
               <%= f.input :document_input, label: false, input_html: { class:'doc-input' } %>
             <% end %>
+            <div class="lds-dual-ring display-none" data-loading-spinner-target='spinner'></div>
             <%= f.submit "Valider", class:'file optional btn-principal small margin-top-two', data: {"loading-spinner-target":"btn", action:"click->loading-spinner#load"} %>
           </div>
         <% end %>

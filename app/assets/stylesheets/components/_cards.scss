@@ -81,6 +81,60 @@
   }
 }
 
+.search-account-card {
+  margin: 15px 0px;
+
+  &:first-child {
+    margin-top: 20px;
+  }
+
+  .account-card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .account-avatar {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 80%;
+      color: white;
+      margin-right: 10px;
+      background-size: cover;
+      background-position: center;
+      font-size: 8px
+    }
+
+    .account-card-name {
+      flex-grow: 1;
+      font-size: 90%;
+      text-align: left;
+    }
+
+    .account-card-submit {
+      .account-card-btn {
+        background-color: transparent;
+        border: none;
+        font-weight: bold;
+        font-size: 10px;
+        color: green;
+
+        &.to-add {
+          cursor: pointer;
+          color: black;
+
+          &:hover {
+            text-shadow: 0px 0px 4px grey;
+          }
+        }
+      }
+    }
+  }
+}
+
 // Order-dashboard-card
 
 .order-dashboard-card {

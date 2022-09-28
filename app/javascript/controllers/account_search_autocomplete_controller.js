@@ -5,7 +5,11 @@ export default class extends Controller {
   static targets = [ 'form', 'input' ]
 
   submitForm() {
-    this.formTarget.submit().preventDefault();
+    this.formTarget.requestSubmit()
+  }
 
+  clearInput() {
+    this.inputTarget.value = ""
+    this.submitForm()
   }
 }

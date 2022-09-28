@@ -6,9 +6,6 @@ class Account < ApplicationRecord
 
   validates :name, presence: true #, uniqueness: { scope: :subcategory }
 
-  include PgSearch::Model
-  pg_search_scope :search_by_name, against: :name
-
   def self.validated_accounts_from_subcategory(subcategory)
     return where(status: 'validated', subcategory: subcategory)
   end

@@ -10,8 +10,9 @@ RSpec.describe "orders", type: :system do
   end
 
   context "When creating an order" do
-    it "Accesses the orders/new page" do
-      visit "/resiliations/contrats"
+    it "Accesses the orders/created page" do
+      order = create(:order)
+      visit "/resiliations/#{order.id}/contrats"
       expect(page).to have_text("Contrats à résilier")
     end
 

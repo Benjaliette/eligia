@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_22_085236) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_27_145435) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_085236) do
     t.datetime "updated_at", null: false
     t.string "status", default: "non_validated", null: false
     t.bigint "subcategory_id"
+    t.string "logo_url"
     t.index ["subcategory_id"], name: "index_accounts_on_subcategory_id"
   end
 

@@ -1,6 +1,11 @@
 .account-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+
+  &.small {
+    grid-template-columns: 1fr;
+  }
 }
 
 .account_name {
@@ -83,11 +88,17 @@
   border: solid lightgrey 1px;
   box-shadow: 0px 0px 2px lightgray;
   border-radius: 8px;
-  padding-left: 10px;
+  padding: 10px;
 
   h3 {
     width: fit-content;
   }
+}
+
+.account-box {
+  width: 85%;
+  height: 80vh;
+  overflow-y: scroll;
 }
 
 .doc-input{
@@ -196,11 +207,21 @@
     color: red;
     margin-bottom: 30px;
   }
+
+  .mobile-steps {
+    display: none;
+  }
+
+  .mobile-step-title {
+    display: none;
+  }
 }
 
 .form-order-infos {
   background: $second-gradient-bg;
   padding: 20px 0px 30px 32px;
+
+  text-align: center;
 
   .logo {
     display: none;
@@ -210,10 +231,28 @@
 .form-order-right{
   overflow: hidden;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+  .form-order-right-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 80vh;
+
+    .logo {
+      padding-top: 20px;
+    }
+
+    h3 {
+      text-align: left;
+      margin-top: 50px;
+    }
+  }
+
+  #account-list {
+    margin-top: 20px;
+    width: 100%;
+  }
 
   p{
     text-align: center;
@@ -234,13 +273,15 @@
   background-color: #fbfbfb;
   height: 100vh;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
   .logo {
     width: 100%;
     text-align: center;
     display: none;
-    position: absolute;
-    bottom: 20px;
-
   }
 }
 
@@ -300,7 +341,7 @@
 
 .order-parts {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 2fr 6fr 3fr;
   height: 100vh;
 }
 
@@ -369,17 +410,43 @@
     }
   }
 
-  .form-order-right {
+  .form-order-steps {
     display: none;
   }
 
-  .form-order-steps {
-    .logo {
-      display: flex;
-
-      img {
-        width: 100%;
+  .form-order-div {
+    .form-order-infos {
+      .mobile-steps {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 90%;
       }
+
+      .mobile-step-title {
+        display: block;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 6vh;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .form-order-right {
+    h3 {
+      font-size: 14px;
+    }
+
+    .account-box {
+      width: 78%;
     }
   }
 
@@ -414,7 +481,7 @@
   }
 
   .order-parts {
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 2fr 1fr;
   }
 }
 
@@ -442,23 +509,22 @@
     }
   }
 
-  .form-order-div {
-    text-align: center;
-    padding: 0px;
-  }
-
   .form-order-infos {
     .logo {
       display: block;
     }
   }
 
-  .form-order-steps {
-    display: none;
+  .order-parts {
+    grid-template-columns: 1fr;
   }
 
-  .order-parts {
-    grid-template-columns: 3fr;
+  .form-order-div .form-order-infos .mobile-step-title {
+    font-size: 16px;
+  }
+
+  .form-order-right {
+    display: none;
   }
 }
 

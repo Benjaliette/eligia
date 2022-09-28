@@ -6,32 +6,22 @@
 
   <div class="account-grid">
     <% Account.validated_accounts_from_subcategory(subcategory).order(:name).each do |account| %>
-      <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
-        <%= f_order_accounts.collection_radio_buttons(:account_id, [account], :id, :name, {item_wrapper_class:'account-radio-button'}) do |b_account| %>
-          <%= b_account.label {b_account.radio_button(data:{'other-account-target':"checkBoxes", action:'click->other-account#radioClicked' }) + content_tag(:span, b_account.text, class:'account-radio-button-text')} %>
-        <% end %>
-      <% end %>
-    <% end %>
-    <span class="account-radio-button">
-      <%= f_order.simple_fields_for :order_accounts, OrderAccount.new do |f_order_accounts| %>
-        <%= f_order_accounts.simple_fields_for :account, Account.new do |f_account| %>
-          <%= f_account.label "autre", class:'account-other-button', id: 0, item_wrapper_class:'account-radio-button', data: {action:'click->other-account#otherclicked','other-account-target':"otherButton"} %>
-          <%= f_account.input :name, input_html: { data: {'other-account-target':"otherButtonInput"} }, class: 'account-hidden', as: :hidden %>
-          <%= f_account.input :subcategory_id, input_html: { value: subcategory.id }, class: 'account-hidden', as: :hidden %>
-        <% end %>
-      <% end %>
-    </span>
-    <% 10.times do |index| %>
-      <span class="account-radio-button"><%= render 'create_new_account_form', f_order: f_order, subcategory: subcategory, id: index + 1 %></span>
-    <% end %>
-  </div>
 
-  <div data-other-account-target='subcategoryDiv'
-        class="display-none other-account"
-        data-action='keyup->other-account#buttonText keydown->other-account#preventSubmit'>
-
-    <label for="account_name">Compte à résilier ?</label>
-    <input type="text" class="account_name" data-other-account-target="accountInput">
-    <div class='btn-principal small' data-action='click->other-account#accountTyped'>Ajouter</div>
+      <div class='account-card'>
+        <div class="account-card-title">
+          <% if account.logo_url.nil?  %>
+            <div class="account-avatar" style="background: #464646;">
+              <span style='color: white;'><%= account.name.upcase.split.map { |word| word[0] }.join %></span>
+            </div>
+          <% else %>
+            <div class="account-avatar" style="background-image:url('<%= account.logo_url %>')"></div>
+          <% end %>
+          <div class='account-card-name'><%= account.name %></div>
+        </div>
+        <div class="account-card-submit" id=<%= dom_id account %> data-controller="order-account-creation">
+          <%= render 'order_accounts/account_card', order: order, account: account %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

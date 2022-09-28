@@ -1,0 +1,19 @@
+<div class="account-card small" id=<%= dom_id order_account %> data-controller="order-account-creation">
+  <div class="account-card-title">
+    <div class="account-card-title">
+      <% if order_account.account.logo_url.nil?  %>
+        <div class="account-avatar" style="background: #464646;">
+          <span style='color: white;'><%= order_account.account.name.upcase.split.map { |word| word[0] }.join %></span>
+        </div>
+      <% else %>
+        <div class="account-avatar" style="background-image:url('<%= order_account.account.logo_url %>')"></div>
+      <% end %>
+    </div>
+    <div class='account-card-name'><%= order_account.account.name %></div>
+  </div>
+  <%= button_to "+",
+      order_account_path(order_account),
+      method: :delete,
+      class: "close-btn",
+      data: { action: 'click->order-account-creation#initialButton' } %>
+</div>

@@ -13,11 +13,9 @@ class Order < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   validates :deceased_first_name, :deceased_last_name,
-            presence: { message: "Veuillez saisir ce champ" },
             format: { with: /\A([a-zàâçéèêëîïôûùüÿñæœ'.-]|\s)*\z/i, message: "ne doit contenir que des lettres" }
 
   accepts_nested_attributes_for :order_documents, allow_destroy: true
-  accepts_nested_attributes_for :order_accounts, allow_destroy: true, reject_if: :reject_order_accounts
 
   def required_documents
     required_documents = []

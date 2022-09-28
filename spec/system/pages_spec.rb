@@ -50,7 +50,7 @@ RSpec.describe "pages", type: :system do
     it "Can click the link towarts /resiliations/contrats" do
       visit "/"
       page.find(class: 'btn-call-to-a', text: 'Commencer').click
-      expect(page).to have_text("Prénom du défunt")
+      expect(page).to have_text("Contrats à résilier")
     end
   end
 end

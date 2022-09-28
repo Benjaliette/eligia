@@ -1,5 +1,11 @@
-#service, #home-infos {
+#service {
   padding: 100px 0px;
+  text-align: center;
+  background-color: $off-white;
+}
+
+#home-infos{
+  padding: 100px 0px 20px 0px;
   text-align: center;
   background-color: $off-white;
 }

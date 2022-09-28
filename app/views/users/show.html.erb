@@ -9,7 +9,7 @@
   <div class="banner user-banner">
     <div class="container padding-top-zero padding-bottom-zero">
       <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
-      <p><em>Bienvenue sur votre espace personnel</em></p>
+      <p class="margin-bottom-zero margin-top-one"><em>Bienvenue sur votre espace personnel</em></p>
     </div>
   </div>
 
@@ -17,7 +17,7 @@
     <div class="user-dashboard-grid padding-top-four">
       <div class="user-dashboard-left">
         <section>
-          <h2 class="dashboard-title margin-bottom-zero margin-top-zero">Vos démarches</h2>
+          <h2 class="dashboard-title">Vos démarches</h2>
 
           <% unless current_user.orders.present? %>
             <p>Vous n'avez pas encore commencé de démarche</p>
@@ -32,22 +32,22 @@
             <% end %>
           </div>
         </section>
-        <section class="margin-top-five padding-top-three margin-bottom-three">
+        <section class="personal-info">
           <h2 class="dashboard-title margin-bottom-zero margin-top-zero">Vos informations personnelles</h2>
 
             <div class="account-infos-title">
             </div>
             <div class="account-infos-description">
-              <div class="margin-bottom-two"><i class="fa-solid fa-envelope"></i> <%= @current_user.email %></div>
-              <div class="margin-bottom-two"><i class="fa-solid fa-user"></i> <%= "#{@current_user.first_name} #{@current_user.last_name}" %></div>
-              <div class="margin-bottom-two"><i class="fa-solid fa-location-dot"></i>
+              <div class="margin-bottom-two"><i class="fa-solid fa-envelope margin-right-three light-green"></i> <%= @current_user.email %></div>
+              <div class="margin-bottom-two"><i class="fa-solid fa-user margin-right-three light-green"></i> <%= "#{@current_user.first_name} #{@current_user.last_name}" %></div>
+              <div class="margin-bottom-two"><i class="fa-solid fa-location-dot margin-right-three light-green"></i>
                 <% if @current_user.address %>
                   <%= @current_user.address %>
                 <% else %>
                   <span class="account-infos-description-address">Vous n'avez pas encore renseigné d'adresse</span>
                 <% end %>
               </div>
-              <%= link_to "Modifier vos informations", edit_user_registration_path(@current_user), class: 'btn-principal small' %>
+              <%= link_to "Modifier vos informations", edit_user_registration_path(@current_user), class: 'btn-third small' %>
             </div>
         </section>
       </div>

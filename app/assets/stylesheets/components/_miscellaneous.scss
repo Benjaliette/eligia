@@ -86,6 +86,9 @@
 }
 
 // Left
+.margin-left-zero {
+  margin-left: none !important;
+}
 .margin-left-one {
   margin-left: $level-one !important;
 }
@@ -333,4 +336,11 @@
   .gradient-bg {
     background: $second-gradient-bg !important;
   }
+}
+
+
+// colors
+
+.light-green{
+  color: $light-green;
 }

@@ -5,22 +5,18 @@
 <div class="fullscreen-no-navbar">
   <div class="banner user-banner">
     <div class="container padding-top-zero padding-bottom-zero">
-      <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
-      <p><em>Bienvenue sur votre espace personnel</em></p>
-      <%= link_to '← retour', user_path(@current_user), class: 'btn-third small margin-top-one foreground position-absolute' %>
+      <h1> <span class="unbold">Dossier de <%= @order.deceased_first_name %></span> <%= @order.deceased_last_name %></h1>
+      <p class="margin-bottom-zero margin-top-one"><em><%= @order.state_to_french %></em></p>
+      <%= link_to '← retour', user_path(@current_user), class: 'btn-third small margin-top-two foreground position-absolute' %>
     </div>
   </div>
 
   <div class="container padding-top-five">
     <div class="user-dashboard-content">
-    <div class="d-flex">
-      <h2 class="dashboard-title margin-top-zero margin-bottom-zero">Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></h2>
-      <p class="no-margin padding-top-two margin-left-five"> <%= @order.state_to_french %> </p>
-    </div>
       <div class="order-dashboard-section">
       <% order_documents_to_add = @order.non_uploaded_order_documents %>
         <% unless @order.non_uploaded_order_documents.empty? %>
-          <h3 class="home-subtitle">Documents/informations restants à ajouter :</h3>
+          <h3 class="dashboard-title margin-top-four fit-content">Documents/informations restants à ajouter :</h3>
           <div class='order-documents-grid'>
             <% order_documents_to_add.each do |order_document| %>
               <%= simple_form_for [@order, order_document], url: update_documents_order_order_document_path(@order, order_document), html: { id: order_document } do |f| %>
@@ -54,7 +50,7 @@
         <% end %>
       </div>
       <div class="order-dashboard-section">
-        <h3 class="home-subtitle">État des contrats à résilier :</h3>
+        <h3 class="dashboard-title margin-top-four fit-content">État des contrats à résilier :</h3>
         <div class='order-account-cards'>
           <% @order.order_accounts.each do |order_account| %>
             <%= render "order_account_card", order_account: order_account %>

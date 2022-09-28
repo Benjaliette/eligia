@@ -20,7 +20,7 @@
           <h2 class="dashboard-title margin-bottom-zero margin-top-zero">Vos démarches</h2>
 
           <% unless current_user.orders.present? %>
-            <p>Vous n'avez pas enccore commencé de démarche</p>
+            <p>Vous n'avez pas encore commencé de démarche</p>
             <%= link_to "Commencer une démarche", new_order_path, class:"btn btn-principal small", data:{turbo: false}  %>
           <% end %>
 
@@ -38,9 +38,9 @@
             <div class="account-infos-title">
             </div>
             <div class="account-infos-description">
-              <div class="margin-bottom-two"><span class='underline'>Mail :</span> <%= @current_user.email %></div>
-              <div class="margin-bottom-two"><span class='underline'>Nom :</span> <%= "#{@current_user.first_name} #{@current_user.last_name}" %></div>
-              <div class="margin-bottom-two"><span class='underline'>Adresse de facturation :</span>
+              <div class="margin-bottom-two"><i class="fa-solid fa-envelope"></i> <%= @current_user.email %></div>
+              <div class="margin-bottom-two"><i class="fa-solid fa-user"></i> <%= "#{@current_user.first_name} #{@current_user.last_name}" %></div>
+              <div class="margin-bottom-two"><i class="fa-solid fa-location-dot"></i>
                 <% if @current_user.address %>
                   <%= @current_user.address %>
                 <% else %>
@@ -54,7 +54,7 @@
       <div class="user-dashboard-right">
 
         <% if current_user.notifications.present? %>
-          <div class="notification-card">
+          <div class="notification-card" data-controller="dashboard-scroll" data-dashboard-scroll-target="notificationCard" data-action="scroll@window->dashboard-scroll#stickUnstick">
             <div class="notification-head">
               <h2 class="home-subtitle">Notifications</h2>
             </div>

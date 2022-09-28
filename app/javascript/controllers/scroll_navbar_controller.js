@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = [ 'navbar', 'button' ]
 
   connect() {
-    this.changeBackground()
+    // this.changeBackground()
   }
 
   changeBackground() {
@@ -14,11 +14,12 @@ export default class extends Controller {
     } else {
       this.navbarTarget.classList.remove('white-bg')
     }
-    if(window.scrollY > 500) {
-      this.buttonTarget.classList.remove('display-none')
-     } else {
-      this.buttonTarget.classList.add('display-none')
+    if(this.hasButtonTarget){
+      if(window.scrollY > 500) {
+        this.buttonTarget.classList.remove('display-none')
+        } else {
+        this.buttonTarget.classList.add('display-none')
+      }
     }
   }
-
 }

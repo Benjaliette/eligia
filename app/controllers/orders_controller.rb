@@ -3,7 +3,7 @@ require 'json'
 class OrdersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[change new create edit update update_documents recap destroy]
 
-  before_action :set_order, only: %i[show change edit update update_documents recap success paiement destroy]
+  before_action :set_order, only: %i[show created change edit update update_documents recap success paiement destroy]
   before_action :set_categories, only: %i[change new update]
 
   after_action :send_confirmation_mail, only: :success
@@ -20,11 +20,16 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.create
+    redirect_to created_order_path(@order)
+  end
+
+  def created
+    @accounts = Account.all
   end
 
   def change
     @order_accounts = @order.jsonify_order_accounts
-    render :new
+    render :created
   end
 
   def update

@@ -48,6 +48,23 @@
     </div>
 
     <div class="form-order-content">
+
+        <div class="search-div">
+          <div class="search-title">
+            Chercher un compte :
+          </div>
+          <div class="search-bar" data-controller="account-search-autocomplete">
+            <%= simple_form_for :account, url: accounts_path, data: { account_search_autocomplete_target: 'form', action: 'input#account-search-autocomplete->submitForm' } do |form| %>
+
+              <%= form.input :name, label: false, input_html: { data: { account_search_autocomplete_target: 'input' }} %>
+              <%= form.input :order_id, input_html: { value: @order.id }, as: :hidden %>
+
+            <% end %>
+          </div>
+
+          <div id="account-search-results"></div>
+        </div>
+
       <% @categories.each do |category| %>
         <div class="order-divs">
           <h3><%= category.name %></h3>
@@ -59,7 +76,7 @@
                 <div class="toggle-btn" data-subcategory-dropdown-target='button'></div>
               </div>
               <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts'>
-                <%= render 'chose_account_form', category: category, subcategory: subcategory, order_accounts: @order_accounts, order: @order %>
+                <%= render 'orders/chose_account_form', category: category, subcategory: subcategory, order_accounts: @order_accounts, order: @order %>
               </div>
             </div>
           <% end %>

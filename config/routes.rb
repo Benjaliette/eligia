@@ -11,9 +11,10 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resources :orders, path: 'resiliations', path_names: { new: 'contrats', edit: 'documents' }, except: %i[index] do
+  resources :orders, path: 'resiliations', path_names: { edit: 'documents' }, except: %i[index] do
     member do
       get :change, path: 'contrats'
+      get :created, path: 'contrats'
       patch 'update_order'
       patch 'update_documents'
       get :recap, path: 'recapitulatif'
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
   end
 
   resources :order_accounts, only: %i[create destroy]
+  resources :accounts, only: %i[create]
 
   # Redirect to orders/new if there is a refresh after a render :new
   get '/resiliations/', to: 'orders#new'

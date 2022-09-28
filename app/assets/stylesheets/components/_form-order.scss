@@ -263,9 +263,12 @@
 }
 
 .insert-document{
-  box-shadow: 0px 0px 2px lightgray;
+  border: solid 1px lightgrey;
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px lightgrey;
   padding: 20px;
   margin: 20px auto;
+  background-color:white;
 
   &.modal-update {
     ::-webkit-file-upload-button {

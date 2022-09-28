@@ -15,7 +15,6 @@ class OrdersController < ApplicationController
   def show
     @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
     @order.update_order_account_status
-    @order.update_state
   end
 
   def new
@@ -29,10 +28,8 @@ class OrdersController < ApplicationController
 
   def update
     if @order.order_accounts.count.positive?
-      # @order.clear_order_accounts(order_params)
       @order.generate_order_documents
       @order.update_order_account_status
-      # @order.reload
       redirect_to edit_order_path(@order)
     else
       @order_accounts = @order.jsonify_order_accounts

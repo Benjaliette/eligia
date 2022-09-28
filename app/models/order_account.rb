@@ -1,5 +1,5 @@
 class OrderAccount < ApplicationRecord
-  # before_save :update_order_state
+  after_save :update_order_state
 
   include AASM
 

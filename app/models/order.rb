@@ -34,7 +34,7 @@ class Order < ApplicationRecord
   end
 
   def update_state
-    if self.order_accounts.all? { |order_account| order_account.resiliation_sent? } && self.pending?
+    if self.order_accounts.all? { |order_account| order_account.pending? } && self.pending?
       self.declare_processing!
     elsif self.order_accounts.all? { |order_account| order_account.resiliation_success? } && self.processing?
       self.declare_done!
@@ -43,7 +43,8 @@ class Order < ApplicationRecord
 
   def state_to_french
     case self.aasm_state
-    when "pending" then "En cours de traitement"
+    when "pending" then "En attente d'une action de votre part"
+    when "processing" then "En cours de traitement"
     when "done" then "Tous les contrats ont été traités"
     end
   end
@@ -65,19 +66,6 @@ class Order < ApplicationRecord
       success_url: "#{success_url}?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: cancel_url
     )
-  end
-
-  def clear_order_accounts(order_params)
-    old_oa = self.order_accounts.map(&:account).map(&:id)
-    new_oa = order_params[:order_accounts_attributes].values.reject { |value| value[:account_id].blank? }.map { |value| value[:account_id].to_i }
-    self.update(order_params)
-
-    unless (old_oa - new_oa).empty?
-      (old_oa - new_oa).each do |oa|
-        self.order_accounts.find_by(account_id: oa).delete
-        self.reload
-      end
-    end
   end
 
   def generate_order_documents

@@ -29,6 +29,7 @@ module RailsAdmin
         register_instance_option :controller do
           Proc.new do
             object.declare_pending!
+            object.order.update_state
             flash[:notice] = "#{object.account.name} mis en attente"
             redirect_to show_path
           end
@@ -61,6 +62,7 @@ module RailsAdmin
         register_instance_option :controller do
           Proc.new do
             object.declare_resiliation_success!
+            object.order.update_state
             flash[:notice] = "Résiliation de #{object.account.name} acceptée"
             redirect_to show_path
           end
@@ -77,6 +79,7 @@ module RailsAdmin
         register_instance_option :controller do
           Proc.new do
             object.declare_resiliation_failure!
+            object.order.update_state
             flash[:notice] = "Résiliation de #{object.account.name} échouée"
             redirect_to show_path
           end

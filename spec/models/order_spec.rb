@@ -142,8 +142,8 @@ RSpec.describe Order, type: :model do
     it "#update_state --> from pending to processing" do
       order = create(:order)
       expect(order.aasm_state).to eq "pending"
-      create(:order_account, order:, aasm_state: "resiliation_sent")
-      create(:order_account, order:, aasm_state: "resiliation_sent")
+      create(:order_account, order:, aasm_state: "pending")
+      create(:order_account, order:, aasm_state: "pending")
       order.update_state
       expect(order.aasm_state).to eq "processing"
     end

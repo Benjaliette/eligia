@@ -2,20 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
 
-  context "When creating an order" do
+  context "When updating an order" do
     it "Should be valid with a deceased_first/last_name and user" do
       order = build(:order)
       expect(order.valid?).to eq true
-    end
-
-    it "Should be invalid w/o a deceased_first_name" do
-      order = build(:order, deceased_first_name: "")
-      expect(order.valid?).to eq false
-    end
-
-    it "Should be invalid w/o a deceased_last_name" do
-      order = build(:order, deceased_last_name: "")
-      expect(order.valid?).to eq false
     end
 
     it "Should be invalid if deceased_first_name does not match regex" do

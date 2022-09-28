@@ -95,14 +95,18 @@
   height: fit-content;
 }
 
-
-
 .button-hover:hover {
   font-weight: bold;
 }
 
 .btn-round {
   border-radius: 10%/50%;
+}
+
+.btn-order {
+  display: flex;
+  justify-content: center;
+  margin: 7vh auto;
 }
 
 // BUTTON FOR VALIDATE ORDER
@@ -318,9 +322,19 @@ button {
   }
 }
 
+.close-btn {
+  transform: rotate(45deg);
+  padding: 1px 6px;
+  border-radius: 50%;
+  border: 1px solid $gray;
+  background-color: lightgrey;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
 @media (max-width: 900px) {
-  .help-btn {
-    right: 30px;
-    left: initial;
+  .btn-order {
+    margin: 0px;
   }
 }

@@ -42,4 +42,8 @@ class OrderPolicy < ApplicationPolicy
   def success?
     true
   end
+
+  def destroy?
+    true
+  end
 end

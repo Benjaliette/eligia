@@ -1,13 +1,13 @@
 require 'json'
 
 class OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[change new create edit update update_documents recap]
+  skip_before_action :authenticate_user!, only: %i[change new create edit update update_documents recap destroy]
 
-  before_action :set_order, only: %i[show change edit update update_documents recap success paiement]
-  before_action :set_categories, only: %i[change new create]
+  before_action :set_order, only: %i[show change edit update update_documents recap success paiement destroy]
+  before_action :set_categories, only: %i[change new update]
 
   after_action :send_confirmation_mail, only: :success
-  after_action :order_pundit, only: %i[show new change create edit update update_documents paiement recap success]
+  after_action :order_pundit, only: %i[show new change create edit update update_documents paiement recap success destroy]
 
   def index
   end
@@ -19,19 +19,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
-  end
-
-  def create
-    @order = Order.new(order_params)
-    if @order.save && @order.order_accounts.count.positive?
-      @order.generate_order_documents
-      redirect_to edit_order_path(@order)
-    else
-      @order_accounts = @order.jsonify_order_accounts
-      flash[:alert] = "Remplissez les champs nécessaires et sélectionnez au moins un contrat à résilier."
-      render :new, status: :unprocessable_entity
-    end
+    @order = Order.create
   end
 
   def change
@@ -40,11 +28,17 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order.clear_order_accounts(order_params)
-    @order.generate_order_documents
-    @order.update_order_account_status
-    @order.reload
-    redirect_to edit_order_path(@order)
+    if @order.order_accounts.count.positive?
+      # @order.clear_order_accounts(order_params)
+      @order.generate_order_documents
+      @order.update_order_account_status
+      # @order.reload
+      redirect_to edit_order_path(@order)
+    else
+      @order_accounts = @order.jsonify_order_accounts
+      flash[:alert] = "Veuillez sélectionner au moins un contrat à résilier."
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -56,6 +50,12 @@ class OrdersController < ApplicationController
 
     @order.update_order_account_status
     redirect_to recap_order_path(@order)
+  end
+
+  def destroy
+    @order.destroy
+
+    redirect_to root_path
   end
 
   def recap

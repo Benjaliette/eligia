@@ -1,7 +1,13 @@
 <% content_for :title, "Nouvelle démarche - Eligia" %>
 
+
 <div class="order-parts">
   <div class="form-order-steps">
+    <div class="btn-order">
+      <%= button_to order_path(@order), method: :delete, class:"btn-third small btn-round" do %>
+        ← retour à l'accueil
+      <% end %>
+    </div>
     <div class="steps">
       <div class='step current-step'>
         <p>Étape 1 :</p>
@@ -23,27 +29,28 @@
 
   <div class="form-order-div">
     <div class="form-order-infos">
-      <div class="logo">
-        <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+      <div class="mobile-steps">
+        <div class="btn-order">
+          <%= button_to order_path(@order), method: :delete, class:"btn-third small btn-round" do %>
+            ← retour à l'accueil
+          <% end %>
+        </div>
+        <div class="logo">
+          <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+        </div>
       </div>
-      <h1>1. Contrats à résilier</h1>
+      <div class="mobile-step-title">Étape 1 :</div>
+      <h1>Contrats à résilier</h1>
+      <p>
+        Renseigner les <strong>abonnements à résilier</strong>.<br><br>
+        Pour des raisons de simplicité, les documents et informations à fournir seront demandées à l'étape 2.
+      </p>
     </div>
 
     <div class="form-order-content">
-      <%= simple_form_for @order, data: { turbo: :false } do |f_order| %>
-        <%= f_order.error_notification %>
-
-        <div class="form-name-div">
-          <%= f_order.input :deceased_first_name,
-                            label: 'Prénom du défunt',
-                            input_html: { class: 'form-name-input' },
-                            autofocus: true %>
-          <%= f_order.input :deceased_last_name, label: 'Nom du défunt', input_html: { class: 'form-name-input' } %>
-        </div>
-
       <% @categories.each do |category| %>
         <div class="order-divs">
-          <h3 class="highlight-green fit-content"><%= category.name %></h3>
+          <h3><%= category.name %></h3>
 
           <% category.subcategories.each do |subcategory| %>
             <div class="box subcategory-div" data-controller="subcategory-dropdown">
@@ -52,18 +59,9 @@
                 <div class="toggle-btn" data-subcategory-dropdown-target='button'></div>
               </div>
               <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts'>
-                <%= render 'chose_account_form', category: category, f_order: f_order, subcategory: subcategory, order_accounts: @order_accounts %>
+                <%= render 'chose_account_form', category: category, subcategory: subcategory, order_accounts: @order_accounts, order: @order %>
               </div>
             </div>
-           <% end %>
-          </div>
-        <% end %>
-        <div class="order-btn">
-          <%= button_tag(type: 'submit', class: "learn-more") do %>
-            <span class="circle" aria-hidden="true">
-              <span class="icon arrow"></span>
-            </span>
-            <span class="button-text">Valider</span>
           <% end %>
         </div>
       <% end %>
@@ -71,14 +69,30 @@
   </div>
 
   <div class='form-order-right'>
-    <div class="logo">
-      <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+    <div class="form-order-right-list">
+      <div class="logo">
+        <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+      </div>
+      <h3>Contrats sélectionnés :</h3>
+      <div class="box account-box">
+        <div id='account-list' class='account-grid small'></div>
+        <div id='account-list' class='account-grid small'>
+          <% @order.order_accounts.each do |order_account| %>
+            <%= render 'order_accounts/account_list_card', order_account: order_account %>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <p>
-      Renseigner les <strong>abonnements à résilier</strong>.<br><br>
-      Pour des raisons de simplicité, les documents et informations à fournir seront demandées à l'étape 2.
-    </p>
-    <div class="flower-pot" style="background-image: url(<%= image_path 'pot-fleur.svg' %>)"></div>
+    <%= simple_form_for @order do |f_order| %>
+      <div class="order-btn">
+        <%= button_tag(type: 'submit', class: "learn-more") do %>
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Valider</span>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <%= link_to contrats_helps_path, target: "_blank", class: 'btn-third small help-btn' do %>

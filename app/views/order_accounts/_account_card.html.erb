@@ -1,0 +1,9 @@
+<%= simple_form_for OrderAccount.new, data: { action: 'turbo:submit-end->order-account-creation#updateButton' } do |f_order_accounts| %>
+  <%= f_order_accounts.input :account_id, input_html: { value: account.id }, as: :hidden %>
+  <%= f_order_accounts.input :order_id, input_html: { value: order.id }, as: :hidden %>
+  <%= f_order_accounts.submit 'ajouter →',
+      class: 'account-card-btn to-add',
+      data: {
+        order_account_creation_target: 'button'
+      } %>
+<% end %>

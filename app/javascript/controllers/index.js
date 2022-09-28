@@ -16,6 +16,9 @@ application.register("check-document", CheckDocumentController)
 import CloseFlashController from "./close_flash_controller"
 application.register("close-flash", CloseFlashController)
 
+import DashboardScrollController from "./dashboard_scroll_controller"
+application.register("dashboard-scroll", DashboardScrollController)
+
 import FooterResponsivityController from "./footer_responsivity_controller"
 application.register("footer-responsivity", FooterResponsivityController)
 

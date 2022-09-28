@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AccountSearchAutocompleteController from "./account_search_autocomplete_controller"
+application.register("account-search-autocomplete", AccountSearchAutocompleteController)
+
 import AddFileController from "./add_file_controller"
 application.register("add-file", AddFileController)
 

@@ -1,0 +1,12 @@
+<%= simple_form_for OrderAccount.new, data: { action: 'turbo:submit-end->order-account-creation#updateOtherButton' } do |f_order_accounts| %>
+  <%= f_order_accounts.simple_fields_for :account, Account.new do |f_account| %>
+    <%= f_account.input :name, input_html: { value: other_account_name }, as: :hidden %>
+    <%= f_account.input :subcategory_id, input_html: { value: Subcategory.find_by(name: 'Autres').id }, as: :hidden %>
+  <% end %>
+  <%= f_order_accounts.input :order_id, input_html: { value: order.id }, as: :hidden %>
+  <%= f_order_accounts.submit 'créer →',
+      class: 'account-card-btn to-add',
+      data: {
+        order_account_creation_target: 'button'
+      } %>
+<% end %>

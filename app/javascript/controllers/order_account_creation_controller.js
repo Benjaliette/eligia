@@ -9,8 +9,14 @@ export default class extends Controller {
   }
 
   updateButton() {
+    this.buttonTarget.value = "ajouté ✓"
     this.update(this.buttonTarget)
     this.updateOtherCards()
+  }
+
+  updateOtherButton() {
+    this.buttonTarget.value = "créé ✓"
+    this.update(this.buttonTarget)
   }
 
   updateOtherCards() {
@@ -19,7 +25,6 @@ export default class extends Controller {
   }
 
   update(button) {
-    button.value = "ajouté ✓"
     button.classList.remove('to-add')
     button.disabled = true
   }

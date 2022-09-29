@@ -12,6 +12,19 @@
       <div class="account-card-submit" data-controller="order-account-creation" data-order-account-creation-account-value="<%= dom_id account %>">
         <%= render 'order_accounts/account_card', order: order, account: account %>
       </div>
+    </div>
   </div>
+<% end %>
+<% if defined?(other_account_name) %>
+  <div class="search-account-card">
+    <div class="account-card-title">
+      <div class="account-avatar" style="background: #464646;">
+        <span style='color: white;'><%= other_account_name.upcase.split.map { |word| word[0] }.join %></span>
+      </div>
+      <div class='account-card-name'><%= other_account_name %></div>
+      <div class="account-card-submit" data-controller="order-account-creation">
+        <%= render 'order_accounts/other_account_card', order: order, other_account_name: other_account_name %>
+      </div>
+    </div>
   </div>
 <% end %>

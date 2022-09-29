@@ -105,7 +105,7 @@ class Order < ApplicationRecord
     accounts = self.order_accounts.map do |order_account|
       {
         account_id: order_account.account.id,
-        account_valid: order_account.account.status,
+        account_valid: order_account.account.aasm_state,
         account_name: order_account.account.name.gsub(' ', '_'),
         account_subcategory: order_account.account.subcategory.id
       }

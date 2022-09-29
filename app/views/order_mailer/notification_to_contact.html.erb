@@ -15,13 +15,15 @@
   <% @order.order_accounts.each do |oa| %>
     <tr>
       <td><%= oa.account.name %></td>
-      <td>1</td>
-      <td><%= oa.aasm_state %> €</td>
+      <td><%= oa.aasm_state %></td>
     </tr>
   <% end %>
   <tr>
-    <td>Nombre de contrats</td>
     <td></td>
-    <td><%= @order.order_accounts.count %> €</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Nombre de contrats</td>
+    <td><%= @order.order_accounts.count %></td>
   </tr>
 </table>

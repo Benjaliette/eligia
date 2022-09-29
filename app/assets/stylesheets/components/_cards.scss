@@ -29,29 +29,6 @@
   display: flex;
   flex-direction: column;
 
-  .account-card-title {
-    display: flex;
-    align-items: center;
-
-    .account-avatar {
-      width: 35px;
-      height: 35px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      font-size: 80%;
-      color: white;
-      margin-right: 10px;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .account-card-name {
-      font-size: 14px;
-    }
-  }
-
   .account-card-submit {
     flex-grow: 1;
     display: flex;
@@ -78,6 +55,33 @@
   &.small {
     height: 5vh;
     position: relative;
+  }
+}
+
+.account-card-title {
+  display: flex;
+  align-items: center;
+
+  .account-avatar {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 80%;
+    color: white;
+    margin-right: 10px;
+    background-size: cover;
+    background-position: center;
+
+    &.true {
+      border: 2px solid $red;
+    }
+  }
+
+  .account-card-name {
+    font-size: 14px;
   }
 }
 

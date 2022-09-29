@@ -1,27 +1,9 @@
 // ==== LIST FOR RECAP ==== //
 
-.order-div-list-style-type {
-  background-color: $light-green;
-  font-weight: bold;
-  margin-right: 20px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.order-div-list-style-type-non-validated {
-  background-color: $red;
-  font-weight: bold;
-  margin-right: 20px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.order-div-list {
+  .account-card-title {
+    margin: 10px 0px;
+  }
 }
 
 .order-div-item {

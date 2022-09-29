@@ -6,20 +6,21 @@
   &.small {
     grid-template-columns: 1fr;
   }
-}
 
-.account_name {
-  background-color: $light-gray;
-  border: 0px solid white;
-  border-bottom: 1px solid $gray;
-  height: 20px;
-  margin: 0 20px;
-  &:focus {
-    outline: none;
+  .account_name {
+    background-color: $light-gray;
     border: 0px solid white;
     border-bottom: 1px solid $gray;
+    height: 20px;
+    margin: 0 20px;
+    &:focus {
+      outline: none;
+      border: 0px solid white;
+      border-bottom: 1px solid $gray;
+    }
   }
 }
+
 
 .account-other-button{
   text-align: center;

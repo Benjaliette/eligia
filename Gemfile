@@ -63,6 +63,9 @@ gem 'money-rails'
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
+# Gem to implement model research
+gem 'pg_search'
+
 # Use Postmark to take care of mails in production
 gem 'postmark-rails'
 

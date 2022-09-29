@@ -4,13 +4,28 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ 'button' ]
 
-  updateButton() {
-    this.buttonTarget.value = "ajouté ✓"
-    this.buttonTarget.classList.remove('to-add')
-    this.buttonTarget.disabled = true
+  static values = {
+    account: String,
   }
 
-  initialButton(event) {
-    console.log(this.buttonTarget)
+  updateButton() {
+    this.buttonTarget.value = "ajouté ✓"
+    this.update(this.buttonTarget)
+    this.updateOtherCards()
+  }
+
+  updateOtherButton() {
+    this.buttonTarget.value = "créé ✓"
+    this.update(this.buttonTarget)
+  }
+
+  updateOtherCards() {
+    const updatedCard = document.getElementById(this.accountValue)
+    this.update(updatedCard.childNodes[1][3])
+  }
+
+  update(button) {
+    button.classList.remove('to-add')
+    button.disabled = true
   }
 }

@@ -11,9 +11,18 @@ class OrderAccount < ApplicationRecord
 
   accepts_nested_attributes_for :account, allow_destroy: true, reject_if: :reject_accounts
 
+  scope :document_missing,      ->{ where(aasm_state: 'document_missing') }
+  scope :pending,      ->{ where(aasm_state: 'pending') }
+  scope :resiliation_sent,   ->{ where(aasm_state: 'resiliation_sent') }
+  scope :resiliation_failure,         ->{ where(aasm_state: 'resiliation_failure') }
+  scope :resiliation_success,   ->{ where(aasm_state: 'resiliation_success') }
+
   rails_admin do
     configure :aasm_state do
       read_only true
+    end
+    list do
+      scopes ['document_missing', 'pending', 'resiliation_sent', 'resiliation_failure', 'resiliation_success']
     end
   end
 

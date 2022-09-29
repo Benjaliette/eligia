@@ -34,7 +34,7 @@ FactoryBot.define do
     sequence :name do |n|
       "accountName#{n}"
     end
-    status { "non-validated" }
+    aasm_state { "validated" }
   end
 
   # Document

@@ -7,7 +7,7 @@ module RailsAdmin
           true
         end
         register_instance_option :only do
-          [OrderAccount, Order]
+          [OrderAccount, Order, Account]
         end
         register_instance_option :visible? do
           authorized?
@@ -117,6 +117,22 @@ module RailsAdmin
           end
         end
       end
+      class Validate < Cmsaction
+        RailsAdmin::Config::Actions.register(self)
+        register_instance_option :visible? do
+          bindings[:object].non_validated? if bindings[:object].class == Account
+        end
+        register_instance_option :link_icon do
+          "fa fa-check-circle"
+        end
+        register_instance_option :controller do
+          Proc.new do
+            object.validate!
+            flash[:notice] = "Concessionnaire #{object.name} validé"
+            redirect_to show_path
+          end
+        end
+      end
     end
   end
 end
@@ -163,6 +179,7 @@ RailsAdmin.config do |config|
     resiliation_failure
     processing
     done
+    validate
 
     ## With an audit adapter, you can add:
     # history_index

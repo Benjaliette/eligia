@@ -1,7 +1,7 @@
 <div class="form-subcategory" data-controller="other-account"
                               data-other-account-order-value=<%= order_accounts %>
                               data-other-account-subcategory-value=<%= subcategory.id %>
-                              data-other-account-account-number-value=<%= Account.where(status: 'validated').count %>
+                              data-other-account-account-number-value=<%= Account.where(aasm_state: 'validated').count %>
                               data-other-account-other-account-value=<%= @order.order_accounts.select { |o_a| o_a.account.subcategory == subcategory && o_a.account.status == 'non_validated' }.size %>>
 
   <div class="account-grid">

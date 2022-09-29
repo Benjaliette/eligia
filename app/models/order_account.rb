@@ -11,9 +11,18 @@ class OrderAccount < ApplicationRecord
 
   accepts_nested_attributes_for :account, allow_destroy: true, reject_if: :reject_accounts
 
+  scope :document_missing,      ->{ where(aasm_state: 'document_missing') }
+  scope :pending,      ->{ where(aasm_state: 'pending') }
+  scope :resiliation_sent,   ->{ where(aasm_state: 'resiliation_sent') }
+  scope :resiliation_failure,         ->{ where(aasm_state: 'resiliation_failure') }
+  scope :resiliation_success,   ->{ where(aasm_state: 'resiliation_success') }
+
   rails_admin do
     configure :aasm_state do
       read_only true
+    end
+    list do
+      scopes ['document_missing', 'pending', 'resiliation_sent', 'resiliation_failure', 'resiliation_success']
     end
   end
 
@@ -50,7 +59,7 @@ class OrderAccount < ApplicationRecord
 
   def update_state
     # Nom assez mal choisi pour l'instant vu qu'on fait juste un update vers pending.
-    return unless self.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) } && self.document_missing?
+    return unless self.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) } && self.document_missing? &&  self.account.validated?
 
       self.declare_pending!
   end

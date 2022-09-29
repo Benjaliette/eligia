@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_27_145435) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_29_092039) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,9 +27,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_27_145435) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status", default: "non_validated", null: false
     t.bigint "subcategory_id"
     t.string "logo_url"
+    t.string "aasm_state"
     t.index ["subcategory_id"], name: "index_accounts_on_subcategory_id"
   end
 
@@ -82,6 +82,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_27_145435) do
     t.bigint "order_account_id"
     t.index ["order_account_id"], name: "index_notifications_on_order_account_id"
     t.index ["order_id"], name: "index_notifications_on_order_id"
+  end
+
+  create_table "order_account_order_documents", force: :cascade do |t|
+    t.bigint "order_account_id", null: false
+    t.bigint "order_document_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_account_id"], name: "index_order_account_order_documents_on_order_account_id"
+    t.index ["order_document_id"], name: "index_order_account_order_documents_on_order_document_id"
   end
 
   create_table "order_accounts", force: :cascade do |t|
@@ -165,6 +174,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_27_145435) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "notifications", "order_accounts"
   add_foreign_key "notifications", "orders"
+  add_foreign_key "order_account_order_documents", "order_accounts"
+  add_foreign_key "order_account_order_documents", "order_documents"
   add_foreign_key "order_accounts", "accounts"
   add_foreign_key "order_accounts", "orders"
   add_foreign_key "order_documents", "documents"

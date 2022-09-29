@@ -17,6 +17,16 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :order_documents, allow_destroy: true
 
+  scope :pending,      ->{ where(aasm_state: 'pending') }
+  scope :processing,   ->{ where(aasm_state: 'processing') }
+  scope :done,         ->{ where(aasm_state: 'done') }
+
+  rails_admin do
+    list do
+      scopes ['pending', 'processing', 'done']
+    end
+  end
+
   def required_documents
     required_documents = []
     self.order_accounts.each do |o_a|
@@ -95,7 +105,7 @@ class Order < ApplicationRecord
     accounts = self.order_accounts.map do |order_account|
       {
         account_id: order_account.account.id,
-        account_valid: order_account.account.status,
+        account_valid: order_account.account.aasm_state,
         account_name: order_account.account.name.gsub(' ', '_'),
         account_subcategory: order_account.account.subcategory.id
       }

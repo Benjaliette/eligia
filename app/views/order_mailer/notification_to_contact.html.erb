@@ -1,0 +1,27 @@
+<div class='welcome'>
+  <h1>Nouvelle commande !</h1>
+</div>
+
+
+<p>Client : <%= @user.first_name %> <%= @user.last_name %> (email : <%= @user.email %>)</p>
+
+<p>Détail de la commande : </p>
+
+<table class='table'>
+  <tr>
+    <th>Nom du compte à résilier</th>
+    <th>Statut</th>
+  </tr>
+  <% @order.order_accounts.each do |oa| %>
+    <tr>
+      <td><%= oa.account.name %></td>
+      <td>1</td>
+      <td><%= oa.aasm_state %> €</td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Nombre de contrats</td>
+    <td></td>
+    <td><%= @order.order_accounts.count %> €</td>
+  </tr>
+</table>

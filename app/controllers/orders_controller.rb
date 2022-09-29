@@ -118,5 +118,6 @@ class OrdersController < ApplicationController
 
   def send_confirmation_mail
     OrderMailer.with(order: @order, user: current_user).confirmation.deliver_now
+    OrderMailer.with(order: @order, user: current_user).notification_to_contact.deliver_now
   end
 end

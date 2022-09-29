@@ -24,7 +24,7 @@ class OrderAccountsController < ApplicationController
 
   def destroy
     @order = @order_account.order
-    @order_account.account.destroy if @order_account.account.status == 'non_validated'
+    @order_account.account.destroy if @order_account.account.non_validated?
     @order_account.destroy
 
     respond_to do |format|

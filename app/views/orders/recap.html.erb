@@ -52,20 +52,21 @@
             <div class="box">
               <ul class="order-div-list no-padding">
                 <% @order.order_accounts.each do |order_account| %>
-                  <li class="order-div-item d-flex">
-                    <% if order_account.account.status == "non_validated" %>
-                      <div class="order-div-list-style-type-non-validated">
-                        <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
+                  <div class="account-card-title">
+                    <% if order_account.account.logo_url.nil?  %>
+                      <div class="account-avatar <%= order_account.account.non_validated? %>" style="background: #464646;">
+                        <span style='color: white;'><%= order_account.account.name.upcase.split.map { |word| word[0] }.join %></span>
                       </div>
-                      <div><%= order_account.account.name %></div>
-                      <div class="order-div-item-non-validated">A valider</div>
                     <% else %>
-                      <div class="order-div-list-style-type">
-                        <%= order_account.account.name.upcase.split.map { |word| word[0] }.join %>
-                      </div>
-                      <div><%= order_account.account.name %></div>
+                      <div class="account-avatar <%= order_account.account.non_validated? %>" style="background-image:url('<%= order_account.account.logo_url %>')"></div>
                     <% end %>
-                  </li>
+                    <div class='account-card-name'>
+                      <%= order_account.account.name %>
+                      <% if order_account.account.non_validated? %>
+                        <span class='italic'>(à valider)</span>
+                      <% end %>
+                    </div>
+                  </div>
                 <% end %>
               </ul>
             </div>
@@ -80,7 +81,7 @@
             </div>
             <div class="box">
 
-            <% if @order.order_accounts.map(&:account).map(&:status).include?("non_validated") %>
+            <% if @order.order_accounts.map(&:account).map(&:aasm_state).include?("non_validated") %>
               <p class="bold"> Nous vous recontacterons pour résilier les contrats 'à valider'.</p>
             <% end %>
 

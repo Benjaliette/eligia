@@ -46,9 +46,6 @@ application.register("navbar-responsivity", NavbarResponsivityController)
 import OrderAccountCreationController from "./order_account_creation_controller"
 application.register("order-account-creation", OrderAccountCreationController)
 
-import OtherAccountController from "./other_account_controller"
-application.register("other-account", OtherAccountController)
-
 import ScrollNavbarController from "./scroll_navbar_controller"
 application.register("scroll-navbar", ScrollNavbarController)
 

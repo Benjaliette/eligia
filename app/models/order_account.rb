@@ -59,7 +59,7 @@ class OrderAccount < ApplicationRecord
 
   def update_state
     # Nom assez mal choisi pour l'instant vu qu'on fait juste un update vers pending.
-    return unless self.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) } && self.document_missing?
+    return unless self.order_documents.all? { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) } && self.document_missing? &&  self.account.validated?
 
       self.declare_pending!
   end

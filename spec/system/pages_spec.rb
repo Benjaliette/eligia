@@ -44,7 +44,7 @@ RSpec.describe "pages", type: :system do
     # Access orders#new
     it "Has a link towarts /resiliations/contrats" do
       visit "/"
-      expect(page).to have_link(nil, href: '/resiliations/contrats')
+      expect(page).to have_link(nil, href: '/resiliations/new')
     end
 
     it "Can click the link towarts /resiliations/contrats" do

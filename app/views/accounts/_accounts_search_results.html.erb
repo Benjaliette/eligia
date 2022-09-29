@@ -1,0 +1,17 @@
+<% accounts.each do |account| %>
+  <div class="search-account-card">
+    <div class="account-card-title">
+      <% if account.logo_url.nil?  %>
+        <div class="account-avatar" style="background: #464646;">
+          <span style='color: white;'><%= account.name.upcase.split.map { |word| word[0] }.join %></span>
+        </div>
+      <% else %>
+        <div class="account-avatar" style="background-image:url('<%= account.logo_url %>')"></div>
+      <% end %>
+      <div class='account-card-name'><%= account.name %></div>
+      <div class="account-card-submit" data-controller="order-account-creation" data-order-account-creation-account-value="<%= dom_id account %>">
+        <%= render 'order_accounts/account_card', order: order, account: account %>
+      </div>
+  </div>
+  </div>
+<% end %>

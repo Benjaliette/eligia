@@ -44,13 +44,22 @@ class OrdersController < ApplicationController
 
   def edit
     @order_documents_json = @order.jsonify_order_documents
+    @order_text_documents = @order.order_documents.select { |od| od.document.format == 'text' }
+    @order_file_documents = @order.order_documents.select { |od| od.document.format == 'file' }
   end
 
   def update_documents
-    @order.update(order_params) if params[:order]
+    @order_text_documents = @order.order_documents.select { |od| od.document.format == 'text' }
+    @order_file_documents = @order.order_documents.select { |od| od.document.format == 'file' }
+
+    if @order.update(order_params) && params[:order]
 
     @order.update_order_account_status
     redirect_to recap_order_path(@order)
+
+    else
+      render :edit
+    end
   end
 
   def destroy

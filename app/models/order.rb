@@ -9,13 +9,15 @@ class Order < ApplicationRecord
   belongs_to :pack, optional: true
   belongs_to :user, optional: true
   has_many :order_accounts, dependent: :destroy
-  has_many :order_documents, dependent: :destroy
+  has_many :order_documents, dependent: :destroy, index_errors: true
   has_many :notifications, dependent: :destroy
 
-  validates :deceased_first_name, :deceased_last_name,
-            format: { with: /\A([a-zàâçéèêëîïôûùüÿñæœ'.-]|\s)*\z/i, message: "ne doit contenir que des lettres" }
-
   accepts_nested_attributes_for :order_documents, allow_destroy: true
+
+  validates :deceased_first_name, :deceased_last_name,
+            presence: { message: 'cette information est obligatoire' },
+            format: { with: /\A([a-zàâçéèêëîïôûùüÿñæœ'.-]|\s)*\z/i, message: "ne doit contenir que des lettres" }
+  validates_associated :order_documents
 
   scope :pending,      ->{ where(aasm_state: 'pending') }
   scope :processing,   ->{ where(aasm_state: 'processing') }
@@ -93,7 +95,7 @@ class Order < ApplicationRecord
   def non_uploaded_order_documents
     o_d = self.order_documents.select { |order_doc| self.required_documents.include? order_doc.document }
     o_d.select do |order_document|
-      (order_document.document.format == 'pdf' && !order_document.document_file.attached?) || (order_document.document.format == 'text' && order_document.document_input.blank?)
+      (order_document.document.format == 'file' && !order_document.document_file.attached?) || (order_document.document.format == 'text' && order_document.document_input.blank?)
     end
   end
 

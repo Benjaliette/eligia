@@ -63,6 +63,9 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  # Allow error messages for nested attributes
+  config.active_record.index_nested_attribute_errors = true
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 

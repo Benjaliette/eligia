@@ -54,3 +54,6 @@ application.register("show-password", ShowPasswordController)
 
 import SubcategoryDropdownController from "./subcategory_dropdown_controller"
 application.register("subcategory-dropdown", SubcategoryDropdownController)
+
+import ToggleContractsController from "./toggle_contracts_controller"
+application.register("toggle-contracts", ToggleContractsController)

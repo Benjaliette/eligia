@@ -22,7 +22,7 @@
               <%= simple_form_for [@order, order_document], url: update_documents_order_order_document_path(@order, order_document), html: { id: order_document } do |f| %>
                 <div class="insert-document" data-controller="loading-spinner">
                 <div class="document-name d-inline-block"><p class='margin-top-zero'><%= order_document.document.name %></p></div>
-                  <% if order_document.document.format == 'pdf' %>
+                  <% if order_document.document.format == 'file' %>
                     <div data-check-document-target='infoDiv'></div>
                     <div class="document-btn-and-name">
                       <%= f.input :document_file,

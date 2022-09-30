@@ -15,7 +15,7 @@
         <div>
           <span class='document-name highlight-green d-inline-block'><%= order_document.document.name %> : </span>
           <span>
-            <% if order_document.document.format == 'pdf' %>
+            <% if order_document.document.format == 'file' %>
               <%= order_document.document_file.filename %>
             <% else %>
               <%= order_document.document_input %>
@@ -26,7 +26,7 @@
         <%= simple_form_for [order_document.order, order_account, order_document], html: { id: order_document } do |f| %>
           <div class="document-name highlight-green d-inline-block"><%= order_document.document.name %></div>
           <div class="insert-document modal-update" data-controller="loading-spinner">
-            <% if order_document.document.format == 'pdf' %>
+            <% if order_document.document.format == 'file' %>
               <div data-check-document-target='infoDiv'></div>
               <div class="document-btn-and-name">
                 <%= f.input :document_file,

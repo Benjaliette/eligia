@@ -5,6 +5,8 @@ class OrderDocument < ApplicationRecord
   belongs_to :document
   belongs_to :order
 
+  validates :document_input, file_type: true
+
   def pdf?
     return unless self.document_file.attached?
 

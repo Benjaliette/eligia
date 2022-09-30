@@ -48,3 +48,25 @@
     right: 5px;
   }
 }
+
+@media (max-width: 600px) {
+  .search-div {
+    .search-bar {
+      .search-bar-input {
+        width: 40vw;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .search-div {
+    flex-direction: column;
+    align-items: flex-start;
+    .search-bar {
+      .search-bar-input {
+        width: 65vw;
+      }
+    }
+  }
+}

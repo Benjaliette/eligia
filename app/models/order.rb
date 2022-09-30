@@ -15,7 +15,6 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :order_documents, allow_destroy: true
 
   validates :deceased_first_name, :deceased_last_name,
-            presence: { message: 'cette information est obligatoire' },
             format: { with: /\A([a-zàâçéèêëîïôûùüÿñæœ'.-]|\s)*\z/i, message: "ne doit contenir que des lettres" }
   validates_associated :order_documents
 

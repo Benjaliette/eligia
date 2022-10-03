@@ -10,20 +10,7 @@ if Rails.env.development?
   Subcategory.destroy_all
 end
 puts "📄 Rédaction des RGPD"
-Rgpd.create(text: "La protection de vos données est importante pour nous. À cette fin, Eligia applique des procédures strictes, conformes aux dernières directives RGPD. \n
-  \n
-  Sur la base légale du consentement, la société ELIGIA SARL récolte les données nécessaires à la mise à disposition de son service. Ces données peuvent être séparées en deux catégories : les données du demandeur ainsi que les données du défunt.
-  La récolte des données est directe : Eligia ne récolte que les données que vous spécifiez dans les champs des divers formulaires d’inscription, de création de dossier ou de paiement.\n
-  \n
-  Pourquoi récolter des données ? \n
-  \n
-  - Les données du demandeur sont utilisées a des fin de répression des fraudes, de facturation et de contact pour le suivi des dossiers. Note : vos données bancaires sont sécurisées via la plateforme de paiement Stripe.com, elle ne sont pas et ne peuvent en aucun cas être récoltées par ELIGIA SARL.\n
-  \n
-  - Suite à leur récolte, les données du défunt sont stockées sur un serveur externe sécurisé. Ces données sont ensuite transmises aux entreprises concessionnaires des contrats pour leur résiliation via des canaux sécurisés (lettres recommandées avec accusé de réception). Eligia s’engage ne récolter que les données suffisantes et nécessaires à la résiliation des contrats. \n
-  Toutes les données du dossier d’un défunt sont supprimées définitivement des serveurs dans la durée légale de 3 mois après la clôture du dossier.\n
-  \n
-  Pour toute question concernant le traitement ou la suppression de vos données personnelles, contactez-nous à l’adresse email suivante : contact@eligia.fr.\n
-  Nous nous engageons à vous répondre dans un délai de 2 jours ouvrés après réception du courriel.")
+Rgpd.create(text: "<h2>La protection de vos données est importante pour nous. À cette fin, Eligia applique des procédures strictes, conformes aux dernières directives RGPD.</h2> <br> <br> <p>Sur la base légale du consentement, la société ELIGIA SARL récolte les données nécessaires à la mise à disposition de son service. Ces données peuvent être séparées en deux catégories : les données du demandeur ainsi que les données du défunt. La récolte des données est directe : Eligia ne récolte que les données que vous spécifiez dans les champs des divers formulaires d’inscription, de création de dossier ou de paiement.</p> <br><br> <h3>Pourquoi récolter des données ?</h3> <br><br> <ul> <li>Les données du demandeur sont utilisées a des fin de répression des fraudes, de facturation et de contact pour le suivi des dossiers. Note : vos données bancaires sont sécurisées via la plateforme de paiement Stripe.com, elle ne sont pas et ne peuvent en aucun cas être récoltées par ELIGIA SARL.</li> <li> Suite à leur récolte, les données du défunt sont stockées sur un serveur externe sécurisé. Ces données sont ensuite transmises aux entreprises concessionnaires des contrats pour leur résiliation via des canaux sécurisés (lettres recommandées avec accusé de réception). Eligia s’engage ne récolter que les données suffisantes et nécessaires à la résiliation des contrats. </li> </ul> <br> <p>Toutes les données du dossier d’un défunt sont supprimées définitivement des serveurs dans la durée légale de 3 mois après la clôture du dossier.</p> <p>Pour toute question concernant le traitement ou la suppression de vos données personnelles, contactez-nous à l’adresse email suivante : contact@eligia.fr. Nous nous engageons à vous répondre dans un délai de 2 jours ouvrés après réception du courriel.</p>")
 
 
 puts "👷🏼 Création des Users"

@@ -18,7 +18,7 @@
           <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
         <% end %>
         <div class="form-inputs-block">
-          <%= f.label 'Prénom' %>
+          <%= f.label "Prénom *" %>
           <%= f.input :first_name,
                       required: true,
                       autofocus: true,
@@ -26,18 +26,18 @@
                       placeholder:'Prénom' %>
         </div>
         <div class="form-inputs-block">
-          <%= f.label 'Nom' %>
+          <%= f.label 'Nom *' %>
           <%= f.input :last_name,
                       required: true,
                       label: false,
-                      placeholder:'Nom' %>
+                      placeholder:'*Nom' %>
         </div>
         <div class="form-inputs-block">
-          <%= f.label 'Adresse mail' %>
+          <%= f.label 'Adresse mail *' %>
           <%= f.input :email,
                       required: true,
                       label: false,
-                      placeholder:'Adresse email'%>
+                      placeholder:'*Adresse email'%>
         </div>
         <div class="form-inputs-block">
           <%= f.label 'Numéro de téléphone' %>
@@ -46,7 +46,7 @@
                       placeholder:'06 xx xx xx xx'%>
         </div>
         <div class="form-inputs-block-address">
-          <%= f.label 'Adresse de facturation' %>
+          <%= f.label 'Adresse de facturation *' %>
           <%= f.input :address,
                       input_html: {data: {address_autocomplete_target: "address"}, class: 'display-none'},
                       wrapper_html: {data: {controller: "address-autocomplete",

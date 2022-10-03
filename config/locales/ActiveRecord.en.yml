@@ -9,6 +9,8 @@ en:
               taken: "Adresse email déjà utilisée"
               invalid: "Adresse email invalide"
             password:
+              too_short: "Mot de passe trop court. Minimum 6 caractères."
+              too_long: "Mot de passe trop long. Maximum 128 caractères."
               blank: "Veuillez entrer un mot de passe"
               confirmation: "Les mots de passe ne correspondent pas"
             password_confirmation:

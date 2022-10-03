@@ -17,23 +17,23 @@
                       required: true,
                       autofocus: true,
                       label: false,
-                      placeholder:'Prénom' %>
+                      placeholder:'*Prénom' %>
           <%= f.input :last_name,
                       required: true,
                       label: false,
-                      placeholder:'Nom' %>
+                      placeholder:'*Nom' %>
           <%= f.input :email,
                       required: true,
                       label: false,
-                      placeholder:'Adresse email'%>
+                      placeholder:'*Adresse email'%>
           <%= f.input :phone_number,
                       label: false,
-                      placeholder:'06 xx xx xx xx'%>
+                      placeholder:'Téléphone'%>
           <div class='show-password-devise' data-controller='show-password'>
             <%= f.input :password,
                         required: true,
                         label: false,
-                        placeholder:'Mot de Passe',
+                        placeholder:'*Mot de Passe',
                         input_html: { data: { 'show-password-target':'field' } } %>
             <div class="show-password-btn" data-action='click->show-password#show' data-show-password-target='eye'>
               <i class="fa-solid fa-eye"></i>
@@ -44,7 +44,7 @@
             <%= f.input :password_confirmation,
                         required: true,
                         label: false,
-                        placeholder:'Confirmation du mot de passe',
+                        placeholder:'*Confirmation du mot de passe',
                         input_html: { data: { 'show-password-target':'field' } } %>
             <div class="show-password-btn" data-action='click->show-password#show' data-show-password-target='eye'>
               <i class="fa-solid fa-eye"></i>

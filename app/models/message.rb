@@ -1,6 +1,6 @@
 class Message
   include ActiveModel::Model
-  attr_accessor :name, :email, :body
+  attr_accessor :name, :email, :body, :attachments
 
   validates :name, :body, presence: { message: "Ne pas laisser vide" }
   validates :email,

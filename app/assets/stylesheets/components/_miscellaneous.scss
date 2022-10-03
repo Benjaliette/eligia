@@ -234,8 +234,8 @@
   background-color: $green !important;
 }
 
-.bold-link {
-  font-weight: bold !important;
+.link {
+  cursor: pointer;
 
   &:hover {
     color: $blue !important;
@@ -243,6 +243,11 @@
   }
 }
 
+
+// Overflow
+.scroll-y{
+  overflow-y: scroll !important;
+}
 
 //Alignments
 .align-center {

@@ -28,7 +28,7 @@ class Account < ApplicationRecord
     state :non_validated, initial: true
     state :validated
 
-    event :declare_validate do
+    event :declare_validated do
       transitions from: :non_validated, to: :validated
     end
   end

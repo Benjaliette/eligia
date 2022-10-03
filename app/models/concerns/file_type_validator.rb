@@ -1,6 +1,6 @@
 class FileTypeValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    unless record.document.nil?
+    unless record.document.nil? || value.nil?
       case record.document.file_type
       when 'iban'
         record.errors.add attribute, (options[:message] || "ne correspond pas au format IBAN") unless

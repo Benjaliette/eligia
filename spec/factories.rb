@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :rgpd do
+    text { "MyString" }
+  end
+
   factory :notification do
     content { "MyString" }
     order { nil }

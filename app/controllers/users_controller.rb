@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # .order = tri activerecord
     @orders = @current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
     @notifications = @current_user.notifications.order(created_at: :desc)
     @last_order = @current_user.orders.where(paid: true).last

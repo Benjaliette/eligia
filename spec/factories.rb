@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :rgpd do
     text { "MyString" }
+    user
   end
 
   factory :notification do
@@ -15,6 +16,7 @@ FactoryBot.define do
     email { "#{first_name}.#{last_name}@eligia.fr".downcase }
     admin { false }
     password { "123456" }
+    accepted_rgpd { true }
   end
 
   # Category

@@ -117,7 +117,7 @@ module RailsAdmin
           end
         end
       end
-      class Validate < Cmsaction
+      class DeclareValidated < Cmsaction
         RailsAdmin::Config::Actions.register(self)
         register_instance_option :visible? do
           bindings[:object].non_validated? if bindings[:object].class == Account
@@ -127,7 +127,7 @@ module RailsAdmin
         end
         register_instance_option :controller do
           Proc.new do
-            object.validate!
+            object.declare_validated!
             flash[:notice] = "Concessionnaire #{object.name} validé"
             redirect_to show_path
           end
@@ -179,7 +179,7 @@ RailsAdmin.config do |config|
     resiliation_failure
     processing
     done
-    validate
+    declare_validated
 
     ## With an audit adapter, you can add:
     # history_index

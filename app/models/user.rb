@@ -2,7 +2,7 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
-  after_create :send_welcome_email, :log_rgpd
+  after_create :send_welcome_email, :log_rgpd unless Rails.env.test?
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

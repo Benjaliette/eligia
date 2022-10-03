@@ -1,8 +1,8 @@
 class TemplatePdf
   include Prawn::View
 
-  def resiliation_pdf(args)
-    Prawn::document.generate( page_size: 'A4') do
+  def prawn_resiliation(args)
+    Prawn::Document.new( page_size: 'A4') do
       # stroke_axis
       bounding_box([0, 715], width: 150, height: 100) do
         # stroke_bounds
@@ -34,18 +34,19 @@ class TemplatePdf
         args[:order_account].order_documents.select { |order_document| order_document.document.format == "text" }.each do |order_document|
           text "#{order_document.document.name} : #{order_document.document_input}"
         end
-    end
-    end
+      end
 
-    args[:order_account].order_documents.select { |order_document| order_document.document_file.attached? && !order_document.pdf? }.each do |order_document|
-      text "#{order_document.document.name} :"
-      move_down 10
-      image StringIO.open(order_document.document_file.download), height: 300
+
+      args[:order_account].order_documents.select { |order_document| order_document.document_file.attached? && !order_document.pdf? }.each do |order_document|
+        text "#{order_document.document.name} :"
+        move_down 10
+        image StringIO.open(order_document.document_file.download), height: 300
+      end
+
+      fill_color '8FCC9B'
+      fill_rectangle [0, 100], 540, 100
+
+      image "#{Rails.root}/app/assets/images/eligia-sans-fond.png", height: 80, at: [10, 90]
     end
-
-    fill_color '8FCC9B'
-    fill_rectangle [0, 100], 540, 100
-
-    image "#{Rails.root}/app/assets/images/eligia-sans-fond.png", height: 80, at: [10, 90]
   end
 end

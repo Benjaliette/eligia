@@ -62,10 +62,8 @@ class OrderAccount < ApplicationRecord
       self.declare_pending!
   end
 
-  def create_resiliation_file
-    pdf = OrderAccountPdf.new(self)
-    pdf.resiliation_pdf
-    pdf.build_and_upload
+  def generate_resiliation_file
+    OrderAccountPdf.new(self).build_and_upload_resiliation
   end
 
   private
@@ -83,7 +81,7 @@ class OrderAccount < ApplicationRecord
     end
 
     event :declare_pending do
-      transitions from: :document_missing, to: :pending, after: Proc.new { create_resiliation_file }
+      transitions from: :document_missing, to: :pending, after: Proc.new { generate_resiliation_file }
     end
 
     event :declare_resiliation_sent do

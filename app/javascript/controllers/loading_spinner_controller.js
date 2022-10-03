@@ -10,7 +10,6 @@ export default class extends Controller {
   }
 
   unload() {
-    console.log('ok')
     this.spinnerTarget.classList.add('display-none')
     this.btnTarget.classList.remove('display-none')
   }

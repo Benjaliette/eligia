@@ -35,8 +35,7 @@ class OrderAccount < ApplicationRecord
   end
 
   def non_uploaded_order_documents
-    o_d = self.order.order_documents.select { |order_doc| self.required_documents.include? order_doc.document }
-    o_d.select do |order_document|
+    self.order_documents.select do |order_document|
       (order_document.document.format == 'file' && !order_document.document_file.attached?) || (order_document.document.format == 'text' && order_document.document_input.blank?)
     end
   end

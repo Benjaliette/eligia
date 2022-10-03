@@ -104,6 +104,7 @@ RSpec.describe OrderAccount, type: :model do
       certif = create(:document, name: "certif")
       id = create(:document, name: "id")
       mail = create(:document, name: "mail", format: "text", file_type: 'email')
+
       create(:account_document, account: orange, document: certif)
       create(:account_document, account: orange, document: mail)
       create(:account_document, account: orange, document: id)

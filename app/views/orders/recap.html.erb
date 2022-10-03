@@ -1,9 +1,14 @@
 <% content_for :title, "Validation demande - Eligia" %>
 
 <div data-controller="remove-footer">
-  <div class="fullscreen order-parts">
+  <div class="fullscreen order-parts one-part">
 
     <div class="form-order-steps">
+      <div class="order-steps-btn">
+        <%= link_to change_order_path(@order), class:"btn-third small btn-round" do %>
+          ←  Précédent
+        <% end %>
+      </div>
       <div class="steps">
         <%= link_to change_order_path do %>
           <div class='step previous-step'>
@@ -29,23 +34,31 @@
 
     <div class="form-order-div">
       <div class="form-order-infos">
-        <%= link_to edit_order_path(@order), class:"btn-third small btn-round margin-bottom-four" do %>
-          <i class="fa-solid fa-arrow-left"></i> Précédent
-        <% end %>
-        <div class="logo">
-          <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+        <div class="mobile-steps">
+          <div class="order-steps-btn">
+            <%= link_to edit_order_path(@order), class:"btn-third small btn-round" do %>
+              <i class="fa-solid fa-arrow-left"></i> Précédent
+            <% end %>
+          </div>
+          <div class="logo">
+            <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+          </div>
         </div>
-        <h1>3. Récapitulatif / Confirmation</h1>
+        <div class="mobile-step-title">Étape 3 :</div>
+        <h1>Récapitulatif / Confirmation</h1>
+        <p>
+          <strong>Les documents manquants</strong> n'empêchent pas de continuer la procédure. <br><br>
+          Vous pourrez <strong>compléter les documents depuis votre espace personnel.</strong>
+        </p>
       </div>
 
       <div class="form-order-content">
         <div class="main-order-divs">
-
           <div class="order-subdiv">
             <div class="d-flex justify-content-space-between">
-            <h3 class="margin-bottom-three">Contrats</h3>
+              <h3 class="margin-bottom-three">Contrats</h3>
               <%= link_to change_order_path(@order), class:"btn-third small margin-top-three" do %>
-                <span class="bold padding-right-two font-size-larger">+</span>
+                <span class="recap-plus">+</span>
                 <span>Ajouter</span>
               <% end %>
             </div>
@@ -71,25 +84,24 @@
               </ul>
             </div>
           </div>
-          <div>
+          <div class="order-subdiv">
             <div class="d-flex justify-content-space-between">
               <h3 class="margin-bottom-three">Documents</h3>
                 <%= link_to edit_order_path(@order), class:"btn-third small margin-top-three" do %>
-                  <span class="bold padding-right-two font-size-larger">+</span>
+                  <span class="recap-plus">+</span>
                   <span>Ajouter</span>
                 <% end %>
             </div>
             <div class="box">
-
-            <% if @order.order_accounts.map(&:account).map(&:aasm_state).include?("non_validated") %>
-              <p class="bold"> Nous vous recontacterons pour résilier les contrats 'à valider'.</p>
-            <% end %>
+              <% if @order.order_accounts.map(&:account).map(&:aasm_state).include?("non_validated") %>
+                <p class="bold"> Nous vous recontacterons pour résilier les contrats 'à valider'.</p>
+              <% end %>
 
 
               <% @order.order_documents.each do |order_document| %>
                 <div class="order-div-item document">
                   <div><%= order_document.document.name %> :</div>
-                  <% if order_document.document.format == 'pdf' %>
+                  <% if order_document.document.format == 'file' %>
                     <div class="document-created-<%= order_document.document_file.attached? %>">
                       <%= order_document.document_file.attached? ? "OK" : "Document manquant"%>
                     </div>
@@ -121,7 +133,7 @@
             </div>
           </div>
         <% else %>
-          <div class="order-btn">
+          <div class="order-btn right">
             <%= button_tag(type: 'button', class: "learn-more") do %>
               <%= link_to new_user_registration_path do %>
                 <span class="circle" aria-hidden="true">
@@ -145,13 +157,7 @@
       <div class="logo">
         <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
       </div>
-      <p>
-        <strong>Les documents manquants</strong> n'empêchent de continuer la procédure. <br><br>
-        Vous pourrez <strong>compléter les documents depuis votre espace personnel.</strong>
-
-      </p>
-      <div class="flower-pot" style="background-image: url(<%= image_path 'pot-fleur.svg' %>)">
-      </div>
+      <%= image_tag 'pot-fleur.svg', alt: "Pot de fleur", class: 'flower-pot' %>
     </div>
 
     <%= link_to recapitulatif_helps_path, target: "_blank", class: 'btn-third small help-btn' do %>

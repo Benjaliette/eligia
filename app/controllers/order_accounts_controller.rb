@@ -15,8 +15,12 @@ class OrderAccountsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.append('account-list', partial: "order_accounts/account_list_card",
-          locals: { order_account: @order_account })
+        render turbo_stream: [
+          turbo_stream.append('account-list', partial: "order_accounts/account_list_card",
+            locals: { order_account: @order_account }),
+          turbo_stream.update('account-number', " (#{@order_account.order.order_accounts.size}) "),
+          turbo_stream.update('contract-number', @order_account.order.order_accounts.size)
+        ]
       end
       format.html { redirect_to new_order_path, notice: "Le compte a bien été ajouté à la liste" }
     end
@@ -32,7 +36,9 @@ class OrderAccountsController < ApplicationController
         render turbo_stream: [
           turbo_stream.remove(@order_account),
           turbo_stream.update(@order_account.account, partial: "order_accounts/account_card",
-            locals: { order: @order, account: @order_account.account })
+            locals: { order: @order, account: @order_account.account }),
+          turbo_stream.update('account-number', " (#{@order.order_accounts.size}) "),
+          turbo_stream.update('contract-number', @order.order_accounts.size)
         ]
       end
       format.html { render 'order/new' }

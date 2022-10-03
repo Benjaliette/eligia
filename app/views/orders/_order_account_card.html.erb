@@ -1,7 +1,16 @@
 <div class="order-account-card" data-controller='modal'>
   <div class="order-account-card-infos">
-    <div class="account-name">
-      <%= order_account.account.name %>
+    <div class="account-title">
+      <% if order_account.account.logo_url.nil?  %>
+        <div class="account-avatar" style="background: #464646;">
+          <span style='color: white;'><%= order_account.account.name.upcase.split.map { |word| word[0] }.join %></span>
+        </div>
+      <% else %>
+        <div class="account-avatar" style="background-image:url('<%= order_account.account.logo_url %>')"></div>
+      <% end %>
+      <div class="account-name">
+        <%= order_account.account.name %>
+      </div>
     </div>
     <div class="account-status">
       <div>
@@ -20,12 +29,24 @@
     <% end %>
     <div class="modal display-none foreground" data-modal-target='modal'>
       <div class="modal-content">
-        <h2><%= order_account.account.name %></h2>
+        <div class="account-title">
+          <% if order_account.account.logo_url.nil?  %>
+            <div class="account-avatar" style="background: #464646;">
+              <span style='color: white;'><%= order_account.account.name.upcase.split.map { |word| word[0] }.join %></span>
+            </div>
+          <% else %>
+            <div class="account-avatar" style="background-image:url('<%= order_account.account.logo_url %>')"></div>
+          <% end %>
+          <h2 class="account-name">
+            <%= order_account.account.name %>
+          </h2>
+        </div>
         <div class="modal-content-documents">
           <turbo-frame id="modal-<%=order_account.id%>">
             <%= render 'shared/update_order_document_modal', order_account: defined?(order_account) ? order_account : @order_account %>
           </turbo-frame>
         </div>
+        <%= link_to "OK", order_path(order_account.order), class:'btn-principal small bold'  %>
         <%= link_to "+", order_path(order_account.order), class:'close'  %>
       </div>
     </div>

@@ -20,6 +20,33 @@
   justify-content: center;
   padding: 20px;
 
+  .account-title {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .account-avatar {
+      width: 75px;
+      height: 75px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 100%;
+      color: white;
+      background-size: cover;
+      background-position: center;
+
+      &.true {
+        border: 2px solid $red;
+      }
+    }
+
+    .account-name {
+      font-weight: bold;
+    }
+  }
+
   .document-name {
     margin-top: 20px;
   }
@@ -30,7 +57,9 @@
 
     .form-order-div {
       border: none;
+      width: 75%;
       background: transparent;
+      margin: 20px auto;
     }
 
     .insert-document {

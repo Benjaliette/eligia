@@ -48,12 +48,10 @@ class OrderAccount < ApplicationRecord
   def state_to_french
     case self.aasm_state
     when "pending" then "En traitement"
-    when "document_missing" then "Document(s) manquant(s)"
-    when "documents_missing" then "Document(s) manquant(s)" #Pour les commandes passées avant la modification des aasm_states
+    when "document_missing" || "documents_missing" then "Document(s) manquant(s)"
     when "resiliation_sent" then "Demande de résiliation envoyée"
     when "resiliation_failure" then "Erreur"
-    when "resiliation_success" then "Compte résilié"
-    when "resiliation_succeded" then "Compte résilié" #Pour les commandes passées avant la modification des aasm_states
+    when "resiliation_success" || "resiliation_succeded" then "Compte résilié"
     end
   end
 
@@ -64,28 +62,8 @@ class OrderAccount < ApplicationRecord
       self.declare_pending!
   end
 
-  def rename_resiliation_file
-    return unless self.resiliation_file.attached?
-
-    bucket_name = "eligia_cloud_storage"
-    file_name = self.resiliation_file.blob.key
-    order_name = "#{self.order.deceased_first_name}_#{self.order.deceased_last_name}"
-    new_name = "#{order_name}/#{self.account.name}/#{self.updated_at.strftime('%y%m%d')}_Résiliation_#{self.account.name.gsub(' ', '_')}.#{self.resiliation_file.filename.extension}"
-
-    storage = Google::Cloud::Storage.new
-    bucket  = storage.bucket bucket_name, skip_lookup: true
-    file = bucket.file file_name
-    renamed_file = file.copy new_name
-
-    self.resiliation_file.update(key: renamed_file.name)
-
-    file.delete
-  end
-
-  def create_resiliation_file
-    pdf = OrderAccountPdf.new(self)
-    pdf.resiliation_pdf
-    pdf.build_and_upload
+  def generate_resiliation_file
+    OrderAccountPdf.new(self).build_and_upload_resiliation
   end
 
   private
@@ -103,7 +81,7 @@ class OrderAccount < ApplicationRecord
     end
 
     event :declare_pending do
-      transitions from: :document_missing, to: :pending, after: Proc.new { create_resiliation_file }
+      transitions from: :document_missing, to: :pending, after: Proc.new { generate_resiliation_file }
     end
 
     event :declare_resiliation_sent do

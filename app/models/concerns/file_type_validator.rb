@@ -14,10 +14,7 @@ class FileTypeValidator < ActiveModel::EachValidator
       when 'compteur_eau'
         # record.errors.add attribute, (options[:message] || "Relevé incorrect") unless
         # value =~ /^FR\d{12}[A-Z0-9]{11}\d{2}$/i || value.empty?
-      when 'telephone_mobile'
-        record.errors.add attribute, (options[:message] || "Numéro incorrect") unless
-        value =~ /(\(\+33\)|0|\+33|0033)[1-9]([0-9]{8}|([0-9\- ]){12})/ || value.empty?
-      when 'telephone_fixe'
+      when 'telephone_mobile' || 'telephone_fixe'
         record.errors.add attribute, (options[:message] || "Numéro incorrect") unless
         value =~ /(\(\+33\)|0|\+33|0033)[1-9]([0-9]{8}|([0-9\- ]){12})/ || value.empty?
       end

@@ -6,7 +6,7 @@ class Account < ApplicationRecord
   has_many :order_accounts, dependent: :destroy
   belongs_to :subcategory
 
-  validates :name, presence: true #, uniqueness: { scope: :subcategory }
+  validates :name, presence: true
 
   scope :validated,      ->{ where(aasm_state: 'validated') }
   scope :non_validated,   ->{ where(aasm_state: 'non_validated') }
@@ -28,7 +28,7 @@ class Account < ApplicationRecord
     state :non_validated, initial: true
     state :validated
 
-    event :validate do
+    event :declare_validate do
       transitions from: :non_validated, to: :validated
     end
   end

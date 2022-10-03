@@ -26,6 +26,36 @@
                           as: :text,
                           input_html: { class: 'form-name-input-text' } %>
 
+          <div class="contact-form-file">
+            <div class="contact-form-file-label">Si vous avez un document à nous joindre :</div>
+            <div class="contact-form-file-document" data-controller="add-file">
+              <div class="document-btn-and-name">
+                <%= f.label ' ' %>
+                <%= f.input :attachment,
+                              label: "Ajouter",
+                              as: :file,
+                              input_html: {
+                                accept: '.png, .jpg, .jpeg, .pdf',
+                                multiple: true,
+                                class:'hidden-document-input',
+                                data: {
+                                  action:'change->add-file#added',
+                                  add_file_target:'input'
+                                },
+                              name: 'message[attachments][]'
+                              },
+                              label_html: {
+                                class:'label-document-input',
+                                data: {
+                                  add_file_target:'label',
+                                  check_document_target:'documentForm'
+                                }
+                              } %>
+                <div class="file-name" data-add-file-target="fileNameDiv"></div>
+              </div>
+            </div>
+          </div>
+
           <div class="form-actions align-center">
             <%= f.submit 'Envoyer', class: 'btn btn-principal', id:'submit-btn' %>
           </div>

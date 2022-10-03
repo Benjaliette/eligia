@@ -12,8 +12,8 @@ class FileTypeValidator < ActiveModel::EachValidator
         # record.errors.add attribute, (options[:message] || "n'est pas un IBAN") unless
         # value =~ /^FR\d{12}[A-Z0-9]{11}\d{2}$/i
       when 'compteur_eau'
-        # record.errors.add attribute, (options[:message] || "n'est pas un IBAN") unless
-        # value =~ /^FR\d{12}[A-Z0-9]{11}\d{2}$/i
+        # record.errors.add attribute, (options[:message] || "n'est pas un relevé de compteur") unless
+        # value =~ /^FR\d{12}[A-Z0-9]{11}\d{2}$/i || value.empty?
       when 'telephone_mobile'
         record.errors.add attribute, (options[:message] || "n'est pas un numéro de téléphone correct") unless
         value =~ /(\(\+33\)|0|\+33|0033)[1-9]([0-9]{8}|([0-9\- ]){12})/ || value.empty?

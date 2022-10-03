@@ -2,12 +2,13 @@ class OrderAccount < ApplicationRecord
   after_save :update_order_state
 
   include AASM
+  include ActiveStoragePath
 
   belongs_to :order
   belongs_to :account
   has_many :notifications, dependent: :destroy
 
-  has_one_attached :resiliation_file
+  has_one_attached_with :resiliation_file, path: -> { "#{self.order.deceased_first_name}_#{self.order.deceased_last_name}" }
 
   accepts_nested_attributes_for :account, allow_destroy: true, reject_if: :reject_accounts
 

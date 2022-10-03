@@ -394,6 +394,13 @@
   padding: 20px;
   margin: 20px auto;
   background-color:white;
+  height: 16vh;
+
+  .error {
+    margin-bottom: 0px;
+    height: 20px;
+  }
+
 
   ::-webkit-file-upload-button {
     cursor: pointer;

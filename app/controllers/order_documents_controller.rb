@@ -20,7 +20,8 @@ class OrderDocumentsController < ApplicationController
       redirect_to order_path(@order_account.order)
       flash[:alert] = "Document enregistré"
     else
-      render order_order_account_order_document_path(@order, @order_account, @order_document), status: :unprocessable_entity
+      render turbo_stream: turbo_stream.update(@order_document, partial: "shared/error_messages",
+        locals: { error: @order_document.errors[:document_input].first })
     end
   end
 
@@ -40,7 +41,8 @@ class OrderDocumentsController < ApplicationController
       redirect_to order_path(@order)
       flash[:alert] = "Document enregistré"
     else
-      render order_order_document_path(@order, @order_document), status: :unprocessable_entity
+      render turbo_stream: turbo_stream.update(@order_document, partial: "shared/error_messages",
+          locals: { error: @order_document.errors[:document_input].first })
     end
   end
 

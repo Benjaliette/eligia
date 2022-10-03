@@ -17,7 +17,10 @@ export default class extends Controller {
       this.labelTarget.innerText = 'Modifier'
 
     } else {
-      this.fileNameDivTarget.innerText = this.inputTarget.files[0].name
+      this.fileNameDivTarget.innerText = ''
+      Array.from(this.inputTarget.files).forEach(file => {
+        this.fileNameDivTarget.insertAdjacentHTML('beforeend', `<div>${file.name}</div>`)
+      });
       this.labelTarget.classList.add('label-document-input-selected')
       this.labelTarget.classList.remove('label-document-input-wrong-format')
       this.labelTarget.innerText = 'Modifier'

@@ -1,7 +1,9 @@
 class OrderDocument < ApplicationRecord
   require "google/cloud/storage"
+  include ActiveStoragePath
 
   has_one_attached :document_file
+  has_one_attached_with :document_file, path: -> { "#{self.order.deceased_first_name}_#{self.order.deceased_last_name}" }
   belongs_to :document
   belongs_to :order
 

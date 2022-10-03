@@ -107,4 +107,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Allow error messages for nested attributes
+  config.active_record.index_nested_attribute_errors = true
 end

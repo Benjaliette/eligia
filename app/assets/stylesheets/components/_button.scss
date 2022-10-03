@@ -103,7 +103,7 @@
   border-radius: 10%/50%;
 }
 
-.btn-order {
+.order-steps-btn {
   display: flex;
   justify-content: center;
   margin: 7vh auto;
@@ -117,9 +117,14 @@
 
 .order-btn {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   width: 100%;
   margin: 40px 0px;
+
+  &.right {
+    align-items: flex-end;
+    flex-direction: column;
+  }
 }
 
 button {
@@ -333,8 +338,50 @@ button {
   right: -10px;
 }
 
+.contract-list-toggle-btn {
+  display: none;
+}
+
 @media (max-width: 900px) {
-  .btn-order {
+  .order-steps-btn {
     margin: 0px;
+  }
+}
+
+@media (max-width: 700px) {
+  .contract-list-toggle-btn {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: $blue;
+    border: 1px solid black;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 70px;
+    right: 10px;
+
+    i {
+      position: relative;
+
+      #contract-number {
+        width: 18px;
+        height: 18px;
+        background-color: $red;
+        color: white;
+        font-size: 8px;
+        font-weight: bold;
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: -30px;
+        right: -20px;
+      }
+    }
   }
 }

@@ -159,21 +159,19 @@ RSpec.describe Order, type: :model do
 
   describe "Generating order_documents" do
     it "#generate_order_documents" do
-    order = create(:order)
-    create(:order_document, order:)
-    expect(order.order_documents.count).to eq 1
-    account_1 = create(:account)
-    account_2 = create(:account)
-    doc_1 = create(:document)
-    doc_2 = create(:document)
-    doc_3 = create(:document)
-    create(:account_document, account: account_1, document: doc_1)
-    create(:account_document, account: account_1, document: doc_2)
-    create(:account_document, account: account_2, document: doc_3)
-    create(:order_account, account: account_1, order:)
-    create(:order_account, account: account_2, order:)
-    order.generate_order_documents
-    expect(order.order_documents.count).to eq 3
+      order = create(:order)
+      account_1 = create(:account)
+      account_2 = create(:account)
+      doc_1 = create(:document)
+      doc_2 = create(:document)
+      doc_3 = create(:document)
+      create(:account_document, account: account_1, document: doc_1)
+      create(:account_document, account: account_1, document: doc_2)
+      create(:account_document, account: account_2, document: doc_3)
+      create(:order_account, account: account_1, order:)
+      create(:order_account, account: account_2, order:)
+      order.generate_order_documents
+      expect(order.order_documents.count).to eq 3
     end
   end
 end

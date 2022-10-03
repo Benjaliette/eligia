@@ -1,9 +1,14 @@
 <% content_for :title, "Ajout documents - Eligia" %>
 
 
-<div class=" order-parts">
+<div class="order-parts one-part">
 
   <div class="form-order-steps">
+    <div class="order-steps-btn">
+      <%= link_to change_order_path(@order), class:"btn-third small btn-round" do %>
+        ←  Précédent
+      <% end %>
+    </div>
     <div class="steps">
       <%= link_to change_order_path do %>
         <div class='step previous-step'>
@@ -27,42 +32,104 @@
 
   <div class="form-order-div" data-controller='check-document' data-check-document-document-value=<%= @order_documents_json %>>
     <div class="form-order-infos">
-      <%= link_to change_order_path(@order), class:"btn-third small btn-round margin-bottom-four" do %>
-        <i class="fa-solid fa-arrow-left"></i> Précédent
-      <% end %>
-      <div class="logo">
-        <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+      <div class="mobile-steps">
+        <div class="order-steps-btn">
+          <%= link_to change_order_path(@order), class:"btn-third small btn-round" do %>
+            <i class="fa-solid fa-arrow-left"></i> Précédent
+          <% end %>
+        </div>
+        <div class="logo">
+          <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+        </div>
       </div>
-      <h1>2. Documents à fournir</h1>
+      <div class="mobile-step-title">Étape 2 :</div>
+      <h1>Documents à fournir</h1>
+      <p>
+        Ce sont les <strong>informations minimum nécessaires</strong> à la résiliation de tous vos contrats. <br><br>
+        <strong>Si vous ne disposez pas de toutes les informations </strong> laissez les champs en question vides pour l'instant. Vous pourrez les compléter depuis votre espace personnel.
+      </p>
     </div>
-
     <div class="form-order-content">
       <%= simple_form_for @order, url: :update_documents_order, data: { turbo: false } do |f| %>
-        <div class="form-name-div">
-          <%= f.input :deceased_first_name,
-                            label: 'Prénom du défunt',
-                            input_html: { class: 'form-name-input' },
-                            autofocus: true %>
-          <%= f.input :deceased_last_name, label: 'Nom du défunt', input_html: { class: 'form-name-input' } %>
+        <%= f.error_notification %>
+        <h2>Informations du défunt :</h2>
+        <div class="form-order-headname">
+          <div class="form-order-text">
+            <div class="form-order-text-label">
+              Prénom du défunt
+              <span class="sm-italic"> (requis)</span>
+            </div>
+            <div class="form-order-text-input">
+              <%= f.input :deceased_first_name,
+                                label: false,
+                                input_html: { class: 'form-name-input' },
+                                autofocus: true %>
+            </div>
+          </div>
+          <div class="form-order-text">
+            <div class="form-order-text-label">
+              Nom du défunt
+              <span class="sm-italic"> (requis)</span>
+            </div>
+            <div class="form-order-text-input">
+              <%= f.input :deceased_last_name,
+                          label: false,
+                          input_html: { class: 'form-name-input' } %>
+            </div>
+          </div>
         </div>
-        <% @order.order_documents.each do |order_document| %>
-          <div class="insert-document" data-controller="add-file">
-            <%= f.simple_fields_for :order_documents, order_document do |fod| %>
-              <div class="document-name highlight-green"><%= order_document.document.name %></div>
-              <% if order_document.document.format == 'pdf' %>
+        <% @order_text_documents.each do |order_document| %>
+          <%= f.simple_fields_for :order_documents, order_document do |fod| %>
+            <div class="form-order-text">
+              <div class="form-order-text-label"><%= order_document.document.name %></div>
+              <div class="form-order-text-input">
+                <%= fod.input :document_input,
+                              label: false,
+                              input_html: {
+                                class: 'form-name-input'
+                              },
+                              label_html: {
+                                data: {
+                                  check_document_target:'documentForm'
+                                }
+                              } %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <% @order_file_documents.each do |order_document| %>
+          <%= f.simple_fields_for :order_documents, order_document do |fod| %>
+            <div class="form-order-file">
+              <div class="form-order-text-label"><%= order_document.document.name %></div>
+              <div class="form-order-document" data-controller="add-file">
                 <div data-check-document-target='infoDiv'></div>
                 <div class="document-btn-and-name">
-                  <%= fod.input :document_file, label: "Ajouter", as: :file, input_html:{accept: '.png, .jpg, .jpeg, .pdf', class:'hidden-document-input', 'data-action':'change->add-file#added', 'data-add-file-target':'input'}, label_html:{class:'label-document-input', 'data-add-file-target':'label', 'data-check-document-target':'documentForm'} %>
+                  <%= fod.label ' ' %>
+                  <%= fod.input :document_file,
+                                label: "Ajouter",
+                                as: :file,
+                                input_html: {
+                                  accept: '.png, .jpg, .jpeg, .pdf',
+                                  class:'hidden-document-input',
+                                  data: {
+                                    action:'change->add-file#added',
+                                    add_file_target:'input'
+                                  },
+                                },
+                                label_html: {
+                                  class:'label-document-input',
+                                  data: {
+                                    add_file_target:'label',
+                                    check_document_target:'documentForm'
+                                  }
+                                } %>
                   <div class="file-name" data-add-file-target="fileNameDiv"></div>
                 </div>
-              <% else %>
-                <div data-check-document-target='infoDiv'></div>
-                <%= fod.input :document_input, label:"#{order_document.document.name} :", input_html: { class:'doc-input' }, label_html: {'data-check-document-target':'documentForm'} %>
-              <% end %>
-            <% end %>
-          </div>
+              </div>
+            </div>
+          <% end %>
         <% end %>
-        <div class="order-btn">
+        <div class="order-btn right">
           <div class="fit-content"data-controller="loading-spinner" data-action="click->loading-spinner#load">
             <%= button_tag(type: 'submit', class: "learn-more", data: {"loading-spinner-target":"btn"}) do %>
               <span class="circle" aria-hidden="true">
@@ -83,12 +150,7 @@
     <div class="logo">
       <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
     </div>
-    <p>
-      Ce sont les <strong>informations minimum nécessaires</strong> à la résiliation de tous vos contrats. <br><br>
-      <strong>Si vous ne disposez pas de toutes les informations </strong> laissez les champs en question vides pour l'instant. Vous pourrez les compléter depuis votre espace personnel.
-    </p>
-    <div class="flower-pot" style="background-image: url(<%= image_path 'pot-fleur.svg' %>)">
-    </div>
+    <%= image_tag 'pot-fleur.svg', alt: "Pot de fleur", class: 'flower-pot' %>
   </div>
 
   <%= link_to documents_helps_path, target: "_blank", class: 'btn-third small help-btn' do %>

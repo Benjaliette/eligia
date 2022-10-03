@@ -42,7 +42,7 @@ FactoryBot.define do
     sequence :name do |n|
       "documentName#{n}"
     end
-    format { "pdf" }
+    format { "file" }
   end
 
   # Account_document

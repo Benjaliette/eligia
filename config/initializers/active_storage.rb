@@ -9,7 +9,7 @@ Rails.application.config.after_initialize do
 
       record.order.order_accounts.each do |order_account|
         if order_account.required_documents.include?(record.document) && order_account.resiliation_file.attached?
-          order_account.create_resiliation_file
+          order_account.generate_resiliation_file
         end
       end
     end

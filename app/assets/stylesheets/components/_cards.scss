@@ -210,6 +210,36 @@
       flex-direction: column;
       justify-content: space-between;
 
+      .account-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 8vh;
+
+        .account-avatar {
+          width: 35px;
+          height: 35px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bold;
+          font-size: 80%;
+          color: white;
+          margin-right: 10px;
+          background-size: cover;
+          background-position: center;
+
+          &.true {
+            border: 2px solid $red;
+          }
+        }
+
+        .account-name {
+          font-weight: bold;
+          width: 75px;
+        }
+      }
+
       .account-status {
         text-align: center;
       }
@@ -217,13 +247,6 @@
 
     .order-account-status{
       font-size: 12px;
-    }
-
-    .account-name {
-      margin: 0 auto;
-      font-weight: bold;
-      height: 50px;
-      text-align: center;
     }
   }
 }

@@ -102,9 +102,11 @@
       <div class="logo">
         <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
       </div>
-      <h3>
-        Contrats sélectionnés <span id='account-number'>(<%= @order.order_accounts.size %>)</span> :
-      </h3>
+      <div class="form-order-right-title">
+        <h3>
+          Contrats sélectionnés <span id='account-number'>(<%= @order.order_accounts.size %>)</span> :
+        </h3>
+      </div>
       <div class="box account-box">
         <div id='account-list' class='account-grid small'></div>
         <div id='account-list' class='account-grid small'>

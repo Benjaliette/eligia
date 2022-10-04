@@ -10,7 +10,7 @@
         <% end %>
       </div>
       <div class="steps">
-        <%= link_to change_order_path do %>
+        <%= link_to created_order_path do %>
           <div class='step previous-step'>
             <p>Étape 1 :</p>
             <p>Résiliations</p>
@@ -57,7 +57,7 @@
           <div class="order-subdiv">
             <div class="d-flex justify-content-space-between">
               <h3 class="margin-bottom-three">Contrats</h3>
-              <%= link_to change_order_path(@order), class:"btn-third small margin-top-three" do %>
+              <%= link_to created_order_path(@order), class:"btn-third small margin-top-three" do %>
                 <span class="recap-plus">+</span>
                 <span>Ajouter</span>
               <% end %>
@@ -154,10 +154,32 @@
     </div>
 
     <div class='form-order-right'>
-      <div class="logo">
-        <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+      <div class="form-order-right-list documents">
+        <div class="logo">
+          <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+        </div>
+        <div class="form-order-right-title">
+          <h3>
+            Coût des démarches :
+          </h3>
+        </div>
+        <div class="price-recap box">
+          <div class='d-flex justify-content-space-between'>
+            <div>Contrats à résilier</div>
+            <strong>x<%= @order.order_accounts.size %></strong>
+          </div>
+          <hr>
+          <div>
+            <div>Correspond au</div>
+            <strong>forfait <%= @order.determine_pack_type.title %></strong>
+          </div>
+          <div class='d-flex justify-content-space-between'>
+            <div>Prix</div>
+            <div class='divider'>.................................................</div>
+            <div><%= @order.determine_pack_type.price %> €</div>
+          </div>
+        </div>
       </div>
-      <%= image_tag 'pot-fleur.svg', alt: "Pot de fleur", class: 'flower-pot' %>
     </div>
 
     <%= link_to recapitulatif_helps_path, target: "_blank", class: 'btn-third small help-btn' do %>

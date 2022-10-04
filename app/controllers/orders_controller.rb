@@ -1,13 +1,13 @@
 require 'json'
 
 class OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[change new create edit update update_documents recap destroy]
+  skip_before_action :authenticate_user!, only: %i[new create edit update update_documents recap destroy]
 
-  before_action :set_order, only: %i[show created change edit update update_documents recap success paiement destroy]
-  before_action :set_categories, only: %i[change new update]
+  before_action :set_order, only: %i[show created edit update update_documents recap success paiement destroy]
+  before_action :set_categories, only: %i[created update]
 
   after_action :send_confirmation_mail, only: :success
-  after_action :order_pundit, only: %i[show new change create edit update update_documents paiement recap success destroy]
+  after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy]
 
   def index
   end
@@ -24,11 +24,6 @@ class OrdersController < ApplicationController
 
   def created
     @accounts = Account.all
-  end
-
-  def change
-    @order_accounts = @order.jsonify_order_accounts
-    render :created
   end
 
   def update
@@ -53,10 +48,8 @@ class OrdersController < ApplicationController
     @order_file_documents = @order.order_documents.select { |od| od.document.format == 'file' }
 
     if @order.update(order_params) && params[:order]
-
-    @order.update_order_account_status
-    redirect_to recap_order_path(@order)
-
+      @order.update_order_account_status
+      redirect_to recap_order_path(@order)
     else
       render :edit
     end

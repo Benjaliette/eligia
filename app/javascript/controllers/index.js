@@ -28,9 +28,6 @@ application.register("hello", HelloController)
 import HomeFunctionController from "./home_function_controller"
 application.register("home-function", HomeFunctionController)
 
-import HomeInfosAppearController from "./home_infos_appear_controller"
-application.register("home-infos-appear", HomeInfosAppearController)
-
 import LoadingSpinnerController from "./loading_spinner_controller"
 application.register("loading-spinner", LoadingSpinnerController)
 
@@ -52,11 +49,11 @@ application.register("scroll-navbar", ScrollNavbarController)
 import ShowPasswordController from "./show_password_controller"
 application.register("show-password", ShowPasswordController)
 
-import ShowRgpdModalController from "./show_rgpd_modal_controller"
-application.register("show-rgpd-modal", ShowRgpdModalController)
-
 import SubcategoryDropdownController from "./subcategory_dropdown_controller"
 application.register("subcategory-dropdown", SubcategoryDropdownController)
 
 import ToggleContractsController from "./toggle_contracts_controller"
 application.register("toggle-contracts", ToggleContractsController)
+
+import UpdateChecksController from "./update_checks_controller"
+application.register("update-checks", UpdateChecksController)

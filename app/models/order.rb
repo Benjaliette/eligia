@@ -15,7 +15,8 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :order_documents, allow_destroy: true
 
   validates :deceased_first_name, :deceased_last_name,
-            format: { with: /\A([a-zàâçéèêëîïôûùüÿñæœ'.-]|\s)*\z/i, message: "ne doit contenir que des lettres" }
+            format: { with: /\A([a-zàâçéèêëîïôûùüÿñæœ'.-]|\s)*\z/i, message: "ne doit contenir que des lettres" },
+            presence: { message: "doit être obligatoirement renseigné" }, on: :update
   validates_associated :order_documents
 
   scope :pending,      ->{ where(aasm_state: 'pending') }

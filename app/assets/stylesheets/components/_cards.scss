@@ -55,6 +55,7 @@
   &.small {
     height: 5vh;
     position: relative;
+    width: 62%;
   }
 }
 
@@ -492,6 +493,22 @@
   }
 }
 
+// Card for price in recap
+.price-recap {
+  font-size: 14px;
+  width: 80%;
+  height: 30vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  hr {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 @media (max-width: 900px) {
   .main-user-card {
     width: 80%;
@@ -598,6 +615,19 @@
   .service-cards {
     .service-card {
       height: 270px;
+    }
+  }
+
+  .account-card {
+    flex-direction: row;
+    align-items: center;
+
+    &.small {
+      width: 50%;
+    }
+
+    .account-avatar {
+      display: none;
     }
   }
 }

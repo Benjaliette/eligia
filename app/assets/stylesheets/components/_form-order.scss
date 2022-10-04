@@ -624,6 +624,11 @@
       }
     }
   }
+  .insert-document {
+    .error{
+      height: fit-content;
+    }
+  }
 }
 
 @media (max-width: 700px) {
@@ -665,9 +670,9 @@
 }
 
 @media (max-width: 600px) {
-  .document-name {
-    margin: 0px auto 30px auto;
-  }
+  // .document-name {
+  //   // margin: 0px auto 30px auto;
+  // }
 
   .edit_order{
     .document-btn-and-name{

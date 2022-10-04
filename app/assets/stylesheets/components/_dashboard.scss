@@ -127,6 +127,10 @@
   .account-infos {
     font-size: 14px;
   }
+
+  .error{
+    height: inherit;
+  }
 }
 
 @media (max-width: 700px) {
@@ -136,5 +140,33 @@
 
   .account-infos-description {
     margin-top: 60px;
+  }
+}
+
+@media (max-width: 500px) {
+  .order-documents-grid{
+    grid-gap: 0px;
+  }
+
+  .insert-document{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px;
+    max-width: 35vw;
+    height: 19vh !important;
+
+    input{
+      max-width: 60%;
+    };
+
+    p {
+      font-size: smaller;
+      margin-bottom: 8px;
+    }
+
+    .doc-input{
+      margin-top: 2px;
+    }
   }
 }

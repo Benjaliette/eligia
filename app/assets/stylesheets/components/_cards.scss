@@ -564,7 +564,7 @@
   }
 
   .order-account-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .order-dashboard-card {

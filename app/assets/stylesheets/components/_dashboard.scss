@@ -98,7 +98,7 @@
 @media (max-width: 900px) {
   .user-dashboard-grid{
     grid-template-columns: 1fr;
-    grid-template-rows: 0fr 5fr;
+    grid-template-rows: 1fr 1fr;
   }
 
   .user-dashboard-navigation{

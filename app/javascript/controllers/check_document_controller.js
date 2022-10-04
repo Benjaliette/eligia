@@ -9,12 +9,14 @@ export default class extends Controller {
   }
 
   connect() {
-    this.documentFormTargets.forEach((document, i) => {
-      if (this.documentValue.documents[i].document) {
-          document.innerText = 'Modifier'
-          document.classList.add('label-document-input-selected')
+    this.documentFormTargets.forEach((documentLabel, i) => {
+      this.documentValue.documents.forEach((document) => {
+        if (document.document) {
+          documentLabel.innerText = 'Modifier'
+          documentLabel.classList.add('label-document-input-selected')
           this.infoDivTargets[i].insertAdjacentHTML('beforeend', '<em>Document déjà fourni</em>')
         }
+      })
     })
   }
 }

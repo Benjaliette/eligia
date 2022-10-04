@@ -362,3 +362,10 @@
 .light-green{
   color: $light-green;
 }
+
+
+.divider {
+  flex-grow: 1;
+  max-width: 6vw;
+  overflow: hidden;
+}

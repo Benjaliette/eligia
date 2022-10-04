@@ -15,8 +15,12 @@ class OrderPolicy < ApplicationPolicy
     record.user == user
   end
 
-  def create?
-    true
+  def created?
+    record.paid == false
+  end
+
+  def new?
+    record.paid == false
   end
 
   def update?
@@ -24,10 +28,6 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def update_documents?
-    record.paid == false
-  end
-
-  def change?
     record.paid == false
   end
 

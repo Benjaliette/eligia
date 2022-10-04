@@ -6,7 +6,7 @@
 <div class="vh-100 gradient-bg">
    <%= image_tag("login.svg", alt:'login logo', class:'login-image') %>
 
-  <div class="form-div">
+  <div class="form-div" data-controller="show-rgpd-modal">
     <div class="form-text">
       <h2 class='home-title no-margin'>S'inscrire</h2>
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
@@ -17,23 +17,23 @@
                       required: true,
                       autofocus: true,
                       label: false,
-                      placeholder:'Prénom' %>
+                      placeholder:'*Prénom' %>
           <%= f.input :last_name,
                       required: true,
                       label: false,
-                      placeholder:'Nom' %>
+                      placeholder:'*Nom' %>
           <%= f.input :email,
                       required: true,
                       label: false,
-                      placeholder:'Adresse email'%>
+                      placeholder:'*Adresse email'%>
           <%= f.input :phone_number,
                       label: false,
-                      placeholder:'06 xx xx xx xx'%>
+                      placeholder:'Téléphone'%>
           <div class='show-password-devise' data-controller='show-password'>
             <%= f.input :password,
                         required: true,
                         label: false,
-                        placeholder:'Mot de Passe',
+                        placeholder:'*Mot de Passe',
                         input_html: { data: { 'show-password-target':'field' } } %>
             <div class="show-password-btn" data-action='click->show-password#show' data-show-password-target='eye'>
               <i class="fa-solid fa-eye"></i>
@@ -44,11 +44,15 @@
             <%= f.input :password_confirmation,
                         required: true,
                         label: false,
-                        placeholder:'Confirmation du mot de passe',
+                        placeholder:'*Confirmation du mot de passe',
                         input_html: { data: { 'show-password-target':'field' } } %>
             <div class="show-password-btn" data-action='click->show-password#show' data-show-password-target='eye'>
               <i class="fa-solid fa-eye"></i>
             </div>
+            <%= f.input :accepted_rgpd,
+                        label: "J'ai lu et j'accepte les conditions RGPD",
+                        label_html: {class: "d-block margin-top-three margin-bottom-three"}%>
+                         <span class="link underline" data-action="click->show-rgpd-modal#show">Lire les conditions RGPD</span>
           </div>
         </div>
 
@@ -59,5 +63,14 @@
 
       <%= render "devise/shared/links" %>
     </div>
+
+    <div class="modal display-none" data-show-rgpd-modal-target="modal">
+      <div class="modal-content scroll-y align-start">
+      <h1>Politique RPPD</h1>
+        <%= sanitize Rgpd.last.text %>
+      <div class="close" data-action="click->show-rgpd-modal#show">+</div>
+      </div>
+    </div>
+
   </div>
 </div>

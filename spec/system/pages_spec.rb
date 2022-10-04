@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 if User.count.zero?
-  User.create(first_name: 'Tester', last_name: 'Joe', email:'tester.joe@test.fr', password: '123456')
+  User.create(first_name: 'Tester', last_name: 'Joe', email:'tester.joe@test.fr', password: '123456', accepted_rgpd: true)
 end
 
 RSpec.describe "pages", type: :system do

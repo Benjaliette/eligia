@@ -65,9 +65,11 @@
     </div>
 
     <div class="modal display-none" data-show-rgpd-modal-target="modal">
-      <div class="modal-content scroll-y align-start">
-      <h1>Politique RPPD</h1>
-        <%= sanitize Rgpd.last.text %>
+      <div class="modal-content">
+        <div class="scroll-y height-100">
+          <h1>Politique RPPD</h1>
+          <%= sanitize Rgpd.last.text %>
+        </div>
       <div class="close" data-action="click->show-rgpd-modal#show">+</div>
       </div>
     </div>

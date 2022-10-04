@@ -61,11 +61,31 @@
   }
 }
 
+@media (max-width: 600px) {
+  .banner {
+    &.user-banner {
+      h1 {
+        font-size: 25px;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+   }
+}
+
 @media (max-width: 500px) {
   .banner {
     &.user-banner {
       .container {
         padding: 44vh 0 10vh 0;
+      }
+
+      h1 {
+        font-size: 18px;
+      }
+      p {
+        font-size: 12px;
       }
     }
    }

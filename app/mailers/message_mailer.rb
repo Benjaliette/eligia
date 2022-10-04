@@ -5,7 +5,7 @@ class MessageMailer < ApplicationMailer
     unless @message.attachments.nil?
       unless @message.attachments.empty?
         @message.attachments.each do |attachment|
-          attachments[attachment.original_filename] = File.read(attachment)
+          attachments[attachment.original_filename] = File.read(attachment) unless attachment == ""
         end
       end
     end

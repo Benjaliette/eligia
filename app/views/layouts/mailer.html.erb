@@ -5,9 +5,25 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;1,400&display=swap');
 
-      a {
-        color: inherit;
-        font-weight: bold;
+      .fullscreen {
+        min-height: 90vh
+      }
+
+      .link {
+        cursor: pointer;
+        color: #7AB5CE !important;
+      }
+
+      .link:hover {
+        color: #8FCC9B !important;
+      }
+
+      .mailer-content {
+        background-color: #FFFFFF;
+        border: 2px #dfdede solid;
+        border-radius: 20px;
+        margin: 20px 50px 50px 50px;
+        padding: 20px;
       }
 
       body {
@@ -15,34 +31,84 @@
       }
 
       img {
-        background-color: #8FCC9B;
         padding: 10px 30px;
+        margin-top: 10px
       }
 
-      .welcome {
+      .align-center {
         text-align: center;
-        margin-bottom: 50px;
       }
 
       .margin {
         margin-top: 50px;
       }
 
+      .padding-left-three{
+        padding-left: 16px;
+      }
+
       .table {
         text-align: left;
         width: 100;
-        margin: 100px auto;
+        margin: 40px auto;
       }
 
       th, td {
         padding: 20px 40px;
         border-bottom: 1px solid black;
+        text-align: center;
       }
+
+      .boxed{
+        border-top: solid 2px #dfdede;
+        padding: 25px 10px;
+        width: 45vw;
+      }
+
+      .gradient-bg{
+        background: conic-gradient(from 244.13deg at 157.71% -58.21%, rgba(122, 181, 206, 0.22) -4.22deg, rgba(161, 219, 209, 0.37) 0.8deg, #FAFDFA 11.29deg, #92CD9E 33.63deg, rgba(255, 255, 255, 0) 309.47deg, rgba(255, 229, 76, 0.41) 328.17deg, rgba(220, 252, 94, 0.33) 332.9deg, rgba(143, 204, 155, 0.47) 347.23deg, rgba(122, 181, 206, 0.22) 355.78deg, rgba(161, 219, 209, 0.37) 360.8deg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+
+      .footer > p {
+        text-align: center;
+        border-top: 2px #dfdede solid;
+        width: fit-content;
+        margin: 0px auto;
+        padding: 10px 30px;
+        font-size: smaller
+      }
+
+      .bold{
+        font-weight: bolder;
+      }
+
+      .document_missing{
+        color: #D33F49
+      }
+
+      .pending{
+        color: #8FCC9B
+      }
+
     </style>
   </head>
 
-  <body>
-    <div class="welcome"><%= image_tag 'eligia-sans-fond.png', width: '200px' %></div>
-    <%= yield %>
+  <body class="gradient-bg fullscreen">
+    <div class="align-center"><%= image_tag 'eligia-sans-fond.png', width: '200px' %></div>
+      <div class="mailer-content">
+        <%= yield %>
+        <p style="margin-top: 50px">
+          L'équipe d'Eligia
+        </p>
+      </div>
+    <div class="footer">
+        <p>
+          Eligia SARL, <br>
+          6 rue Flornoy 33000 Bordeaux,<br>
+          contact@eligia.fr
+        </p>
+    </div>
   </body>
 </html>

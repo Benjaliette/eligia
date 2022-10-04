@@ -1,4 +1,11 @@
-<div>Message de <%= @message.name %></div>
-<div>Adresse mail: <%= @message.email %></div>
+<h2> 📬 Nouvelle demande de contact !</h2>
 
-<div class="margin">"<%= @message.body %>"</div>
+<h4>Détails du message :</h4>
+
+<ul>
+  <li class="boxed"><span class="bold" style="padding-right: 30px">Expéditeur :</span> <%= @message.name %></li>
+  <li class="boxed"><span class="bold" style="padding-right: 30px">Adresse mail:</span> <%= @message.email %></li>
+  <li class="boxed"><span class="bold" style="padding-right: 30px">Contenu du message :</span> <br>
+  <p> <%= @message.body %></p>
+  </li>
+</ul>

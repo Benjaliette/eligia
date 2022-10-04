@@ -55,6 +55,7 @@
   &.small {
     height: 5vh;
     position: relative;
+    width: 62%;
   }
 }
 
@@ -210,6 +211,36 @@
       flex-direction: column;
       justify-content: space-between;
 
+      .account-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 8vh;
+
+        .account-avatar {
+          width: 35px;
+          height: 35px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bold;
+          font-size: 80%;
+          color: white;
+          margin-right: 10px;
+          background-size: cover;
+          background-position: center;
+
+          &.true {
+            border: 2px solid $red;
+          }
+        }
+
+        .account-name {
+          font-weight: bold;
+          width: 75px;
+        }
+      }
+
       .account-status {
         text-align: center;
       }
@@ -217,13 +248,6 @@
 
     .order-account-status{
       font-size: 12px;
-    }
-
-    .account-name {
-      margin: 0 auto;
-      font-weight: bold;
-      height: 50px;
-      text-align: center;
     }
   }
 }
@@ -469,6 +493,22 @@
   }
 }
 
+// Card for price in recap
+.price-recap {
+  font-size: 14px;
+  width: 80%;
+  height: 30vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  hr {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 @media (max-width: 900px) {
   .main-user-card {
     width: 80%;
@@ -575,6 +615,19 @@
   .service-cards {
     .service-card {
       height: 270px;
+    }
+  }
+
+  .account-card {
+    flex-direction: row;
+    align-items: center;
+
+    &.small {
+      width: 50%;
+    }
+
+    .account-avatar {
+      display: none;
     }
   }
 }

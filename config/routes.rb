@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 
   resources :orders, path: 'resiliations', path_names: { edit: 'documents' }, except: %i[index] do
     member do
-      get :change, path: 'contrats'
       get :created, path: 'contrats'
       patch 'update_order'
       patch 'update_documents'

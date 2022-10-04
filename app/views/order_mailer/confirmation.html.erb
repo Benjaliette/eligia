@@ -1,30 +1,31 @@
-<div class='welcome'>
-  <h1>Cher(e) <%= @user.first_name %> <%= @user.last_name %></h1>
+<h2>Cher(e) <%= @user.first_name %> <%= @user.last_name %></h2>
+<p>Merci pour votre confiance.</p>
+
+<p>Veuillez-trouver ci-dessous les détails du dossier <%= "F#{"0" * (10 - @order.id.to_s.split.size)}#{@order.id}" %>.</p>
+
+<div class="align-center">
+  <h3 style="margin-top: 40px">Contrats sélectionnés :</h3>
 </div>
-
-
-<p>Merci pour votre confiance</p>
-
-<p>Veuillez-trouver ci-dessous les détails de la demande de résiliation <%= "F#{"0" * (10 - @order.id.to_s.split.size)}#{@order.id}" %> :</p>
-
-<table class='table'>
+<table class="table">
   <tr>
-    <th>Nom du produit</th>
-    <th>Quantité</th>
-    <th>Montant</th>
+    <th>Contrat</th>
+    <th>État au moment de la commande</th>
   </tr>
-  <tr>
-    <td><%= @order.pack.title %></td>
-    <td>1</td>
-    <td><%= @order.pack.price %> €</td>
-  </tr>
-  <tr>
-    <td>Total</td>
-    <td></td>
-    <td><%= @order.amount %> €</td>
-  </tr>
+  <% @order.order_accounts.each do |order_account| %>
+    <tr>
+      <td><%= order_account.account.name %></td>
+      <td class="<%= order_account.aasm_state%>"><%= order_account.state_to_french %></td>
+    </tr>
+  <% end %>
 </table>
 
+
+<h3 style="margin-top: 40px">Total de la commande :</h3>
+<p class= "padding-left-three bold"> → 1 x forfait <%= @order.pack.title %> (<%= @order.pack.quantity_text.downcase %>) : <%= @order.pack.price %>€</p>
+
+
+
+
 <p>
-  Vous pouvez suivre l'avancement des résiliations sur <%= link_to 'votre compte', user_url(@user) %>
+  Vous pouvez suivre l'avancement des résiliations sur <%= link_to 'votre compte', user_url(@user), class:'link' %>
 </p>

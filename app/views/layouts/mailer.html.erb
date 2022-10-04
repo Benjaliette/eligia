@@ -64,20 +64,32 @@
         background-repeat: no-repeat;
         background-size: cover;
         }
+
+      .footer > p {
+        text-align: center;
+        border-top: 2px #dfdede solid;
+        width: fit-content;
+        margin: 0px auto;
+        padding: 10px 30px;
+        font-size: smaller
+      }
     </style>
   </head>
 
   <body class="gradient-bg fullscreen">
     <div class="align-center"><%= image_tag 'eligia-sans-fond.png', width: '200px' %></div>
-    <%= yield %>
+      <div class="mailer-content">
+        <%= yield %>
+        <p style="margin-top: 50px">
+          L'équipe d'Eligia
+        </p>
+      </div>
     <div class="footer">
-      <div class="align-center">
-        <p style="border-top: 2px #dfdede solid; width: fit-content; margin: 0px auto; padding: 10px 30px">
+        <p>
           Eligia SARL, <br>
           6 rue Flornoy 33000 Bordeaux,<br>
           contact@eligia.fr
         </p>
-      </div>
     </div>
   </body>
 </html>

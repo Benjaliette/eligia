@@ -9,12 +9,14 @@ RSpec.describe Order, type: :model do
     end
 
     it "Should be invalid if deceased_first_name does not match regex" do
-      order = build(:order, deceased_first_name: "m4rc")
+      order = build(:order)
+      order.update(deceased_first_name: "m4rc")
       expect(order.valid?).to eq false
     end
 
     it "Should be invalid if deceased_first_name does not match regex" do
-      order = build(:order, deceased_last_name: "doe!")
+      order = build(:order)
+      order.update(deceased_first_name: "doe!")
       expect(order.valid?).to eq false
     end
   end

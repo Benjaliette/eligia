@@ -5,12 +5,12 @@
 
   <div class="form-order-steps">
     <div class="order-steps-btn">
-      <%= link_to change_order_path(@order), class:"btn-third small btn-round" do %>
+      <%= link_to created_order_path(@order), class:"btn-third small btn-round" do %>
         ←  Précédent
       <% end %>
     </div>
     <div class="steps">
-      <%= link_to change_order_path do %>
+      <%= link_to created_order_path do %>
         <div class='step previous-step'>
           <p>Étape 1 :</p>
           <p>Résiliations</p>
@@ -34,7 +34,7 @@
     <div class="form-order-infos">
       <div class="mobile-steps">
         <div class="order-steps-btn">
-          <%= link_to change_order_path(@order), class:"btn-third small btn-round" do %>
+          <%= link_to created_order_path(@order), class:"btn-third small btn-round" do %>
             <i class="fa-solid fa-arrow-left"></i> Précédent
           <% end %>
         </div>
@@ -86,7 +86,13 @@
                 <%= fod.input :document_input,
                               label: false,
                               input_html: {
-                                class: 'form-name-input'
+                                class: 'form-name-input',
+                                data: {
+                                  controller: 'update-checks',
+                                  update_checks_document_value: order_document.id,
+                                  update_checks_format_value: order_document.document.file_type,
+                                  action: 'keyup->update-checks#updateText'
+                                }
                               },
                               label_html: {
                                 data: {
@@ -112,8 +118,11 @@
                                   accept: '.png, .jpg, .jpeg, .pdf',
                                   class:'hidden-document-input',
                                   data: {
-                                    action:'change->add-file#added',
-                                    add_file_target:'input'
+                                    action:'change->add-file#added change->update-checks#updateFile',
+                                    add_file_target:'input',
+                                    controller: 'update-checks',
+                                    update_checks_document_value: order_document.id,
+                                    update_checks_format_value: order_document.document.file_type,
                                   },
                                 },
                                 label_html: {
@@ -147,13 +156,15 @@
   </div>
 
   <div class='form-order-right'>
-    <div class="form-order-right-list">
+    <div class="form-order-right-list documents">
       <div class="logo">
         <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
       </div>
-      <h3>
-        Pour démarrer les résiliations :
-      </h3>
+      <div class="form-order-right-title">
+        <h3>
+          Pour démarrer les résiliations :
+        </h3>
+      </div>
       <div class="box account-box">
         <% @order.order_accounts.each do |order_account| %>
           <% if order_account.account.validated? %>
@@ -173,7 +184,7 @@
               </div>
               <ul class='account-documents'>
                 <% order_account.order_documents.each do |order_document| %>
-                  <li class='account-doc-item <%= 'added' unless (order_document.document.format == 'file' && !order_document.document_file.attached?) || (order_document.document.format == 'text' && order_document.document_input.blank?) %>'>
+                  <li class='account-doc-item <%= 'added' unless (order_document.document.format == 'file' && !order_document.document_file.attached?) || (order_document.document.format == 'text' && order_document.document_input.blank?) %> order_doc_<%= order_document.id %>'>
                     <%= order_document.document.name %>
                   </li>
                 <% end %>

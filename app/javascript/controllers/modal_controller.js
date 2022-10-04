@@ -11,4 +11,8 @@ export default class extends Controller {
   modalClose() {
     this.modalTarget.classList.add('display-none')
   }
+
+  show(){
+    this.modalTarget.classList.toggle('display-none')
+  }
 }

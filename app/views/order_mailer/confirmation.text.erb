@@ -1,0 +1,27 @@
+Cher(e) <%= @user.first_name %> <%= @user.last_name %>
+Merci pour votre confiance.
+Veuillez-trouver ci-dessous les détails du dossier <%= "F#{"0" * (10 - @order.id.to_s.split.size)}#{@order.id}" %>.
+
+
+Contrats sélectionnés :
+
+  <% @order.order_accounts.each do |order_account| %>
+     <%= order_account.account.name %> : <%= order_account.state_to_french %>
+  <% end %>
+
+
+
+Total de la commande :
+→ 1 x forfait <%= @order.pack.title %> (<%= @order.pack.quantity_text.downcase %>) : <%= @order.pack.price %>€
+
+
+
+
+Vous pouvez suivre l'avancement des résiliations sur : https://www.eligia.fr/utilisateur/connexion
+
+
+L'équipe d'Eligia
+
+Eligia SARL,
+6 rue Flornoy 33000 Bordeaux,
+contact@eligia.fr

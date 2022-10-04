@@ -2,7 +2,7 @@ module ActiveStoragePath
   extend ActiveSupport::Concern
 
   class_methods do
-    def has_one_attached_with(name, path:) # rubocop:disable Naming/PredicateName
+    def has_one_attached_with(name, path:)
       has_one_attached name
 
       define_method "#{name}=" do |attachable|

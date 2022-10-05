@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="add-file"
 export default class extends Controller {
-  static targets = ['input', 'label', 'fileNameDiv']
+  static targets = ['input', 'label', 'fileNameDiv', 'submitBtn']
 
   added(){
     const regex = /.*.(?:png|jpg|jpeg|pdf|JPG|JPEG|PNG|PDF)/
@@ -24,6 +24,9 @@ export default class extends Controller {
       this.labelTarget.classList.add('label-document-input-selected')
       this.labelTarget.classList.remove('label-document-input-wrong-format')
       this.labelTarget.innerText = 'Modifier'
+      if(this.hasSubmitBtnTarget){
+        this.submitBtnTarget.classList.remove('display-none')
+      }
     }
   }
 }

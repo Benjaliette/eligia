@@ -109,6 +109,16 @@
   border: solid 2px $light-green;
 }
 
+.label-document-input-selected{
+  background-color: $light-green;
+}
+
+.label-document-input-wrong-format{
+  background-color: $red;
+  border-color: $gray;
+  color: white;
+}
+
 .edit_order{
 
   .document-name {
@@ -120,16 +130,6 @@
   .order_order_documents_document_file{
     display: flex;
     flex-direction: column;
-  }
-
-  .label-document-input-selected{
-    background-color: $light-green;
-  }
-
-  .label-document-input-wrong-format{
-    background-color: $red;
-    border-color: $gray;
-    color: white;
   }
 
   .document-btn-and-name{

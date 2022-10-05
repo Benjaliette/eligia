@@ -18,7 +18,7 @@ module ActiveStoragePath
         if self.class == OrderDocument
           custom_key = "#{Date.today}_#{self.document.name.gsub(' ', '_')}-#{original_key}"
         elsif self.class == OrderAccount
-          custom_key = "#{self.account.name}/#{Date.today}_Résiliation_#{self.account.name.gsub(' ', '_')}(#{original_key})"
+          custom_key = "#{self.account.name}/#{Date.today}_Résiliation_#{self.account.name.gsub(' ', '_')}-#{original_key}"
         end
 
         # The key is used for path + filename when used. Append path.

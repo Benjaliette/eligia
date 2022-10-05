@@ -1,0 +1,43 @@
+<h3 class="dashboard-title margin-top-four width-fit-content">Documents/ informations restants à ajouter :</h3>
+<div class='order-documents-grid'>
+  <% order_documents_to_add.each do |order_document| %>
+    <%= simple_form_for [@order, order_document], url: update_documents_order_order_document_path(@order, order_document), html: { id: order_document }, data: { controller:"loading-spinner", action:'turbo:submit-end->loading-spinner#unload' } do |f| %>
+      <%= f.error_notification %>
+      <div class="insert-document"  data-controller="add-file">
+        <div class="document-name d-inline-block"><p class='margin-top-zero'><%= order_document.document.name %></p></div>
+        <% if order_document.document.format == 'file' %>
+          <div data-check-document-target='infoDiv'></div>
+          <div class="document-btn-and-name align-start">
+            <%= f.input :document_file,
+                        label: "Ajouter",
+                        as: :file,
+                        input_html: {
+                          accept: '.png, .jpg, .jpeg, .pdf',
+                          class:'hidden-document-input',
+                          data: {
+                            action:'change->add-file#added change->update-checks#updateFile',
+                            add_file_target:'input',
+                          },
+                        },
+                        label_html: {
+                          class:'label-document-input d-block no-margin',
+                          data: {
+                            add_file_target:'label',
+                          }
+                        }
+            %>
+            <div class="file-name dashboard padding-top-two" data-add-file-target="fileNameDiv"></div>
+          </div>
+          <div id=<%= dom_id order_document %> class='error height-fit-content'></div>
+          <div class="lds-dual-ring display-none small" data-loading-spinner-target='spinner'></div>
+          <%= f.submit "Valider", class:'file optional btn-third small display-none margin-top-two', data: {add_file_target:"submitBtn", loading_spinner_target:"btn", action:"click->loading-spinner#load"} %>
+        <% else %>
+          <%= f.input :document_input, label: false, input_html: { class:'doc-input margin-left-zero' } %>
+          <div id=<%= dom_id order_document %> class='error'></div>
+          <div class="lds-dual-ring display-none small" data-loading-spinner-target='spinner'></div>
+          <%= f.submit "Valider", class:'file optional btn-third small margin-top-two', data: {"loading-spinner-target":"btn", action:"click->loading-spinner#load"} %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

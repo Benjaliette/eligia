@@ -44,7 +44,7 @@
                     <%= f.input :document_input, label: false, input_html: { class:'doc-input margin-left-zero' } %>
                     <div id=<%= dom_id order_document %> class='error'></div>
                   <% end %>
-                  <div class="lds-dual-ring display-none" data-loading-spinner-target='spinner'></div>
+                  <div class="lds-dual-ring display-none small" data-loading-spinner-target='spinner'></div>
                   <%= f.submit "Valider", class:'file optional btn-third small margin-top-two', data: {"loading-spinner-target":"btn", action:"click->loading-spinner#load"} %>
                 </div>
               <% end %>

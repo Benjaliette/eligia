@@ -18,7 +18,6 @@ export default class extends Controller {
       this.labelTarget.innerText = 'Modifier'
 
     } else {
-      console.log("✅")
       this.fileNameDivTarget.innerText = ''
       Array.from(this.inputTarget.files).forEach(file => {
         this.fileNameDivTarget.insertAdjacentHTML('beforeend', `<div>${file.name}</div>`)

@@ -109,6 +109,16 @@
   border: solid 2px $light-green;
 }
 
+.label-document-input-selected{
+  background-color: $light-green;
+}
+
+.label-document-input-wrong-format{
+  background-color: $red;
+  border-color: $gray;
+  color: white;
+}
+
 .edit_order{
 
   .document-name {
@@ -120,16 +130,6 @@
   .order_order_documents_document_file{
     display: flex;
     flex-direction: column;
-  }
-
-  .label-document-input-selected{
-    background-color: $light-green;
-  }
-
-  .label-document-input-wrong-format{
-    background-color: $red;
-    border-color: $gray;
-    color: white;
   }
 
   .document-btn-and-name{
@@ -395,35 +395,6 @@
   display: none;
 }
 
-.insert-document{
-  border: solid 1px lightgrey;
-  border-radius: 8px;
-  box-shadow: 0px 0px 8px lightgrey;
-  padding: 20px;
-  margin: 20px auto;
-  background-color:white;
-  height: 16vh;
-
-  .error {
-    margin-bottom: 0px;
-    height: 20px;
-  }
-
-
-  ::-webkit-file-upload-button {
-    cursor: pointer;
-    padding: 10px 30px;
-    border: 2px solid $light-green;
-    border-radius: 5px;
-    width: fit-content;
-    background-color: white;
-  }
-
-  &.modal-update {
-    border: none;
-  }
-}
-
 .main-order-divs {
   width: 100%;
   display: grid;
@@ -677,11 +648,7 @@
       }
     }
   }
-  .insert-document {
-    .error{
-      height: fit-content;
-    }
-  }
+
 }
 
 @media (max-width: 700px) {

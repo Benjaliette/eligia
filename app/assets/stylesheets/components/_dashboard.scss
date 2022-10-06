@@ -87,11 +87,21 @@
 }
 
 // Order dashboard
-.order-dashboard-section {
-  .order-documents-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 10px;
+.order-documents-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+
+  .doc-name-align{
+    display: flex;
+    align-items: center;
+  }
+
+  .file-name{
+    margin-left: 8px;
+    font-size: 10px;
+    text-overflow: ellipsis;
   }
 }
 
@@ -145,28 +155,6 @@
 
 @media (max-width: 500px) {
   .order-documents-grid{
-    grid-gap: 0px;
-  }
-
-  .insert-document{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0px;
-    max-width: 35vw;
-    height: 19vh !important;
-
-    input{
-      max-width: 60%;
-    };
-
-    p {
-      font-size: smaller;
-      margin-bottom: 8px;
-    }
-
-    .doc-input{
-      margin-top: 2px;
-    }
+    grid-gap: 5px;
   }
 }

@@ -249,6 +249,10 @@
   overflow-y: scroll !important;
 }
 
+.text-ellipsis{
+  text-overflow: ellipsis !important;
+}
+
 //Alignments
 .align-center {
   text-align: center !important;
@@ -308,10 +312,18 @@
   height: 100%;
 }
 
+.height-fit-content{
+  height: fit-content !important;
+}
+
 
 // Width
-.fit-content{
+.width-fit-content{
   width: fit-content !important;
+}
+
+.max-w-50{
+  max-width: 50%;
 }
 
 // Font sizes

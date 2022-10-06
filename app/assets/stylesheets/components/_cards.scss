@@ -631,3 +631,64 @@
     }
   }
 }
+
+
+// Order document insertion cards
+
+.insert-document{
+  border: solid 1px lightgrey;
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px lightgrey;
+  padding: 20px;
+  margin: 0px auto;
+  background-color:white;
+  height: 16vh;
+
+  .error {
+    margin-bottom: 0px;
+    height: 20px;
+  }
+
+
+  ::-webkit-file-upload-button {
+    cursor: pointer;
+    padding: 10px 30px;
+    border: 2px solid $light-green;
+    border-radius: 5px;
+    width: fit-content;
+    background-color: white;
+  }
+
+  &.modal-update {
+    border: none;
+  }
+
+  .error{
+    height: fit-content;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .insert-document{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px;
+    max-width: 35vw;
+    height: 19vh !important;
+
+    input{
+      max-width: 60%;
+    };
+
+    p {
+      font-size: smaller;
+      margin-bottom: 8px;
+    }
+
+    .doc-input{
+      margin-top: 2px;
+    }
+  }
+}

@@ -258,11 +258,6 @@ if Rails.env.development?
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
   AccountDocument.create(account: account, document: numero_abonne)
 
-  account = Account.create(name: "Ouest-France", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated')
-  AccountDocument.create(account: account, document: acte_deces)
-  numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
-  AccountDocument.create(account: account, document: numero_abonne)
-
   account = Account.create(name: "TV Magazine", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated')
   AccountDocument.create(account: account, document: acte_deces)
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')

@@ -9,11 +9,11 @@
   <%= order.paid %>
 <% end %>
 
-<% if @user.orders.any? { |order| !order.paid} %>
-  <p class="padding-left-three">
-    → Pour terminer de compléter votre dossier, cliquez <%= link_to 'ici', recap_order_url(@user.orders.select { |order| !order.paid}.last), class:"link" %>.
-  </p>
-<% end %>
+<%# <% if @user.orders.any? { |order| !order.paid} %>
+  <%# <p class="padding-left-three"> %>
+    <%# → Pour terminer de compléter votre dossier, cliquez <%= link_to 'ici', recap_order_url(@user.orders.select { |order| !order.paid}.last), class:"link" %>
+  <%# </p> %>
+<%# <% end %>
 <p class="padding-left-three">
   → Si vous avez complété votre demande, suivez son avancée en temps réel en vous connectant à <%= link_to 'votre espace personnel', user_url(@user), class:"link", target: :_blank %>.
 </p>

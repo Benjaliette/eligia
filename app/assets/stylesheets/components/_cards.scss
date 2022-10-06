@@ -109,7 +109,8 @@
       font-size: 80%;
       color: white;
       margin-right: 10px;
-      background-size: cover;
+      background-size: contain;
+      background-repeat: no-repeat;
       background-position: center;
       font-size: 8px
     }
@@ -228,8 +229,10 @@
           font-size: 80%;
           color: white;
           margin-right: 10px;
-          background-size: cover;
+          background-size: contain;
+          background-repeat: no-repeat;
           background-position: center;
+
 
           &.true {
             border: 2px solid $red;

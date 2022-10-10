@@ -22,9 +22,12 @@ export default class extends Controller {
       Array.from(this.inputTarget.files).forEach(file => {
         this.fileNameDivTarget.insertAdjacentHTML('beforeend', `<div>${file.name}</div>`)
       });
+      console.log(this.labelTarget.classList)
       this.labelTarget.classList.add('label-document-input-selected')
+      console.log(this.labelTarget.classList)
       this.labelTarget.classList.remove('label-document-input-wrong-format')
       this.labelTarget.innerText = 'Modifier'
+      console.log(this.labelTarget.innerText)
       if(this.hasSubmitBtnTarget){
         this.submitBtnTarget.classList.remove('display-none')
       }

@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   has_many :orders, dependent: :destroy
   has_many :notifications, through: :orders
-  has_one :rgpd
+  belongs_to :rgpd, optional: true
 
   validates :first_name, :last_name,
             presence: true,

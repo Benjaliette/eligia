@@ -34,8 +34,9 @@
       font-weight: bold;
       font-size: 100%;
       color: white;
-      background-size: cover;
+      background-size: contain;
       background-position: center;
+      background-repeat: no-repeat;
 
       &.true {
         border: 2px solid $red;

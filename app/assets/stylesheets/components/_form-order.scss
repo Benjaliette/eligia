@@ -471,8 +471,10 @@
       font-size: 80%;
       color: white;
       margin-right: 10px;
-      background-size: cover;
+      background-size: contain;
       background-position: center;
+      background-repeat: no-repeat;
+
 
       &.true {
         border: 2px solid $red;

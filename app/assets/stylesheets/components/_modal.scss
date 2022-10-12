@@ -34,8 +34,9 @@
       font-weight: bold;
       font-size: 100%;
       color: white;
-      background-size: cover;
+      background-size: contain;
       background-position: center;
+      background-repeat: no-repeat;
 
       &.true {
         border: 2px solid $red;
@@ -60,33 +61,6 @@
       width: 75%;
       background: transparent;
       margin: 20px auto;
-    }
-
-    .insert-document {
-      box-shadow: none;
-      display: flex;
-      align-items: flex-start;
-      margin: 0px;
-      padding: 20px 0px;
-
-      .document-btn-and-name {
-        margin-left: 10px;
-        margin-right: 20px;
-
-        .file-name {
-          width: min-content;
-          font-size: 12px;
-          font-style: italic;
-        }
-
-        .label-document-input {
-          margin-top: 0px;
-        }
-      }
-
-      .doc-input {
-        margin-right: 20px;
-      }
     }
   }
 }
@@ -114,13 +88,19 @@
 }
 
 @media (max-width: 500px) {
-  .modal-content {
-    .modal-content-documents {
-      .insert-document {
-        align-items: center;
-        flex-direction: column;
+  .modal{
+    .insert-document {
+      max-width: 28vw;
+
+      input{
+        width: 70%;
+      }
+
+      .label-document-input{
+        width: 40% !important;
+        text-align: center;
+        font-size: smaller;
       }
     }
-
   }
 }

@@ -118,7 +118,7 @@
 
         <% if current_user %>
           <div class="order-btn right">
-            <div class="fit-content"data-controller="loading-spinner" data-action="click->loading-spinner#load">
+            <div class="width-fit-content"data-controller="loading-spinner" data-action="click->loading-spinner#load">
               <%= button_tag(type: 'button', class: "learn-more", data: {"loading-spinner-target":"btn"}) do %>
                 <%= link_to paiement_order_path do %>
                   <span class="circle" aria-hidden="true">

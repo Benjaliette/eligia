@@ -4,7 +4,7 @@ class FileTypeValidator < ActiveModel::EachValidator
       case record.document.file_type
       when 'iban'
         record.errors.add attribute, (options[:message] || "IBAN invalide") unless
-        value.gsub(' ', '') =~ /^FR\d{12}[A-Z0-9]{11}\d{2}$/i || value.empty?
+        value.gsub(' ', '') =~ /[A-Z]{2}(?:[ ]?[0-9]){18,25}/i || value.empty?
       when 'email'
         record.errors.add attribute, (options[:message] || "email invalide") unless
         value.gsub(' ', '') =~ /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i || value.empty?

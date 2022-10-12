@@ -5,8 +5,17 @@
 <p style="margin-bottom: 25px">
   Vous pouvez désommais accéder à notre service.
 </p>
+<% @user.orders.each do |order| %>
+  <%= order.paid %>
+<% end %>
+
+<%# <% if @user.orders.any? { |order| !order.paid} %>
+  <%# <p class="padding-left-three"> %>
+    <%# → Pour terminer de compléter votre dossier, cliquez <%= link_to 'ici', recap_order_url(@user.orders.select { |order| !order.paid}.last), class:"link" %>
+  <%# </p> %>
+<%# <% end %>
 <p class="padding-left-three">
-  → Suivez l'avancée de votre dossier en vous connectant à <%= link_to 'votre compte', user_url(@user), class:"link" %>.
+  → Si vous avez complété votre demande, suivez son avancée en temps réel en vous connectant à <%= link_to 'votre espace personnel', user_url(@user), class:"link", target: :_blank %>.
 </p>
 <p class="padding-left-three">
   → Ou commencez des démarches directement depuis <%= link_to 'notre plateforme en ligne', new_order_url, class:"link" %>.

@@ -1,8 +1,8 @@
 class OrderAccount < ApplicationRecord
-  after_save :update_order_state
-
   include AASM
   include ActiveStoragePath
+
+  after_save :update_order_state
 
   belongs_to :order
   belongs_to :account

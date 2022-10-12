@@ -59,6 +59,13 @@
   color: green;
 }
 
+// Account status
+
+.account-non-validated{
+  color: $orange;
+  font-size: smaller;
+}
+
 // Errors display
 .error {
   font-size: 12px;

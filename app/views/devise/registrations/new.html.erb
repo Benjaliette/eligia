@@ -35,7 +35,7 @@
                         label: false,
                         placeholder:'*Mot de Passe',
                         input_html: { data: { 'show-password-target':'field' } } %>
-            <div class="show-password-btn" data-action='click->show-password#show' data-show-password-target='eye'>
+            <div class="show-password-btn position-absolute" data-action='click->show-password#show' data-show-password-target='eye'>
               <i class="fa-solid fa-eye"></i>
             </div>
           </div>
@@ -46,7 +46,7 @@
                         label: false,
                         placeholder:'*Confirmation du mot de passe',
                         input_html: { data: { 'show-password-target':'field' } } %>
-            <div class="show-password-btn" data-action='click->show-password#show' data-show-password-target='eye'>
+            <div class="show-password-btn position-absolute" data-action='click->show-password#show' data-show-password-target='eye'>
               <i class="fa-solid fa-eye"></i>
             </div>
             <%= f.input :accepted_rgpd,

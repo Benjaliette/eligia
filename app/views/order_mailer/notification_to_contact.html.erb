@@ -12,9 +12,9 @@
     <th>Nom du compte à résilier</th>
     <th>Statut</th>
   </tr>
-  <% @order.order_accounts.each do |oa| %>
+  <% @order.order_accounts.each do |order_account| %>
     <tr>
-      <td><%= oa.account.name %></td>
+      <td><%= order_account.account.name %></td>
       <% if order_account.account.non_validated? %>
         <td class="non-validated">À valider</td>
       <% else %>

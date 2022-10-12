@@ -15,7 +15,11 @@
   <% @order.order_accounts.each do |oa| %>
     <tr>
       <td><%= oa.account.name %></td>
-      <td><%= oa.aasm_state %></td>
+      <% if order_account.account.non_validated? %>
+        <td class="non-validated">À valider</td>
+      <% else %>
+        <td class="<%= order_account.aasm_state%>"><%= order_account.state_to_french %></td>
+      <% end %>
     </tr>
   <% end %>
   <tr>

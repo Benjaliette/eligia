@@ -14,7 +14,11 @@
   <% @order.order_accounts.each do |order_account| %>
     <tr>
       <td><%= order_account.account.name %></td>
-      <td class="<%= order_account.aasm_state%>"><%= order_account.state_to_french %></td>
+      <% if order_account.account.non_validated? %>
+        <td class="non-validated">En cours de validation par l'équipe Eligia</td>
+      <% else %>
+        <td class="<%= order_account.aasm_state%>"><%= order_account.state_to_french %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>

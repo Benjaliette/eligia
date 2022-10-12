@@ -14,15 +14,19 @@
     </div>
     <div class="account-status">
       <div>
+      <% if order_account.account.non_validated? %>
+        <span class="account-non-validated"> <em>En cours de validation par l'équipe Eligia</em></span>
+      <% else %>
         <span class="order-account-status order-account-state-<%=order_account.aasm_state%>">
           <%= order_account.state_to_french %>
         </span>
+      <% end %>
       </div>
     </div>
   </div>
 
   <div class="order-account-card-button">
-    <% if order_account.document_missing? %>
+    <% if order_account.document_missing? && order_account.account.validated?%>
       <div class='align-center'>
         <div class='btn-third small' data-action='click->modal#modalAppear'>Ajouter</div>
       </div>

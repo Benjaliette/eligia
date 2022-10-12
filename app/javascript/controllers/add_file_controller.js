@@ -3,10 +3,11 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="add-file"
 export default class extends Controller {
   static targets = ['input', 'label', 'fileNameDiv', 'submitBtn']
-  connect(){
-
+  connect(event){
+    console.log(this.inputTarget.form)
   }
   added(){
+
     const regex = /.*.(?:png|jpg|jpeg|pdf|JPG|JPEG|PNG|PDF)/
     if (this.inputTarget.files[0].size > 1048576 * 10) {
       alert("Fichier trop lourd. Taille maximum 10Mb")
@@ -22,12 +23,9 @@ export default class extends Controller {
       Array.from(this.inputTarget.files).forEach(file => {
         this.fileNameDivTarget.insertAdjacentHTML('beforeend', `<div>${file.name}</div>`)
       });
-      console.log(this.labelTarget.classList)
       this.labelTarget.classList.add('label-document-input-selected')
-      console.log(this.labelTarget.classList)
       this.labelTarget.classList.remove('label-document-input-wrong-format')
       this.labelTarget.innerText = 'Modifier'
-      console.log(this.labelTarget.innerText)
       if(this.hasSubmitBtnTarget){
         this.submitBtnTarget.classList.remove('display-none')
       }

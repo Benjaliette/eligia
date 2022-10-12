@@ -17,8 +17,13 @@ class OrderDocumentsController < ApplicationController
         order_account: @order_account
       )
       @order_documents = @order_account.order_documents
-      redirect_to order_path(@order_account.order)
-      flash[:alert] = "Document enregistré"
+      flash.now[:alert] = "Document enregistré"
+      render turbo_stream: [
+        turbo_stream.update("flash", partial: "shared/flash"),
+        turbo_stream.update("order-state", @order.state_to_french),
+        turbo_stream.update("modal-#{@order_account.id}", partial: 'shared/order_document_input_card', locals: { order_documents_to_add: @order_account.non_uploaded_order_documents, order_account: @order_account })
+      ]
+
     else
       render turbo_stream: turbo_stream.update(@order_document, partial: "shared/error_messages",
         locals: { error: @order_document.errors[:document_input].first })
@@ -27,10 +32,7 @@ class OrderDocumentsController < ApplicationController
 
   def update_documents
     @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
-    @order.order_accounts.each do |oa|
-      oa.update_state
-      oa.reload
-    end
+
     if @order_document.update(order_document_params)
       Notification.create(
         content: "Vous avez ajouté le document #{@order_document.document.name} pour votre démarche
@@ -38,8 +40,14 @@ class OrderDocumentsController < ApplicationController
         order: @order
       )
       @order_documents = @order.order_documents
-      redirect_to order_path(@order)
-      flash[:alert] = "Document enregistré"
+      @order.order_accounts.each { |order_account| order_account.update_state }
+      flash.now[:alert] = "Document enregistré"
+      render turbo_stream: [
+        turbo_stream.update("flash", partial: "shared/flash"),
+        turbo_stream.update("docs-#{@order.id}", partial: 'shared/order_document_input_card', locals: { order_documents_to_add: @order.non_uploaded_order_documents, order_account: false }),
+        turbo_stream.update("oa-cards-#{@order.id}", partial: "orders/order_account_card", locals: { order: @order }),
+        turbo_stream.update("order-state", @order.state_to_french)
+      ]
     else
       render turbo_stream: turbo_stream.update(@order_document, partial: "shared/error_messages",
           locals: { error: @order_document.errors[:document_input].first })

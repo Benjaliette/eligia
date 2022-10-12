@@ -46,9 +46,6 @@ application.register("order-account-creation", OrderAccountCreationController)
 import ScrollNavbarController from "./scroll_navbar_controller"
 application.register("scroll-navbar", ScrollNavbarController)
 
-import ShowHideController from "./show_hide_controller"
-application.register("show-hide", ShowHideController)
-
 import ShowPasswordController from "./show_password_controller"
 application.register("show-password", ShowPasswordController)
 

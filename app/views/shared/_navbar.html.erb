@@ -45,15 +45,22 @@
         </li>
       </ul>
 
-      <div class="display-none hamburger"
+
+    <div data-navbar-responsivity-target="notifications">
+      <% if yield(:notification_navbar) == 'active' %>
+        <div class="padding-three margin-right-three">
+          <i class="fa-regular fa-message" data-action="click->navbar-dropdown#toggleNotifications" data-navbar-dropdown-target="notificationsIcon"></i>
+
+          <ul class="toggle-nav-items display-none" data-navbar-dropdown-target="notifications">
+            <li>Hello mec</li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="display-none hamburger"
          data-navbar-responsivity-target="hamburger"
          data-action="click->navbar-dropdown#toggleDropdown">
-
-      <% if yield(:notification_navbar) == 'active' %>
-        <i class="padding-three margin-right-three fa-regular fa-message"></i>
-      <% end %>
-
-
       <i class="fa-solid fa-bars fa-xl" data-navbar-dropdown-target="hamburgerIcon"></i>
       <ul class="toggle-nav-items display-none" data-navbar-dropdown-target="toggleDropdowndiv">
         <li class="toggle-nav-item">

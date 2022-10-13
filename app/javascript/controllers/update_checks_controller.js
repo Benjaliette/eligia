@@ -9,12 +9,12 @@ export default class extends Controller {
 
   updateText(event) {
     const regexes = {
-      'telephone_mobile': /(\(\+33\)|0|\+33|0033)[1-9]([0-9]{8}|([0-9\- ]){12})/,
-      'telephone_fixe': /(\(\+33\)|0|\+33|0033)[1-9]([0-9]{8}|([0-9\- ]){12})/,
-      'iban': /^FR\d{12}[A-Z0-9]{11}\d{2}$/i
+      'telephone_mobile': /^(\(\+33\)|0|\+33|0033)[1-9]([0-9]{8})$/,
+      'telephone_fixe': /^(\(\+33\)|0|\+33|0033)[1-9]([0-9]{8})$/,
+      'iban': /^[A-Z]{2}(?:[ ]?[0-9]){18,25}$/i
     }
     const regexp = regexes[this.formatValue]
-    const inputValue = event.target.value
+    const inputValue = event.target.value.replaceAll(' ', '')
     if(regexp.test(inputValue)) {
       this.checkElement()
     } else {

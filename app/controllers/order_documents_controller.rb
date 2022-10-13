@@ -7,7 +7,7 @@ class OrderDocumentsController < ApplicationController
 
   def update
     @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
-    if @order_document.update(order_document_params)
+    if @order_document.update(order_document_params) && (@order_document.document_input != "" || @order_document.document_file.attached?)
       Notification.create(
         content: "Vous avez ajouté le document #{@order_document.document.name} pour la résiliation du
         contrat #{@order_account.account.name} de #{@order_account.order.deceased_first_name} #{@order_account.order.deceased_last_name}",
@@ -38,7 +38,9 @@ class OrderDocumentsController < ApplicationController
       ]
 
     else
-      render turbo_stream: turbo_stream.update(@order_document, partial: "shared/error_messages",
+      p "🛑"
+      p @order_document.errors[:document_input].first
+      render turbo_stream: turbo_stream.update("#{@order_account.id}-#{@order_document.id}", partial: "shared/error_messages",
         locals: { error: @order_document.errors[:document_input].first })
     end
   end
@@ -46,7 +48,7 @@ class OrderDocumentsController < ApplicationController
   def update_documents
     @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
 
-    if @order_document.update(order_document_params)
+    if @order_document.update(order_document_params) && (@order_document.document_input != "" || @order_document.document_file.attached?)
       Notification.create(
         content: "Vous avez ajouté le document #{@order_document.document.name} pour votre démarche
                  concernant #{@order.deceased_first_name} #{@order.deceased_last_name}",
@@ -64,7 +66,7 @@ class OrderDocumentsController < ApplicationController
                                                    no_doc_message: '',
                                                    modal_height: ''
                                                  }),
-        turbo_stream.update("oa-cards-#{@order.id}", partial: "orders/order_account_card", locals: { order: @order }),
+        turbo_stream.update("oa-cards-#{@order.id}", partial: "orders/order_account_cards", locals: { order: @order }),
         turbo_stream.update("order-state", @order.state_to_french)
       ]
     else

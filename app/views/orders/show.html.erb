@@ -31,11 +31,9 @@
 
         <div class="order-dashboard-section">
           <h3 class="dashboard-title margin-top-four width-fit-content">État des contrats à résilier :</h3>
-          <div class='order-account-cards'>
             <turbo-frame id="oa-cards-<%= @order.id %>">
-              <%= render "orders/order_account_card", order: @order %>
+              <%= render "orders/order_account_cards", order: @order %>
             </turbo-frame>
-          </div>
         </div>
 
       </div>

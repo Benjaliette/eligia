@@ -10,7 +10,7 @@ class OrderDocumentsController < ApplicationController
     if @order_document.update(order_document_params) && (@order_document.document_input != "" || @order_document.document_file.attached?)
       Notification.create(
         content: "Vous avez ajouté le document #{@order_document.document.name} pour la résiliation du
-        contrat #{@order_account.account.name} de #{@order_account.order.deceased_first_name} #{@order_account.order.deceased_last_name}",
+                  contrat #{@order_account.account.name} de #{@order_account.order.deceased_first_name} #{@order_account.order.deceased_last_name}",
         order: @order,
         order_account: @order_account
       )
@@ -38,8 +38,6 @@ class OrderDocumentsController < ApplicationController
       ]
 
     else
-      p "🛑"
-      p @order_document.errors[:document_input].first
       render turbo_stream: turbo_stream.update("#{@order_account.id}-#{@order_document.id}", partial: "shared/error_messages",
         locals: { error: @order_document.errors[:document_input].first })
     end

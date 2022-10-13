@@ -9,7 +9,13 @@ export default class extends Controller {
   }
 
   changeBackground() {
-    if(window.scrollY > 80) {
+    let breakPoint = 80
+
+    if(window.innerWidth < 768){
+      breakPoint = 10
+    }
+
+    if(window.scrollY > breakPoint) {
       this.navbarTarget.classList.add('white-bg')
     } else {
       this.navbarTarget.classList.remove('white-bg')

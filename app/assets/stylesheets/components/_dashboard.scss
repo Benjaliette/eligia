@@ -107,9 +107,7 @@
 
 @media (max-width: 900px) {
   .user-dashboard-grid{
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 0px;
+    display: block;
   }
 
   .user-dashboard-navigation{

@@ -1,7 +1,7 @@
 <% content_for :title, "Nouvelle démarche - Eligia" %>
 <% content_for :meta, "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" %>
 
-<div class="order-parts" data-controller="toggle-contracts">
+<div class="order-parts" data-controller="toggle-contracts account-search-autocomplete" data-action="click@window->account-search-autocomplete#clickOutside">
   <div class="form-order-steps">
     <div class="order-steps-btn">
       <%= button_to order_path(@order), method: :delete, class:"btn-third small btn-round" do %>
@@ -57,7 +57,7 @@
         <div class="search-title">
           Chercher un contrat :
         </div>
-        <div class="search-bar" data-controller="account-search-autocomplete">
+        <div class="search-bar" data-account-search-autocomplete-target="searchBar">
           <%= simple_form_for :account, url: accounts_path, data: { account_search_autocomplete_target: 'form' } do |form| %>
             <%= form.input :name,
                             label: false,

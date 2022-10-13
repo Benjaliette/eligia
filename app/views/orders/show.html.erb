@@ -7,7 +7,11 @@
     <div class="banner user-banner">
       <div class="container padding-top-zero padding-bottom-zero">
         <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %> > <span class="unbold font-size-smaller"> <%= @order.deceased_first_name %> <%= @order.deceased_last_name.upcase %></span></h1>
-        <p class="margin-bottom-zero margin-top-one"><em><%= @order.state_to_french %></em></p>
+        <p class="margin-bottom-zero margin-top-one">
+          <em>
+            <turbo-frame id="order-state"><%= @order.state_to_french %></turbo-frame>
+          </em>
+        </p>
         <%= link_to '← retour', user_path(@current_user), class: 'btn-second small margin-top-two position-absolute' %>
       </div>
     </div>
@@ -16,17 +20,20 @@
       <div class="user-dashboard-content">
         <div class="order-dashboard-section">
           <% unless @order.non_uploaded_order_documents.empty? %>
-            <%= render 'shared/order_document_input_card', order_documents_to_add: @order.non_uploaded_order_documents %>
+            <turbo-frame id="docs-<%=@order.id%>">
+              <%= render 'shared/order_document_input_card', order_documents_to_add: @order.non_uploaded_order_documents,
+                                                             order_account: false,
+                                                             no_doc_message: '',
+                                                             modal_height: '' %>
+            </turbo-frame>
           <% end %>
         </div>
 
         <div class="order-dashboard-section">
           <h3 class="dashboard-title margin-top-four width-fit-content">État des contrats à résilier :</h3>
-          <div class='order-account-cards'>
-            <% @order.order_accounts.each do |order_account| %>
-              <%= render "orders/order_account_card", order_account: order_account %>
-            <% end %>
-          </div>
+            <turbo-frame id="oa-cards-<%= @order.id %>">
+              <%= render "orders/order_account_cards", order: @order %>
+            </turbo-frame>
         </div>
 
       </div>

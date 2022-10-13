@@ -684,6 +684,9 @@
     height: fit-content;
   }
 
+  &.modal-height {
+    height: 20vh;
+  }
 }
 
 @media (max-width: 600px) {

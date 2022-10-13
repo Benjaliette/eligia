@@ -29,7 +29,9 @@
 
   <body>
     <%= yield %>
-    <%= render 'shared/flash' %>
+    <turbo-frame id="flash">
+      <%= render 'shared/flash' %>
+    </turbo-frame>
   </body>
   <%= stylesheet_link_tag "render_blocking_resources", "data-turbo-track": "reload" %>
   </html>

@@ -392,7 +392,12 @@
 
 .hidden-document-input{
   // Ne pas retirer, c'est pour masquer l'input simple form de base sans le as: :hidden
-  display: none;
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
 }
 
 .main-order-divs {

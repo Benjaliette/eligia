@@ -33,7 +33,7 @@
             <div class='btn-third small' data-action='click->modal#modalAppear'>Ajouter</div>
           </div>
         <% end %>
-        <div class="modal display-none foreground" data-modal-target='modal' data-turbo-permanent>
+        <div class="modal <%= 'display-none' unless order_account == @order_account %> foreground" data-modal-target='modal' data-turbo-permanent>
           <div class="modal-content">
             <div class="account-title">
               <% if order_account.account.logo_url.nil?  %>

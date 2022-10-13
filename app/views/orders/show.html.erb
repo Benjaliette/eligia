@@ -1,7 +1,10 @@
 <% content_for :title, "Mes démarches - Eligia" %>
-<%= render 'shared/navbar' %>
 
 <turbo-frame id="content">
+  <% content_for :scroll_navbar, 'scroll-navbar' %>
+  <% content_for :home_navbar, 'home-navbar' %>
+  <%= render 'shared/navbar' %>
+
   <div class="fullscreen-no-navbar">
 
     <div class="banner user-banner">

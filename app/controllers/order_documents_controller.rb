@@ -7,21 +7,34 @@ class OrderDocumentsController < ApplicationController
 
   def update
     @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
-    @order_account.update_state
-    @order_account.reload
     if @order_document.update(order_document_params)
       Notification.create(
         content: "Vous avez ajouté le document #{@order_document.document.name} pour la résiliation du
-                  contrat #{@order_account.account.name} de #{@order_account.order.deceased_first_name} #{@order_account.order.deceased_last_name}",
+        contrat #{@order_account.account.name} de #{@order_account.order.deceased_first_name} #{@order_account.order.deceased_last_name}",
         order: @order,
         order_account: @order_account
       )
       @order_documents = @order_account.order_documents
+      @order_account.update_state
+      @order.update_state
       flash.now[:alert] = "Document enregistré"
       render turbo_stream: [
         turbo_stream.update("flash", partial: "shared/flash"),
+        turbo_stream.update("docs-#{@order.id}", partial: 'shared/order_document_input_card',
+                                                 locals: {
+                                                    order_documents_to_add: @order.non_uploaded_order_documents,
+                                                    order_account: false,
+                                                    no_doc_message: '',
+                                                    modal_height: ''
+                                                  }),
         turbo_stream.update("order-state", @order.state_to_french),
-        turbo_stream.update("modal-#{@order_account.id}", partial: 'shared/order_document_input_card', locals: { order_documents_to_add: @order_account.non_uploaded_order_documents, order_account: @order_account })
+        turbo_stream.update("modal-#{@order_account.id}", partial: 'shared/order_document_input_card',
+                                                          locals: {
+                                                            order_documents_to_add: @order_account.non_uploaded_order_documents,
+                                                            order_account: @order_account,
+                                                            no_doc_message: 'Vous avez ajouté toutes les informations nécessaires',
+                                                            modal_height: 'modal-height'
+                                                          })
       ]
 
     else
@@ -44,7 +57,13 @@ class OrderDocumentsController < ApplicationController
       flash.now[:alert] = "Document enregistré"
       render turbo_stream: [
         turbo_stream.update("flash", partial: "shared/flash"),
-        turbo_stream.update("docs-#{@order.id}", partial: 'shared/order_document_input_card', locals: { order_documents_to_add: @order.non_uploaded_order_documents, order_account: false }),
+        turbo_stream.update("docs-#{@order.id}", partial: 'shared/order_document_input_card',
+                                                 locals: {
+                                                   order_documents_to_add: @order.non_uploaded_order_documents,
+                                                   order_account: false,
+                                                   no_doc_message: '',
+                                                   modal_height: ''
+                                                 }),
         turbo_stream.update("oa-cards-#{@order.id}", partial: "orders/order_account_card", locals: { order: @order }),
         turbo_stream.update("order-state", @order.state_to_french)
       ]

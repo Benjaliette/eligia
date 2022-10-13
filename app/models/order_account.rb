@@ -12,11 +12,11 @@ class OrderAccount < ApplicationRecord
 
   accepts_nested_attributes_for :account, allow_destroy: true, reject_if: :reject_accounts
 
-  scope :document_missing,      ->{ where(aasm_state: 'document_missing') }
-  scope :pending,      ->{ where(aasm_state: 'pending') }
-  scope :resiliation_sent,   ->{ where(aasm_state: 'resiliation_sent') }
-  scope :resiliation_failure,         ->{ where(aasm_state: 'resiliation_failure') }
-  scope :resiliation_success,   ->{ where(aasm_state: 'resiliation_success') }
+  scope :document_missing, -> { where(aasm_state: 'document_missing') }
+  scope :pending, -> { where(aasm_state: 'pending') }
+  scope :resiliation_sent, -> { where(aasm_state: 'resiliation_sent') }
+  scope :resiliation_failure, -> { where(aasm_state: 'resiliation_failure') }
+  scope :resiliation_success, -> { where(aasm_state: 'resiliation_success') }
 
   rails_admin do
     configure :aasm_state do
@@ -48,10 +48,10 @@ class OrderAccount < ApplicationRecord
   def state_to_french
     case self.aasm_state
     when "pending" then "En traitement"
-    when "document_missing" || "documents_missing" then "Document(s) manquant(s)"
+    when "document_missing", "documents_missing" then "Document(s) manquant(s)"
     when "resiliation_sent" then "Demande de résiliation envoyée"
     when "resiliation_failure" then "Erreur"
-    when "resiliation_success" || "resiliation_succeded" then "Compte résilié"
+    when "resiliation_success", "resiliation_succeded" then "Compte résilié"
     end
   end
 

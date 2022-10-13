@@ -26,7 +26,7 @@
                                 action:'change->add-file#added change->update-checks#updateFile',
                                 add_file_target:'input',
                               },
-                              id: "modal#{order_document.id}"
+                              id: "modal#{order_document.id}-#{order_account.id}"
                             },
                             label_html: {
                               class:'label-document-input d-block no-margin',
@@ -42,7 +42,7 @@
               <%= f.submit "Valider", class:'file optional btn-third small display-none margin-top-two', data: {add_file_target:"submitBtn", loading_spinner_target:"btn", action:"click->loading-spinner#load"} %>
             <% else %>
               <%= f.input :document_input, label: false, input_html: { class:'doc-input margin-left-zero' } %>
-              <div id=<%= dom_id order_document %> class='error'></div>
+              <div id=<%="#{order_account.id}-#{order_document.id}"%> class='error'></div>
               <div class="lds-dual-ring display-none small" data-loading-spinner-target='spinner'></div>
               <%= f.submit "Valider", class:'file optional btn-third small margin-top-two', data: {"loading-spinner-target":"btn", action:"click->loading-spinner#load"} %>
             <% end %>

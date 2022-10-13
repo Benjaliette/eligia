@@ -21,7 +21,10 @@
         <div class="order-dashboard-section">
           <% unless @order.non_uploaded_order_documents.empty? %>
             <turbo-frame id="docs-<%=@order.id%>">
-              <%= render 'shared/order_document_input_card', order_documents_to_add: @order.non_uploaded_order_documents, order_account: false %>
+              <%= render 'shared/order_document_input_card', order_documents_to_add: @order.non_uploaded_order_documents,
+                                                             order_account: false,
+                                                             no_doc_message: '',
+                                                             modal_height: '' %>
             </turbo-frame>
           <% end %>
         </div>

@@ -1,5 +1,7 @@
 
-<% unless order_documents_to_add.size == 0 %>
+<% if order_documents_to_add.size == 0 %>
+  <h3 class="margin-top-four width-fit-content"><%= no_doc_message %></h3>
+<% else %>
   <h3 class="dashboard-title margin-top-four width-fit-content">Documents/ informations restants à ajouter :</h3>
 <% end %>
 
@@ -9,7 +11,7 @@
       <div id="<%= dom_id order_document %>">
         <%= simple_form_for [@order, order_account, order_document], url: order_order_account_order_document_path(@order, order_account, order_document), html: { id: order_document }, data: { controller:"loading-spinner add-file", action:'turbo:submit-end->loading-spinner#unload click->add-file#test' } do |f| %>
           <%= f.error_notification %>
-          <div class="insert-document <%= yield(:modal) %>">
+          <div class="insert-document <%= modal_height %>">
             <div class="document-name d-inline-block"><p class='margin-top-zero'><%= order_document.document.name %></p></div>
             <% if order_document.document.format == 'file' %>
               <div data-check-document-target='infoDiv'></div>

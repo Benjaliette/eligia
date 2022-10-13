@@ -339,6 +339,15 @@
   }
 }
 
+.notifications-mobile{
+  position: fixed;
+  background-color: $off-white;
+  padding: 5%;
+  width: 70vw;
+  right: 10px;
+  top: 5%;
+}
+
 .icon-infos {
   width: 110px;
   padding: 20px 0px
@@ -568,6 +577,10 @@
         }
       }
     }
+  }
+
+  .notification-card.desktop {
+    display: none;
   }
 }
 

@@ -1,60 +1,69 @@
 <div class="navbar <%= yield(:home_navbar) %>"
-     data-controller="navbar-responsivity navbar-dropdown <%= yield(:scroll_navbar) %>"
-     data-action="resize@window->navbar-responsivity#toggle scroll@window->scroll-navbar#changeBackground"
-     data-scroll-navbar-target='navbar'>
-    <div class="logo">
-      <%= link_to root_path do %>
-        <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
-      <% end %>
-    </div>
-    <div class="d-flex justify-content-center align-items-center">
-      <ul class="nav-items"
-          data-navbar-responsivity-target="navitems">
-        <%= yield(:order_new_btn) %>
-        <li class="nav-item <%= yield(:accueil_btn)%>">
-          <%= link_to 'Accueil', root_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Tarifs', price_pages_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Nous contacter', new_message_path %>
-        </li>
-        <li class="nav-item" id="user">
-          <% if current_user %>
-            <div class="avatar", data-action="click->navbar-dropdown#dropdown click@window->navbar-dropdown#closeDropdown" data-navbar-dropdown-target='avatar'>
-              <%= current_user.first_name[0].upcase + current_user.last_name[0].upcase %>
-            </div>
-            <ul class="navbar-dropdown" data-navbar-dropdown-target="dropdowndiv">
-              <%= link_to user_path(current_user) do  %>
+  data-controller="navbar-responsivity navbar-dropdown <%= yield(:scroll_navbar) %>"
+  data-action="resize@window->navbar-responsivity#toggle scroll@window->scroll-navbar#changeBackground"
+  data-scroll-navbar-target='navbar'>
+  <div class="logo">
+    <%= link_to root_path do %>
+      <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-center align-items-center">
+    <ul class="nav-items"
+        data-navbar-responsivity-target="navitems">
+      <%= yield(:order_new_btn) %>
+      <li class="nav-item <%= yield(:accueil_btn)%>">
+        <%= link_to 'Accueil', root_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Tarifs', price_pages_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Nous contacter', new_message_path %>
+      </li>
+      <li class="nav-item" id="user">
+        <% if current_user %>
+          <div class="avatar", data-action="click->navbar-dropdown#dropdown click@window->navbar-dropdown#closeDropdown" data-navbar-dropdown-target='avatar'>
+            <%= current_user.first_name[0].upcase + current_user.last_name[0].upcase %>
+          </div>
+          <ul class="navbar-dropdown" data-navbar-dropdown-target="dropdowndiv">
+            <%= link_to user_path(current_user) do  %>
+            <li>
+              <i class="fa-solid fa-house-user fa-xl"></i>
+              <div>Mon compte</div>
+            </li>
+            <% end %>
+            <%= button_to destroy_user_session_path, method: :delete, class: "button-hover" do %>
               <li>
-                <i class="fa-solid fa-house-user fa-xl"></i>
-                <div>Mon compte</div>
+                <i class="fa-solid fa-right-from-bracket fa-xl"></i>
+                <div>Déconnexion</div>
               </li>
-              <% end %>
-              <%= button_to destroy_user_session_path, method: :delete, class: "button-hover" do %>
-                <li>
-                  <i class="fa-solid fa-right-from-bracket fa-xl"></i>
-                  <div>Déconnexion</div>
-                </li>
-              <% end %>
-            </ul>
-          <% else %>
-            <%= link_to 'Connexion / Inscription', new_user_session_path %>
-          <% end %>
-        </li>
-      </ul>
+            <% end %>
+          </ul>
+        <% else %>
+          <%= link_to 'Connexion / Inscription', new_user_session_path %>
+        <% end %>
+      </li>
+    </ul>
 
 
     <div data-navbar-responsivity-target="notifications">
       <% if yield(:notification_navbar) == 'active' %>
-        <div class="padding-three margin-right-three">
-          <i class="fa-regular fa-message" data-action="click->navbar-dropdown#toggleNotifications" data-navbar-dropdown-target="notificationsIcon"></i>
-
-          <ul class="toggle-nav-items display-none" data-navbar-dropdown-target="notifications">
-            <li>Hello mec</li>
-          </ul>
-        </div>
+          <i class="fa-solid fa-comment padding-three margin-right-three" data-action="click->navbar-dropdown#toggleNotifications" data-navbar-dropdown-target="notificationsIcon"></i>
+          <div class="notifications-mobile notification-card display-none position-fixed" data-navbar-dropdown-target="notifications">
+            <% if current_user.notifications.present? %>
+              <ul class="notification-list">
+                <% @notifications.each do |notification| %>
+                  <li class="notification-list-item">
+                    <%= link_to notification.order_account ? order_order_account_path(notification.order, notification.order_account) : order_path(notification.order) do %>
+                      <div class="notification-content"><%= notification.content %></div>
+                    <% end %>
+                    <% notification_time = (Date.today - notification.created_at.to_datetime).to_i %>
+                    <div class="notification-date"><%= notification_time < 1 ? "Aujourd'hui" : "Il y a #{notification_time} jours" %></div>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </div>
       <% end %>
     </div>
 

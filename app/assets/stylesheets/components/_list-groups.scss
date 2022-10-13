@@ -288,7 +288,12 @@
             align-items: center;
             justify-content: center;
           }
+
+          &:last-child {
+            padding: 0px 10px;
+          }
         }
+
       }
     }
 

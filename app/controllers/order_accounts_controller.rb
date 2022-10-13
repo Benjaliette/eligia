@@ -13,7 +13,6 @@ class OrderAccountsController < ApplicationController
 
   def create
     @order_account = OrderAccount.create(order_account_params)
-
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [

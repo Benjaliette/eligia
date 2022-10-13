@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="navbar-responsivity"
 export default class extends Controller {
-  static targets = [ 'navitems', 'hamburger', 'notifications', 'notificationBtn' ]
+  static targets = [ 'navitems', 'hamburger', 'notifications' ]
   connect() {
     this.toggle()
   }

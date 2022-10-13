@@ -24,11 +24,7 @@ export default class extends Controller {
 
   toggleNotifications(event) {
     this.notificationsTarget.classList.toggle('display-none')
-    this.hamburgerIconTarget.classList.toggle('display-none')
-    this.notificationsIconTarget.classList.toggle('fa-xmark')
-    this.notificationsIconTarget.classList.toggle('fa-solid')
-    this.notificationsIconTarget.classList.toggle('fa-xl')
-    this.notificationsIconTarget.classList.toggle('fa-regular')
-    this.notificationsIconTarget.classList.toggle('fa-message')
+    this.notificationsIconTarget.classList.toggle('fa-comment')
+    this.notificationsIconTarget.classList.toggle('fa-comment-slash')
   }
 }

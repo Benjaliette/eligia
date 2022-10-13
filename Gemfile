@@ -149,5 +149,5 @@ group :test do
   gem "capybara", "~> 3.37.1"
   gem 'capybara-screenshot'
   gem "selenium-webdriver"
-  gem "webdrivers"
+  gem "webdrivers", github: 'jmccure/webdrivers', branch:'fix-m1-downloads'
 end

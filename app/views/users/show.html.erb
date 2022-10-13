@@ -1,11 +1,11 @@
 <% content_for :title, "Mon espace - Eligia" %>
 
-<% content_for :scroll_navbar, 'scroll-navbar' %>
-<% content_for :home_navbar, 'home-navbar' %>
-<% content_for :notification_navbar, 'active' %>
-<%= render 'shared/navbar' %>
-
 <turbo-frame id="content">
+  <% content_for :scroll_navbar, 'scroll-navbar' %>
+  <% content_for :home_navbar, 'home-navbar' %>
+  <% content_for :notification_navbar, 'active' %>
+  <%= render 'shared/navbar' %>
+
   <div class="fullscreen-no-navbar">
     <div class="banner user-banner">
       <div class="container padding-top-zero padding-bottom-zero">

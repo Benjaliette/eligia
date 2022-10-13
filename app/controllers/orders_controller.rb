@@ -15,7 +15,6 @@ class OrdersController < ApplicationController
   def show
     @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
     @order.update_order_account_status
-
   end
 
   def new

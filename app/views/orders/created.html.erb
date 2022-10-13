@@ -38,7 +38,7 @@
           <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
         </div>
         <div class="contract-list-toggle-btn" data-action='click->toggle-contracts#displayList'>
-          <i class="fa-solid fa-address-card fa-xs">
+          <i class="fa-solid fa-basket-shopping">
             <div id="contract-number">
               <%= @order.order_accounts.count %>
             </div>
@@ -117,7 +117,7 @@
         </div>
       </div>
     </div>
-    <%= simple_form_for @order do |f_order| %>
+    <%= simple_form_for @order, html: {class:'hide-700'} do |f_order| %>
       <div class="order-btn">
         <%= button_tag(type: 'submit', class: "learn-more") do %>
           <span class="circle" aria-hidden="true">
@@ -128,6 +128,14 @@
       </div>
     <% end %>
   </div>
+
+
+  <%= simple_form_for @order do |f_order| %>
+    <%= button_tag(type: 'submit', class: "next-btn-mobile") do %>
+      <i class="fa-solid fa-arrow-right fa-xl"></i>
+    <% end %>
+  <% end %>
+
   <%= link_to contrats_helps_path, target: "_blank", class: 'btn-third small help-btn' do %>
     <div>
       <span>Aide</span>

@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller, fetch } from "@hotwired/stimulus"
 
 // Connects to data-controller="navbar-dropdown"
 export default class extends Controller {
@@ -26,5 +26,12 @@ export default class extends Controller {
     this.notificationsTarget.classList.toggle('display-none')
     this.notificationsIconTarget.classList.toggle('fa-comment')
     this.notificationsIconTarget.classList.toggle('fa-comment-slash')
+    if(event.target.childNodes.length > 1) {
+      this.readNotifications(event)
+    }
+  }
+
+  readNotifications(event) {
+    event.target.parentElement.requestSubmit()
   }
 }

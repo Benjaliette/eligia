@@ -311,7 +311,7 @@ button {
 }
 
 .help-btn {
-  position: fixed;
+  position: absolute;
   bottom: 25px;
   left: 30px;
 
@@ -346,6 +346,10 @@ button {
   font-size: 24px;
   position: relative;
   cursor: pointer;
+ }
+
+.next-btn-mobile{
+  display: none;
 }
 
 @media (max-width: 900px) {
@@ -359,8 +363,8 @@ button {
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    background: $blue;
-    border: 1px solid black;
+    background: $light-gray;
+    border: 1px solid $gray;
     font-weight: bold;
     cursor: pointer;
     display: flex;
@@ -386,9 +390,20 @@ button {
         display: flex;
         align-items: center;
         justify-content: center;
-        top: -30px;
+        top: -22px;
         right: -20px;
       }
     }
+  }
+
+  .next-btn-mobile{
+    display: inline-block;
+    position: fixed;
+    bottom: 25px;
+    right: 30px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: 1px solid $gray;
   }
 }

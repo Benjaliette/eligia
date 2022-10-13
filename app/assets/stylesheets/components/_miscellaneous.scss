@@ -262,6 +262,10 @@
   text-align: start !important;
 }
 
+.align-end {
+  text-align: end !important;
+}
+
 .disabled {
   color: $light-gray !important;
   cursor: initial !important;
@@ -380,4 +384,13 @@
   flex-grow: 1;
   max-width: 6vw;
   overflow: hidden;
+}
+
+
+// Hiding / Displaying
+
+@media (max-width: 700px) {
+  .hide-700{
+    display: none;
+  }
 }

@@ -22,9 +22,6 @@ application.register("close-flash", CloseFlashController)
 import FooterResponsivityController from "./footer_responsivity_controller"
 application.register("footer-responsivity", FooterResponsivityController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
-
 import HomeFunctionController from "./home_function_controller"
 application.register("home-function", HomeFunctionController)
 

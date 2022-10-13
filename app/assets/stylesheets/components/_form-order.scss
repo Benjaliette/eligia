@@ -165,7 +165,6 @@
         width: 80%;
       }
     }
-
   }
 
   .form-order-text {
@@ -304,7 +303,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 80vh;
+    height: 80%;
 
     &.documents {
       height: 98vh;
@@ -670,16 +669,16 @@
       display: none;
       position: absolute;
       width: 59vw;
-      height: 76vh;
-      top: 22vh;
+      height: 75%;
+      top: 20vh;
       right: 4vw;
       background: white;
       z-index: 2;
-      border: 1px solid black;
+      border: 1px solid $gray;
+      border-radius: 8px;
 
       .form-order-right-list {
-        height: 60vh;
-
+        height: 95%;
         .logo {
           display: none;
         }
@@ -690,16 +689,18 @@
       }
 
       .account-box {
-        height: 50vh;
+        padding: 0px 10px;
+        height: 80%;
       }
     }
+  }
+
+  .form-order-content{
+    padding-bottom: 20vh;
   }
 }
 
 @media (max-width: 600px) {
-  // .document-name {
-  //   // margin: 0px auto 30px auto;
-  // }
 
   .edit_order{
     .document-btn-and-name{

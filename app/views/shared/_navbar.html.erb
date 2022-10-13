@@ -3,7 +3,7 @@
   data-action="resize@window->navbar-responsivity#toggle scroll@window->scroll-navbar#changeBackground"
   data-scroll-navbar-target='navbar'>
   <div class="logo">
-    <%= link_to root_path do %>
+    <%= link_to root_path, data: { turbo: false } do %>
       <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
     <% end %>
   </div>
@@ -12,13 +12,13 @@
         data-navbar-responsivity-target="navitems">
       <%= yield(:order_new_btn) %>
       <li class="nav-item <%= yield(:accueil_btn)%>">
-        <%= link_to 'Accueil', root_path %>
+        <%= link_to 'Accueil', root_path, data: { turbo: false } %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Tarifs', price_pages_path %>
+        <%= link_to 'Tarifs', price_pages_path, data: { turbo: false } %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Nous contacter', new_message_path %>
+        <%= link_to 'Nous contacter', new_message_path, data: { turbo: false } %>
       </li>
       <li class="nav-item" id="user">
         <% if current_user %>
@@ -26,7 +26,7 @@
             <%= current_user.first_name[0].upcase + current_user.last_name[0].upcase %>
           </div>
           <ul class="navbar-dropdown" data-navbar-dropdown-target="dropdowndiv">
-            <%= link_to user_path(current_user) do  %>
+            <%= link_to user_path(current_user), data: { turbo: false } do  %>
             <li>
               <i class="fa-solid fa-house-user fa-xl"></i>
               <div>Mon compte</div>
@@ -40,7 +40,7 @@
             <% end %>
           </ul>
         <% else %>
-          <%= link_to 'Connexion / Inscription', new_user_session_path %>
+          <%= link_to 'Connexion / Inscription', new_user_session_path, data: { turbo: false } %>
         <% end %>
       </li>
     </ul>
@@ -84,24 +84,24 @@
       <i class="fa-solid fa-bars fa-xl" data-navbar-dropdown-target="hamburgerIcon"></i>
       <ul class="toggle-nav-items display-none" data-navbar-dropdown-target="toggleDropdowndiv">
         <li class="toggle-nav-item">
-          <%= link_to 'Accueil', root_path %>
+          <%= link_to 'Accueil', root_path, data: { turbo: false } %>
         </li>
         <li class="toggle-nav-item">
-          <%= link_to 'Tarifs', price_pages_path %>
+          <%= link_to 'Tarifs', price_pages_path, data: { turbo: false } %>
         </li>
         <li class="toggle-nav-item">
-          <%= link_to 'Nous contacter', new_message_path %>
+          <%= link_to 'Nous contacter', new_message_path, data: { turbo: false } %>
         </li>
         <% if current_user %>
           <li class="toggle-nav-item">
-            <%= link_to 'Mon compte', user_path(current_user) %>
+            <%= link_to 'Mon compte', user_path(current_user), data: { turbo: false } %>
           </li>
           <li class="toggle-nav-item">
             <%= button_to 'Déconnexion', destroy_user_session_path, method: :delete, data: { turbo: false } %>
           </li>
         <% else %>
           <li class="toggle-nav-item">
-            <%= link_to 'Connexion / Inscription', new_user_session_path %>
+            <%= link_to 'Connexion / Inscription', new_user_session_path, data: { turbo: false } %>
           </li>
         <% end %>
       </ul>

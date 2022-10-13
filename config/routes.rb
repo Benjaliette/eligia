@@ -64,6 +64,12 @@ Rails.application.routes.draw do
 
   resources :messages, path: 'contact', path_names: { new: 'nous-contacter' }, only: %i[new create]
 
+  resources :notifications, only: :show do
+    collection do
+      patch :mark_as_read
+    end
+  end
+
   mount RailsAdmin::Engine, at: '/admin', as: 'rails_admin'
   mount StripeEvent::Engine, at: '/paiement-success'
 end

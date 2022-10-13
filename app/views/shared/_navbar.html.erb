@@ -48,7 +48,13 @@
 
     <div data-navbar-responsivity-target="notifications">
       <% if yield(:notification_navbar) == 'active' %>
-          <i class="fa-solid fa-comment padding-three margin-right-three" data-action="click->navbar-dropdown#toggleNotifications" data-navbar-dropdown-target="notificationsIcon"></i>
+          <%= simple_form_for Notification.last, url: mark_as_read_notifications_path, method: :patch do |f| %>
+            <i class="fa-solid fa-comment notification-btn" data-action="click->navbar-dropdown#toggleNotifications" data-navbar-dropdown-target="notificationsIcon" id='notif-icon'>
+              <%= render 'shared/notification_badge', notifications: @notifications %>
+            </i>
+            <%= f.submit '', class: 'display-none' %>
+          <% end %>
+
           <div class="notifications-mobile notification-card display-none position-fixed" data-navbar-dropdown-target="notifications">
             <% if current_user.notifications.present? %>
               <ul class="notification-list">

@@ -381,3 +381,12 @@
   max-width: 6vw;
   overflow: hidden;
 }
+
+
+// Hiding / Displaying
+
+@media (max-width: 700px) {
+  .hide-700{
+    display: none;
+  }
+}

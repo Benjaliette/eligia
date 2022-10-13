@@ -96,6 +96,16 @@
           <% end %>
         </div>
       <% end %>
+      <div class="align-end w-100">
+        <%= simple_form_for @order do |f_order| %>
+          <%= button_tag(type: 'submit', class: "learn-more") do %>
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">Valider</span>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class='form-order-right' data-toggle-contracts-target='accountList'>
@@ -128,13 +138,6 @@
       </div>
     <% end %>
   </div>
-
-
-  <%= simple_form_for @order do |f_order| %>
-    <%= button_tag(type: 'submit', class: "next-btn-mobile") do %>
-      <i class="fa-solid fa-arrow-right fa-xl"></i>
-    <% end %>
-  <% end %>
 
   <%= link_to contrats_helps_path, target: "_blank", class: 'btn-third small help-btn' do %>
     <div>

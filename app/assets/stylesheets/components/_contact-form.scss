@@ -17,7 +17,7 @@
       margin-top: 30px;
       display: block;
       font-weight: bold;
-      width: 400px;
+      max-width: 90%;
     }
 
     .contact-form-file-document {
@@ -118,6 +118,7 @@
     margin: 0px auto;
     width: 80vw;
     background: none;
+    width: 100%;
   }
 
   .contact-form-text {
@@ -162,6 +163,17 @@
           padding: 20px;
           font-family: 'Montserrat', sans-serif;
         }
+      }
+    }
+  }
+  #new_message{
+    .message_email, .message_name{
+      width: 40vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      input{
+        width: 70%;
       }
     }
   }

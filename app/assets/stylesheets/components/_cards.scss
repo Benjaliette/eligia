@@ -53,7 +53,6 @@
   }
 
   &.small {
-    height: 5vh;
     position: relative;
     width: 62%;
   }
@@ -640,11 +639,10 @@
     align-items: center;
 
     &.small {
-      width: 50%;
-    }
-
-    .account-avatar {
-      display: none;
+      width: 90%;
+      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+      box-sizing: border-box;         /* Opera/IE 8+ */
     }
   }
 }

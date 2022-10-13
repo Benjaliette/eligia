@@ -14,7 +14,7 @@ class AccountsController < ApplicationController
         else
           render turbo_stream: turbo_stream.update('account-search-results', partial: "accounts/accounts_search_results",
             locals: { accounts: @accounts, order: @order, other_account_name: @other_account_name })
-          end
+        end
       end
       format.html { redirect_to created_order_path(@order) }
     end

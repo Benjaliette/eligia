@@ -9,7 +9,7 @@ export default class extends Controller {
   }
 
   changeBackground() {
-    var breakPoint = 80
+    let breakPoint = 80
 
     if(window.innerWidth < 768){
       breakPoint = 10

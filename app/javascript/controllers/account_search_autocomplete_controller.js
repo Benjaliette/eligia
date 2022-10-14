@@ -14,7 +14,6 @@ export default class extends Controller {
     this.submitForm()
   }
 
-
   clickOutside(event){
     if(this.searchBarTarget === event.target || this.searchBarTarget.contains(event.target)) return;
     const inputValue = this.inputTarget.value

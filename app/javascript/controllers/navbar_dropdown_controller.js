@@ -12,8 +12,9 @@ export default class extends Controller {
     this.toggleDropdowndivTarget.classList.toggle('display-none')
     this.hamburgerIconTarget.classList.toggle('fa-bars')
     this.hamburgerIconTarget.classList.toggle('fa-xmark')
-    this.notificationsIconTarget.classList.toggle('display-none')
-
+    if(this.hasNotificationIconTarget){
+      this.notificationsIconTarget.classList.toggle('display-none')
+    }
   }
 
   closeDropdown(event) {
@@ -24,8 +25,10 @@ export default class extends Controller {
 
   toggleNotifications(event) {
     this.notificationsTarget.classList.toggle('display-none')
-    this.notificationsIconTarget.classList.toggle('fa-comment')
-    this.notificationsIconTarget.classList.toggle('fa-comment-slash')
+    if(this.hasNotificationIconTarget){
+      this.notificationsIconTarget.classList.toggle('fa-comment')
+      this.notificationsIconTarget.classList.toggle('fa-comment-slash')
+    }
     if(event.target.childNodes.length > 1) {
       this.readNotifications(event)
     }

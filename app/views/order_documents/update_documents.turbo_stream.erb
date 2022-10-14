@@ -1,0 +1,10 @@
+<%= turbo_stream.update("flash", partial: "shared/flash") %>
+<%= turbo_stream.update("docs-#{@order.id}", partial: 'shared/order_document_input_card',
+                                          locals: {
+                                            order_documents_to_add: @order.non_uploaded_order_documents,
+                                            order_account: false,
+                                            no_doc_message: '',
+                                            modal_height: ''
+                                          }) %>
+<%= turbo_stream.update("oa-cards-#{@order.id}", partial: "orders/order_account_cards", locals: { order: @order }) %>
+<%= turbo_stream.update("order-state", @order.state_to_french) %>

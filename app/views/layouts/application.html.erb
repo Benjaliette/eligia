@@ -21,7 +21,7 @@
     <meta name="description" content="Résiliez d'un seul coup tous les abonnements d'un proche disparu. Simplifier les démarches pour se concentrer sur le deuil.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <% if content_for?(:meta) %>
-      <meta name='viewport' content=<%= yield(:meta)%>>
+      <meta name='viewport' content="<%= yield(:meta)%>">
     <% end %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

@@ -18,7 +18,6 @@ export default class extends Controller {
   }
 
   update(element) {
-    console.log(element)
     element.classList.remove('to-add')
     element.disabled = true
     element.value = "ajouté ✓"

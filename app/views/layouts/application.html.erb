@@ -10,15 +10,12 @@
 
       gtag('config', 'G-M8WXRW11HK');
     </script>
-    <title>
-      <% if content_for?(:title) %>
+    <% if content_for?(:title) %>
+      <title>
         <%= yield(:title) %>
-      <% else %>
-        Eligia - Résiliations suite au décès
-      <% end %>
-    </title>
-    <link rel="icon" type="image/png" sizes="32x32" href=<%=image_path('eligia-favicon-32x32.png')%>>
-    <meta name="description" content="Résiliez d'un seul coup tous les abonnements d'un proche disparu. Simplifier les démarches pour se concentrer sur le deuil.">
+      </title>
+    <% end %>
+    <%= display_meta_tags(default_meta_tags) %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <% if content_for?(:meta) %>
       <meta name='viewport' content="<%= yield(:meta)%>">

@@ -12,7 +12,7 @@ export default class extends Controller {
     this.toggleDropdowndivTarget.classList.toggle('display-none')
     this.hamburgerIconTarget.classList.toggle('fa-bars')
     this.hamburgerIconTarget.classList.toggle('fa-xmark')
-    if(this.hasNotificationIconTArget){
+    if(this.hasNotificationIconTarget){
       this.notificationsIconTarget.classList.toggle('display-none')
     }
   }

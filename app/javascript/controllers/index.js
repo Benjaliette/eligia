@@ -16,6 +16,9 @@ application.register("address-autocomplete", AddressAutocompleteController)
 import CheckDocumentController from "./check_document_controller"
 application.register("check-document", CheckDocumentController)
 
+import CheckForAddedContractsController from "./check_for_added_contracts_controller"
+application.register("check-for-added-contracts", CheckForAddedContractsController)
+
 import CloseFlashController from "./close_flash_controller"
 application.register("close-flash", CloseFlashController)
 

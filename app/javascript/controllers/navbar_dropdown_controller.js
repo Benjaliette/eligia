@@ -25,7 +25,7 @@ export default class extends Controller {
 
   toggleNotifications(event) {
     this.notificationsTarget.classList.toggle('display-none')
-    if(this.hasNotificationIconTArget){
+    if(this.hasNotificationIconTarget){
       this.notificationsIconTarget.classList.toggle('fa-comment')
       this.notificationsIconTarget.classList.toggle('fa-comment-slash')
     }

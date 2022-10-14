@@ -13,8 +13,8 @@ StripeEvent.configure do |events|
     order = user.orders.last
     order.update(paid: true)
     Notification.create(
-      content: "Vous avez réalisé une démarche pour résilier les comptes de #{order.deceased_first_name} #{order.deceased_last_name},
-                nous vous tiendrons au courant des prochaines mises à jours sur ce panneau de notifications",
+      content: "La demande de résiliation des contrats de #{order.deceased_first_name} #{order.deceased_last_name}
+                a bien été prise en compte",
       order: order
     )
 
@@ -22,7 +22,7 @@ StripeEvent.configure do |events|
 
     if doc_missing_count >= 1
       Notification.create(
-        content: "Vous n'avez pas fourni tous les documents nécessaires pour envoyer toutes les résiliations (il vous manque
+        content: "Il vous reste des documents à fournir pour démarrer certaines résiliations (il vous manque
         #{doc_missing_count} documents).",
         order: order
       )

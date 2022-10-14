@@ -14,7 +14,6 @@ class OrderDocumentsController < ApplicationController
       @order.update_state
       flash.now[:alert] = "Document enregistré"
       respond_to { |format| format.turbo_stream }
-      end
     else
       render turbo_stream: turbo_stream.update("#{@order_account.id}-#{@order_document.id}", partial: "shared/error_messages",
         locals: { error: @order_document.errors[:document_input].first })
@@ -23,6 +22,7 @@ class OrderDocumentsController < ApplicationController
 
   def update_documents
     if @order_document.update(order_document_params) && not_empty?(@order_document)
+      notify_user
       @order_documents = @order.order_documents
       @order.order_accounts.each { |order_account| order_account.update_state }
       flash.now[:alert] = "Document enregistré"
@@ -65,7 +65,7 @@ class OrderDocumentsController < ApplicationController
 
   def notify_user
     Notification.create(
-      content: "Le document/information #{@order_document.document.name} a été ajouté pour votre démarche
+      content: "Le document/information '#{@order_document.document.name}' a été ajouté pour votre démarche
                 concernant #{@order.deceased_first_name} #{@order.deceased_last_name}",
       order: @order,
       order_account: @order_account ? @order_account : nil

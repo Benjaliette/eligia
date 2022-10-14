@@ -57,6 +57,9 @@ gem "jsbundling-rails"
 # Gem originally in older version of Ruby than 3.1
 gem 'matrix'
 
+# Gem used to generate meta tags
+gem 'meta-tags'
+
 # Gem to store a money column into DB (here the orders table)
 gem 'money-rails'
 

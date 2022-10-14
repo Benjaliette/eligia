@@ -9,7 +9,7 @@ class Account < ApplicationRecord
   validates :name, presence: true
 
   scope :validated,      ->{ where(aasm_state: 'validated') }
-  scope :non_validated,   ->{ where(aasm_state: 'non_validated') }
+  scope :non_validated,  ->{ where(aasm_state: 'non_validated') }
 
   rails_admin do
     configure :aasm_state do
@@ -29,7 +29,16 @@ class Account < ApplicationRecord
     state :validated
 
     event :declare_validated do
-      transitions from: :non_validated, to: :validated
+      transitions from: :non_validated, to: :validated, after: Proc.new { notify_validated }
     end
+  end
+
+  def notify_validated
+    Notification.create(
+      content: "Le contrat '#{self.name}' a été validé. Vous pouvez retrouver les documents à y joindre en cliquant
+                sur cette notification",
+      order: self.order_accounts.first.order,
+      order_account: self.order_accounts.first
+    )
   end
 end

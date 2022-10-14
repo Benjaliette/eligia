@@ -63,8 +63,14 @@
                     <%= link_to notification.order_account ? order_order_account_path(notification.order, notification.order_account) : order_path(notification.order) do %>
                       <div class="notification-content"><%= notification.content %></div>
                     <% end %>
-                    <% notification_time = (Date.today - notification.created_at.to_datetime).to_i %>
-                    <div class="notification-date"><%= notification_time < 1 ? "Aujourd'hui" : "Il y a #{notification_time} jours" %></div>
+                    <% notification_time = (Date.today - notification.created_at.to_date).to_i %>
+                    <div class="notification-date">
+                      <% if Date.today == notification.created_at.to_date %>
+                        Aujourd'hui
+                      <% else %>
+                        <%= "Il y a #{notification_time} jour#{notification_time > 1 ? 's' : ''}" %>
+                      <% end %>
+                    </div>
                   </li>
                 <% end %>
               </ul>

@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="order-account-creation"
 export default class extends Controller {
-  static targets = [ 'button' ]
+  static targets = [ 'button', 'modal' ]
 
   static values = {
     account: String,
@@ -30,5 +30,13 @@ export default class extends Controller {
     button.classList.remove('to-add')
     button.disabled = true
     button.value = "ajouté ✓"
+  }
+
+  modalAppear() {
+    this.modalTarget.classList.remove('display-none')
+  }
+
+  modalDisappear() {
+    this.modalTarget.classList.add('display-none')
   }
 }

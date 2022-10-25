@@ -63,6 +63,25 @@
       margin: 20px auto;
     }
   }
+
+  &.confirmation-content {
+    margin: 40vh auto;
+    height: 20vh;
+
+    .confirmation-buttons {
+      width: 50%;
+      margin-top: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      .modal-submit-button {
+        border: none;
+        font-size: inherit;
+        font-family: inherit;
+      }
+    }
+  }
 }
 
 .close {

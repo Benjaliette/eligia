@@ -1,6 +1,11 @@
 .search-div {
   display: flex;
   align-items: center;
+  position: sticky;
+  padding: 5vh 32px;
+  top: 0px;
+  background-color: white;
+  z-index: 20;
 
   .search-title {
     margin-right: 10px;

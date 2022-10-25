@@ -84,3 +84,9 @@ production:
   database: eligia_production
   username: eligia
   password: <%= ENV["ELIGIA_DATABASE_PASSWORD"] %>
+
+staging:
+  <<: *default
+  database: eligia_staging
+  username: eligia
+  password: <%= ENV["ELIGIA_DATABASE_PASSWORD"] %>

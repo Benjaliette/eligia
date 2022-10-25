@@ -1,9 +1,37 @@
-<%= simple_form_for OrderAccount.new, data: { action: 'turbo:submit-end->order-account-creation#updateButton' } do |f_order_accounts| %>
-  <%= f_order_accounts.input :account_id, input_html: { value: account.id }, as: :hidden %>
-  <%= f_order_accounts.input :order_id, input_html: { value: order.id }, as: :hidden %>
-  <%= f_order_accounts.submit 'ajouter →',
-      class: 'account-card-btn to-add',
-      data: {
-        order_account_creation_target: 'button'
-      } %>
+
+<% if account.need_modal? %>
+  <input class="account-card-btn to-add"
+       type="submit"
+       data-action="click->order-account-creation#modalAppear"
+       data-order-account-creation-target='button'
+       value="ajouter →"/>
+
+  <div class="modal display-none" data-order-account-creation-target='modal'>
+    <div class="modal-content confirmation-content">
+      <%= account.modal_content %>
+      <div class="confirmation-buttons">
+        <%= simple_form_for OrderAccount.new, data: { action: 'turbo:submit-end->order-account-creation#updateButton' } do |f_order_accounts| %>
+          <%= f_order_accounts.input :account_id, input_html: { value: account.id }, as: :hidden %>
+          <%= f_order_accounts.input :order_id, input_html: { value: order.id }, as: :hidden %>
+          <%= f_order_accounts.submit 'Individuel',
+              class: 'btn-second modal-submit-button',
+              data: {
+                order_account_creation_target: 'button',
+                action: 'click->order-account-creation#modalDisappear'
+              } %>
+        <% end %>
+        <div class="btn-second" data-action="click->order-account-creation#modalDisappear">Collectif</div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <%= simple_form_for OrderAccount.new, data: { action: 'turbo:submit-end->order-account-creation#updateButton' } do |f_order_accounts| %>
+    <%= f_order_accounts.input :account_id, input_html: { value: account.id }, as: :hidden %>
+    <%= f_order_accounts.input :order_id, input_html: { value: order.id }, as: :hidden %>
+    <%= f_order_accounts.submit 'ajouter →',
+        class: 'account-card-btn to-add',
+        data: {
+          order_account_creation_target: 'button'
+        } %>
+  <% end %>
 <% end %>

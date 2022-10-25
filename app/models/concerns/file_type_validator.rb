@@ -9,11 +9,12 @@ class FileTypeValidator < ActiveModel::EachValidator
         record.errors.add attribute, (options[:message] || "email invalide") unless
         value.gsub(' ', '') =~ /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i || value.empty?
       when 'compteur_gaz'
-        # record.errors.add attribute, (options[:message] || "Relevé invalide") unless
-        # value =~ /^FR\d{12}[A-Z0-9]{11}\d{2}$/i
+        record.errors.add attribute, (options[:message] || "Relevé invalide") unless
+        value =~ /\A\d{5}\z/
       when 'compteur_elec'
-        # record.errors.add attribute, (options[:message] || "Relevé invalide") unless
-        # value =~ /^FR\d{12}[A-Z0-9]{11}\d{2}$/i
+        # PDL (point de livraison ou numéro de compteur)
+        record.errors.add attribute, (options[:message] || "Relevé invalide") unless
+        value =~ /\A\d{14}\z/
       when 'compteur_eau'
         # record.errors.add attribute, (options[:message] || "Relevé invalide") unless
         # value =~ /^FR\d{12}[A-Z0-9]{11}\d{2}$/i || value.empty?

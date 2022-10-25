@@ -51,32 +51,32 @@
         Pour des raisons de simplicité, les documents et informations à fournir seront demandées à l'étape 2.
       </p>
     </div>
-    <div class="form-order-content">
-      <div class="search-div">
-        <div class="search-title">
-          Chercher un contrat :
-        </div>
-        <div class="search-bar" data-account-search-autocomplete-target="searchBar">
-          <%= simple_form_for :account, url: accounts_path, data: { account_search_autocomplete_target: 'form' } do |form| %>
-            <%= form.input :name,
-                            label: false,
-                            input_html: {
-                              data: {
-                                action: 'keyup->account-search-autocomplete#submitForm',
-                                account_search_autocomplete_target: 'input'
-                              },
-                              class: 'search-bar-input',
-                            } %>
-            <%= form.input :order_id,
-                            input_html: {
-                              value: @order.id
-                            },
-                            as: :hidden %>
-          <% end %>
-          <div class="clear-search" data-action="click->account-search-autocomplete#clearInput">+</div>
-          <div id="account-search-results"></div>
-        </div>
+    <div class="search-div">
+      <div class="search-title">
+        Chercher un contrat :
       </div>
+      <div class="search-bar" data-account-search-autocomplete-target="searchBar">
+        <%= simple_form_for :account, url: accounts_path, data: { account_search_autocomplete_target: 'form' } do |form| %>
+          <%= form.input :name,
+                          label: false,
+                          input_html: {
+                            data: {
+                              action: 'keyup->account-search-autocomplete#submitForm',
+                              account_search_autocomplete_target: 'input'
+                            },
+                            class: 'search-bar-input',
+                          } %>
+          <%= form.input :order_id,
+                          input_html: {
+                            value: @order.id
+                          },
+                          as: :hidden %>
+        <% end %>
+        <div class="clear-search" data-action="click->account-search-autocomplete#clearInput">+</div>
+        <div id="account-search-results"></div>
+      </div>
+    </div>
+    <div class="form-order-content">
       <% @categories.each do |category| %>
         <div class="order-divs">
           <h3><%= category.name %></h3>

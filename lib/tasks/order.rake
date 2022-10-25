@@ -8,7 +8,7 @@ namespace :order do
     puts "."
     puts "."
     orders.each do |order|
-      if order.user.nil?
+      if order.user.nil? && (((Time.now - order.updated_at) / 3600) > 24)
         count += 1
         order.destroy
       end

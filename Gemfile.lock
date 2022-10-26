@@ -244,6 +244,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     minitest (5.16.3)
+    mollie-api-ruby (4.7.1)
     monetize (1.12.0)
       money (~> 6.12)
     money (6.16.0)
@@ -460,6 +461,7 @@ DEPENDENCIES
   letter_opener
   matrix
   meta-tags
+  mollie-api-ruby
   money-rails
   pg (~> 1.1)
   pg_search

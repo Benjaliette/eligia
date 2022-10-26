@@ -7,7 +7,6 @@
     <% payment = Mollie::Payment.get(params[:session_id]) %>
     <% customer = Mollie::Customer.get(payment.customer.id) %>
     <% user = current_user %>
-    <% raise %>
 
     <div class= "basic-white-card padding-five margin-top-five">
       <h3 class="color-green">Merci <%= customer.name %> pour votre commande</h3>

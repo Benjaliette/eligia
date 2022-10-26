@@ -11,7 +11,7 @@
   "repository": "https://github.com/Benjaliette/eligia",
   "success_url": "/",
   "scripts": {
-    "postdeploy": "bundle exec rails db:migrate db:seed"
+    "postdeploy": "bundle; rails db:migrate; rails db:seed"
   },
   "image": "heroku/ruby",
   "addons": [

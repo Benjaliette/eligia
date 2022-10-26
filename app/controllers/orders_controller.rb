@@ -70,16 +70,21 @@ class OrdersController < ApplicationController
     @order.user = current_user
 
     if @order.save
-      session = @order.set_stripe_paiement(success_order_url(@order), root_url)
-      @order.update(checkout_session_id: session.id)
+      # session = @order.set_stripe_paiement(success_order_url(@order), root_url)
+      payment = @order.set_mollie_payment(success_order_url(@order), resiliations_webhook_url)
+      @order.update(checkout_session_id: payment.id)
 
-      redirect_to session.url, allow_other_host: true
+      redirect_to payment._links.dig("checkout", "href"), allow_other_host: true
     else
       render :recap
     end
   end
 
   def success
+  end
+
+  def webhook
+    raise
   end
 
   private

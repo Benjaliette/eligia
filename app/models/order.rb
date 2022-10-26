@@ -80,6 +80,26 @@ class Order < ApplicationRecord
     )
   end
 
+  def set_mollie_payment(success_url, webhook_url)
+    customer = Mollie::Customer.create(
+      name: "#{self.user.first_name} #{self.user.last_name}",
+      email: self.user.email
+    )
+
+    prepayment = Mollie::Payment.create(
+      amount:       { value: sprintf('%.2f', (self.amount_cents / 100)), currency: 'EUR' },
+      description:  self.pack.title,
+      customerId: customer.id,
+      redirect_url: success_url,
+      webhook_url:  webhook_url
+    )
+
+    payment = Mollie::Payment.update(
+      prepayment.id,
+      redirect_url: "#{success_url}?session_id=#{prepayment.id}"
+    )
+  end
+
   def generate_order_documents
     order = self
     order.order_documents.each do |order_document|

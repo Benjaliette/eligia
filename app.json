@@ -10,6 +10,12 @@
   "website": "https://www.eligia.fr/",
   "repository": "https://github.com/Benjaliette/eligia",
   "success_url": "/",
+  "formation": {
+    "web": {
+      "quantity": 0,
+      "size": "free"
+    }
+  },
   "scripts": {
     "postdeploy": "bundle; rails db:migrate db:seed"
   },

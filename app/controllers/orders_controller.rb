@@ -2,6 +2,7 @@ require 'json'
 
 class OrdersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[new created edit update update_documents recap destroy]
+  skip_before_action :verify_authenticity_token, only: %i[webhook]
 
   before_action :set_order, only: %i[show created edit update update_documents recap success paiement destroy]
   before_action :set_categories, only: %i[created update]
@@ -71,7 +72,7 @@ class OrdersController < ApplicationController
 
     if @order.save
       # session = @order.set_stripe_paiement(success_order_url(@order), root_url)
-      payment = @order.set_mollie_payment(success_order_url(@order), resiliations_webhook_url)
+      payment = @order.set_mollie_payment(success_order_url(@order), mollie_webhook_url)
       @order.update(checkout_session_id: payment.id)
 
       redirect_to payment._links.dig("checkout", "href"), allow_other_host: true
@@ -84,7 +85,6 @@ class OrdersController < ApplicationController
   end
 
   def webhook
-    raise
   end
 
   private

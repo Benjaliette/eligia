@@ -73,5 +73,5 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine, at: '/admin', as: 'rails_admin'
   mount StripeEvent::Engine, at: '/paiement-success'
 
-  post 'resiliations/webhook', to: 'orders#webhook'
+  post 'resiliations/bth!567bo=_iohpo654uUf', to: 'orders#webhook', as: 'mollie_webhook'
 end

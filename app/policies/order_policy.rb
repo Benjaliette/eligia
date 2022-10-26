@@ -46,4 +46,8 @@ class OrderPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
+  def webhook?
+    true
+  end
 end

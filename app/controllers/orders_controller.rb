@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   before_action :set_categories, only: %i[created update]
 
   after_action :send_confirmation_mail, only: :success
-  after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy]
+  after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy webhook]
 
   def index
   end
@@ -85,6 +85,9 @@ class OrdersController < ApplicationController
   end
 
   def webhook
+    payment = Mollie::Payment.get(params[:id])
+    order = Order.find_by(checkout_session_id: payment.id)
+    order.update(paid: true)
   end
 
   private

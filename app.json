@@ -12,7 +12,7 @@
   "success_url": "/",
   "formation": {
     "web": {
-      "quantity": 0,
+      "quantity": 1,
       "size": "free"
     }
   },

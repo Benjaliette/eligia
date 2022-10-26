@@ -10,12 +10,6 @@
   "website": "https://www.eligia.fr/",
   "repository": "https://github.com/Benjaliette/eligia",
   "success_url": "/",
-  "formation": {
-    "web": {
-      "quantity": 1,
-      "size": "standard-1x"
-    }
-  },
   "image": "heroku/ruby",
   "addons": [
     {

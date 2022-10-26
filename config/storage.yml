@@ -22,6 +22,12 @@ google_dev:
   credentials: <%= Rails.root.join("config/secrets/eligia_cloud_storage.json") %>
   bucket: eligia_dev
 
+google_staging:
+  service: GCS
+  project: eligia
+  credentials: <%= Rails.root.join("config/secrets/eligia_cloud_storage.json") %>
+  bucket: eligia_staging
+
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3

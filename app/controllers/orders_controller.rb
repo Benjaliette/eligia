@@ -86,8 +86,8 @@ class OrdersController < ApplicationController
 
   def webhook
     payment = Mollie::Payment.get(params[:id])
-    order = Order.find_by(checkout_session_id: payment.id)
-    order.update(paid: true)
+    @order = Order.find_by(checkout_session_id: payment.id)
+    @order.update(paid: true)
   end
 
   private

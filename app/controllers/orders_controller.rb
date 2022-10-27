@@ -88,7 +88,6 @@ class OrdersController < ApplicationController
     return unless payment.paid?
 
     @order = Order.find_by(checkout_session_id: payment.id)
-    p "🚀🚀#{@order}"
     @order.update(paid: true)
   end
 

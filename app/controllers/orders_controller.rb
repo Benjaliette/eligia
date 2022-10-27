@@ -3,6 +3,7 @@ require 'json'
 class OrdersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[new created edit update update_documents recap destroy webhook]
   skip_before_action :verify_authenticity_token, only: :webhook
+  skip_after_action :verify_authorized, only: :webhook
 
   before_action :set_order, only: %i[show created edit update update_documents recap paiement destroy success]
   before_action :set_categories, only: %i[created update]

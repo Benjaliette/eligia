@@ -101,11 +101,6 @@ class Order < ApplicationRecord
       redirect_url: success_url,
       webhook_url: webhook_url
     )
-
-    payment = Mollie::Payment.update(
-      prepayment.id,
-      redirect_url: "#{success_url}?session_id=#{prepayment.id}"
-    )
   end
 
   def generate_order_documents

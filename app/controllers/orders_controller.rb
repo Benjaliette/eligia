@@ -89,7 +89,7 @@ class OrdersController < ApplicationController
 
     @order = Order.find_by(checkout_session_id: payment.id)
     @order.update(paid: true)
-    send_confirmation_mail(order)
+    send_confirmation_mail(@order)
   end
 
   private

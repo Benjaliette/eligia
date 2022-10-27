@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   before_action :set_categories, only: %i[created update]
 
   after_action :send_confirmation_mail, only: :webhook
-  after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy webhook]
+  after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy]
 
   def index
   end

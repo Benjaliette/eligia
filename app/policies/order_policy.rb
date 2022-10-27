@@ -48,6 +48,6 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def webhook?
-    true
+    skip_authorization
   end
 end

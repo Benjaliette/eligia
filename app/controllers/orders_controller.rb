@@ -89,14 +89,12 @@ class OrdersController < ApplicationController
       @order = Order.find_by(checkout_session_id: payment.id)
       @order.update(paid: true)
       p "#✅✅ #{payment.paid?}}"
-      redirect_to success_order_path
     else
       p "❌❌#{payment.paid?}"
       payment = Mollie::Payment.update(
         params[:id],
-        webhook_url: root_url
+        redirect_url: root_url
       )
-      redirect_to root_path
     end
   end
 

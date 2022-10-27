@@ -128,6 +128,8 @@ class OrdersController < ApplicationController
   end
 
   def send_confirmation_mail
+    return unless @order
+
     OrderMailer.with(order: @order, user: @order.user).confirmation.deliver_now
     OrderMailer.with(order: @order, user: @order.user).notification_to_contact.deliver_now
   end

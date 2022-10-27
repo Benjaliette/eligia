@@ -90,7 +90,7 @@ class Order < ApplicationRecord
       amount:       { value: sprintf('%.2f', (self.amount_cents / 100)), currency: 'EUR' },
       description:  self.pack.title,
       customerId: customer.id,
-      redirect_url: success_url,
+      # redirect_url: success_url,
       webhook_url:  webhook_url
     )
   end

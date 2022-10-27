@@ -88,8 +88,10 @@ class OrdersController < ApplicationController
     if payment.paid?
       @order = Order.find_by(checkout_session_id: payment.id)
       @order.update(paid: true)
+      p "#{✅✅payment.paid?}"
     else
-      Mollie::Payment.update(
+      p "#{❌❌payment.paid?}"
+      payment = Mollie::Payment.update(
         params[:id],
         webhook_url: root_url
       )

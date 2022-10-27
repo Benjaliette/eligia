@@ -89,7 +89,6 @@ class OrdersController < ApplicationController
 
     @order = Order.find_by(checkout_session_id: payment.id)
     @order.update(paid: true)
-    send_confirmation_mail(@order)
   end
 
   private
@@ -128,8 +127,8 @@ class OrdersController < ApplicationController
     )
   end
 
-  def send_confirmation_mail(order)
-    OrderMailer.with(order: order, user: current_user).confirmation.deliver_now
-    OrderMailer.with(order: order, user: current_user).notification_to_contact.deliver_now
+  def send_confirmation_mail
+    OrderMailer.with(order: @order, user: @order.user).confirmation.deliver_now
+    OrderMailer.with(order: @order, user: @order.user).notification_to_contact.deliver_now
   end
 end

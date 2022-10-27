@@ -95,6 +95,7 @@ class OrdersController < ApplicationController
         params[:id],
         webhook_url: root_url
       )
+      redirect_to root_path
     end
   end
 

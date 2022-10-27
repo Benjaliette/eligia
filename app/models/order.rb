@@ -81,17 +81,25 @@ class Order < ApplicationRecord
   end
 
   def set_mollie_payment(success_url, webhook_url)
+    user_address = self.user.address.split(" , ")
+
     customer = Mollie::Customer.create(
       name: "#{self.user.first_name} #{self.user.last_name}",
       email: self.user.email
     )
 
-    payment = Mollie::Payment.create(
-      amount:       { value: sprintf('%.2f', (self.amount_cents / 100)), currency: 'EUR' },
-      description:  self.pack.title,
+    prepayment = Mollie::Payment.create(
+      amount: { value: sprintf('%.2f', (self.amount_cents / 100)), currency: 'EUR' },
+      description: self.pack.title,
+      billingAddress: {
+        streetAndNumber: user_address[0],
+        postalCode: user_address[1].split(" ")[0],
+        city: user_address[1].split(" ")[1],
+        country: user_address[2]
+      },
       customerId: customer.id,
       redirect_url: success_url,
-      webhook_url:  webhook_url
+      webhook_url: webhook_url
     )
   end
 

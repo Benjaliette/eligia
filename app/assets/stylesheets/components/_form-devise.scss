@@ -49,7 +49,7 @@
       }
 
       .input {
-        width: 100%;
+        width: 90%;
       }
 
       input.filled {
@@ -213,8 +213,6 @@
   .form-div{
     .form-inputs {
       .form-inputs-block, .form-inputs-block-address {
-        margin-left: 0px;
-
         label {
           width: 170px;
           text-align: left;
@@ -231,10 +229,6 @@
 
   .form-inputs > .input{
     width: 70%;
-  }
-
-  .mapboxgl-ctrl-geocoder--input {
-    font-size: 1px;
   }
 
   .show-password-devise > .input{

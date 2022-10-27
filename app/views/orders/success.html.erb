@@ -4,14 +4,10 @@
 <%= render 'shared/navbar' %>
 <div class='vh-100 gradient-bg'>
   <div class="container success-card-container">
-    <% payment = Mollie::Payment.get(params[:session_id]) %>
-    <% customer = Mollie::Customer.get(payment.customer.id) %>
-    <% user = current_user %>
-
     <div class= "basic-white-card padding-five margin-top-five">
-      <h3 class="color-green">Merci <%= customer.name %> pour votre commande</h3>
+      <h3 class="color-green">Merci <%= "#{current_user.first_name} #{current_user.first_name}" %>, votre démarche a été payée.</h3>
 
-      <p>Un mail de confirmation vous a été envoyé à <%= user.email %></p>
+      <p>Un mail de confirmation vous a été envoyé à <%= current_user.email %></p>
 
       <p>Pour voir le détail de votre dossier, allez sur <%= link_to "mon compte", user_path(current_user), class: 'bold link underline' %></p>
       <p>Pour retourner à la page d'accueil, <%= link_to "cliquez ici", root_path, class: 'bold link underline' %></p>

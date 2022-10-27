@@ -81,7 +81,7 @@ class Order < ApplicationRecord
   end
 
   def set_mollie_payment(success_url, webhook_url)
-    user_address = self.user.address.split(" , ")
+    user_address = self.user.address.split(", ")
 
     customer = Mollie::Customer.create(
       name: "#{self.user.first_name} #{self.user.last_name}",

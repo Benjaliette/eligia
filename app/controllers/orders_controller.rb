@@ -81,6 +81,7 @@ class OrdersController < ApplicationController
   end
 
   def success
+    @order = Order.find_by(slug: params[:id])
   end
 
   def webhook

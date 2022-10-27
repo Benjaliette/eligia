@@ -85,11 +85,15 @@ class OrdersController < ApplicationController
 
   def webhook
     payment = Mollie::Payment.get(params[:id])
-    p "✅ #{payment.paid?}"
-    # if payment._links.dig("status") == "paid"
+    if payment.paid?
       @order = Order.find_by(checkout_session_id: payment.id)
       @order.update(paid: true)
-    # end
+    else
+      Mollie::Payment.update(
+        params[:id],
+        webhook_url: root_url
+      )
+    end
   end
 
   private

@@ -91,10 +91,11 @@ class OrdersController < ApplicationController
       p "#✅✅ #{payment.paid?}}"
     else
       p "❌❌#{payment.paid?}"
-      payment = Mollie::Payment.update(
-        params[:id],
-        redirect_url: root_url
-      )
+      # payment = Mollie::Payment.update(
+      #   params[:id],
+      #   redirect_url: root_url
+      # )
+      redirect_to root_path
     end
   end
 

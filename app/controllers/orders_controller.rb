@@ -91,6 +91,7 @@ class OrdersController < ApplicationController
       p "#✅✅ #{payment.paid?}"
     else
       p "❌❌#{payment.paid?}"
+    end
   end
 
   private

@@ -96,7 +96,7 @@ class Order < ApplicationRecord
         postalCode: user_address[1].split(" ")[0],
         city: user_address[1].split(" ")[1],
         country: user_address[2]
-      }
+      },
       customerId: customer.id,
       redirect_url: success_url,
       webhook_url: webhook_url

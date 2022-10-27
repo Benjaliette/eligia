@@ -15,14 +15,17 @@ export default class extends Controller {
 
     this.geocoder = new MapboxGeocoder({
       accessToken: this.apiKeyValue,
-      types: "country,region,place,postcode,locality,neighborhood,address",
-      placeholder: this.addressValue,
+      types: "country,region,place,locality,neighborhood,address",
+      placeholder: this.addressValue ? this.addressValue : '*Adresse de facturation',
+      countries: 'FR',
+      language: 'fr',
+      addressAccuracy: "address"
     })
-    this.geocoder.addTo(this.element)
+    this.geocoder.addTo('#autocomplete-div')
     this.geocoder.on("result", event => this.#setInputValue(event))
     this.geocoder.on("clear", () => this.#clearInputValue())
 
-    if (this.geocoder._inputEl.placeholder === "Chercher") {
+    if (this.geocoder._inputEl.placeholder === "Chercher" || this.geocoder._inputEl.placeholder === "*Adresse de facturation") {
       this.geocoder._inputEl.classList.remove('filled')
     } else {
       this.geocoder._inputEl.classList.add('filled')

@@ -19,3 +19,5 @@ en:
               blank: "Veuillez entrer un prénom"
             last_name:
               blank: "Veuillez entrer un nom de famille"
+            address:
+              blank: "Format d'adresse incorrect"

@@ -16,7 +16,7 @@ class User < ApplicationRecord
             format: { with: /\A([a-zàâçéèêëîïôûùüÿñæœ'.-]|\s)*\z/i, message: "Ne doit contenir que des lettres" }
 
   validates :phone_number, allow_blank: true, format: { with: /(\(\+33\)|0|\+33|0033)[1-9]([0-9]{8}|([0-9\- ]){12})/, message: "Numéro incorrect" }
-
+  validates :address, presence: true
   validates :accepted_rgpd, acceptance: { accept: true, message: "Veuillez lire et accepter les conditions RGPD." }
 
   def add_address!(address)

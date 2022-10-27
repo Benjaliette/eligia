@@ -89,7 +89,10 @@ class OrdersController < ApplicationController
     return unless payment.paid?
 
     @order = Order.find_by(checkout_session_id: payment.id)
-    @order.update(paid: true)
+    if !@order.nil?
+      @order.update(paid: true)
+      @order.notify_order_payment
+    end
   end
 
   private

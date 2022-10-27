@@ -103,6 +103,24 @@ class Order < ApplicationRecord
     )
   end
 
+  def notify_order_payment
+    Notification.create(
+      content: "La demande de résiliation des contrats de #{self.deceased_first_name} #{self.deceased_last_name}
+                a bien été prise en compte",
+      order: self
+    )
+
+    doc_missing_count = self.order_documents.reject { |order_document| (order_document.document_file.attached? || order_document.document_input.present?) }.count
+
+    if doc_missing_count >= 1
+      Notification.create(
+        content: "Il vous reste des documents à fournir pour démarrer certaines résiliations (il vous manque
+        #{doc_missing_count} documents).",
+        order: self
+      )
+    end
+  end
+
   def generate_order_documents
     order = self
     order.order_documents.each do |order_document|

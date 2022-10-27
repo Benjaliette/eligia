@@ -88,15 +88,9 @@ class OrdersController < ApplicationController
     if payment.paid?
       @order = Order.find_by(checkout_session_id: payment.id)
       @order.update(paid: true)
-      p "#✅✅ #{payment.paid?}}"
+      p "#✅✅ #{payment.paid?}"
     else
       p "❌❌#{payment.paid?}"
-      # payment = Mollie::Payment.update(
-      #   params[:id],
-      #   redirect_url: root_url
-      # )
-      redirect_to root_path
-    end
   end
 
   private

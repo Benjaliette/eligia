@@ -5,7 +5,8 @@
 <div class='vh-100 gradient-bg'>
   <div class="container success-card-container">
     <div class= "basic-white-card padding-five margin-top-five">
-    <% if current_user.orders.last.paid %>
+    <% @order = Order.find_by(slug: params[:id]) %>
+    <% if @order.paid %>
       <h3 class="color-green">Merci <%= "#{current_user.first_name} #{current_user.last_name}" %>, votre démarche a été payée.</h3>
       <p>Un mail de confirmation vous a été envoyé à <%= current_user.email %></p>
       <p>Pour voir le détail de votre dossier, allez sur <%= link_to "mon compte", user_path(current_user), class: 'bold link underline' %></p>

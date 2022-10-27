@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[show created edit update update_documents recap success paiement destroy]
   before_action :set_categories, only: %i[created update]
 
-  after_action :send_confirmation_mail, only: :success
+  after_action :send_confirmation_mail, only: :webhook
   after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy webhook]
 
   def index
@@ -71,7 +71,6 @@ class OrdersController < ApplicationController
     @order.user = current_user
 
     if @order.save
-      # session = @order.set_stripe_paiement(success_order_url(@order), root_url)
       payment = @order.set_mollie_payment(success_order_url(@order), mollie_webhook_url)
       @order.update(checkout_session_id: payment.id)
 

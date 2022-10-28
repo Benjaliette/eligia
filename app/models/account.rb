@@ -29,7 +29,7 @@ class Account < ApplicationRecord
     state :validated
 
     event :declare_validated do
-      transitions from: :non_validated, to: :validated, after: Proc.new { notify_validated }
+      transitions from: :non_validated, to: :validated, after: proc { notify_validated }
     end
   end
 

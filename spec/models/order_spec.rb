@@ -213,4 +213,26 @@ RSpec.describe Order, type: :model do
       expect(order.notifications.last.content).to include "Il vous reste des documents à fournir pour démarrer certaines"
     end
   end
+
+  describe "#notify_done" do
+    it "should not notify unless self.done? == true" do
+      order = create(:order)
+      order.notify_done
+      expect(order.notifications.count).to eq 0
+    end
+
+    it "should notify when aasm_state changes to done" do
+      order = create(:order)
+      order.declare_processing
+      order.declare_done!
+      expect(order.notifications.count).to eq 1
+    end
+
+    it "should have the right text" do
+      order = create(:order)
+      order.declare_processing
+      order.declare_done
+      expect(order.notifications.first.content).to eq "Tous les contrats de #{order.deceased_first_name} #{order.deceased_last_name} ont été résiliés."
+    end
+  end
 end

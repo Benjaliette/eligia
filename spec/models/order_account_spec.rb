@@ -1,4 +1,5 @@
 require 'rails_helper'
+Prawn::Fonts::AFM.hide_m17n_warning = true
 
 RSpec.describe OrderAccount, type: :model do
   describe "When creating an order_acount" do
@@ -67,22 +68,23 @@ RSpec.describe OrderAccount, type: :model do
       expect(order_account.state_to_french).to eq "Erreur"
     end
 
-    # it "#update_state" do
-    #   order = create(:order)
-    #   orange = create(:account, name: "orange")
-    #   certif = create(:document, name: "certif", format: "text")
-    #   id = create(:document, name: "id", format: "text")
-    #   mail = create(:document, name: "mail", format: "text")
-    #   create(:account_document, account: orange, document: certif)
-    #   create(:account_document, account: orange, document: mail)
-    #   create(:account_document, account: orange, document: id)
-    #   create(:order_document, order:, document: mail, document_input: "yellow")
-    #   create(:order_document, order:, document: id, document_input: "yellow")
-    #   create(:order_document, order:, document: certif, document_input: "yellow")
-    #   order_account = create(:order_account, account: orange, order:)
-    #   expect(order_account.aasm_state).to eq "document_missing"
-    #   expect { order_account.update_state }.to raise_error NoMethodError
-    # end
+    it "#update_state" do
+      order = create(:order)
+      orange = create(:account, name: "orange")
+      certif = create(:document, name: "certif", format: "text")
+      id = create(:document, name: "id", format: "text")
+      mail = create(:document, name: "mail", format: "text")
+      create(:account_document, account: orange, document: certif)
+      create(:account_document, account: orange, document: mail)
+      create(:account_document, account: orange, document: id)
+      create(:order_document, order:, document: mail, document_input: "yellow")
+      create(:order_document, order:, document: id, document_input: "yellow")
+      create(:order_document, order:, document: certif, document_input: "yellow")
+      order_account = create(:order_account, account: orange, order:)
+      expect(order_account.aasm_state).to eq "document_missing"
+      order_account.update_state
+      expect(order_account.aasm_state).to eq "pending"
+    end
   end
 
   describe "Fuctions returning docs and order_docs" do
@@ -133,6 +135,38 @@ RSpec.describe OrderAccount, type: :model do
       expect(order_account.order_documents).to match_array([o_d_id, o_d_certif, o_d_mail])
       expect(order_account.order_documents).not_to match_array([o_d_id])
       expect(order_account.order_documents).not_to match_array([o_d_id, o_d_certif, id])
+    end
+  end
+
+  describe "#notify_resiliation_sent" do
+    it "should send 1 notification when state changes to 'resiliation_sent'" do
+      order_account = create(:order_account)
+      order_account.declare_pending!
+      order_account.declare_resiliation_sent!
+      expect(order_account.order.notifications.count).to eq 1
+    end
+
+    it "should send the right notification when state changes to 'resiliation_sent'" do
+      order_account = create(:order_account)
+      order_account.declare_pending!
+      order_account.declare_resiliation_sent!
+      expect(order_account.order.notifications.first.content).to eq "Demande de résiliation du contrat '#{order_account.account.name}' de #{order_account.order.deceased_first_name} #{order_account.order.deceased_last_name} envoyée"
+    end
+
+    it "should send 1 notification when state changes to 'resiliation_success'" do
+      order_account = create(:order_account)
+      order_account.declare_pending!
+      order_account.declare_resiliation_sent!
+      order_account.declare_resiliation_success!
+      expect(order_account.order.notifications.count).to eq 2
+    end
+
+    it "should send the right notification when state changes to 'resiliation_sent'" do
+      order_account = create(:order_account)
+      order_account.declare_pending!
+      order_account.declare_resiliation_sent!
+      order_account.declare_resiliation_success!
+      expect(order_account.order.notifications.last.content).to eq "Contrat '#{order_account.account.name}' de #{order_account.order.deceased_first_name} #{order_account.order.deceased_last_name} résilié"
     end
   end
 end

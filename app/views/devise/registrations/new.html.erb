@@ -3,7 +3,7 @@
 <% content_for :home_navbar, 'home-navbar position-fixed' %>
 <%= render 'shared/navbar' %>
 
-<div class="vh-100 gradient-bg">
+<div class="vh-100 gradient-bg form-bg">
    <%= image_tag("login.svg", alt:'login logo', class:'login-image') %>
 
   <div class="form-div" data-controller="modal">
@@ -62,7 +62,7 @@
               <i class="fa-solid fa-eye"></i>
             </div>
             <%= f.input :accepted_rgpd,
-                        label: "J'ai lu et j'accepte les conditions RGPD",
+                        label: "* J'ai lu et j'accepte les conditions RGPD",
                         label_html: {class: "d-block margin-top-three margin-bottom-three"}%>
                          <span class="link underline" data-action="click->modal#show">Lire les conditions RGPD</span>
           </div>

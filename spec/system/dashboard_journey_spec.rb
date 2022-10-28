@@ -19,7 +19,10 @@ RSpec.describe "dashboard_journey", type: :system do
     ## Journey steps
     ## --------------------------------------------------------------------------------------------------
     def visit_dashboard
-      create(:order, user: User.first, paid: true)
+      order = create(:order, user: User.first, paid: true)
+      num_tel = create(:document, name: "numero telephone", format: 'text')
+      create(:account_document, account: Account.last, document: num_tel)
+      create(:order_account, order:, account: Account.last)
       visit "/utilisateurs/#{User.first.slug}"
     end
 
@@ -50,14 +53,20 @@ RSpec.describe "dashboard_journey", type: :system do
     it "User sees last order" do
       visit_dashboard
       expect(page).to have_text "Nombre de contrats à résilier"
-      Capybara::Screenshot.screenshot_and_save_page
+    end
+
+    it "User sees notifications" do
+      visit_order_show
+      fill_in('order_document[document_input]', match: :first, with: 'abcdef').native.send_keys(:enter)
+      sleep 2
+      find('.btn-second', text: '← retour').click
+      expect(page).to have_text('Notifications')
     end
 
     # Order#show
     it "User can visit order#show" do
       visit_order_show
-      expect(page).to have_text ("État des contrats à résilier")
-      Capybara::Screenshot.screenshot_and_save_page
+      expect(page).to have_text("État des contrats à résilier")
     end
 
     it "Displays the right amout of order_account_cards" do

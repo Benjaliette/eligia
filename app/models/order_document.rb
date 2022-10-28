@@ -9,7 +9,7 @@ class OrderDocument < ApplicationRecord
   validates :document_input, file_type: true
 
   def pdf?
-    return unless self.document_file.attached?
+    return false unless self.document_file.attached?
 
     self.document_file.blob.content_type == 'application/pdf'
   end

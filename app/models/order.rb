@@ -88,7 +88,7 @@ class Order < ApplicationRecord
       email: self.user.email
     )
 
-    prepayment = Mollie::Payment.create(
+    Mollie::Payment.create(
       amount: { value: sprintf('%.2f', (self.amount_cents / 100)), currency: 'EUR' },
       description: self.pack.title,
       billingAddress: {

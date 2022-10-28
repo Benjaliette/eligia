@@ -176,4 +176,41 @@ RSpec.describe Order, type: :model do
       expect(order.order_documents.count).to eq 3
     end
   end
+
+  describe "#notify_order_payment" do
+    it "No notification on order creation" do
+      order = create(:order)
+      expect(order.notifications.count).to eq 0
+    end
+
+    it "creates one notification to notify order creation" do
+      order = create(:order)
+      3.times { create(:order_account, order:) }
+      order.notify_order_payment
+      expect(order.notifications.count).to eq 1
+    end
+
+    it "Notification has right text" do
+      order = create(:order)
+      3.times { create(:order_account, order:) }
+      order.notify_order_payment
+      expect(order.notifications.first.content).to include "La demande de résiliation des contrats de"
+    end
+
+    it "notifies if a document is missing" do
+      order = create(:order)
+      3.times { create(:order_document, order:) }
+      order.reload
+      order.notify_order_payment
+      expect(order.notifications.count).to eq 2
+    end
+
+    it "has appropriate text for missing documents notification" do
+      order = create(:order)
+      3.times { create(:order_document, order:) }
+      order.reload
+      order.notify_order_payment
+      expect(order.notifications.last.content).to include "Il vous reste des documents à fournir pour démarrer certaines"
+    end
+  end
 end

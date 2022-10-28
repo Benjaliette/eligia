@@ -156,4 +156,5 @@ group :test do
   gem 'capybara-screenshot'
   gem "selenium-webdriver"
   gem "webdrivers", github: 'jmccure/webdrivers', branch:'fix-m1-downloads'
+  gem 'pdf-inspector', require: "pdf/inspector"
 end

@@ -35,7 +35,7 @@ FactoryBot.define do
     end
   end
 
-  # Accounts
+  # Account
   factory :account do
     subcategory
     sequence :name do |n|

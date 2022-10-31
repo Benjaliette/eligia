@@ -124,7 +124,7 @@
                   <div class="form-address-inputs">
                     <mapbox-address-autofill>
                       <div class="form-address-inputs-block">
-                        <%= f_address.label "Numéro et nom de voie" %>
+                        <%= f_address.label "Numéro et nom de voie :" %>
                         <%= f_address.input :street,
                                             label: false,
                                             name: "address",
@@ -133,21 +133,35 @@
                                             } %>
                       </div>
                     </mapbox-address-autofill>
-                    <%= f_address.input :complement,
-                                          name: "apartment",
-                                          label: false,
-                                          placeholder: "Champ additionnel (optionnel)",
-                                          input_html: { autocomplete: "address-line2" } %>
-                    <%= f_address.input :zip,
-                                          name: "postcode",
-                                          label: false,
-                                          placeholder: "Code Postal",
-                                          input_html: { autocomplete: "postal-code" } %>
-                    <%= f_address.input :city,
-                                          name: "city",
-                                          label: false,
-                                          placeholder: "Ville",
-                                          input_html: { autocomplete: "address-level2" } %>
+                    <div class="form-address-inputs-block">
+                      <%= f_address.label "Champ additionnel (optionnel) :" %>
+                      <%= f_address.input :complement,
+                                            label: false,
+                                            name: "apartment",
+                                            input_html: { autocomplete: "address-line2" } %>
+                    </div>
+                    <div class="form-address-inputs-blocks">
+                      <div class="form-address-inputs-block">
+                        <%= f_address.label "Code postal :" %>
+                        <%= f_address.input :zip,
+                                              label: false,
+                                              name: "postcode",
+                                              input_html: { autocomplete: "postal-code" } %>
+                      </div>
+                      <div class="form-address-inputs-block">
+                        <%= f_address.label "Ville :" %>
+                        <%= f_address.input :city,
+                                              label: false,
+                                              name: "city",
+                                              input_html: { autocomplete: "address-level2" } %>
+                      </div>
+                      <div class="form-address-inputs-block">
+                        <%= f_address.label "Pays :" %>
+                        <%= f_address.input :state,
+                                              label: false,
+                                              input_html: { autocomplete: "country-name" } %>
+                      </div>
+                    </div>
                   </div>
                 <% end %>
 

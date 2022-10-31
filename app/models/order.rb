@@ -1,3 +1,5 @@
+require 'normalize_country'
+
 class Order < ApplicationRecord
   include AASM
 
@@ -11,13 +13,16 @@ class Order < ApplicationRecord
   has_many :order_accounts, dependent: :destroy
   has_many :order_documents, dependent: :destroy, index_errors: true
   has_many :notifications, dependent: :destroy
+  has_one :address, dependent: :destroy
 
   accepts_nested_attributes_for :order_documents, allow_destroy: true
+  accepts_nested_attributes_for :address, allow_destroy: true
 
   validates :deceased_first_name, :deceased_last_name,
             format: { with: /\A([a-zàâçéèêëîïôûùüÿñæœ'.-]|\s)*\z/i, message: "ne doit contenir que des lettres" },
             presence: { message: "doit être obligatoirement renseigné" }, on: :update
   validates_associated :order_documents
+  validates_associated :address, message: 'Veuillez remplir tous les champs non-optionnels'
 
   scope :pending,      ->{ where(aasm_state: 'pending') }
   scope :processing,   ->{ where(aasm_state: 'processing') }
@@ -81,8 +86,6 @@ class Order < ApplicationRecord
   end
 
   def set_mollie_payment(success_url, webhook_url)
-    user_address = self.user.address.split(", ")
-
     customer = Mollie::Customer.create(
       name: "#{self.user.first_name} #{self.user.last_name}",
       email: self.user.email
@@ -92,10 +95,10 @@ class Order < ApplicationRecord
       amount: { value: sprintf('%.2f', (self.amount_cents / 100)), currency: 'EUR' },
       description: self.pack.title,
       billingAddress: {
-        streetAndNumber: user_address[0],
-        postalCode: user_address[1].split(" ")[0],
-        city: user_address[1].split(" ")[1],
-        country: user_address[2]
+        streetAndNumber: self.address.street,
+        postalCode: self.address.zip,
+        city: self.address.city,
+        country: NormalizeCountry(self.address.state, to: :alpha2)
       },
       customerId: customer.id,
       redirect_url: success_url,

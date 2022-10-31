@@ -31,7 +31,7 @@ gem "devise"
 gem "factory_bot_rails"
 
 # Use font-awesome gem to use icons
-gem "font-awesome-sass", "~> 6.1"
+gem "font-awesome-sass", "~> 6.2.0"
 
 # For human-friendly urls
 gem 'friendly_id', '~> 5.4.0'

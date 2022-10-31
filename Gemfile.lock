@@ -463,7 +463,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_bot_rails
-  font-awesome-sass (~> 6.1)
+  font-awesome-sass (~> 6.2.0)
   friendly_id (~> 5.4.0)
   geocoder
   google-cloud-storage (~> 1.41)

@@ -70,8 +70,7 @@ class OrdersController < ApplicationController
     @order.pack = @order.determine_pack_type
     @order.amount = @order.pack.price
     @order.user = current_user
-
-    if @order.save
+    if @order.update(order_params)
       payment = @order.set_mollie_payment(success_order_url(@order), mollie_webhook_url)
       @order.update(checkout_session_id: payment.id)
 
@@ -113,20 +112,19 @@ class OrdersController < ApplicationController
     params.require(:order).permit(
       :deceased_first_name,
       :deceased_last_name,
-      order_accounts_attributes: [
-        :id,
-        :account_id,
-        account_attributes: [
-          :_destroy,
-          :name,
-          :subcategory_id
-        ]
-      ],
       order_documents_attributes: [
         :id,
         :document_id,
         :document_file,
         :document_input
+      ],
+      address_attributes: [
+        :id,
+        :street,
+        :complement,
+        :zip,
+        :state,
+        :city
       ]
     )
   end

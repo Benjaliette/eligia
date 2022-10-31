@@ -5,11 +5,11 @@
 
 <div class="gradient-bg">
   <%= image_tag("login.svg", alt:'login logo', class:'login-image view-bottom') %>
-  <div class="contact-form">
+  <div class="contact-form scroll-y">
     <div class="contact-form-text">
 
         <h2 class="home-title no-margin margin-bottom-five">Contactez nous</h2>
-        <p> Pour en savoir plus sur notre service ou pour poser n'importe quelle question, veuillez remplir le formulaire ci-dessous</p>
+        <p class="align-start margin-top-four"> Pour en savoir plus sur notre service ou pour poser n'importe quelle question :</p>
 
         <%= simple_form_for @message do |f| %>
           <div class="contact-form-head">
@@ -26,13 +26,12 @@
                           as: :text,
                           input_html: { class: 'form-name-input-text' } %>
 
-          <div class="contact-form-file d-flex flex-column align-items-center">
-            <p class="contact-form-file-label">Si vous avez un document à nous joindre :</p>
+          <div class="contact-form-file d-flex flex-column">
             <div class="contact-form-file-document" data-controller="add-file">
               <div class="document-btn-and-name">
                 <%= f.label ' ' %>
                 <%= f.input :attachment,
-                              label: "Ajouter",
+                              label: "Joindre un document",
                               as: :file,
                               input_html: {
                                 accept: '.png, .jpg, .jpeg, .pdf',
@@ -52,7 +51,8 @@
                                 }
                               } %>
                 <div class="file-name" data-add-file-target="fileNameDiv"></div>
-              </div>
+                </div>
+
             </div>
           </div>
 
@@ -60,6 +60,11 @@
             <%= f.submit 'Envoyer', class: 'btn btn-principal', id:'submit-btn' %>
           </div>
         <% end %>
+      <br>
+      <br>
+      <br>
+      <p class="align-start"> Pour nous appeler : <span class="margin-left-three btn-second small" style="cursor: initial; pointer-events: none;">06 27 99 73 23</span></p>
     </div>
+
   </div>
 </div>

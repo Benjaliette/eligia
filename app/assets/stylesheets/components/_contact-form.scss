@@ -23,7 +23,8 @@
     .contact-form-file-document {
       .document-btn-and-name {
         display: flex;
-        align-items: center;
+        width: 100%;
+        flex-direction: column;
 
         .input {
           margin: 3vh 0vh 5vh 0vh;

@@ -153,7 +153,7 @@ RSpec.describe OrderAccount, type: :model do
       expect(order_account.order.notifications.first.content).to eq "Demande de résiliation du contrat '#{order_account.account.name}' de #{order_account.order.deceased_first_name} #{order_account.order.deceased_last_name} envoyée"
     end
 
-    it "should send 1 notification when state changes to 'resiliation_success'" do
+    it "should send 2 notifications when state changes to 'resiliation_success'" do
       order_account = create(:order_account)
       order_account.declare_pending!
       order_account.declare_resiliation_sent!
@@ -161,7 +161,7 @@ RSpec.describe OrderAccount, type: :model do
       expect(order_account.order.notifications.count).to eq 2
     end
 
-    it "should send the right notification when state changes to 'resiliation_sent'" do
+    it "should send the right notification when state changes to 'resiliation_success'" do
       order_account = create(:order_account)
       order_account.declare_pending!
       order_account.declare_resiliation_sent!

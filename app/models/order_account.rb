@@ -81,15 +81,15 @@ class OrderAccount < ApplicationRecord
     end
 
     event :declare_pending do
-      transitions from: :document_missing, to: :pending, after: Proc.new { generate_resiliation_file }
+      transitions from: :document_missing, to: :pending, after: proc { generate_resiliation_file }
     end
 
     event :declare_resiliation_sent do
-      transitions from: :pending, to: :resiliation_sent, after: Proc.new { notify_resiliation_send }
+      transitions from: :pending, to: :resiliation_sent, after: proc { notify_resiliation_send }
     end
 
     event :declare_resiliation_success do
-      transitions from: :resiliation_sent, to: :resiliation_success, after: Proc.new { notify_resiliation_success }
+      transitions from: :resiliation_sent, to: :resiliation_success, after: proc { notify_resiliation_success }
     end
 
     event :declare_resiliation_failure do

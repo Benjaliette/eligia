@@ -88,7 +88,7 @@ class Order < ApplicationRecord
       email: self.user.email
     )
 
-    prepayment = Mollie::Payment.create(
+    Mollie::Payment.create(
       amount: { value: sprintf('%.2f', (self.amount_cents / 100)), currency: 'EUR' },
       description: self.pack.title,
       billingAddress: {
@@ -119,6 +119,15 @@ class Order < ApplicationRecord
         order: self
       )
     end
+  end
+
+  def notify_done
+    return unless self.done?
+
+    Notification.create(
+      content: "Tous les contrats de #{self.deceased_first_name} #{self.deceased_last_name} ont été résiliés.",
+      order: self
+    )
   end
 
   def generate_order_documents
@@ -212,21 +221,15 @@ class Order < ApplicationRecord
 
   aasm do
     state :pending, initial: true
-    state :processing, :done
+    state :processing
+    state :done, after_enter: proc { notify_done }
 
     event :declare_processing do
       transitions from: :pending, to: :processing
     end
 
     event :declare_done do
-      transitions from: :processing, to: :done, after: Proc.new { notify_done }
+      transitions from: :processing, to: :done
     end
-  end
-
-  def notify_done
-    Notification.create(
-      content: "Tous les contrats de #{self.deceased_first_name} #{self.deceased_last_name} ont été résiliés.",
-      order: self
-    )
   end
 end

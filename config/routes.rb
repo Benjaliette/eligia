@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       patch 'update_documents'
       get :recap, path: 'recapitulatif'
       get 'success'
-      get 'paiement'
+      patch 'paiement'
     end
     resources :order_documents, path: 'documents', only: %i[update] do
       member do

@@ -11,8 +11,10 @@ class Order < ApplicationRecord
   has_many :order_accounts, dependent: :destroy
   has_many :order_documents, dependent: :destroy, index_errors: true
   has_many :notifications, dependent: :destroy
+  has_many :addresses, dependent: :destroy
 
   accepts_nested_attributes_for :order_documents, allow_destroy: true
+  accepts_nested_attributes_for :addresses, allow_destroy: true
 
   validates :deceased_first_name, :deceased_last_name,
             format: { with: /\A([a-zàâçéèêëîïôûùüÿñæœ'.-]|\s)*\z/i, message: "ne doit contenir que des lettres" },

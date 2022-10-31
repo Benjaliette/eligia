@@ -25,7 +25,7 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  describe "self.validated_accounts_from_subcatedogy" do
+  describe "self.validated_accounts_from_subcategory" do
     it "should not return unvalidated accounts" do
       subcategory = create(:subcategory)
       5.times { create(:account, subcategory:, aasm_state:"non_validated") }

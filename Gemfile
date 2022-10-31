@@ -66,6 +66,9 @@ gem 'mollie-api-ruby'
 # Gem to store a money column into DB (here the orders table)
 gem 'money-rails'
 
+# Gem to convert country from string to ISO
+gem 'normalize_country'
+
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 

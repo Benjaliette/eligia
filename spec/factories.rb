@@ -1,4 +1,13 @@
 FactoryBot.define do
+  factory :address do
+    street { "MyString" }
+    complement { "MyString" }
+    zip { "MyString" }
+    city { "MyString" }
+    country { "MyString" }
+    order { nil }
+  end
+
   factory :rgpd do
     text { "MyString" }
     user

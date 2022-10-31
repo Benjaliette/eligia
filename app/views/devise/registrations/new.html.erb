@@ -29,18 +29,6 @@
           <%= f.input :phone_number,
                       label: false,
                       placeholder:'Téléphone'%>
-          <div data-controller='address-autocomplete'
-               data-address-autocomplete-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-               data-address-autocomplete-address-value="<%= resource.address %>"
-               class="autocomplete-div">
-            <div id='autocomplete-div'></div>
-            <%= f.input :address,
-                          input_html: {data: {address_autocomplete_target: "address"}, class: 'display-none'},
-                          wrapper_html: {data: { address_autocomplete_target: "input" }},
-                          label: false,
-                          placeholder: '*Adresse de facturation'
-            %>
-          </div>
           <div class='show-password-devise' data-controller='show-password'>
             <%= f.input :password,
                         required: true,

@@ -12,19 +12,16 @@ if User.count.zero?
 end
 
 RSpec.describe "pages", type: :system do
-  before :example do
+  before do
     sign_in User.first
   end
 
   context "pages#home" do
-
-    # See pages#home
     it "Can find catch phrase" do
       visit "/"
       expect(page).to have_text("Résiliez en 10 minutes tous les\nabonnements d'un proche disparu")
     end
 
-    # Access pages#price
     it "Has a link towarts /pages/tarifs" do
       visit "/"
       expect(page).to have_link(nil, href: '/pages/tarifs')
@@ -36,7 +33,6 @@ RSpec.describe "pages", type: :system do
       expect(page).to have_text("tarifs")
     end
 
-    # Access pages#contact
     it "Has a link towarts /contact/new" do
       visit "/"
       expect(page).to have_link(nil, href: '/contact/nous-contacter')
@@ -48,7 +44,6 @@ RSpec.describe "pages", type: :system do
       expect(page).to have_text("Votre message")
     end
 
-    # Access orders#new
     it "Has a link towarts /resiliations/contrats" do
       visit "/"
       expect(page).to have_link(nil, href: '/resiliations/new')

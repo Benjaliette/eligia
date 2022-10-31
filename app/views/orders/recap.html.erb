@@ -63,7 +63,7 @@
                   <span>Ajouter</span>
                 <% end %>
               </div>
-              <div class="box recap-box">
+              <div class="box">
                 <ul class="order-div-list no-padding">
                   <% @order.order_accounts.each do |order_account| %>
                     <div class="account-card-title">
@@ -93,7 +93,7 @@
                     <span>Ajouter</span>
                   <% end %>
               </div>
-              <div class="box recap-box">
+              <div class="box">
                 <% if @order.order_accounts.map(&:account).map(&:aasm_state).include?("non_validated") %>
                   <p class="bold"> Nous vous recontacterons pour résilier les contrats 'à valider'.</p>
                 <% end %>

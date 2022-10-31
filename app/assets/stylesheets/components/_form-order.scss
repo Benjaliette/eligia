@@ -536,15 +536,25 @@
   margin: 0px auto 20px auto;
 
   .form-address-inputs-block {
-
     label {
-      width: 25%;
       text-align: left;
+      font-size: 14px;
     }
 
     .input > input {
+      margin-bottom: 10px;
+      height: 30px;
       width: 100%;
+      border-radius: 5px;
+      border: 1px solid $green;
+      padding: 0px 10px;
     }
+  }
+
+  .form-address-inputs-blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5%;
   }
 }
 

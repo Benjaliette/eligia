@@ -29,14 +29,6 @@ RSpec.describe OrderAccountPdf, type: :model do
       expect(text_analysis.strings).to include "Au nom de #{order_account.order.deceased_first_name} #{order_account.order.deceased_last_name}"
     end
 
-    it "has the deceased name" do
-      order_account = create(:order_account)
-      order_account_pdf = OrderAccountPdf.new(order_account)
-      rendered_pdf = order_account_pdf.prawn_resiliation.render
-      text_analysis = PDF::Inspector::Text.analyze(rendered_pdf)
-      expect(text_analysis.strings).to include "Au nom de #{order_account.order.deceased_first_name} #{order_account.order.deceased_last_name}"
-    end
-
     it "manages 1 document_input info" do
       order = create(:order)
       document = create(:document, format: 'text')
@@ -50,7 +42,7 @@ RSpec.describe OrderAccountPdf, type: :model do
       expect(text_analysis.strings.join(" ")).to include "7his !s a document inpu~t"
     end
 
-    it "manages 1 document_input info" do
+    it "manages 2 document_input info" do
       order = create(:order)
       document = create(:document, format: 'text')
       document2 = create(:document, format: 'text')

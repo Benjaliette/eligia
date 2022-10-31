@@ -120,7 +120,8 @@
             <% if current_user %>
               <h3>Adresse de facturation</h3>
               <%= simple_form_for @order, url: :paiement_order, data: { turbo: false } do |f| %>
-                <%= simple_fields_for :addresses, Address.new do |f_address| %>
+                <div class="error"><%= @order.errors.to_a.last.gsub('Address ', '') unless @order.errors.empty? %></div>
+                <%= f.simple_fields_for :address, Address.new do |f_address| %>
                   <div class="form-address-inputs">
                     <mapbox-address-autofill>
                       <div class="form-address-inputs-block">
@@ -166,7 +167,7 @@
                 <% end %>
 
                 <div class="order-btn right">
-                  <div class="fit-content"data-controller="loading-spinner" data-action="click->loading-spinner#load">
+                  <div class="fit-content" data-controller="loading-spinner" data-action="click->loading-spinner#load">
                     <%= button_tag(type: 'submit', class: "learn-more", data: {"loading-spinner-target":"btn"}) do %>
                       <span class="circle" aria-hidden="true">
                         <span class="icon arrow"></span>

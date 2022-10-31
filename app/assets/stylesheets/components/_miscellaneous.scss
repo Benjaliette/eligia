@@ -110,6 +110,45 @@
   margin-left: $level-five !important;
 }
 
+// X axis
+.margin-x-zero {
+  margin: none !important;
+}
+.margin-x-one {
+  margin: 0px $level-one !important;
+}
+.margin-x-two {
+  margin: 0px $level-two !important;
+}
+.margin-x-three {
+  margin: 0px $level-three !important;
+}
+.margin-x-four {
+  margin: 0px $level-four !important;
+}
+.margin-x-five {
+  margin: 0px $level-five !important;
+}
+
+// Y axis
+.margin-y-zero {
+  margin: none !important;
+}
+.margin-y-one {
+  margin: $level-one 0px !important;
+}
+.margin-y-two {
+  margin: $level-two 0px !important;
+}
+.margin-y-three {
+  margin: $level-three 0px !important;
+}
+.margin-y-four {
+  margin: $level-four 0px !important;
+}
+.margin-y-five {
+  margin: $level-five 0px !important;
+}
 
 // // // // // //  Paddings
 

@@ -204,26 +204,26 @@
         <div class="logo">
           <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
         </div>
-        <div class="form-order-right-title">
+        <div class="form-order-right-title recap-title">
           <h3>
-            Coût des démarches :
+            Récapitulatif :
           </h3>
         </div>
         <div class="price-recap box">
-          <div class='d-flex justify-content-space-between'>
-            <div>Contrats à résilier</div>
-            <strong>x<%= @order.order_accounts.size %></strong>
+          <div class='d-flex justify-content-space-between margin-y-three'>
+            <div class="bold">Contrats à résilier</div>
+            <div>x<%= @order.order_accounts.size %></div>
           </div>
-          <hr>
-          <div>
-            <div>Correspond au</div>
-            <strong>forfait <%= @order.determine_pack_type.title %></strong>
-          </div>
-          <div class='d-flex justify-content-space-between'>
-            <div>Prix</div>
-            <div class='divider'>.................................................</div>
+          <div class="d-flex justify-content-space-between margin-y-one">
+            <div>Forfait <%= @order.determine_pack_type.title %></div>
             <div><%= @order.determine_pack_type.price %> €</div>
           </div>
+          <hr>
+          <div class="bold margin-y-four">
+            <div>Montant total :</div>
+            <div ><%= @order.determine_pack_type.price %> €</div>
+          </div>
+          <div class="sm-italic margin-top-five">(TVA comprise dans le calcul du total)</div>
         </div>
       </div>
     </div>

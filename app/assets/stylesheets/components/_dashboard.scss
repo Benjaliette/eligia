@@ -105,6 +105,55 @@
   }
 }
 
+// Order Account dashboard
+.account-title.order-account-title {
+  display: flex;
+  align-items: center;
+  margin: 30px 0px;
+
+  .account-avatar {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 100%;
+    color: white;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 30px;
+
+    &.true {
+      border: 2px solid $red;
+    }
+  }
+}
+
+.account-document-list {
+  list-style-type: none;
+  padding: 0px;
+
+  .account-document-item {
+    display: flex;
+    align-items: center;
+    margin: 30px 0px;
+
+    &.false {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .account-document-type {
+      margin-right: 10px;
+      padding-left: 10px;
+      border-left: 3px solid #8FCC9B;
+      font-weight: bold;
+    }
+  }
+}
+
 @media (max-width: 900px) {
   .user-dashboard-grid{
     display: block;

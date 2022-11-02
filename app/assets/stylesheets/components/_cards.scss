@@ -687,6 +687,47 @@
   }
 }
 
+.account-insert-document {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-top: 20px;
+
+  .document-btn-and-name {
+    display: flex;
+    align-items: center;
+
+    .file-name {
+      margin-left: 20px;
+      font-style: italic;
+      font-size: 14px;
+    }
+  }
+
+  .error {
+    margin-bottom: 0px;
+    height: 20px;
+  }
+
+
+  ::-webkit-file-upload-button {
+    cursor: pointer;
+    padding: 10px 30px;
+    border: 2px solid $light-green;
+    border-radius: 5px;
+    width: fit-content;
+    background-color: white;
+  }
+
+  &.modal-update {
+    border: none;
+  }
+
+  .error{
+    height: fit-content;
+  }
+}
+
 @media (max-width: 600px) {
   .insert-document{
     display: flex;

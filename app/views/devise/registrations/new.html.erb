@@ -17,18 +17,25 @@
                       required: true,
                       autofocus: true,
                       label: false,
-                      placeholder:'*Prénom' %>
+                      placeholder:'*Votre prénom' %>
           <%= f.input :last_name,
                       required: true,
                       label: false,
-                      placeholder:'*Nom' %>
+                      placeholder:'*Votre nom' %>
+          <p id="label-date">*Votre date de naissance</p>
+          <%= f.input :birthdate,
+                      required: true,
+                      label: false,
+                      placeholder: false,
+                      start_year: Date.today.year - 18,
+                      end_year: Date.today.year - 90 %>
           <%= f.input :email,
                       required: true,
                       label: false,
-                      placeholder:'*Adresse email'%>
+                      placeholder:'*Votre adresse email'%>
           <%= f.input :phone_number,
                       label: false,
-                      placeholder:'Téléphone'%>
+                      placeholder:'Votre numéro de téléphone'%>
           <div class='show-password-devise' data-controller='show-password'>
             <%= f.input :password,
                         required: true,

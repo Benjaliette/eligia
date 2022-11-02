@@ -27,6 +27,14 @@
     </div>
 
     <div class="container">
+      <div class="order-steps">
+        <% @order_account.aasm.states.each do |state| %>
+          <% next if state.to_s == "resiliation_failure" %>
+          <div class="order-step <%= @order_account.passed_state?(state.to_s) ? 'active' : '' %>">
+            <div class="order-step-title"><%= @order_account.state_to_french(state.to_s) %></div>
+          </div>
+        <% end %>
+      </div>
       <div class="account-title order-account-title">
         <% if @order_account.account.logo_url.nil?  %>
           <div class="account-avatar" style="background: #464646;">

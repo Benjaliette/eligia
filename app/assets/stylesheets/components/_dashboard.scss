@@ -154,6 +154,71 @@
   }
 }
 
+.order-steps {
+  width: 100%;
+  height: 6px;
+  background: $light-gray;
+  margin: 50px 0px 150px 0px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+
+  .order-step {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: relative;
+    background: $light-gray;
+    z-index: 1;
+
+
+    &::before {
+      content: "";
+      display: block;
+      z-index: 0;
+      width: 212px;
+      position: absolute;
+      height: 6px;
+      top: 35%;
+      right: 18px;
+      border-radius: 10px 0px 0px 10px;
+    }
+
+    &:first-child.active::before {
+      width: 106px;
+    }
+
+    &.active {
+      background: $yellow;
+
+      &::before {
+        background-color: $yellow;
+      }
+    }
+
+    &.three-steps {
+      &::before {
+        width: 284px;
+      }
+
+      &:first-child.active::before {
+        width: 142px;
+      }
+    }
+
+    .order-step-title {
+      position: absolute;
+      font-size: 12px;
+      font-weight: bold;
+      width: 120px;
+      top: 30px;
+      left: -5px;
+    }
+  }
+}
+
 @media (max-width: 900px) {
   .user-dashboard-grid{
     display: block;
@@ -188,6 +253,34 @@
   .error{
     height: inherit;
   }
+
+  .order-steps {
+    .order-step {
+      &::before {
+        width: 110px;
+      }
+
+      &:first-child.active::before {
+        width: 55px;
+      }
+
+      &.three-steps {
+        &::before {
+          width: 150px;
+        }
+
+        &:first-child.active::before {
+          width: 75px;
+        }
+      }
+
+      .order-step-title {
+        width: 100px;
+        top: 33px;
+        left: -20px;
+      }
+    }
+  }
 }
 
 @media (max-width: 700px) {
@@ -203,5 +296,54 @@
 @media (max-width: 500px) {
   .order-documents-grid{
     grid-gap: 5px;
+  }
+
+  .account-title.order-account-title h2 {
+    font-size: 18px;
+  }
+
+  .order-steps {
+    .order-step {
+      &::before {
+        width: 84px;
+      }
+
+      &:first-child.active::before {
+        width: 42px;
+      }
+
+      &.three-steps {
+        &::before {
+          width: 116px;
+        }
+
+        &:first-child.active::before {
+          width: 58px;
+        }
+      }
+
+      .order-step-title {
+        font-size: 12px;
+        width: 80px;
+        top: 27px;
+        left: -27px;
+        text-align: center;
+      }
+    }
+  }
+
+  .account-document-list {
+    .account-document-item {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .account-document-type {
+        font-size: 12px;
+      }
+
+      .account-document-filename {
+        font-size: 12px;
+      }
+    }
   }
 }

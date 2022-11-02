@@ -27,6 +27,8 @@ class OrderAccount < ApplicationRecord
     end
   end
 
+  STATES = [ "document_missing", "pending", "resiliation_sent", "resiliation_failure", "resiliation_success" ]
+
   def reject_accounts(attributes)
     attributes['name'].blank?
   end
@@ -45,8 +47,8 @@ class OrderAccount < ApplicationRecord
     OrderDocument.where(order_id: self.order_id, document_id: self.required_documents)
   end
 
-  def state_to_french
-    case self.aasm_state
+  def state_to_french(state = self.aasm_state)
+    case state
     when "pending" then "En traitement"
     when "document_missing", "documents_missing" then "Document(s) manquant(s)"
     when "resiliation_sent" then "Demande de résiliation envoyée"
@@ -66,10 +68,23 @@ class OrderAccount < ApplicationRecord
     OrderAccountPdf.new(self).build_and_upload_resiliation
   end
 
+  def current_state_index
+    state_index(self.aasm_state)
+  end
+
+
+  def passed_state?(state)
+    current_state_index >= state_index(state)
+  end
+
   private
 
   def update_order_state
     self.order.update_state unless Rails.env.test?
+  end
+
+  def state_index(state)
+    STATES.index(state)
   end
 
   aasm do

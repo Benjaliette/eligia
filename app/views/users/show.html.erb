@@ -42,13 +42,6 @@
             <div class="account-infos-description">
               <div class="margin-bottom-two"><i class="fa-solid fa-envelope margin-right-three light-green"></i> <%= @current_user.email %></div>
               <div class="margin-bottom-two"><i class="fa-solid fa-user margin-right-three light-green"></i> <%= "#{@current_user.first_name} #{@current_user.last_name}" %></div>
-              <div class="margin-bottom-two"><i class="fa-solid fa-location-dot margin-right-three light-green"></i>
-                <% if @current_user.address %>
-                  <%= @current_user.address %>
-                <% else %>
-                  <span class="account-infos-description-address">Vous n'avez pas encore renseigné d'adresse</span>
-                <% end %>
-              </div>
               <%= link_to "Modifier vos informations", edit_user_registration_path(@current_user), class: 'btn-third small' %>
             </div>
           </div>

@@ -21,6 +21,13 @@
     </div>
 
     <div class="container">
+      <div class="order-steps">
+        <% @order.aasm.states.each do |state| %>
+          <div class="order-step three-steps <%= @order.passed_state?(state.to_s) ? 'active' : '' %>">
+            <div class="order-step-title"><%= @order.state_to_french(state.to_s) %></div>
+          </div>
+        <% end %>
+      </div>
       <div class="user-dashboard-content">
         <div class="order-dashboard-section">
           <% unless @order.non_uploaded_order_documents.empty? %>

@@ -13,4 +13,12 @@ class OrderDocument < ApplicationRecord
 
     self.document_file.blob.content_type == 'application/pdf'
   end
+
+  def document_entered?
+    if self.document.format == "file"
+      self.document_file.attached?
+    else
+      self.document_input != ""
+    end
+  end
 end

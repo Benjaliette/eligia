@@ -1,0 +1,49 @@
+<% content_for :title, "Mes démarches - Eligia" %>
+
+<turbo-frame id="content">
+  <% content_for :scroll_navbar, 'scroll-navbar' %>
+  <% content_for :home_navbar, 'home-navbar' %>
+  <%= render 'shared/navbar' %>
+
+  <div class="fullscreen-no-navbar">
+
+    <div class="banner user-banner">
+      <div class="container dashboard-container">
+        <h1><span class='unbold'><%= current_user.first_name %></span> <%= current_user.last_name %></h1>
+        <ul class="dashboard-breadcrumb">
+          <li class="dashboard-breadcrumb-item active">
+            <%= link_to "Espace personnel", user_path(current_user) %>
+          </li>
+          <li class="dashboard-breadcrumb-separator"></li>
+          <li class="dashboard-breadcrumb-item active">
+            <%= link_to order_path(@order) do %>
+              Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %>
+            <% end %>
+          </li>
+          <li class="dashboard-breadcrumb-separator"></li>
+          <li class="dashboard-breadcrumb-item">Contrat <%= @order_account.account.name %></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="account-title order-account-title">
+        <% if @order_account.account.logo_url.nil?  %>
+          <div class="account-avatar" style="background: #464646;">
+            <span style='color: white;'><%= @order_account.account.name.upcase.split.map { |word| word[0] }.join %></span>
+          </div>
+        <% else %>
+          <div class="account-avatar" style="background-image:url('<%= @order_account.account.logo_url %>')"></div>
+        <% end %>
+        <h2><%= @order_account.account.name %></h2>
+      </div>
+      <ul class="account-document-list">
+        <% @order_documents.each do |order_document| %>
+          <div id="<%= dom_id order_document %>">
+            <%= render 'order_accounts/document_input', order_document: order_document, order_account: @order_account, order: @order %>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</turbo-frame>

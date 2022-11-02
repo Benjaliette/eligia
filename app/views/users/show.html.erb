@@ -8,9 +8,13 @@
 
   <div class="fullscreen-no-navbar">
     <div class="banner user-banner">
-      <div class="container padding-top-zero padding-bottom-zero">
+      <div class="container dashboard-container">
         <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
-        <p class="margin-bottom-zero margin-top-one"><em>Bienvenue sur votre espace personnel</em></p>
+        <ul class="dashboard-breadcrumb">
+          <li class="dashboard-breadcrumb-item">
+            Espace personnel
+          </li>
+        </ul>
       </div>
     </div>
 

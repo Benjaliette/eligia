@@ -8,14 +8,15 @@
   <div class="fullscreen-no-navbar">
 
     <div class="banner user-banner">
-      <div class="container padding-top-zero padding-bottom-zero">
-        <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %> > <span class="unbold font-size-smaller"> <%= @order.deceased_first_name %> <%= @order.deceased_last_name.upcase %></span></h1>
-        <p class="margin-bottom-zero margin-top-one">
-          <em>
-            <turbo-frame id="order-state"><%= @order.state_to_french %></turbo-frame>
-          </em>
-        </p>
-        <%= link_to '← retour', user_path(@current_user), class: 'btn-second small margin-top-two position-absolute' %>
+      <div class="container dashboard-container">
+        <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
+        <ul class="dashboard-breadcrumb">
+          <li class="dashboard-breadcrumb-item active">
+            <%= link_to "Espace personnel", user_path(current_user) %>
+          </li>
+          <li class="dashboard-breadcrumb-separator"></li>
+          <li class="dashboard-breadcrumb-item">Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></li>
+        </ul>
       </div>
     </div>
 
@@ -23,20 +24,20 @@
       <div class="user-dashboard-content">
         <div class="order-dashboard-section">
           <% unless @order.non_uploaded_order_documents.empty? %>
-            <turbo-frame id="docs-<%=@order.id%>">
+            <div id="docs-<%=@order.id%>">
               <%= render 'shared/order_document_input_card', order_documents_to_add: @order.non_uploaded_order_documents,
                                                              order_account: false,
                                                              no_doc_message: '',
                                                              modal_height: '' %>
-            </turbo-frame>
+            </div>
           <% end %>
         </div>
 
         <div class="order-dashboard-section">
           <h3 class="dashboard-title margin-top-four width-fit-content">État des contrats à résilier :</h3>
-            <turbo-frame id="oa-cards-<%= @order.id %>">
+            <div id="oa-cards-<%= @order.id %>">
               <%= render "orders/order_account_cards", order: @order %>
-            </turbo-frame>
+            </div>
         </div>
 
       </div>

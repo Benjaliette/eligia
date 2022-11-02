@@ -25,6 +25,7 @@ FactoryBot.define do
     email { "#{first_name}.#{last_name}@eligia.fr".downcase }
     admin { false }
     address { "7 rue Flornoy , 33000 Bordeaux , FR" }
+    birthdate { Date.today - 20.year }
     password { "123456" }
     accepted_rgpd { true }
   end

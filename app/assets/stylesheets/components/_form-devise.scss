@@ -84,6 +84,30 @@
     align-items: flex-start;
   }
 
+  .form-inputs > .input.date{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 48%;
+    margin: 0 auto 1em auto;
+  }
+
+  .input.date > .date {
+    width: 94%;
+    padding: 5px 0px;
+    border: solid 1px lightgray;
+    border-radius: 4px;
+    color: #757575;
+    font-size: 18px;
+  }
+
+  #label-date{
+    width: 50%;
+    margin: 1em auto 0 auto;
+    color: #757575;
+    font-size: 18px;
+    text-align: start;
+  }
+
   .form-inputs > .user_remember_me{
     justify-content: center;
     margin-top: 20px;
@@ -99,6 +123,7 @@
     width: 90%;
     padding: 10px;
     font-size: 18px;
+    font-family: "Montserrat", sans-serif;
   }
 
   .form-actions{
@@ -254,6 +279,15 @@
 
     .form-inputs > .input {
       width: 85%;
+
+    }
+
+    .form-inputs> .input.date{
+      width: 85%;
+    }
+
+    #label-date{
+      width: 85%;
     }
 
     .show-password-devise {
@@ -275,9 +309,15 @@
 }
 
 @media (max-width: 500px) {
-  .form-inputs > .input {
-    width: 90%;
+
+  .input.date > .date {
+    font-size: 12px;
   }
+
+  #label-date{
+    font-size: 12px;
+  }
+
   .input > input {
     font-size: 12px;
   }

@@ -242,6 +242,8 @@ class Order < ApplicationRecord
   end
 
   def check_for_change_in_paid
+    return if Rails.env == "test"
+
     attach_invoice_pdf if saved_change_to_attribute?(:paid) && self.paid == true
   end
 

@@ -65,8 +65,7 @@
                   <li>Montant total de la TVA : <%= @order.pack.price / 1.2 * 0.2 %>€</li>
                   <li>Total TTC : <%= @order.pack.price %>€</li>
                 </ul>
-                <a class="btn-third small" href=<%=@order.invoice_file.url%>> Voir la facture</a>
-                <%# <%= link_to "Voir live", show_invoice_pdf_order_path(@order), class:'btn-third small', target:'_blank' %>
+                <a class="btn-third small" href=<%=@order.invoice_file.url%> target='_blank'> Voir la facture</a>
               </div>
           </div>
         <% end %>

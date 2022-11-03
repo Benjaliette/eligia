@@ -348,6 +348,32 @@ button {
   cursor: pointer;
  }
 
+.notification-close-btn {
+  transform: rotate(45deg);
+  font-size: 24px;
+  cursor: pointer;
+  flex-grow: 1;
+  text-align: center;
+  position: relative;
+
+  &:hover {
+    &::after {
+      content: "Supprimer";
+      background: grey;
+      position: absolute;
+      transform: rotate(-45deg);
+      color: white;
+      font-size: 12px;
+      right: 25px;
+      top: -5px;
+      width: fit-content;
+      padding: 8px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+  }
+ }
+
 .next-btn-mobile{
   display: none;
 }

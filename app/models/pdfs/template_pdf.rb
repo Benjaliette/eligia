@@ -1,6 +1,5 @@
 class TemplatePdf
   include Prawn::View
-  include Prawn::Table
 
   def prawn_resiliation(args)
     Prawn::Document.new(page_size: 'A4') do
@@ -37,7 +36,6 @@ class TemplatePdf
         end
       end
 
-
       args[:order_account].order_documents.select { |order_document| order_document.document_file.attached? && !order_document.pdf? }.each do |order_document|
         text "#{order_document.document.name} :"
         move_down 10
@@ -52,9 +50,9 @@ class TemplatePdf
   end
 
   def prawn_invoice(args)
-    stroke_axis
+    # stroke_axis
     bounding_box([0, 715], width: 300, height: 200) do
-      stroke_bounds
+      # stroke_bounds
       font_size(25) { text "Facture" }
       move_down 20
       text "Date d'émission de la facture : #{Date.today.day}/#{Date.today.month}/#{Date.today.year}"
@@ -65,17 +63,26 @@ class TemplatePdf
       text "33000, BORDEAUX, FR"
       text "contact@eligia.fr"
       text "RCS: 92004872500013"
+      text "Numéro de TVA intracommunautaire : FR32920048725 920 048 725"
     end
 
     image "#{Rails.root}/app/assets/images/flavicon-hd.png", height: 120, at: [430, 715]
 
     bounding_box([0, 450], width: 550, height: 200) do
-      stroke_bounds
-      t = make_table([ ["this is the first row"],
-        ["this is the second row"] ])
-      t.draw
+      # stroke_bounds
+
+    table(
+      [
+        ["Nombre de contrats à résilier", "Equivalence forfait", "Prix du forfait HT", "Taux TVA", "Montant total de la TVA", "Total TTC"],
+        [@order.order_accounts.count.to_s, @order.pack.title, "#{@order.pack.price / 1.2} €", "20%", "#{@order.pack.price / 1.2 * 0.2} €", "#{@order.pack.price} €"]
+      ]
+    )
+    move_down 20
+    text "Détail des contrats à résilier :"
+    move_down 5
+    @order.order_accounts.each do |order_account|
+      text "- #{order_account.account.name}"
     end
-
-
+    end
   end
 end

@@ -85,8 +85,9 @@ gem "puma", "~> 5.0"
 gem 'pundit'
 
 # For PDF generation
-# gem 'prawn-rails', '~> 1.4.2'
 gem 'prawn', '~> 2.4.0'
+
+gem 'prawn-table', '~> 0.2.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"

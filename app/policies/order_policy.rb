@@ -50,4 +50,8 @@ class OrderPolicy < ApplicationPolicy
   def webhook?
     skip_authorization
   end
+
+  def show_invoice_pdf?
+    record.user == user
+  end
 end

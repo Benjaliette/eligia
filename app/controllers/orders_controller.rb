@@ -5,11 +5,11 @@ class OrdersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :webhook
   skip_after_action :verify_authorized, only: :webhook
 
-  before_action :set_order, only: %i[show created edit update update_documents recap paiement destroy success]
+  before_action :set_order, only: %i[show created edit update update_documents recap paiement destroy success show_invoice_pdf]
   before_action :set_categories, only: %i[created update]
 
   after_action :send_confirmation_mail, only: :webhook
-  after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy]
+  after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy show_invoice_pdf]
 
   def index
   end
@@ -17,6 +17,17 @@ class OrdersController < ApplicationController
   def show
     @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
     @order.update_order_account_status
+  end
+
+  def show_invoice_pdf
+    pdf = OrderPdf.new(@order)
+    pdf.prawn_invoice
+    send_data pdf.render,
+              filename: "export.pdf",
+              type: 'application/pdf',
+              disposition: 'inline' # Pour ouvrir et ne pas télécharger
+
+    authorize @order
   end
 
   def new

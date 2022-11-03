@@ -56,6 +56,11 @@
           </div>
         <% end %>
         <div class="account-document-type">Vos docs : </div>
+
+        <% @order_account.link_related_files.each do |link| %>
+          <%= link_to "click", link %>
+        <% end %>
+
       </ul>
 
     </div>

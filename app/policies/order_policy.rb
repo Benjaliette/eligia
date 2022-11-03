@@ -36,7 +36,7 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def paiement?
-    record.paid == false
+    record.paid == false || Rails.env == "development"
   end
 
   def success?

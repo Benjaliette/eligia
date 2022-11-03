@@ -12,7 +12,7 @@
         <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
         <ul class="dashboard-breadcrumb">
           <li class="dashboard-breadcrumb-item active">
-            <%= link_to "Espace personnel", user_path(current_user) %>
+            <%= link_to "Espace personnel", user_path(current_user), data: { turbo_frame: :_top } %>
           </li>
           <li class="dashboard-breadcrumb-separator"></li>
           <li class="dashboard-breadcrumb-item">Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></li>
@@ -21,6 +21,10 @@
     </div>
 
     <div class="container">
+      <div class="order-steps-title">
+        <%= image_tag 'order-steps.png', alt: "Personnes envoyant des lettres", class: "order-steps-img" %>
+        <h4>Avancée de vos démarches :</h4>
+      </div>
       <div class="order-steps">
         <% @order.aasm.states.each do |state| %>
           <div class="order-step three-steps <%= @order.passed_state?(state.to_s) ? 'active' : '' %>">

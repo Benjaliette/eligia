@@ -248,7 +248,8 @@ class Order < ApplicationRecord
   end
 
   def attach_invoice_pdf
-    OrderPdf.new(self).build_and_upload_invoice
+    order_pdf = OrderPdf.new(self)
+    order_pdf.build_and_upload_invoice
   end
 
   aasm do

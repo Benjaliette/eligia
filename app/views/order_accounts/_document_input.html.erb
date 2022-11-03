@@ -1,0 +1,47 @@
+<li class="account-document-item <%= order_document.document_entered? %>">
+  <div class="account-document-type"><%= order_document.document.name %> : </div>
+  <% if order_document.document_entered? %>
+    <div class="account-document-filename"><%= order_document.document_file.filename || order_document.document_input %></div>
+  <% else %>
+      <%= simple_form_for [order, order_account, order_document], url: order_order_account_order_document_path(order, order_account, order_document), html: { id: order_document }, data: { controller:"loading-spinner add-file", action:'turbo:submit-end->loading-spinner#unload click->add-file#test' } do |f| %>
+        <% if order_document.document.format == "file" %>
+          <%= f.error_notification %>
+          <div class="account-insert-document">
+            <div data-check-document-target='infoDiv'></div>
+            <div class="document-btn-and-name align-start">
+              <%= f.input :document_file,
+                          label: 'Ajouter',
+                          as: :file,
+                          input_html: {
+                            accept: '.png, .jpg, .jpeg, .pdf',
+                            class:'hidden-document-input',
+                            data: {
+                              action:'change->add-file#added change->update-checks#updateFile',
+                              add_file_target:'input',
+                            },
+                            id: "modal#{order_document.id}-#{@order_account.id}"
+                          },
+                          label_html: {
+                            class:'label-document-input d-block no-margin',
+                            data: {
+                              add_file_target:'label',
+                            }
+                          }
+              %>
+              <div class="file-name dashboard padding-top-two" data-add-file-target="fileNameDiv"></div>
+            </div>
+            <div id=<%= dom_id order_document %> class='error height-fit-content'></div>
+            <div class="lds-dual-ring display-none small" data-loading-spinner-target='spinner'></div>
+            <%= f.submit "Valider", class:'file optional btn-third small display-none margin-top-two', data: {add_file_target:"submitBtn", loading_spinner_target:"btn", action:"click->loading-spinner#load"} %>
+          </div>
+        <% else %>
+          <div class="account-insert-document">
+            <%= f.input :document_input, label: false, input_html: { class:'doc-input margin-left-zero' } %>
+            <div id=<%="#{order_account.id}-#{order_document.id}"%> class='error'></div>
+            <div class="lds-dual-ring display-none small" data-loading-spinner-target='spinner'></div>
+            <%= f.submit "Valider", class:'file optional btn-third small margin-top-two', data: {"loading-spinner-target":"btn", action:"click->loading-spinner#load"} %>
+          </div>
+        <% end %>
+      <% end %>
+  <% end %>
+</li>

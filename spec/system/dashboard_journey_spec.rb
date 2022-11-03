@@ -47,7 +47,7 @@ RSpec.describe "dashboard_journey", type: :system do
     # User#show
     it "User can login to dashboard" do
       visit_dashboard
-      expect(page).to have_text "Bienvenue sur votre espace personnel"
+      expect(page).to have_text "Espace personnel"
     end
 
     it "User sees last order" do
@@ -59,7 +59,7 @@ RSpec.describe "dashboard_journey", type: :system do
       visit_order_show
       fill_in('order_document[document_input]', match: :first, with: 'abcdef').native.send_keys(:enter)
       sleep 2
-      find('.btn-second', text: '← retour').click
+      find('.dashboard-breadcrumb-item ', text: 'Espace personnel').click
       expect(page).to have_text('Notifications')
     end
 

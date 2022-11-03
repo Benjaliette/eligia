@@ -71,10 +71,15 @@ class OrdersController < ApplicationController
     @order.amount = @order.pack.price
     @order.user = current_user
     if @order.update(order_params)
-      payment = @order.set_mollie_payment(success_order_url(@order), mollie_webhook_url)
-      @order.update(checkout_session_id: payment.id)
+      if Rails.env == "development"
+        @order.update(paid: true)
+        redirect_to success_order_url(@order)
+      else
+        payment = @order.set_mollie_payment(success_order_url(@order), mollie_webhook_url)
+        @order.update(checkout_session_id: payment.id)
 
-      redirect_to payment._links.dig("checkout", "href"), allow_other_host: true
+        redirect_to payment._links.dig("checkout", "href"), allow_other_host: true
+      end
     else
       render :recap
     end

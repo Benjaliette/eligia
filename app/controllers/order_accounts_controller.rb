@@ -5,10 +5,7 @@ class OrderAccountsController < ApplicationController
   after_action :set_pundit_order_account, only: %i[show create destroy]
 
   def show
-    @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
-    @order.update_order_account_status
     @order_documents = @order_account.order_documents
-    render 'orders/show'
   end
 
   def create

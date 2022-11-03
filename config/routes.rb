@@ -64,7 +64,7 @@ Rails.application.routes.draw do
 
   resources :messages, path: 'contact', path_names: { new: 'nous-contacter' }, only: %i[new create]
 
-  resources :notifications, only: :show do
+  resources :notifications, only: %i[show destroy] do
     collection do
       patch :mark_as_read
     end

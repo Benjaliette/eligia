@@ -40,8 +40,16 @@
           <div class="personal-info">
             <h2 class="dashboard-title margin-bottom-zero margin-top-zero">Vos informations personnelles</h2>
             <div class="account-infos-description">
-              <div class="margin-bottom-two"><i class="fa-solid fa-envelope margin-right-three light-green"></i> <%= @current_user.email %></div>
               <div class="margin-bottom-two"><i class="fa-solid fa-user margin-right-three light-green"></i> <%= "#{@current_user.first_name} #{@current_user.last_name}" %></div>
+              <div class="margin-bottom-two"><i class="fa-solid fa-envelope margin-right-three light-green"></i> <%= @current_user.email %></div>
+              <div class="margin-bottom-two"><i class="fa-solid fa-phone margin-right-three light-green"></i>
+                <% if @current_user.phone_number.nil? %>
+                  <em class="font-size-smaller">non renseigné</em>
+                <% else %>
+                  <%= @current_user.phone_number %>
+                <% end %>
+
+              </div>
               <%= link_to "Modifier vos informations", edit_user_registration_path(@current_user), class: 'btn-third small' %>
             </div>
           </div>
@@ -56,17 +64,31 @@
             <div class="notification-body">
               <ul class="notification-list">
                 <% @notifications.each do |notification| %>
-                  <li class="notification-list-item">
-                    <%= link_to notification.order_account ? order_order_account_path(notification.order, notification.order_account) : order_path(notification.order) do %>
-                      <div class="notification-content"><%= notification.content %></div>
-                    <% end %>
-                    <% notification_time = (Date.today - notification.created_at.to_date).to_i %>
-                    <div class="notification-date">
-                      <% if Date.today == notification.created_at.to_date %>
-                        Aujourd'hui
-                      <% else %>
-                        <%= "Il y a #{notification_time} jour#{notification_time > 1 ? 's' : ''}" %>
+                  <li class="notification-list-item" data-controller="modal">
+                    <div class="notification-all">
+                      <%= link_to notification.order_account ? order_order_account_path(notification.order, notification.order_account) : order_path(notification.order) do %>
+                        <div class="notification-content"><%= notification.content %></div>
                       <% end %>
+                      <% notification_time = (Date.today - notification.created_at.to_date).to_i %>
+                      <div class="notification-date">
+                        <% if Date.today == notification.created_at.to_date %>
+                          Aujourd'hui
+                        <% else %>
+                          <%= "Il y a #{notification_time} jour#{notification_time > 1 ? 's' : ''}" %>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="notification-close-btn" data-action="click->modal#modalAppear">
+                      +
+                    </div>
+                    <div class="modal display-none" data-modal-target="modal">
+                      <div class="modal-content notification-modal">
+                        <div>Souhaitez-vous supprimer cette notification définitivement ?</div>
+                        <div class="modal-choice">
+                          <%= link_to 'Oui', notification_path(notification), data: { turbo_method: :delete } %>
+                          <button data-action="click->modal#modalClose">Non</button>
+                        </div>
+                      </div>
                     </div>
                   </li>
                 <% end %>

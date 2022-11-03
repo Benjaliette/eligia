@@ -82,6 +82,29 @@
       }
     }
   }
+
+  &.notification-modal {
+    width: 50vw;
+    height: 30vh;
+    justify-content: space-evenly;
+
+    .modal-choice {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 40%;
+      height: 40%;
+
+      button, a {
+        text-decoration: none;
+
+        &:hover {
+          transform: scale(1.04);
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
 
 .close {

@@ -34,6 +34,8 @@ class Order < ApplicationRecord
     end
   end
 
+  STATES = ['pending', 'processing', 'done']
+
   def required_documents
     required_documents = []
     self.order_accounts.each do |o_a|
@@ -58,8 +60,8 @@ class Order < ApplicationRecord
     end
   end
 
-  def state_to_french
-    case self.aasm_state
+  def state_to_french(state = self.aasm_state)
+    case state
     when "pending" then "En attente d'une action de votre part"
     when "processing" then "En cours de traitement"
     when "done" then "Tous les contrats ont été traités"
@@ -179,6 +181,15 @@ class Order < ApplicationRecord
     JSON.generate({ documents: })
   end
 
+  def current_state_index
+    state_index(self.aasm_state)
+  end
+
+
+  def passed_state?(state)
+    current_state_index >= state_index(state)
+  end
+
   private
 
   def reject_order_accounts(attributes)
@@ -220,6 +231,10 @@ class Order < ApplicationRecord
         product: product.id
       }
     )
+  end
+
+  def state_index(state)
+    STATES.index(state)
   end
 
   aasm do

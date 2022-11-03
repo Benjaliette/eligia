@@ -10,11 +10,11 @@ class FileTypeValidator < ActiveModel::EachValidator
         value.gsub(' ', '') =~ /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i || value.empty?
       when 'compteur_gaz'
         record.errors.add attribute, (options[:message] || "Relevé invalide") unless
-        value =~ /\A\d{5}\z/
+        value =~ /\A\d{5}\z/ || value.empty?
       when 'compteur_elec'
         # PDL (point de livraison ou numéro de compteur)
         record.errors.add attribute, (options[:message] || "Relevé invalide") unless
-        value =~ /\A\d{14}\z/
+        value =~ /\A\d{14}\z/ || value.empty?
       when 'compteur_eau'
         # record.errors.add attribute, (options[:message] || "Relevé invalide") unless
         # value =~ /^FR\d{12}[A-Z0-9]{11}\d{2}$/i || value.empty?

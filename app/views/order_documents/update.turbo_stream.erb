@@ -1,16 +1,7 @@
 <%= turbo_stream.update("flash", partial: "shared/flash") %>
-<%= turbo_stream.update("docs-#{@order.id}", partial: 'shared/order_document_input_card',
+<%= turbo_stream.update(@order_document, partial: 'order_accounts/document_input',
                                           locals: {
-                                            order_documents_to_add: @order.non_uploaded_order_documents,
-                                            order_account: false,
-                                            no_doc_message: '',
-                                            modal_height: ''
+                                            order_document: @order_document,
+                                            order_account: @order_account,
+                                            order: @order
                                           }) %>
-<%= turbo_stream.update("modal-#{@order_account.id}", partial: 'shared/order_document_input_card',
-                                                          locals: {
-                                                            order_documents_to_add: @order_account.non_uploaded_order_documents,
-                                                            order_account: @order_account,
-                                                            no_doc_message: 'Vous avez ajouté toutes les informations nécessaires',
-                                                            modal_height: 'modal-height'
-                                                          }) %>
-<%= turbo_stream.update("order-state", @order.state_to_french) %>

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'success'
       patch 'paiement'
     end
+
     resources :order_documents, path: 'documents', only: %i[update] do
       member do
         patch 'update_documents'

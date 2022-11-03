@@ -1,5 +1,6 @@
 class TemplatePdf
   include Prawn::View
+  include Prawn::Table
 
   def prawn_resiliation(args)
     Prawn::Document.new(page_size: 'A4') do
@@ -51,13 +52,30 @@ class TemplatePdf
   end
 
   def prawn_invoice(args)
-    Prawn::Document.new(page_size: 'A4') do
-      # stroke_axis
-      bounding_box([0, 715], width: 150, height: 100) do
-        # stroke_bounds
-        text "ELIGIA SARL,"
-        text "6 rue Flornoy, 33000 Bordeaux"
-      end
+    stroke_axis
+    bounding_box([0, 715], width: 300, height: 200) do
+      stroke_bounds
+      font_size(25) { text "Facture" }
+      move_down 20
+      text "Date d'émission de la facture : #{Date.today.day}/#{Date.today.month}/#{Date.today.year}"
+      text "Numéro de référence : F#{"0" * (10 - @order.id.to_s.split.size)}#{@order.id}"
+      move_down 20
+      text "ELIGIA SARL,"
+      text "6 rue Flornoy"
+      text "33000, BORDEAUX, FR"
+      text "contact@eligia.fr"
+      text "RCS: 92004872500013"
     end
+
+    image "#{Rails.root}/app/assets/images/flavicon-hd.png", height: 120, at: [430, 715]
+
+    bounding_box([0, 450], width: 550, height: 200) do
+      stroke_bounds
+      t = make_table([ ["this is the first row"],
+        ["this is the second row"] ])
+      t.draw
+    end
+
+
   end
 end

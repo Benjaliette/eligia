@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get :recap, path: 'recapitulatif'
       get 'success'
       patch 'paiement'
+      get :show_invoice_pdf
     end
 
     resources :order_documents, path: 'documents', only: %i[update] do

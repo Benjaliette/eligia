@@ -2,6 +2,9 @@ require 'normalize_country'
 
 class Order < ApplicationRecord
   include AASM
+  include ActiveStoragePath
+
+  after_save :check_for_change_in_paid
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
@@ -14,6 +17,7 @@ class Order < ApplicationRecord
   has_many :order_documents, dependent: :destroy, index_errors: true
   has_many :notifications, dependent: :destroy
   has_one :address, dependent: :destroy
+  has_one_attached_with :invoice_file, path: -> { "#{self.deceased_first_name}_#{self.deceased_last_name}" }
 
   accepts_nested_attributes_for :order_documents, allow_destroy: true
   accepts_nested_attributes_for :address, allow_destroy: true
@@ -235,6 +239,14 @@ class Order < ApplicationRecord
 
   def state_index(state)
     STATES.index(state)
+  end
+
+  def check_for_change_in_paid
+    attach_invoice_pdf if saved_change_to_attribute?(:paid) && self.paid == true
+  end
+
+  def attach_invoice_pdf
+    OrderPdf.new(self).build_and_upload_invoice
   end
 
   aasm do

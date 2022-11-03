@@ -2,7 +2,7 @@ class TemplatePdf
   include Prawn::View
 
   def prawn_resiliation(args)
-    Prawn::Document.new( page_size: 'A4') do
+    Prawn::Document.new(page_size: 'A4') do
       # stroke_axis
       bounding_box([0, 715], width: 150, height: 100) do
         # stroke_bounds
@@ -47,6 +47,17 @@ class TemplatePdf
       fill_rectangle [0, 100], 540, 100
 
       image "#{Rails.root}/app/assets/images/eligia-sans-fond.png", height: 80, at: [10, 90]
+    end
+  end
+
+  def prawn_invoice(args)
+    Prawn::Document.new(page_size: 'A4') do
+      # stroke_axis
+      bounding_box([0, 715], width: 150, height: 100) do
+        # stroke_bounds
+        text "ELIGIA SARL,"
+        text "6 rue Flornoy, 33000 Bordeaux"
+      end
     end
   end
 end

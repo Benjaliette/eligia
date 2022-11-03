@@ -30,7 +30,7 @@
             <% end %>
             <div class="user-dashboard-content">
               <% @orders.each do |order| %>
-                <%= link_to order_path(order) do %>
+                <%= link_to order_path(order), data: { turbo_frame: :_top } do %>
                   <%= render "orders/order_dashboard_card", order: order %>
                 <% end %>
               <% end %>

@@ -9,6 +9,12 @@
   position: fixed;
 }
 
+.order-steps-img {
+  width: 150px;
+  margin: 20px;
+  transform: rotateY(180deg);
+}
+
 @media(max-width: 700px){
   .login-image{
     display: none;

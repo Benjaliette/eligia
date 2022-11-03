@@ -29,7 +29,7 @@
 
       <div class="order-account-card-button">
         <div class='align-center'>
-          <%= link_to order_order_account_path(order, order_account) do %>
+          <%= link_to order_order_account_path(order, order_account), data: { turbo_frame: :_top } do %>
             <div class='btn-third small'>
               Voir >>
             </div>

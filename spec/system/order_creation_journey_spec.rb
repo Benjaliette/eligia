@@ -96,7 +96,7 @@ RSpec.describe "order_creation_journey", type: :system do
     # Step 3 :
     it "Should show the recap page" do
       step_one_two_complete
-      expect(page).to have_text("Récapitulatif / Confirmation")
+      expect(page).to have_text("Récapitulatif")
     end
 
     it "Should display the right price" do

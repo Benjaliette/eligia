@@ -14,9 +14,9 @@ if Rails.env.development?
 
 
   puts "👷🏼 Création des Users"
-  User.create(first_name: 'Marc', last_name: 'Delesalle', email: 'marc.delesalle@eligia.fr', password: '123456', admin: 'true', accepted_rgpd: true)
-  User.create(first_name: 'Benjamin', last_name: 'Liet', email: 'benjamin.liet@eligia.fr', password: '123456', admin: 'true', accepted_rgpd: true)
-  User.create(first_name: 'jane', last_name: 'doe', email: 'jane.doe@eligia.fr', password: '123456', accepted_rgpd: true)
+  User.create(first_name: 'Marc', last_name: 'Delesalle', email: 'marc.delesalle@eligia.fr', password: '123456', admin: 'true', accepted_rgpd: true, birthdate: Date.today - 20.year)
+  User.create(first_name: 'Benjamin', last_name: 'Liet', email: 'benjamin.liet@eligia.fr', password: '123456', admin: 'true', accepted_rgpd: true, birthdate: Date.today - 20.year)
+  User.create(first_name: 'jane', last_name: 'doe', email: 'jane.doe@eligia.fr', password: '123456', accepted_rgpd: true, birthdate: Date.today - 20.year)
   puts User.count == 3 ? "🟩 Users créées avec succès" : "🟥 Erreur dans la création des Users"
 
   puts "👷🏼 Création des catégories"

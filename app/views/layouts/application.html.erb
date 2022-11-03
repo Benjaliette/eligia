@@ -7,8 +7,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'G-M8WXRW11HK');
+      gtag('config', 'G-M8WXRW11HK'); // Balise Google Ads + Google Analytics
+      gtag('config', 'AW-10977648623'); // Compte Google Ads
     </script>
     <% if content_for?(:title) %>
       <title>
@@ -27,7 +27,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body class=<%= content_for?(:bodyclass) ? yield(:bodyclass) : "" %>>
     <%= yield %>
     <turbo-frame id="flash">
       <%= render 'shared/flash' %>

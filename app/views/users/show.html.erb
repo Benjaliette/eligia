@@ -8,9 +8,13 @@
 
   <div class="fullscreen-no-navbar">
     <div class="banner user-banner">
-      <div class="container padding-top-zero padding-bottom-zero">
+      <div class="container dashboard-container">
         <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
-        <p class="margin-bottom-zero margin-top-one"><em>Bienvenue sur votre espace personnel</em></p>
+        <ul class="dashboard-breadcrumb">
+          <li class="dashboard-breadcrumb-item">
+            Espace personnel
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -38,13 +42,6 @@
             <div class="account-infos-description">
               <div class="margin-bottom-two"><i class="fa-solid fa-envelope margin-right-three light-green"></i> <%= @current_user.email %></div>
               <div class="margin-bottom-two"><i class="fa-solid fa-user margin-right-three light-green"></i> <%= "#{@current_user.first_name} #{@current_user.last_name}" %></div>
-              <div class="margin-bottom-two"><i class="fa-solid fa-location-dot margin-right-three light-green"></i>
-                <% if @current_user.address %>
-                  <%= @current_user.address %>
-                <% else %>
-                  <span class="account-infos-description-address">Vous n'avez pas encore renseigné d'adresse</span>
-                <% end %>
-              </div>
               <%= link_to "Modifier vos informations", edit_user_registration_path(@current_user), class: 'btn-third small' %>
             </div>
           </div>

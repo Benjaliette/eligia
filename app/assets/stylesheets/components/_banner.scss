@@ -27,9 +27,16 @@
   &.user-banner {
     height: 20vh;
     position: relative;
+    display: flex;
+    align-items: flex-end;
 
     .container {
       padding: 40vh 0 10vh 0;
+
+      &.dashboard-container {
+        padding: 0px;
+        margin-bottom: 2vh;
+      }
     }
   }
 

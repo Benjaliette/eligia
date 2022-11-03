@@ -17,7 +17,7 @@ class Order < ApplicationRecord
   has_many :order_documents, dependent: :destroy, index_errors: true
   has_many :notifications, dependent: :destroy
   has_one :address, dependent: :destroy
-  has_one_attached_with :invoice_file, path: -> { "#{self.deceased_first_name}_#{self.deceased_last_name}" }
+  has_one_attached_with :invoice_file, path: -> { "#{self.deceased_first_name.gsub(' ', '_')}_#{self.deceased_last_name.gsub(' ', '_')}" }
 
   accepts_nested_attributes_for :order_documents, allow_destroy: true
   accepts_nested_attributes_for :address, allow_destroy: true

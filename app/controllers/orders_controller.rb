@@ -19,6 +19,17 @@ class OrdersController < ApplicationController
     @order.update_order_account_status
   end
 
+  def show_invoice_pdf
+    pdf = OrderPdf.new(@order)
+    pdf.prawn_invoice
+    send_data pdf.render,
+              filename: "export.pdf",
+              type: 'application/pdf',
+              disposition: 'inline' # Pour ouvrir et ne pas télécharger
+
+    authorize @order
+  end
+
   def new
     @order = Order.create
     redirect_to created_order_path(@order)

@@ -54,6 +54,7 @@
               <div class="box">
                 <p>Super facture</p>
                 <a class="btn-third small" href=<%=@order.invoice_file.url%>> Voir la facture</a>
+                <%= link_to "Voir live", show_invoice_pdf_order_path(@order), class:'btn-third small', target:'_blank' %>
               </div>
           </div>
         <% end %>

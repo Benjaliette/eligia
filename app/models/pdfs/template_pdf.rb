@@ -50,39 +50,40 @@ class TemplatePdf
   end
 
   def prawn_invoice(args)
-    # stroke_axis
-    bounding_box([0, 715], width: 300, height: 200) do
-      # stroke_bounds
-      font_size(25) { text "Facture" }
-      move_down 20
-      text "Date d'émission de la facture : #{Date.today.day}/#{Date.today.month}/#{Date.today.year}"
-      text "Numéro de référence : F#{"0" * (10 - @order.id.to_s.split.size)}#{@order.id}"
-      move_down 20
-      text "ELIGIA SARL,"
-      text "6 rue Flornoy"
-      text "33000, BORDEAUX, FR"
-      text "contact@eligia.fr"
-      text "RCS: 92004872500013"
-      text "Numéro de TVA intracommunautaire : FR32920048725 920 048 725"
-    end
+    Prawn::Document.new(page_size: 'A4') do
+      # stroke_axis
+      bounding_box([0, 715], width: 300, height: 200) do
+        # stroke_bounds
+        font_size(25) { text "Facture" }
+        move_down 20
+        text "Date d'émission de la facture : #{Date.today.day}/#{Date.today.month}/#{Date.today.year}"
+        text "Numéro de référence : F#{"0" * (10 - args[:order].id.to_s.split.size)}#{args[:order].id}"
+        move_down 20
+        text "ELIGIA SARL,"
+        text "6 rue Flornoy"
+        text "33000, BORDEAUX, FR"
+        text "contact@eligia.fr"
+        text "RCS: 92004872500013"
+        text "Numéro de TVA intracommunautaire : FR32920048725"
+      end
 
-    # image "#{Rails.root}/app/assets/images/flavicon-hd.png", height: 120, at: [430, 715]
+      image "#{Rails.root}/app/assets/images/flavicon-hd.png", height: 120, at: [410, 715]
 
-    bounding_box([0, 450], width: 550, height: 200) do
-      # stroke_bounds
-
-    table(
-      [
-        ["Nombre de contrats à résilier", "Equivalence forfait", "Prix du forfait HT", "Taux TVA", "Montant total de la TVA", "Total TTC"],
-        [@order.order_accounts.count.to_s, @order.pack.title, "#{@order.pack.price / 1.2} €", "20%", "#{@order.pack.price / 1.2 * 0.2} €", "#{@order.pack.price} €"]
-      ]
-    )
-    move_down 20
-    text "Détail des contrats à résilier :"
-    move_down 5
-    @order.order_accounts.each do |order_account|
-      text "- #{order_account.account.name}"
-    end
+      bounding_box([0, 450], width: 530, height: 200) do
+        # stroke_bounds
+        table(
+          [
+            ["Nombre de contrats à résilier", "Equivalence forfait", "Prix du forfait HT", "Taux TVA", "Montant total de la TVA", "Total TTC"],
+            [args[:order].order_accounts.count.to_s, args[:order].pack.title, "#{args[:order].pack.price / 1.2} €", "20%", "#{args[:order].pack.price / 1.2 * 0.2} €", "#{args[:order].pack.price} €"]
+          ]
+        )
+        move_down 20
+        text "Détail des contrats à résilier :"
+        move_down 5
+        args[:order].order_accounts.each do |order_account|
+          text "- #{order_account.account.name}"
+        end
+      end
     end
   end
 end

@@ -66,7 +66,7 @@ class TemplatePdf
       text "Numéro de TVA intracommunautaire : FR32920048725 920 048 725"
     end
 
-    image "#{Rails.root}/app/assets/images/flavicon-hd.png", height: 120, at: [430, 715]
+    # image "#{Rails.root}/app/assets/images/flavicon-hd.png", height: 120, at: [430, 715]
 
     bounding_box([0, 450], width: 550, height: 200) do
       # stroke_bounds

@@ -10,13 +10,13 @@ RSpec.describe Address, type: :model do
 
     it "Should be invalid w/o a street name" do
       order = build(:order)
-      address = Address.create(zip: '33000', city: "Bordeaux", state: "France", order: order)
+      address = create(:address, street: nil order:)
       expect(order.valid?).to eq false
     end
 
-    it "Should be invalid when empty" do
+    it "Address errors indexed in order : order invalid if address is invalid" do
       order = build(:order)
-      address = Address.create(order: order)
+      address =create(:address, street: nil, order: order)
       expect(order.valid?).to eq false
     end
   end

@@ -1,11 +1,9 @@
 FactoryBot.define do
   factory :address do
-    street { "MyString" }
-    complement { "MyString" }
-    zip { "MyString" }
-    city { "MyString" }
-    country { "MyString" }
-    order { nil }
+    street { "9 rue André Darbon" }
+    zip { "33000" }
+    city { "Bordeaux" }
+    state { "France" }
   end
 
   factory :rgpd do

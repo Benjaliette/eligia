@@ -12,7 +12,7 @@ class OrderPdf < TemplatePdf
   end
 
   def build_and_upload_invoice
-    @order.invoice_file.attach(io: StringIO.new(self.prawn_invoice.render), filename: "file.pdf", content_type: "application/pdf")
+    @order.invoice_file.attach(io: StringIO.new(self.prawn_invoice.render), filename: "facuture-eligia.pdf", content_type: "application/pdf")
   end
 
   private

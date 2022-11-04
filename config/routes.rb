@@ -52,6 +52,8 @@ Rails.application.routes.draw do
   resources :pages do
     collection do
       get :price, path: 'tarifs'
+      get :cgu
+      get :cgv
     end
   end
 

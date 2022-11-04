@@ -39,6 +39,19 @@ RSpec.describe "dashboard_journey", type: :system do
       page.find('.user-dashboard-content').find('a').click
     end
 
+    def visit_order_account_show
+      num_tel = create(:document, name: "numero telephone", format: 'text')
+      num_contract = create(:document, name: "numero contrat", format: 'text')
+      create(:account_document, account: Account.last, document: num_tel)
+      create(:account_document, account: Account.last, document: num_contract)
+      order = create(:order, user: User.first, paid: true)
+      create(:order_account, order:, account: Account.last)
+      create(:order_document, order:, document: num_tel)
+      create(:order_document, order:, document: num_contract)
+      visit "/resiliations/#{User.first.orders.last.slug}"
+      page.find('.order-account-card-button', match: :first).find('a').click
+    end
+
 
     ## --------------------------------------------------------------------------------------------------
     ## Journey tests
@@ -99,6 +112,12 @@ RSpec.describe "dashboard_journey", type: :system do
       sleep 2
       expect(page.all('input').count).to eq 0
       expect(page).to have_text("En traitement")
+    end
+
+    # OrderAccount#show
+    it "User can visit order_account#show" do
+      visit_order_account_show
+      expect(page).to have_text("Avancée de la résiliation")
     end
   end
 end

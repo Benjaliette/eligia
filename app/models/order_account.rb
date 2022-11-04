@@ -85,8 +85,8 @@ class OrderAccount < ApplicationRecord
     bucket.files.each do |file|
       regex = /\A#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}\/#{self.account.name.gsub(' ', '_')}\/justificatifs\/.+/
       p "🛑regex=#{regex}"
+      p "✅file_name=#{file.name}"
       if regex.match(file.name)
-        p "✅file_name=#{file.name}"
         file_links << { signed_url: file.signed_url, file_name: file.name.gsub("#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}/#{self.account.name}/justificatifs\/",'') }
       end
     end

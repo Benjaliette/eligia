@@ -81,9 +81,9 @@ class OrderAccount < ApplicationRecord
     bucket = storage.bucket self.find_bucket, skip_lookup: true
     file_links = []
     bucket.files.each do |file|
-      regex = /\A#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}\/#{self.account.name}\/rustificatifs\/.+/
+      regex = /\A#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}\/#{self.account.name}\/justificatifs\/.+/
       if regex.match(file.name)
-        file_links << { signed_url: file.signed_url, file_name: file.name.gsub("#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}/#{self.account.name}/rustificatifs\/",'') }
+        file_links << { signed_url: file.signed_url, file_name: file.name.gsub("#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}/#{self.account.name}/justificatifs\/",'') }
       end
     end
     file_links

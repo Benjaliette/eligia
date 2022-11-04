@@ -72,25 +72,6 @@ class Order < ApplicationRecord
     end
   end
 
-  def set_stripe_paiement(success_url, cancel_url)
-    customer = set_stripe_customer
-    product = set_stripe_product
-    price = set_stripe_price(product)
-
-    Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      billing_address_collection: 'required',
-      line_items: [{
-        price: price.id,
-        quantity: 1,
-      }],
-      customer: customer,
-      mode: 'payment',
-      success_url: "#{success_url}?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: cancel_url
-    )
-  end
-
   def set_mollie_payment(success_url, webhook_url)
     customer = Mollie::Customer.create(
       name: "#{self.user.first_name} #{self.user.last_name}",
@@ -209,32 +190,6 @@ class Order < ApplicationRecord
       :deceased_last_name,
       %i[deceased_first_name deceased_last_name]
     ]
-  end
-
-  def set_stripe_customer
-    Stripe::Customer.create(
-      {
-        email: self.user.email,
-        name: "#{self.user.first_name} #{self.user.last_name}",
-        metadata: { id: self.user.id }
-      }
-    )
-  end
-
-  def set_stripe_product
-    Stripe::Product.create(
-      name: "Vous souhaitez résilier #{self.order_accounts.count} comptes. \n Il s'agit donc d'une formule '#{self.pack.title}'"
-    )
-  end
-
-  def set_stripe_price(product)
-    Stripe::Price.create(
-      {
-        unit_amount: self.pack.price_cents,
-        currency: 'eur',
-        product: product.id
-      }
-    )
   end
 
   def state_index(state)

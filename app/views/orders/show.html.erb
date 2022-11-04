@@ -22,7 +22,7 @@
 
     <div class="container">
       <div class="order-steps-title">
-        <%= image_tag 'order-steps.png', alt: "Personnes envoyant des lettres", class: "order-steps-img" %>
+        <%= image_tag 'order-steps.svg', alt: "Personnes envoyant des lettres", class: "order-steps-img" %>
         <h4>Avancée de vos démarches :</h4>
       </div>
       <div class="order-steps">
@@ -55,17 +55,34 @@
         <% if @order.invoice_file.attached? %>
           <div class="order-dashboard-section">
             <h3 class="dashboard-title margin-top-four width-fit-content">État des contrats à résilier :</h3>
-              <div class="box">
-                <ul>
-                  <li>Ouverture du dossier : <%= @order.created_at.strftime("%d/%m/%y") %></li>
-                  <li>Nombre de contrats à résilier : <%= @order.order_accounts.count %></li>
-                  <li>Equivalence forfait : <%= @order.pack.title %></li>
-                  <li>Prix du forfait HT : <%= @order.pack.price / 1.2 %>€</li>
-                  <li>Taux TVA : 20%</li>
-                  <li>Montant total de la TVA : <%= @order.pack.price / 1.2 * 0.2 %>€</li>
-                  <li>Total TTC : <%= @order.pack.price %>€</li>
-                </ul>
-                <a class="btn-third small" href=<%=@order.invoice_file.url%> target='_blank'> Voir la facture</a>
+              <div class="box margin-bottom-five">
+                <div class="box-invoice-btn">
+                  <a class="btn-third small" href=<%=@order.invoice_file.url%>> Voir la facture</a>
+                </div>
+                <div class="box-invoice">
+                  <ul class="box-invoice-part">
+                    <li class="box-invoice-part-title">Ouverture du dossier :</li>
+                    <li><%= l(Date.parse(@order.created_at.to_s), format: :long) %></li>
+                  </ul>
+                  <ul class="box-invoice-part">
+                    <li class="box-invoice-part-title">Récapitulatif :</li>
+                    <li><span>Nombre de contrats :</span> <span><%= @order.order_accounts.count %></span></li>
+                    <li><span>Forfait :</span> <span><%= @order.pack.title %></span></li>
+                    <li><span>Prix HT :</span> <span><%= @order.pack.price / 1.2 %>€</span></li>
+                    <li><span>TVA (20%) :</span> <span><%= @order.pack.price / 1.2 * 0.2 %>€</span></li>
+                    <li><span>Total TTC :</span> <span><%= @order.pack.price %>€</span></li>
+                  </ul>
+                  <ul class="box-invoice-part">
+                    <li class="box-invoice-part-title">Adresse de facturation :</li>
+                    <li><%= @order.address.street %></li>
+                    <% unless @order.address.complement.nil? %>
+                      <li><%= @order.address.complement %></li>
+                    <% end %>
+                    <li><%= @order.address.zip %> - <%= @order.address.city %></li>
+                    <li><%= @order.address.state %></li>
+                  </ul>
+                </div>
+                <%# <%= link_to "Voir live", show_invoice_pdf_order_path(@order), class:'btn-third small', target:'_blank' %>
               </div>
           </div>
         <% end %>

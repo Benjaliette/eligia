@@ -72,9 +72,21 @@ class OrderAccount < ApplicationRecord
     state_index(self.aasm_state)
   end
 
-
   def passed_state?(state)
     current_state_index >= state_index(state)
+  end
+
+  def link_related_files
+    storage = Google::Cloud::Storage.new
+    bucket = storage.bucket self.find_bucket, skip_lookup: true
+    file_links = []
+    bucket.files.each do |file|
+      regex = /\A#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}\/#{self.account.name}\/rustificatifs\/.+/
+      if regex.match(file.name)
+        file_links << { signed_url: file.signed_url, file_name: file.name.gsub("#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}/#{self.account.name}/rustificatifs\/",'') }
+      end
+    end
+    file_links
   end
 
   private

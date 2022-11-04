@@ -21,7 +21,6 @@ module ActiveStoragePath
           custom_key = "#{self.account.name}/#{Date.today}_Résiliation_#{self.account.name.gsub(' ', '_')}-#{original_key}"
         when Order
           custom_key = "Facture"
-          create_empty_folder(File.join(instance_exec(&path), 'justificatifs/'))
         end
 
         # The key is used for path + filename when used. Append path.
@@ -30,11 +29,5 @@ module ActiveStoragePath
         action
       end
     end
-  end
-
-  def create_empty_folder(file_path)
-    storage = Google::Cloud::Storage.new
-    bucket = storage.bucket self.find_bucket, skip_lookup: true
-    bucket.blob(file_path)
   end
 end

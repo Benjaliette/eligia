@@ -78,14 +78,13 @@ class OrderAccount < ApplicationRecord
 
   def link_related_files
     storage = Google::Cloud::Storage.new
-    p "❌storage=#{storage}"
     bucket = storage.bucket self.find_bucket, skip_lookup: true
-    p "❌bucket=#{bucket}"
     file_links = []
     bucket.files.each do |file|
-      regex = /\A#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}\/#{self.account.name.gsub(' ', '_')}\/justificatifs\/.+/
-      p "🛑regex=#{regex}"
-      p "✅file_name=#{file.name}"
+      account_name = self.account.name.gsub(/[ ()]/, ' ' => '_', '(' => '\(', ')' => '\)')
+      regex = /\A#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}\/#{account_name}\/justificatifs\/.+/
+      p "✅regex #{regex}"
+      p "file_name #{file.name}"
       if regex.match(file.name)
         file_links << { signed_url: file.signed_url, file_name: file.name.gsub("#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}/#{self.account.name}/justificatifs\/",'') }
       end

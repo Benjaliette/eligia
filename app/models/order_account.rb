@@ -84,7 +84,7 @@ class OrderAccount < ApplicationRecord
       account_name = self.account.name.gsub(/[ ()]/, ' ' => '_', '(' => '\(', ')' => '\)')
       regex = /\A#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}\/#{account_name}\/justificatifs\/.+/
       if regex.match(file.name)
-        file_links << { signed_url: file.signed_url, file_name: file.name.gsub("#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}/#{self.account.name}/justificatifs\/",'') }
+        file_links << { signed_url: file.signed_url, file_name: file.name.gsub("#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}/#{account_name}/justificatifs\/",'') }
       end
     end
     file_links

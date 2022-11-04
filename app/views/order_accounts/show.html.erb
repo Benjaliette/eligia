@@ -28,7 +28,7 @@
 
     <div class="container">
       <div class="order-steps-title">
-        <%= image_tag 'order-steps.png', alt: "Personnes envoyant des lettres", class: "order-steps-img" %>
+        <%= image_tag 'order-steps.svg', alt: "Personnes envoyant des lettres", class: "order-steps-img" %>
         <h4>Avancée de la résiliation de <%= @order_account.account.name %> :</h4>
       </div>
       <div class="order-steps">
@@ -57,10 +57,9 @@
         <% end %>
         <div class="account-document-type">Vos docs : </div>
 
-        <% @order_account.link_related_files.each do |link| %>
-          <%= link_to "click", link %>
+        <% @order_account.link_related_files.each do |related_file| %>
+          <%= link_to related_file[:file_name], related_file[:signed_url], class: "btn-second" %>
         <% end %>
-
       </ul>
 
     </div>

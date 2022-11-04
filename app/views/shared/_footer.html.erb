@@ -4,10 +4,13 @@
   <div class="footer-items">
     <ul class="site-list" data-footer-responsivity-target='footerItems'>
       <li class="site-list-item">
-        <%= link_to 'Nous contacter', new_message_path %>
+        ELIGIA SARL, 920 048 725 R.C.S. Bordeaux
       </li>
       <li class="site-list-item">
-        <%= link_to 'Tarifs', price_pages_path %>
+        6 Rue Flornoy 33000 Bordeaux
+      </li>
+      <li class="site-list-item">
+        Numéro TVA intracommunautaire : FR32920048725
       </li>
     </ul>
     <div class="logo" data-footer-responsivity-target='bigLogo'>
@@ -20,5 +23,19 @@
         <%= image_tag('eligia-e-vecto.svg', alt:'Logo Eligia') %>
       <% end %>
     </div>
+    <ul class="site-list align-end" data-footer-responsivity-target='footerItems'>
+      <li class="site-list-item underline">
+        <%= link_to 'Nous contacter', new_message_path %>
+      </li>
+      <li class="site-list-item underline">
+        <%= link_to 'Tarifs', price_pages_path %>
+      </li>
+      <li class="site-list-item underline">
+        <%= link_to "Conditions générales d'utilisaiton", cgu_pages_path %>
+      </li>
+      <li class="site-list-item underline">
+        <%= link_to "Conditions générales de vente", cgv_pages_path %>
+      </li>
+    </ul>
   </div>
 </div>

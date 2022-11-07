@@ -5,6 +5,39 @@
 <div class="container">
   <div class="fullscreen">
     <h1>Les tarifs</h1>
+
+    <div class="help-text">
+      <p>
+        Chez eligia, nous savons que chaque personne est unique et ainsi, personne n'aura jamais le même
+        nombre d'abonnements. C'est la raison pour laquelle nous avons choisi de faire une facturation
+        abordable et progressive en fonction du nombre de contrats à résilier.
+      </p>
+      <p>
+        Pour utiliser ce service, vous aurez le choix entre trois prix différents
+      </p>
+      <ul>
+        <li>
+          Le forfait initial au prix le plus bas (109€ TTC). A ce prix là, vous avez le choix de résilier
+          jusqu'à 7 contrats.
+        </li>
+        <li>
+          Le forfait premium à 169€ TTC. Ce forfait comprend cette fois-ci la résiliation de 7 à 12 contrats (inclus).
+        </li>
+        <li>
+          Enfin, le forfait "illimité" à un prix de 219€ qui vous permet de ne pas compter le nombre de contrats
+          que vous souhaitez résilier.
+        </li>
+      </ul>
+    </div>
+
+    <%= render 'helps/contact-us' %>
+
+    <h4 class="margin-y-five">Voir aussi :</h4>
+    <ul class="clean-list">
+      <li><%= link_to 'Renseigner les comptes du défunt à résilier', contrats_helps_path, class: 'blue-link' %></li>
+      <li><%= link_to 'Importer les documents demandés', documents_helps_path, class: 'blue-link' %></li>
+      <li><%= link_to "Être sûr d'avoir tout renseigné", recapitulatif_helps_path, class: 'blue-link' %></li>
+    </ul>
   </div>
 </div>
 

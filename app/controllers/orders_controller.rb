@@ -82,7 +82,7 @@ class OrdersController < ApplicationController
     @order.amount = @order.pack.price
     @order.user = current_user
     if @order.update(order_params)
-      if Rails.env == "development"
+      if Rails.env == "development" || Rails.env == "staging"
         @order.update(paid: true)
         redirect_to success_order_url(@order)
       else

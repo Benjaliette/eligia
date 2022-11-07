@@ -1,8 +1,6 @@
-<div class="footer"
-     data-controller="footer-responsivity"
-     data-action="resize@window->footer-responsivity#toggle">
+<div class="footer">
   <div class="footer-items">
-    <ul class="site-list" data-footer-responsivity-target='footerItems'>
+    <ul class="legal-infos" data-footer-responsivity-target='footerItems'>
       <li class="site-list-item">
         ELIGIA SARL, 920 048 725 R.C.S. Bordeaux
       </li>
@@ -18,12 +16,12 @@
         <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
       <% end %>
     </div>
-    <div class="short-logo display-none" data-footer-responsivity-target='shortLogo'>
+    <div class="short-logo" data-footer-responsivity-target='shortLogo'>
       <%= link_to root_path do %>
         <%= image_tag('eligia-e-vecto.svg', alt:'Logo Eligia') %>
       <% end %>
     </div>
-    <ul class="site-list align-end" data-footer-responsivity-target='footerItems'>
+    <ul class="site-list" data-footer-responsivity-target='footerItems'>
       <li class="site-list-item underline">
         <%= link_to 'Nous contacter', new_message_path %>
       </li>

@@ -287,6 +287,17 @@
   }
 }
 
+.blue-link {
+  cursor: pointer;
+  color: $blue !important;
+  text-decoration: underline !important;
+
+  &:hover {
+    color: $strong-blue !important;
+    transform: scale(1.01);
+  }
+}
+
 
 // Overflow
 .scroll-y{
@@ -432,6 +443,12 @@
   flex-grow: 1;
   max-width: 6vw;
   overflow: hidden;
+}
+
+// remove bullet points and padding from lists
+.clean-list {
+  list-style-type: none;
+  padding: 0px;
 }
 
 

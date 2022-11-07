@@ -8,6 +8,13 @@
       <%= image_tag 'documents.svg', alt: "logo documents" %>
       <h1>Nous fournir les documents nécessaires</h1>
     </div>
+
+    <ul class="help-summary">
+      <h3 class="help-title">Questions fréquemment posées :</h3>
+      <li><%= link_to "Comment savoir si l'information est bonne ?", { anchor: 'direct-docs' }, class: 'blue-link' %></li>
+      <li><%= link_to "Je n'ai pas tous les documents, que dois-je faire ?", { anchor: 'definitive-choice' }, class: 'blue-link' %></li>
+    </ul>
+
     <div class="help-text">
       <p>
         L'importation des informations relatives au défunt sur eligia consitue la
@@ -17,9 +24,7 @@
         et est faite de façon à ce que vous nous fournissiez uniquement les documents
         nécessaires.
       </p>
-      <p>
-        Les documents peuvent être de plusieurs types :
-      </p>
+      <h3 class="help-title">Format des documents</h3>
       <ul>
         <li>
           Sous forme de fichier : que ce soit un document officiel (acte de décès)
@@ -38,12 +43,14 @@
           pas le format standard demandé.
         </li>
       </ul>
+      <h3 class="help-title" id="direct-docs">Suivi des documents</h3>
       <p>
         De la même manière que pour la première étape, l'import des documents peut être
         suivie en temps réel sur la droite de votre navigateur. Ainsi, vous pouvez voir
         si le format des documents/informations est valide et si tous ont été renseignés
         et pour quels contrats.
       </p>
+      <h3 class="help-title" id="definitive-choice">Passage à l'étape suivante</h3>
       <p>
         En revanche et contrairement à la première étape, l'importation des documents n'est pas
         indispensable à la création de votre démarche. En effet, si vous n'êtes pas
@@ -54,7 +61,17 @@
         l'envoi de la résiliation à l'entreprise concernée.
       </p>
     </div>
+
+    <%= render 'helps/contact-us' %>
+
+    <h4 class="margin-y-five">Voir aussi :</h4>
+    <ul class="clean-list">
+      <li><%= link_to 'Renseigner les comptes du défunt à résilier', contrats_helps_path, class: 'blue-link' %></li>
+      <li><%= link_to "Être sûr d'avoir tout renseigné", recapitulatif_helps_path, class: 'blue-link' %></li>
+      <li><%= link_to "Quels sont les tarifs ?", tarifs_helps_path, class: 'blue-link' %></li>
+    </ul>
   </div>
+
 </div>
 
 <%= render 'shared/footer' %>

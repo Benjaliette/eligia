@@ -8,12 +8,26 @@
       <%= image_tag 'comptes.svg', alt: "logo comptes" %>
       <h1>Nous renseigner les différents contrats du défunt</h1>
     </div>
+
+    <ul class="help-summary">
+      <h3 class="help-title">Questions fréquemment posées :</h3>
+      <li><%= link_to "Que faire si je ne trouve pas le contrat ?", { anchor: 'new-contract' }, class: 'blue-link' %></li>
+      <li><%= link_to "La liste des contrats fournit est-elle définitive ?", { anchor: 'definitive-choice' }, class: 'blue-link' %></li>
+    </ul>
+
+
     <div class="help-text">
+      <h3 class="help-title">Réaliser la liste des contrats</h3>
       <p>
         Au commencement de la démarche, nous vous proposons de nous fournir la
         liste des contrats que le défunt avait et que vous souhaitez résilier.
         La première étape de la création de votre démarche sera uniquement dédiée
         à la création de cette liste d'abonnements.
+      </p>
+      <p>
+        Au cours de cette étape, vous devrez ajouter les différentes entreprises en cliquant
+        sur le bouton 'ajouter'. Si ces derniers se retrouvent dans le carré sur la droit du site
+        , alors son ajout a été prise en compte.
         Grâce à cette liste, nous pourrons ensuite connaitre les documents
         nécessaires pour l'envoi des demandes de résiliation aux différentes entreprises
         concernées.
@@ -41,19 +55,29 @@
           car n'appartenant à aucune autre catégorie.
         </li>
       </ul>
+      <h3 id="new-contract" class="help-title">Rajouter un contrat</h3>
       <p>
-        Nous vous avons laissé la possibilité de rajouter
-        un ou plusieurs noms d'entreprises auxquelles le défunt était abonné et que nous
+        <strong>Nous vous avons laissé la possibilité de rajouter
+        un ou plusieurs noms d'entreprises</strong> auxquelles le défunt était abonné et que nous
         n'avons pas proposé sur cette page. Pour cela, nous vous invitons
         à rentrer le nom de l'entreprise en question dans la barre de recherche, puis à rajouter
         le contrat à votre liste en cliquant sur le bouton "créer". Si toutefois vous vous êtes trompé et que
-        vous ne voulez finalement plus rajouter ce compte, vous pouvez l'annuler sur la liste de droite
-        en cliquant sur la croix, il ne sera pas pris en compte.
+        vous ne voulez finalement plus rajouter ce compte, vous pouvez annuler l'ajout
+        en cliquant sur la croix correspondante à l'entreprise sur la liste de droite, il ne sera pas pris en compte.
       </p>
       <p>
-        En sélectionnant les différentes entreprises, vous avez observer sur la droite (ou sur la petite
-        boîte bleue en version mobile) de la page la mise à jour de la liste de contrats. Vous pouvez dès
-        à présent supprimer les comptes que vous ne souhaites finalement pas résilier avec
+        Si cette entreprise n'est pas dans la liste établie par eligia, cela signifie qu'elle doit
+        vérifiée par nos équipes de manière à connaitre les documents nécessaires à la résiliation du
+        contrat en question, mais aussi pour savoir si cette entreprise existe. Nous nous engageons alors
+        à vous envoyer un message par mail dans les plus brefs délais pour vous informer quant aux informations
+        à nous fournir (si nécessaire) et aux démarches à réaliser de votre côté.
+
+      </p>
+      <h3 id="definitive-choice" class="help-title">Passer à l'étape suivante</h3>
+      <p>
+        En sélectionnant les différentes contrats, vous avez pu observer sur la droite (ou sur la petite
+        boîte bleue en version mobile) de la page, la mise à jour de la liste de contrats. Vous pouvez dès
+        à présent supprimer les comptes que vous ne souhaitez finalement pas résilier avec
         la croix, ou alors confirmer votre choix en cliquant sur le bouton "Valider".
       </p>
       <p>

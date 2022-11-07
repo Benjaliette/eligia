@@ -8,6 +8,11 @@
       <%= image_tag 'recap.svg', alt: "logo récapitulatif" %>
       <h1>Vérification de vos informations lors de la création de votre démarche</h1>
     </div>
+    <ul class="help-summary">
+      <h3 class="help-title">Questions fréquemment posées :</h3>
+      <li><%= link_to "Suis-je redirigé obligé de m'inscrire ?", { anchor: 'inscription' }, class: 'blue-link' %></li>
+      <li><%= link_to "Pourquoi suis-je redirigé sur un autre site après validation ?", { anchor: 'redirection' }, class: 'blue-link' %></li>
+    </ul>
     <div class="help-text">
       <p>
         La vérification des informations fournies pendant votre demande de résiliation
@@ -43,17 +48,40 @@
         nombre de contrats que vous souhaitez résilier et donc à quel tarif cela correspondra
         durant l'étape de paiement en adéquation avec la page d'information des prix proposés par eligia.
       </p>
+      <h3 class="help-title" id="inscription">Étape de l'inscription</h3>
       <p>
         Une fois que toutes les informations ont été vérifiées et que vous être prêts à
-        clôturer votre demande, vous devrez vous inscrire (ou connecter) à eligia.fr. Cette inscription
-        est nécessaire pour pouvoir vous tenir au courant des démarches <em>via</em>
-        votre tableau de bord, et pour vous envoyer un email si problème durant nos
+        clôturer votre demande, vous devrez vous inscrire (ou connecter) à eligia.fr si ce n'est pas déjà fait.
+        Cette inscription est nécessaire. En effet, elle nous permet de pouvoir vous tenir au courant des démarches
+        <em>via</em> votre tableau de bord et vous envoyer un email si problème durant nos
         communications avec les entreprises concernées. Si vous n'êtes pas encore connecté,
         vous arriverez sur une page de création de compte. Attention, si vous avez déjà un compte
         chez nous, vous pourrez cliquer sur le bouton "Déjà inscrit ? Se connecter".<br>
         Après connexion, vous pourrez revenir sur la page de récapitulatif et commencer le paiement.
       </p>
+      <h3 class="help-title" id="redirection">Étape de paiement</h3>
+      <p>
+        Avant de passer au paiement, nous vous demandons votre adresse de facturation, élément clé
+        pour la rédaction de votre facture. Tous les champs sont obligatoires excepté la deuxième ligne
+        vous permettant de rentrer des informations optionnelles (complément d'adresse, numéro d'appartement etc ...).
+      </p>
+      <p>
+        Le règlement est effectué en utilisant un service de paiement en ligne extérieur. Il est donc normal
+        que vous soyez redirigé vers leur site web pour effectuer ce paiement. Cette plateforme est sécurisée
+        et en règle avec les accords sur les lois européennes sur les rétentions de données. Vous serez ensuite
+        redirigé vers eligia.fr afin de savoir si le paiement a été effectué ou pas et pour ensuite pouvoir
+        naviguer vers votre espace personnel.
+      </p>
     </div>
+
+    <%= render 'helps/contact-us' %>
+
+    <h4 class="margin-y-five">Voir aussi :</h4>
+    <ul class="clean-list">
+      <li><%= link_to 'Renseigner les comptes du défunt à résilier', contrats_helps_path, class: 'blue-link' %></li>
+      <li><%= link_to 'Importer les documents demandés', documents_helps_path, class: 'blue-link' %></li>
+      <li><%= link_to "Quels sont les tarifs ?", tarifs_helps_path, class: 'blue-link' %></li>
+    </ul>
   </div>
 </div>
 

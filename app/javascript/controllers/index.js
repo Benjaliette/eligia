@@ -22,9 +22,6 @@ application.register("check-for-added-contracts", CheckForAddedContractsControll
 import CloseFlashController from "./close_flash_controller"
 application.register("close-flash", CloseFlashController)
 
-import FooterResponsivityController from "./footer_responsivity_controller"
-application.register("footer-responsivity", FooterResponsivityController)
-
 import HomeFunctionController from "./home_function_controller"
 application.register("home-function", HomeFunctionController)
 

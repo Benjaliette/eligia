@@ -8,7 +8,7 @@
 .help-title {
   display: flex;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 10vh;
 
   img {
     height: 80px;
@@ -21,15 +21,29 @@
 }
 
 .help-text {
+  margin-bottom: 10vh;
+
   p {
-    margin: 30px auto;
+    margin: 6vh auto;
     text-align: justify;
   }
 
   ul {
     li {
-      margin-bottom: 30px;
+      margin-bottom: 6vh;
+      text-align: justify;
     }
+  }
+}
+
+.help-summary {
+  margin: 10vh 0px;
+  list-style-type: disclosure-closed;
+  padding: 0px;
+
+  li {
+    padding: 15px;
+    margin-left: 50px;
   }
 }
 

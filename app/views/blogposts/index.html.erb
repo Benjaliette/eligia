@@ -1,0 +1,23 @@
+<% content_for :scroll_navbar, 'scroll-navbar' %>
+<% content_for :home_navbar, 'home-navbar' %>
+<% content_for :order_new_btn do %>
+  <li class="nav-item">
+    <%= link_to "Commencer une démarche", new_order_path, class:"btn-principal small", data:{'scroll-navbar-target':'button'} %>
+  </li>
+<% end %>
+<% content_for :accueil_btn, 'display-none' %>
+<%= render 'shared/navbar' %>
+
+<div class="container">
+  <h1>Bienvenue sur le blog de eligia.fr</h1>
+
+  <ul>
+    <% @blogposts.each do |post| %>
+      <li><%= link_to post.title, blogpost_path(post) %></li>
+    <% end %>
+  </ul>
+
+  <% if policy(@post).new? %>
+    <%= link_to 'Nouvel article', new_blogpost_path, class: 'btn-primary small' %>
+  <% end %>
+</div>

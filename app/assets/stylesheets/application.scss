@@ -3,6 +3,9 @@
 @import "config/colors";
 @import "config/sizes";
 
+// Import action text style file
+@import "./actiontext.scss";
+
 // CSS components
 @import "components/index";
 // CSS misc classes

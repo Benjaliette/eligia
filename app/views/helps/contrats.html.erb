@@ -92,6 +92,15 @@
         liste complète des abonnements du défunt.
       </p>
     </div>
+
+    <%= render 'helps/contact-us' %>
+
+    <h4 class="margin-y-five">Voir aussi :</h4>
+    <ul class="clean-list">
+      <li><%= link_to 'Importer les documents demandés', documents_helps_path, class: 'blue-link' %></li>
+      <li><%= link_to "Être sûr d'avoir tout renseigné", recapitulatif_helps_path, class: 'blue-link' %></li>
+      <li><%= link_to "Quels sont les tarifs ?", tarifs_helps_path, class: 'blue-link' %></li>
+    </ul>
   </div>
 </div>
 

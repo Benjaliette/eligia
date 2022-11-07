@@ -445,6 +445,12 @@
   overflow: hidden;
 }
 
+// remove bullet points and padding from lists
+.clean-list {
+  list-style-type: none;
+  padding: 0px;
+}
+
 
 // Hiding / Displaying
 

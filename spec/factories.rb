@@ -1,4 +1,9 @@
 FactoryBot.define do
+  factory :blogpost do
+    title { "MyString" }
+    body { "MyText" }
+  end
+
   factory :address do
     street { "9 rue André Darbon" }
     zip { "33000" }

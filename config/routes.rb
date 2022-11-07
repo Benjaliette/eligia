@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'blogposts/index'
   devise_for :users, path: 'utilisateur', controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
@@ -73,6 +74,8 @@ Rails.application.routes.draw do
       patch :mark_as_read
     end
   end
+
+  resources :blogposts, only: %i[index show new create edit update destroy]
 
   mount RailsAdmin::Engine, at: '/admin', as: 'rails_admin'
 

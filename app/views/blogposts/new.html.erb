@@ -1,0 +1,7 @@
+<h1>Nouvel article</h1>
+
+<%= simple_form_for @blogpost do |f| %>
+  <%= f.input :title %>
+  <%= f.input :body, as: :rich_text_area, label: 'Contenu', placeholder: 'Text goes here' %>
+  <%= f.submit 'Publier' %>
+<% end %>

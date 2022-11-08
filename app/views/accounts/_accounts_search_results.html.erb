@@ -1,30 +1,45 @@
 <% accounts.each do |account| %>
   <div class="search-account-card">
-    <div class="account-card-title">
-      <% if account.logo_url.nil?  %>
-        <div class="account-avatar" style="background: #464646;">
-          <span style='color: white;'><%= account.name.upcase.split.map { |word| word[0] }.join %></span>
-        </div>
+    <%= simple_form_for OrderAccount.new, data: { controller: "order-account-creation", action: 'turbo:submit-end->order-account-creation#updateOtherCards', order_account_creation_account_value: "#{dom_id account}" } do |f_order_accounts| %>
+      <%= f_order_accounts.input :account_id, input_html: { value: account.id }, as: :hidden %>
+      <%= f_order_accounts.input :order_id, input_html: { value: order.id }, as: :hidden %>
+      <% if account.need_modal? %>
+        <%= render 'accounts/account_modal', account: account, f_order_accounts: f_order_accounts, search_bar: true %>
       <% else %>
-        <div class="account-avatar" style="background-image:url('<%= account.logo_url %>')"></div>
+        <%= button_tag(type: 'submit', class: "account-card-title to-add", data: { order_account_creation_target: "card" }) do %>
+          <% if account.logo_url.nil?  %>
+            <div class="account-avatar" style="background: #464646;">
+              <span style='color: white;'><%= account.name.upcase.split.map { |word| word[0] }.join %></span>
+            </div>
+          <% else %>
+            <div class="account-avatar" style="background-image:url('<%= account.logo_url %>')"></div>
+          <% end %>
+          <div class='account-card-name'><%= account.name %></div>
+          <div class="account-card-submit">
+            <div class="account-card-btn to-add" data-order-account-creation-target="button">ajouter →</div>
+          </div>
+        <% end %>
       <% end %>
-      <div class='account-card-name'><%= account.name %></div>
-      <div class="account-card-submit" data-controller="order-account-creation" data-order-account-creation-account-value="<%= dom_id account %>">
-        <%= render 'order_accounts/account_card', order: order, account: account %>
-      </div>
-    </div>
+    <% end %>
   </div>
 <% end %>
 <% if defined?(other_account_name) %>
   <div class="search-account-card">
-    <div class="account-card-title">
-      <div class="account-avatar" style="background: #464646;">
-        <span style='color: white;'><%= other_account_name.upcase.split.map { |word| word[0] }.join %></span>
-      </div>
-      <div class='account-card-name'><%= other_account_name %></div>
-      <div class="account-card-submit" data-controller="order-account-creation">
-        <%= render 'order_accounts/other_account_card', order: order, other_account_name: other_account_name %>
-      </div>
-    </div>
+    <%= simple_form_for OrderAccount.new, data: { action: 'turbo:submit-end->order-account-creation#updateOtherButton' } do |f_order_accounts| %>
+      <%= f_order_accounts.simple_fields_for :account, Account.new do |f_account| %>
+        <%= f_account.input :name, input_html: { value: other_account_name }, as: :hidden %>
+        <%= f_account.input :subcategory_id, input_html: { value: Subcategory.find_by(name: 'Autres').id }, as: :hidden %>
+      <% end %>
+      <%= f_order_accounts.input :order_id, input_html: { value: order.id }, as: :hidden %>
+      <%= button_tag(type: 'submit', class: "account-card-title to-add", data: { order_account_creation_target: "card" }) do %>
+        <div class="account-avatar" style="background: #464646;">
+          <span style='color: white;'><%= other_account_name.upcase.split.map { |word| word[0] }.join %></span>
+        </div>
+        <div class='account-card-name'><%= other_account_name %></div>
+        <div class="account-card-submit" data-controller="order-account-creation">
+          <div class="account-card-btn to-add" data-order-account-creation-target="button">créer →</div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 <% end %>

@@ -32,8 +32,8 @@ class OrderAccountsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@order_account),
-          turbo_stream.update(@order_account.account, partial: "order_accounts/account_card",
-            locals: { order: @order, account: @order_account.account }),
+          turbo_stream.update(@order_account.account.subcategory, partial: "orders/chose_account_form",
+            locals: { order: @order, subcategory: @order_account.account.subcategory, category: @order_account.account.subcategory.category }),
           turbo_stream.update('account-number', " (#{@order.order_accounts.size}) "),
           turbo_stream.update('contract-number', @order.order_accounts.size)
         ]

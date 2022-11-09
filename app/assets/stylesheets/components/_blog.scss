@@ -1,0 +1,47 @@
+.blog-form {
+  height: 100vh;
+  padding: 8vh 0px;
+
+  .input {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin: 10px 0px;
+    }
+
+    input {
+      border: solid 1px lightgray;
+      border-radius: 4px;
+      width: 50%;
+      padding: 10px;
+      font-size: 16px;
+      font-family: "Montserrat", sans-serif;
+      margin-bottom: 20px;
+    }
+  }
+
+  .trix-button {
+    background-color: white;
+  }
+
+  trix-editor.rich_text_area {
+    background-color: white;
+    height: 50vh;
+    margin-bottom: 30px;
+    overflow: scroll;
+  }
+}
+
+.blog-action {
+  display: flex;
+
+  a {
+    margin-right: 20px;
+  }
+}
+
+.blog-img {
+  margin: 20px auto;
+  width: fit-content;
+}

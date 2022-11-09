@@ -21,6 +21,8 @@ module ActiveStoragePath
           custom_key = "#{self.account.name.gsub(' ', '_')}/#{Date.today}_Résiliation_#{self.account.name.gsub(' ', '_')}-#{original_key}"
         when Order
           custom_key = "Facture"
+        when Blogpost
+          custom_key = original_key
         end
 
         # The key is used for path + filename when used. Append path.

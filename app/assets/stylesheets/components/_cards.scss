@@ -498,7 +498,7 @@
   margin-bottom: 10vh;
 
   .blog-card {
-    height: 35vh;
+    height: 40vh;
     border: solid 1px $light-gray;
     border-radius: 8px;
     background-color: white;
@@ -511,10 +511,18 @@
 
     .blog-card-img {
       width: 100%;
+      height: 46%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
 
     .blog-card-content {
       flex-grow: 1;
+
+      h2 {
+        font-size: 20px;
+      }
     }
 
     a {

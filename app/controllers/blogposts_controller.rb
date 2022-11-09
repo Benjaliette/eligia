@@ -26,14 +26,20 @@ class BlogpostsController < ApplicationController
   end
 
   def edit
-    raise
   end
 
   def update
+    if @blogpost.update(blogpost_params)
+      redirect_to blogpost_path(@blogpost)
+    else
+      render :new
+    end
   end
 
   def destroy
-    raise
+    @blogpost.destroy
+
+    redirect_to blogposts_path, status: :see_other
   end
 
   private
@@ -47,6 +53,6 @@ class BlogpostsController < ApplicationController
   end
 
   def blogpost_params
-    params.require(:blogpost).permit(:title, :body)
+    params.require(:blogpost).permit(:title, :body, :main_picture)
   end
 end

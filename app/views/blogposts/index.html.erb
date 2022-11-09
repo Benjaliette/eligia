@@ -21,11 +21,8 @@
     <% @blogposts.each do |post| %>
       <li class="blog-card">
 
-        <% if post.main_picture.attach? %>
-          <%= image_tag post.main_picture, alt: "Image de l'article de blog", class:'blog-card-img' %>
-        <% else %>
-          <%= image_tag 'handshake.webp', alt: "Image par défaut de l'article de blog", class:'blog-card-img' %>
-        <% end %>
+        <div style="background-image: url(<%= image_path post.main_picture.attached? ? post.main_picture.url : 'handshake.webp' %>)" class="blog-card-img">
+        </div>
 
         <div class="blog-card-content">
           <h2><%= post.title %></h2>

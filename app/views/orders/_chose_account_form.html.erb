@@ -2,21 +2,29 @@
   <div class="account-grid">
     <% Account.validated_accounts_from_subcategory(subcategory).order(:name).each do |account| %>
 
-      <div class='account-card'>
-        <div class="account-card-title">
-          <% if account.logo_url.nil?  %>
-            <div class="account-avatar" style="background: #464646;">
-              <span style='color: white;'><%= account.name.upcase.split.map { |word| word[0] }.join %></span>
+      <%= simple_form_for OrderAccount.new, data: { controller: "order-account-creation", action: 'turbo:submit-end->order-account-creation#updateButton' } do |f_order_accounts| %>
+        <%= f_order_accounts.input :account_id, input_html: { value: account.id }, as: :hidden %>
+        <%= f_order_accounts.input :order_id, input_html: { value: order.id }, as: :hidden %>
+        <% if account.need_modal? %>
+          <%= render 'accounts/account_modal', account: account, f_order_accounts: f_order_accounts, search_bar: false %>
+        <% else %>
+          <%= button_tag(type: 'submit', class: "account-card to-add", data: { order_account_creation_target: "card" }) do %>
+            <div class="account-card-title">
+              <% if account.logo_url.nil?  %>
+                <div class="account-avatar" style="background: #464646;">
+                  <span style='color: white;'><%= account.name.upcase.split.map { |word| word[0] }.join %></span>
+                </div>
+              <% else %>
+                <div class="account-avatar" style="background-image:url('<%= account.logo_url %>')"></div>
+              <% end %>
+              <div class='account-card-name'><%= account.name %></div>
             </div>
-          <% else %>
-            <div class="account-avatar" style="background-image:url('<%= account.logo_url %>')"></div>
+            <div class="account-card-submit" id=<%= dom_id account %>>
+              <div class="account-card-btn to-add" data-order-account-creation-target="button">ajouter →</div>
+            </div>
           <% end %>
-          <div class='account-card-name'><%= account.name %></div>
-        </div>
-        <div class="account-card-submit" id=<%= dom_id account %> data-controller="order-account-creation">
-          <%= render 'order_accounts/account_card', order: order, account: account %>
-        </div>
-      </div>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -13,13 +13,13 @@ export default class extends Controller {
   checkForAddedIds(){
     this.addedIdsValue.forEach(id => {
       const accountCard = document.getElementById(`account_${id}`)
-      this.update(accountCard.childNodes[1][3])
+      this.update(accountCard)
     });
   }
 
   update(element) {
-    element.classList.remove('to-add')
-    element.disabled = true
-    element.value = "ajouté ✓"
+    element.parentElement.classList.remove('to-add')
+    element.parentElement.disabled = true
+    element.childNodes[1].innerText = "ajouté ✓"
   }
 }

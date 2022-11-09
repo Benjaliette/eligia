@@ -45,7 +45,7 @@ class BlogpostsController < ApplicationController
   private
 
   def set_blogpost
-    @blogpost = Blogpost.find(params[:id])
+    @blogpost = Blogpost.friendly.find(params[:id])
   end
 
   def autorize_blogpost

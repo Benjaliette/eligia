@@ -49,7 +49,7 @@ RSpec.describe "dashboard_journey", type: :system do
       create(:order_document, order:, document: num_tel)
       create(:order_document, order:, document: num_contract)
       visit "/resiliations/#{User.first.orders.last.slug}"
-      page.find('.order-account-card-button', match: :first).find('a').click
+      page.find('.order-account-card-link', match: :first).click
     end
 
 

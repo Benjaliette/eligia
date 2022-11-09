@@ -87,7 +87,7 @@
                   <h4><%= subcategory.name %></h4>
                   <div class="toggle-btn" data-subcategory-dropdown-target='button'></div>
                 </div>
-                <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts'>
+                <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts' id=<%= dom_id subcategory %>>
                   <%= render 'orders/chose_account_form', category: category, subcategory: subcategory, order_accounts: @order_accounts, order: @order %>
                 </div>
               </div>

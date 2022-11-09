@@ -1,0 +1,47 @@
+<% if search_bar %>
+  <div class="account-card-title to-add" data-action="click->order-account-creation#modalAppear" data-order-account-creation-target="card">
+    <% if account.logo_url.nil?  %>
+      <div class="account-avatar" style="background: #464646;">
+        <span style='color: white;'><%= account.name.upcase.split.map { |word| word[0] }.join %></span>
+      </div>
+    <% else %>
+      <div class="account-avatar" style="background-image:url('<%= account.logo_url %>')"></div>
+    <% end %>
+    <div class='account-card-name'><%= account.name %></div>
+    <div class="account-card-submit">
+      <div class="account-card-btn to-add" data-order-account-creation-target="button">ajouter →</div>
+    </div>
+  </div>
+<% else %>
+  <div class="account-card account-card-modal to-add" data-order-account-creation-target="card" data-action="click->order-account-creation#modalAppear">
+    <div class="account-card-title">
+      <% if account.logo_url.nil?  %>
+        <div class="account-avatar" style="background: #464646;">
+          <span style='color: white;'><%= account.name.upcase.split.map { |word| word[0] }.join %></span>
+        </div>
+      <% else %>
+        <div class="account-avatar" style="background-image:url('<%= account.logo_url %>')"></div>
+      <% end %>
+      <div class='account-card-name'><%= account.name %></div>
+    </div>
+    <div class="account-card-submit" id=<%= dom_id account %>>
+      <div class="account-card-btn to-add" data-order-account-creation-target="button">ajouter →</div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="modal display-none" data-order-account-creation-target='modal'>
+  <div class="modal-content confirmation-content">
+    <%= account.modal_content %>
+    <div class="confirmation-buttons">
+      <%= f_order_accounts.submit 'Individuel',
+          class: 'btn-second modal-submit-button',
+          data: {
+            order_account_creation_target: 'button',
+            action: 'click->order-account-creation#modalDisappear'
+          } %>
+      <div class="btn-second" data-action="click->order-account-creation#modalDisappear">Collectif</div>
+    </div>
+  </div>
+</div>

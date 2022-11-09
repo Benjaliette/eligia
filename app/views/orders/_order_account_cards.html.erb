@@ -1,41 +1,41 @@
 <div class='order-account-cards'>
   <% order.order_accounts.each do |order_account| %>
-    <div class="order-account-card" data-controller='modal'>
-      <div class="order-account-card-infos">
-        <div class="account-title">
-          <% if order_account.account.logo_url.nil?  %>
-            <div class="account-avatar" style="background: #464646;">
-              <span style='color: white;'><%= order_account.account.name.upcase.split.map { |word| word[0] }.join %></span>
+    <%= link_to order_order_account_path(order, order_account), class: 'order-account-card-link', data: { turbo_frame: :_top } do %>
+      <div class="order-account-card">
+        <div class="order-account-card-infos">
+          <div class="account-title">
+            <% if order_account.account.logo_url.nil?  %>
+              <div class="account-avatar" style="background: #464646;">
+                <span style='color: white;'><%= order_account.account.name.upcase.split.map { |word| word[0] }.join %></span>
+              </div>
+            <% else %>
+              <div class="account-avatar" style="background-image:url('<%= order_account.account.logo_url %>')"></div>
+            <% end %>
+            <div class="account-name">
+              <%= order_account.account.name %>
             </div>
-          <% else %>
-            <div class="account-avatar" style="background-image:url('<%= order_account.account.logo_url %>')"></div>
-          <% end %>
-          <div class="account-name">
-            <%= order_account.account.name %>
+          </div>
+          <div class="account-status">
+            <div>
+            <% if order_account.account.non_validated? %>
+              <span class="account-non-validated"> <em>En cours de validation par l'équipe Eligia</em></span>
+            <% else %>
+              <span class="order-account-status order-account-state-<%=order_account.aasm_state%>">
+                <%= order_account.state_to_french %>
+              </span>
+            <% end %>
+            </div>
           </div>
         </div>
-        <div class="account-status">
-          <div>
-          <% if order_account.account.non_validated? %>
-            <span class="account-non-validated"> <em>En cours de validation par l'équipe Eligia</em></span>
-          <% else %>
-            <span class="order-account-status order-account-state-<%=order_account.aasm_state%>">
-              <%= order_account.state_to_french %>
-            </span>
-          <% end %>
-          </div>
-        </div>
-      </div>
 
-      <div class="order-account-card-button">
-        <div class='align-center'>
-          <%= link_to order_order_account_path(order, order_account), data: { turbo_frame: :_top } do %>
-            <div class='btn-third small'>
-              Voir >>
-            </div>
-          <% end %>
+        <div class="order-account-card-button">
+          <div class='align-center'>
+              <div class='btn-third small'>
+                Voir >>
+              </div>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>

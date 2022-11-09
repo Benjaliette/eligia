@@ -257,7 +257,8 @@
 
 .order-account-card-link:hover {
   .order-account-card {
-    background-color: #fcfcfc;
+    transform: scale(1.01);
+    transition: all ease .07s;
   }
 }
 

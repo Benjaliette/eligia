@@ -11,7 +11,7 @@ class BlogpostPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin
+    user ? user.admin : false
   end
 
   def update?

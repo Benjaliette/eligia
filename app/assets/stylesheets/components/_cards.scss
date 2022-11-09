@@ -22,18 +22,21 @@
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: 1px solid $blue;
-  height: 10vh;
-  width: 75%;
+  height: 15vh;
+  width: 90%;
   margin: auto;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  cursor: initial;
+
 
   .account-card-submit {
     flex-grow: 1;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    width: 100%;
 
     .account-card-btn {
       background-color: transparent;
@@ -41,14 +44,18 @@
       font-weight: bold;
       color: green;
       width: 70px;
+      font-size: 12px;
+    }
+  }
 
-      &.to-add {
-        cursor: pointer;
-        color: black;
+  &.to-add {
+    cursor: pointer;
 
-        &:hover {
-          text-shadow: 0px 0px 4px grey;
-        }
+    .account-card-submit .account-card-btn {
+      color: black;
+
+      &:hover {
+        text-shadow: 0px 0px 4px grey;
       }
     }
   }
@@ -56,6 +63,25 @@
   &.small {
     position: relative;
     width: 62%;
+    height: 50%;
+  }
+
+  &.account-card-modal {
+    width: 75%;
+    height: 10vh;
+
+    pointer-events:none;
+
+    .account-card-title .account-card-name {
+      color: #B7B7B8;
+    }
+
+    &.to-add {
+      pointer-events: auto;
+      .account-card-title .account-card-name {
+        color: black;
+      }
+    }
   }
 }
 
@@ -98,6 +124,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+
+    cursor: initial;
 
     .account-avatar {
       width: 20px;
@@ -128,14 +157,17 @@
         font-weight: bold;
         font-size: 10px;
         color: green;
+      }
+    }
 
-        &.to-add {
-          cursor: pointer;
-          color: black;
+    &.to-add {
+      cursor: pointer;
 
-          &:hover {
-            text-shadow: 0px 0px 4px grey;
-          }
+      .account-card-submit .account-card-btn {
+        color: black;
+
+        &:hover {
+          text-shadow: 0px 0px 4px grey;
         }
       }
     }
@@ -189,7 +221,6 @@
 }
 
 // Order-account-card (dashboard)
-
 .order-account-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -253,6 +284,13 @@
     .order-account-status{
       font-size: 12px;
     }
+  }
+}
+
+.order-account-card-link:hover {
+  .order-account-card {
+    transform: scale(1.01);
+    transition: all ease .07s;
   }
 }
 

@@ -2,34 +2,32 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="order-account-creation"
 export default class extends Controller {
-  static targets = [ 'button', 'modal' ]
+  static targets = [ 'button', 'modal', 'card' ]
 
   static values = {
     account: String,
   }
 
-  updateButton(event) {
-    this.buttonTarget.value = "ajouté ✓"
-    this.update(this.buttonTarget)
-    if (!event.target.parentElement.id){
-      this.updateOtherCards()
-    }
+  updateButton() {
+    this.update(this.buttonTarget, this.cardTarget)
   }
 
   updateOtherButton() {
+    this.update(this.buttonTarget, this.cardTarget)
     this.buttonTarget.value = "créé ✓"
-    this.update(this.buttonTarget)
   }
 
   updateOtherCards() {
+    this.update(this.buttonTarget, this.cardTarget)
     const updatedCard = document.getElementById(this.accountValue)
-    this.update(updatedCard.childNodes[1][3])
+    console.log(updatedCard)
+    this.update(updatedCard.childNodes[1], updatedCard.parentElement)
   }
 
-  update(button) {
-    button.classList.remove('to-add')
-    button.disabled = true
-    button.value = "ajouté ✓"
+  update(button, card) {
+    card.classList.remove('to-add')
+    card.disabled = true
+    button.innerText = "ajouté ✓"
   }
 
   modalAppear() {

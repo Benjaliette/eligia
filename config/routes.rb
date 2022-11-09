@@ -75,7 +75,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :blogposts, only: %i[index show new create edit update destroy]
+  resources :blogposts, path: 'blog', only: %i[index show new create edit update destroy]
 
   mount RailsAdmin::Engine, at: '/admin', as: 'rails_admin'
 

@@ -1,6 +1,9 @@
 class Blogpost < ApplicationRecord
   include ActiveStoragePath
 
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   has_rich_text :body
   has_one_attached_with :main_picture, path: -> { "Blog_pictures" }
 

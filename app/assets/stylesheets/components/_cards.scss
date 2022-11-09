@@ -189,7 +189,6 @@
 }
 
 // Order-account-card (dashboard)
-
 .order-account-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -253,6 +252,12 @@
     .order-account-status{
       font-size: 12px;
     }
+  }
+}
+
+.order-account-card-link:hover {
+  .order-account-card {
+    background-color: #fcfcfc;
   }
 }
 

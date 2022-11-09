@@ -16,12 +16,20 @@
       <div class="margin-y-five">
         <%= link_to '← Retour à la liste des articles', blogposts_path, class: 'btn-third small' %>
       </div>
-      <%= @blogpost.body %>
-
+      <% if @blogpost.main_picture.attached? %>
+        <div class="blog-img">
+          <%= image_tag @blogpost.main_picture, alt: "text" %>
+        </div>
+      <% end %>
+      <div class="margin-y-five">
+        <%= @blogpost.body %>
+      </div>
 
       <% if policy(Blogpost).edit? && policy(Blogpost).destroy? %>
-        <%= link_to "Éditer l'article", edit_blogpost_path(@blogpost), class: 'btn-second small' %>
-        <%= link_to "Supprimer l'article", blogpost_path(@blogpost), method: :delete, class: 'btn-warn small' %>
+        <div class="blog-action">
+          <%= link_to "Éditer l'article", edit_blogpost_path(@blogpost), class: 'btn-second small' %>
+          <%= button_to "Supprimer l'article", blogpost_path(@blogpost), method: :delete, class: 'btn-warn small' %>
+        </div>
       <% end %>
     </div>
   </div>

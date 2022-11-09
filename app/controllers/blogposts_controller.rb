@@ -26,12 +26,14 @@ class BlogpostsController < ApplicationController
   end
 
   def edit
+    raise
   end
 
   def update
   end
 
   def destroy
+    raise
   end
 
   private

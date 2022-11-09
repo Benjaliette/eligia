@@ -1,5 +1,27 @@
-<%= link_to '← Retour à la liste des articles', blogposts_path %>
+<% content_for :title, "#{@blogpost.title} - Eligia" %>
 
-<h1><%= @blogpost.title %></h1>
 
-<%= @blogpost.body %>
+  <% content_for :scroll_navbar, 'scroll-navbar' %>
+  <% content_for :home_navbar, 'home-navbar' %>
+  <%= render 'shared/navbar' %>
+
+  <div class="fullscreen-no-navbar">
+    <div class="banner user-banner">
+      <div class="container dashboard-container">
+        <h1><%= @blogpost.title %></h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="margin-y-five">
+        <%= link_to '← Retour à la liste des articles', blogposts_path, class: 'btn-third small' %>
+      </div>
+      <%= @blogpost.body %>
+
+
+      <% if policy(Blogpost).edit? && policy(Blogpost).destroy? %>
+        <%= link_to "Éditer l'article", edit_blogpost_path(@blogpost), class: 'btn-second small' %>
+        <%= link_to "Supprimer l'article", blogpost_path(@blogpost), method: :delete, class: 'btn-warn small' %>
+      <% end %>
+    </div>
+  </div>

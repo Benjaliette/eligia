@@ -89,10 +89,34 @@
   }
 }
 
+
 .btn-third.small {
   padding: 5px 15px;
   font-size: 12px;
   height: fit-content;
+}
+
+.btn-warn {
+  background-color: $red;
+  color: white;
+  text-decoration: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  display: inline;
+  cursor: pointer;
+  border: none;
+
+  &:hover{
+    transform: scale(1.04);
+    box-shadow: 0px 0px 2px lightgrey;
+    transition: all ease .07s;
+  }
+
+  &.small {
+    padding: 5px 15px;
+    font-weight: regular;
+    font-size: 12px;
+  }
 }
 
 .button-hover:hover {

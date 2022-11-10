@@ -8,7 +8,7 @@ class OrderAccount < ApplicationRecord
   belongs_to :account
   has_many :notifications, dependent: :destroy
 
-  has_one_attached_with :resiliation_file, path: -> { "#{self.order.deceased_first_name.gsub(' ', '_')}_#{self.order.deceased_last_name.gsub(' ', '_')}" }
+  has_one_attached_with :resiliation_file, path: -> { self.set_attached_with_path }
 
   accepts_nested_attributes_for :account, allow_destroy: true, reject_if: :reject_accounts
 
@@ -27,7 +27,7 @@ class OrderAccount < ApplicationRecord
     end
   end
 
-  STATES = [ "document_missing", "pending", "resiliation_sent", "resiliation_failure", "resiliation_success" ]
+  STATES = ["document_missing", "pending", "resiliation_sent", "resiliation_failure", "resiliation_success"]
 
   def reject_accounts(attributes)
     attributes['name'].blank?

@@ -2,7 +2,14 @@ class AccountsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create]
 
   def create
-    @accounts = Account.where(aasm_state: "validated").where("name ILIKE ?", "%#{account_params["name"]}%")
+    @accounts = Account.where(aasm_state: "validated").where("translate(
+        LOWER(name),
+        'âãäåāăąÁÂÃÄÅĀĂĄèééêëēĕėęěĒĔĖĘĚìíîïìĩīĭÌÍÎÏÌĨĪĬóôõöōŏőÒÓÔÕÖŌŎŐùúûüũūŭůÙÚÛÜŨŪŬŮ',
+        'aaaaaaaaaaaaaaaeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiooooooooooooooouuuuuuuuuuuuuuuu'
+      )
+      ILIKE ?", "%#{ActiveSupport::Inflector.transliterate("%#{account_params["name"]}%").downcase}%"
+    )
+
     @other_account_name = account_params["name"]
     @order = Order.find(account_params["order_id"])
 

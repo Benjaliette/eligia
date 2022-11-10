@@ -1,0 +1,35 @@
+<% content_for :title, "#{@blogpost.title} - Eligia" %>
+
+
+  <% content_for :scroll_navbar, 'scroll-navbar' %>
+  <% content_for :home_navbar, 'home-navbar' %>
+  <%= render 'shared/navbar' %>
+
+  <div class="fullscreen-no-navbar">
+    <div class="banner user-banner">
+      <div class="container dashboard-container">
+        <h1><%= @blogpost.title %></h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="margin-y-five">
+        <%= link_to '← Retour à la liste des articles', blogposts_path, class: 'btn-third small' %>
+      </div>
+      <% if @blogpost.main_picture.attached? %>
+        <div class="blog-img">
+          <%= image_tag @blogpost.main_picture, alt: "text" %>
+        </div>
+      <% end %>
+      <div class="margin-y-five">
+        <%= @blogpost.body %>
+      </div>
+
+      <% if policy(Blogpost).edit? && policy(Blogpost).destroy? %>
+        <div class="blog-action">
+          <%= link_to "Éditer l'article", edit_blogpost_path(@blogpost), class: 'btn-second small' %>
+          <%= button_to "Supprimer l'article", blogpost_path(@blogpost), method: :delete, class: 'btn-warn small' %>
+        </div>
+      <% end %>
+    </div>
+  </div>

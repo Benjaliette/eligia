@@ -1,0 +1,40 @@
+<% content_for :scroll_navbar, 'scroll-navbar' %>
+<% content_for :home_navbar, 'home-navbar' %>
+<% content_for :order_new_btn do %>
+  <li class="nav-item">
+    <%= link_to "Commencer une démarche", new_order_path, class:"btn-principal small", data:{'scroll-navbar-target':'button'} %>
+  </li>
+<% end %>
+<% content_for :accueil_btn, 'display-none' %>
+<%= render 'shared/navbar' %>
+
+<div class="banner">
+  <%= image_tag('illustration-banner-blog.png', class:'banner-image', alt:'icone résiliation') %>
+  <div class="container">
+      <h1>Bienvenue sur le blog <br> de eligia.fr</h1>
+      <p id='tagline'>Cherchez les réponses à vos questions</p>
+  </div>
+</div>
+
+<div class="container">
+  <ul class="blog-cards">
+    <% @blogposts.each do |post| %>
+      <li class="blog-card">
+
+        <div style="background-image: url(<%= image_path post.main_picture.attached? ? post.main_picture.url : 'handshake.webp' %>)" class="blog-card-img">
+        </div>
+
+        <div class="blog-card-content">
+          <h2><%= post.title %></h2>
+        </div>
+        <%= link_to "Lire la suite", blogpost_path(post), class: "btn-third small" %>
+      </li>
+    <% end %>
+  </ul>
+
+  <% if policy(Blogpost).new? %>
+    <%= link_to 'Nouvel article', new_blogpost_path, class: 'btn-principal small margin-bottom-five' %>
+  <% end %>
+</div>
+
+<%= render 'shared/footer' %>

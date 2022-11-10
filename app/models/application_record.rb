@@ -11,4 +11,17 @@ class ApplicationRecord < ActiveRecord::Base
       "eligia_prod"
     end
   end
+
+  def set_attached_with_path
+    case self
+    when OrderAccount, OrderDocument
+      order_namepath(self.order)
+    when Order
+      order_namepath(order)
+    end
+  end
+
+  def order_namepath(order)
+    "#{order.deceased_first_name.gsub(' ', '_')}_#{order.deceased_last_name.gsub(' ', '_')}"
+  end
 end

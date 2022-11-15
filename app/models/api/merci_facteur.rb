@@ -6,21 +6,42 @@
 
 require 'faraday'
 require 'json'
+require 'dotenv'
 
 class MerciFacteur < ApplicationRecord
-  def initialize
-    # J'utilise 23,5h comme ça on évite les galères en cas de calls au bout de 23h59:99:99s
-    if ((Time.now - MerciFacteur.last.updated_at)/3600) < 23.75
-      @access_token = MerciFacteur.last.access_token
-    else
-      self.get_access_token
-    end
-  end
-
+  after_create :set_access_token
 
   private
 
-  def get_access_token
+  def set_access_token
+    # J'utilise 23,5h comme ça on évite les galères en cas de calls au bout de 23h59:99:99s
+    unless MerciFacteur.count.zero? || MerciFacteur.last.access_token.nil?
+      access_token = MerciFacteur.last.access_token if ((Time.now - MerciFacteur.last.updated_at) / 3600) < 23.75
+      self.update(access_token: access_token)
+    end
 
+    self.update(access_token: querry_access_token)
+  end
+
+  def querry_access_token
+    the_timestamp = Time.now.to_i.to_s
+    # the .to_i creates the timestamp in the right format (ex: 1668510062) and the to_s converts it into string to be used in the hashing method
+
+    service_id = ENV.fetch('MERCI_FACTEUR_SERVICE_ID')
+    secret_key = ENV.fetch('MERCI_FACTEUR_SECRET_KEY')
+    hashed_key = hash_the_key(the_timestamp, service_id, secret_key)
+
+    response = Faraday.new(
+      url: 'https://www.merci-facteur.com/api/1.2/prod/service/getToken',
+      headers: { 'ww-service-signature': hashed_key, 'ww-timestamp': the_timestamp, 'ww-service-id': service_id, 'ww-authorized-ip': '111.111.111' }
+    ).post
+    response = JSON.parse(response.body, symbolize_names: true)
+
+    return response[:token]
+  end
+
+  def hash_the_key(timestamp, service_id, secret_key)
+    data = service_id + timestamp
+    return OpenSSL::HMAC.hexdigest("SHA256", secret_key, data)
   end
 end

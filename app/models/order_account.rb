@@ -118,7 +118,7 @@ class OrderAccount < ApplicationRecord
                   to: :resiliation_sent,
                   after: proc {
                     notify_resiliation_send
-                    self.send_resiliation
+                    self.send_resiliation unless Rails.env == 'test'
                   }
     end
 

@@ -11,6 +11,16 @@ require 'dotenv'
 class MerciFacteur < ApplicationRecord
   after_create :set_access_token
 
+  def self.open_session
+    # Si il y a une instance de MerciFacteur avec un access_token valable, on la récupère.
+    # Sinon on en crée une autre
+    unless MerciFacteur.count.zero? || MerciFacteur.last.access_token.nil?
+      return MerciFacteur.last
+    end
+
+    return MerciFacteur.create
+  end
+
   private
 
   def set_access_token

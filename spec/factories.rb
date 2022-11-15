@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :merci_facteur do
+    access_token { "MyString" }
+  end
+
   # factory :blogpost do
   #   title { "MyString" }
   #   body { "MyText" }

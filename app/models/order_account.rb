@@ -1,4 +1,5 @@
 class OrderAccount < ApplicationRecord
+  require 'json'
   include AASM
   include ActiveStoragePath
 
@@ -90,7 +91,7 @@ class OrderAccount < ApplicationRecord
     file_links
   end
 
-  private
+  # private
 
   def update_order_state
     self.order.update_state unless Rails.env.test?
@@ -151,22 +152,25 @@ class OrderAccount < ApplicationRecord
 
     connection = Faraday.new(
       url: 'https://www.merci-facteur.com/api/1.2/prod/service/sendCourrier',
-      headers: { 'ww-service-id': service_id, 'ww-access-token': access_token }
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'ww-service-id': service_id, 'ww-access-token': access_token }
     )
 
     response = connection.post do |req|
       req.body = generate_json_send_resiliation(order_account)
     end
+    response = JSON.parse(response.body, symbolize_names: true)
+
+    debugger
   end
 
   def generate_json_send_resiliation(order_account)
-    base_64_file = Base64.encode64(URI.parse(this.resiliation_file.url).open.read)
+    base_64_file = Base64.encode64(URI.parse(order_account.resiliation_file.url).open.read).gsub(/\n/, "")
 
-    {
+    json_send_resiliation = {
       idUser: 21881,
       modeEnvoi: "normal",
       adress: {
-                exp: 1273844,
+                exp: "1273844",
                 dest: [
                   {
                     civilite: "Mme",
@@ -179,19 +183,20 @@ class OrderAccount < ApplicationRecord
                     cp: "78000",
                     ville: "Versailles",
                     pays: "france",
-                    email: "mrc.delesalle@gmail.com",
+                    email: "",
                     consent: "0",
-                    reference: "ref-client-1"
+                    reference: ""
                   }
                 ]
               },
       content: {
         letter: {
           base64files: [
-            ""
+            base_64_file
           ]
         }
       }
     }.to_json
+    return json_send_resiliation
   end
 end

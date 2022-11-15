@@ -30,6 +30,9 @@ gem "devise"
 # Factorybot : used to generate fixtures for testing
 gem "factory_bot_rails"
 
+# Faraday : HTTP client library for API intercations
+gem 'faraday'
+
 # Use font-awesome gem to use icons
 gem "font-awesome-sass", "~> 6.2.0"
 

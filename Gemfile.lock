@@ -468,6 +468,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_bot_rails
+  faraday
   font-awesome-sass (~> 6.2.0)
   friendly_id (~> 5.4.0)
   geocoder

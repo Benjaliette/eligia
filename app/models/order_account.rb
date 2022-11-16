@@ -1,5 +1,6 @@
 class OrderAccount < ApplicationRecord
   require 'json'
+  require 'cgi'
   include AASM
   include ActiveStoragePath
 
@@ -152,11 +153,12 @@ class OrderAccount < ApplicationRecord
 
     connection = Faraday.new(
       url: 'https://www.merci-facteur.com/api/1.2/prod/service/sendCourrier',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'ww-service-id': service_id, 'ww-access-token': access_token }
+      headers: { 'ww-service-id': service_id, 'ww-access-token': access_token }
     )
 
     response = connection.post do |req|
       req.body = generate_json_send_resiliation(order_account)
+
     end
     response = JSON.parse(response.body, symbolize_names: true)
 
@@ -170,25 +172,25 @@ class OrderAccount < ApplicationRecord
       idUser: 21881,
       modeEnvoi: "normal",
       adress: {
-                exp: "1273844",
-                dest: [
-                  {
-                    civilite: "Mme",
-                    nom: "Dupont",
-                    prenom: "Sophie",
-                    societe: "Dupont Corp.",
-                    adresse1: "9 allée de la rose",
-                    adresse2: "",
-                    adresse3: "",
-                    cp: "78000",
-                    ville: "Versailles",
-                    pays: "france",
-                    email: "",
-                    consent: "0",
-                    reference: ""
-                  }
-                ]
-              },
+        exp: 1273844,
+        dest: [
+          {
+            civilite: "Mme",
+            nom: "Dupont",
+            prenom: "Sophie",
+            societe: "Dupont Corp.",
+            adresse1: "9 allée de la rose",
+            adresse2: "",
+            adresse3: "",
+            cp: "78000",
+            ville: "Versailles",
+            pays: "FRANCE",
+            email: "",
+            consent: "0",
+            reference: ""
+          }
+        ]
+      },
       content: {
         letter: {
           base64files: [
@@ -196,7 +198,7 @@ class OrderAccount < ApplicationRecord
           ]
         }
       }
-    }.to_json
+    }
     return json_send_resiliation
   end
 end

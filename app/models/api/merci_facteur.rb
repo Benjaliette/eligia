@@ -9,13 +9,13 @@ require 'json'
 require 'dotenv'
 
 class MerciFacteur < ApplicationRecord
-  after_create :set_access_token
+  after_create :query_access_token
 
   def self.open_session
     # Si il y a une instance de MerciFacteur avec un access_token valable, on la récupère.
     # Sinon on en crée une autre
-    unless MerciFacteur.count.zero? || MerciFacteur.last.access_token.nil?
-      return MerciFacteur.last if ((Time.now - MerciFacteur.last.updated_at) / 3600) < 23.75
+    unless MerciFacteur.count.zero? || MerciFacteur.last.access_token.nil? || MerciFacteur.last.expire_at.nil?
+      return MerciFacteur.last if (MerciFacteur.last.expire_at > Time.now.to_i)
     end
 
     return MerciFacteur.create
@@ -23,17 +23,7 @@ class MerciFacteur < ApplicationRecord
 
   private
 
-  def set_access_token
-    # J'utilise 23,5h comme ça on évite les galères en cas de calls au bout de 23h59:99:99s
-    unless MerciFacteur.count.zero? || MerciFacteur.last.access_token.nil?
-      access_token = MerciFacteur.last.access_token if ((Time.now - MerciFacteur.last.updated_at) / 3600) < 23.75
-      self.update(access_token: access_token)
-    end
-
-    self.update(access_token: querry_access_token)
-  end
-
-  def querry_access_token
+  def query_access_token
     the_timestamp = Time.now.to_i.to_s
     # the .to_i creates the timestamp in the right format (ex: 1668510062) and the to_s converts it into string to be used in the hashing method
 
@@ -47,7 +37,10 @@ class MerciFacteur < ApplicationRecord
     ).post
     response = JSON.parse(response.body, symbolize_names: true)
 
-    return response[:token]
+    self.update(
+      access_token: response[:token],
+      expire_at: response[:expire].to_i
+    )
   end
 
   def hash_the_key(timestamp, service_id, secret_key)

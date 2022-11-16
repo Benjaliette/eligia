@@ -30,6 +30,9 @@ gem "devise"
 # Factorybot : used to generate fixtures for testing
 gem "factory_bot_rails"
 
+# Faraday : HTTP client library for API intercations
+gem 'faraday'
+
 # Use font-awesome gem to use icons
 gem "font-awesome-sass", "~> 6.2.0"
 
@@ -93,7 +96,7 @@ gem 'prawn-table', '~> 0.2.2'
 gem "rails", "~> 7.0.3"
 
 # Gem used to have an admin section and check DB
-gem 'rails_admin'
+gem 'rails_admin', "~> 3.0.0"
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"

@@ -1,4 +1,5 @@
 class OrderAccount < ApplicationRecord
+  require 'json'
   include AASM
   include ActiveStoragePath
 
@@ -90,7 +91,7 @@ class OrderAccount < ApplicationRecord
     file_links
   end
 
-  private
+  # private
 
   def update_order_state
     self.order.update_state unless Rails.env.test?
@@ -113,7 +114,12 @@ class OrderAccount < ApplicationRecord
     end
 
     event :declare_resiliation_sent do
-      transitions from: :pending, to: :resiliation_sent, after: proc { notify_resiliation_send }
+      transitions from: :pending,
+                  to: :resiliation_sent,
+                  after: proc {
+                    notify_resiliation_send
+                    self.send_resiliation unless Rails.env == 'test'
+                  }
     end
 
     event :declare_resiliation_success do
@@ -137,5 +143,60 @@ class OrderAccount < ApplicationRecord
       content: "Contrat '#{self.account.name}' de #{self.order.deceased_first_name} #{self.order.deceased_last_name} résilié",
       order: self.order
     )
+  end
+
+  def send_resiliation
+    order_account = self
+    service_id = ENV.fetch('MERCI_FACTEUR_SERVICE_ID')
+    access_token = MerciFacteur.open_session.access_token
+
+    connection = Faraday.new(
+      url: 'https://www.merci-facteur.com/api/1.2/prod/service/sendCourrier',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'ww-service-id': service_id, 'ww-access-token': access_token }
+    )
+
+    response = connection.post do |req|
+      req.body = generate_json_send_resiliation(order_account)
+    end
+    response = JSON.parse(response.body, symbolize_names: true)
+
+    debugger
+  end
+
+  def generate_json_send_resiliation(order_account)
+    base_64_file = Base64.encode64(URI.parse(order_account.resiliation_file.url).open.read).gsub(/\n/, "")
+
+    json_send_resiliation = {
+      idUser: 21881,
+      modeEnvoi: "normal",
+      adress: {
+                exp: "1273844",
+                dest: [
+                  {
+                    civilite: "Mme",
+                    nom: "Dupont",
+                    prenom: "Sophie",
+                    societe: "Dupont Corp.",
+                    adresse1: "9 allée de la rose",
+                    adresse2: "",
+                    adresse3: "",
+                    cp: "78000",
+                    ville: "Versailles",
+                    pays: "france",
+                    email: "",
+                    consent: "0",
+                    reference: ""
+                  }
+                ]
+              },
+      content: {
+        letter: {
+          base64files: [
+            base_64_file
+          ]
+        }
+      }
+    }.to_json
+    return json_send_resiliation
   end
 end

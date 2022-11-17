@@ -6,7 +6,6 @@
 
 require 'faraday'
 require 'json'
-require "rest-client"
 
 class MerciFacteur < ApplicationRecord
   after_create :query_access_token
@@ -31,13 +30,9 @@ class MerciFacteur < ApplicationRecord
     secret_key = ENV.fetch('MERCI_FACTEUR_SECRET_KEY')
     hashed_key = hash_the_key(the_timestamp, service_id, secret_key)
 
-    RestClient.proxy = ENV["QUOTAGUARDSTATIC_URL"]
-    res = RestClient.get("http://ip.quotaguard.com")
-    ip = JSON.parse(res.body, symbolize_names: true)[:ip]
-
     response = Faraday.new(
       url: 'https://www.merci-facteur.com/api/1.2/prod/service/getToken',
-      headers: { 'ww-service-signature': hashed_key, 'ww-timestamp': the_timestamp, 'ww-service-id': service_id, "ww-authorized-ip": "#{ip};82.210.42.78" }
+      headers: { 'ww-service-signature': hashed_key, 'ww-timestamp': the_timestamp, 'ww-service-id': service_id, "ww-authorized-ip": "#{Socket.ip_address_list.detect(&:ipv4_private?).try(:ip_address)}" }
     ).get
 
     response = JSON.parse(response.body, symbolize_names: true)

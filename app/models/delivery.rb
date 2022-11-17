@@ -2,11 +2,11 @@ class Delivery < ApplicationRecord
   include AASM
   belongs_to :order_account
 
-  def update_state(event_name)
+  def update_delivery_state(event_name)
     case event_name
-    when "new" then self.declare_new
-    when "printed" then self.declare_printed
-    when "sended" then self.declare_sended
+    when "new" then self.declare_new!
+    when "printed" then self.declare_printed!
+    when "sended" then self.declare_sended!
     end
   end
 

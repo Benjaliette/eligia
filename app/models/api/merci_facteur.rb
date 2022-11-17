@@ -33,10 +33,11 @@ class MerciFacteur < ApplicationRecord
 
     RestClient.proxy = ENV["QUOTAGUARDSTATIC_URL"]
     res = RestClient.get("http://ip.quotaguard.com")
+    ip = JSON.parse(res.body, symbolize_names: true)[:ip]
 
     response = Faraday.new(
       url: 'https://www.merci-facteur.com/api/1.2/prod/service/getToken',
-      headers: { 'ww-service-signature': hashed_key, 'ww-timestamp': the_timestamp, 'ww-service-id': service_id, "ww-authorized-ip": "#{res.body["ip"]};82.210.42.78" }
+      headers: { 'ww-service-signature': hashed_key, 'ww-timestamp': the_timestamp, 'ww-service-id': service_id, "ww-authorized-ip": "#{ip};82.210.42.78" }
     ).get
 
     response = JSON.parse(response.body, symbolize_names: true)

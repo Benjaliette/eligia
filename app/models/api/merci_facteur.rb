@@ -30,7 +30,7 @@ class MerciFacteur < ApplicationRecord
     secret_key = ENV.fetch('MERCI_FACTEUR_SECRET_KEY')
     hashed_key = hash_the_key(the_timestamp, service_id, secret_key)
     p "🛑"
-    p request_ip
+    p request.ip
     p request.remote_ip
     p Socket.ip_address_list.detect(&:ipv4_private?).try(:ip_address)
     p "✅"

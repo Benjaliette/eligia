@@ -1,3 +1,0 @@
-class MerciFacteurController < ApplicationController
-
-end

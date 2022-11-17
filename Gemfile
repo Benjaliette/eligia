@@ -148,7 +148,6 @@ group :development do
   gem "web-console"
 end
 
-
 # ## ===== GEMS FOR TEST ONLY (commented) ===== ##
 
 group :test do

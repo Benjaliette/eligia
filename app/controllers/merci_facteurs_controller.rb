@@ -10,6 +10,6 @@ class MerciFacteursController < ApplicationController
     delivery = Delivery.find_by(envoi_id: webhook_detail[:id_envoi])
     delivery.update_delivery_state(webhook_event[:name_event])
 
-    render status: :ok
+    render json: {}, status: 200
   end
 end

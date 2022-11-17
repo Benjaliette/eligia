@@ -4,6 +4,6 @@ class MerciFacteursController < ApplicationController
   skip_after_action :verify_authorized, only: :webhook
 
   def webhook
-
+    debugger
   end
 end

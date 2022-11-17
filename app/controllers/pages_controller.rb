@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home price contact]
+  skip_before_action :authenticate_user!, only: %i[home price cgu cgv]
 
   def home
   end
@@ -8,6 +8,9 @@ class PagesController < ApplicationController
     @packs = Pack.all.last(3)
   end
 
-  def contact
+  def cgu
+  end
+
+  def cgv
   end
 end

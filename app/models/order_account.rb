@@ -1,6 +1,5 @@
 class OrderAccount < ApplicationRecord
   require 'json'
-  require 'cgi'
   include AASM
   include ActiveStoragePath
 
@@ -159,11 +158,8 @@ class OrderAccount < ApplicationRecord
     response = connection.post do |req|
       req.body = URI.encode_www_form(generate_json_send_resiliation(order_account)).gsub("%3A", "%22").gsub("%3D%3E", "%22%3A")
 
-      debugger
     end
     response = JSON.parse(response.body, symbolize_names: true)
-
-    debugger
   end
 
   def generate_json_send_resiliation(order_account)
@@ -176,16 +172,16 @@ class OrderAccount < ApplicationRecord
         exp: 1273844,
         dest: [
           {
-            civilite: "Mme",
-            nom: "Dupont",
-            prenom: "Sophie",
-            societe: "Dupont Corp.",
-            adresse1: "9 allée de la rose",
+            civilite: "",
+            nom: "",
+            prenom: "",
+            societe: order_account.account.name,
+            adresse1: order_account.account.address.street,
             adresse2: "",
             adresse3: "",
-            cp: "78000",
-            ville: "Versailles",
-            pays: "FRANCE",
+            cp: order_account.account.address.zip,
+            ville: order_account.account.address.city,
+            pays: order_account.account.address.state,
             email: "",
             consent: "0",
             reference: ""

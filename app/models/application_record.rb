@@ -17,7 +17,7 @@ class ApplicationRecord < ActiveRecord::Base
     when OrderAccount, OrderDocument
       order_namepath(self.order)
     when Order
-      order_namepath(order)
+      order_namepath(self)
     end
   end
 

@@ -4,22 +4,12 @@ class MerciFacteursController < ApplicationController
   skip_after_action :verify_authorized, only: :webhook
 
   def webhook
-    JSON.parse(params["event"], sympbolize_names: true).each do |k, v|
-      p "🟥 #{k} -> #{v}"
-    end
-    JSON.parse(params["detail"].first, sympbolize_names: true).each do |k, v|
-      p "🟩 #{k} -> #{v}"
-    end
+    webhook_event = JSON.parse(params["event"], sympbolize_names: true)
+    webhook_detail = JSON.parse(params["detail"], sympbolize_names: true).first
 
-    request.headers.each { |s| p "🟨 #{s}" }
+    delivery = Delivery.find_by(envoi_id: webhook_detail[:id_envoi])
+    delivery.update_state(webhook_event[:name_event])
 
-    if request.headers['Content-Type'] == 'application/json'
-      data = JSON.parse(request.body.read)
-
-      p data
-    else
-      # application/x-www-form-urlencoded
-      data = params.as_json
-    end
+    render status :ok
   end
 end

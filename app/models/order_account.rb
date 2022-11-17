@@ -8,6 +8,7 @@ class OrderAccount < ApplicationRecord
   belongs_to :order
   belongs_to :account
   has_many :notifications, dependent: :destroy
+  has_one :delivery, dependent: :destroy
 
   has_one_attached_with :resiliation_file, path: -> { self.set_attached_with_path }
 
@@ -110,7 +111,12 @@ class OrderAccount < ApplicationRecord
     end
 
     event :declare_pending do
-      transitions from: :document_missing, to: :pending, after: proc { generate_resiliation_file }
+      transitions from: :document_missing,
+                  to: :pending,
+                  after: proc {
+                    generate_resiliation_file
+                    Delivery.create(order_account: self)
+                  }
     end
 
     event :declare_resiliation_sent do

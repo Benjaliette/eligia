@@ -5,6 +5,7 @@ class MerciFacteursController < ApplicationController
 
   def webhook
     webhook_event = JSON.parse(params["event"], symbolize_names: true)
+    # Do not keep the first -> go to each
     webhook_detail = JSON.parse(params["detail"], symbolize_names: true).first
 
     delivery = Delivery.find_by(envoi_id: webhook_detail[:id_envoi])

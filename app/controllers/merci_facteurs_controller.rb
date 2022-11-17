@@ -4,7 +4,8 @@ class MerciFacteursController < ApplicationController
   skip_after_action :verify_authorized, only: :webhook
 
   def webhook
-    p "3️⃣#{JSON.parse(request.body.read)}"
+    p "1️⃣#{JSON.parse(params[:event])}"
+    p "3️⃣#{JSON.parse(params[:detail].first)}"
     request.headers.each { |s| p "🟥 #{s}" }
 
     if request.headers['Content-Type'] == 'application/json'

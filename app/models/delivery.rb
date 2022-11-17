@@ -7,6 +7,7 @@ class Delivery < ApplicationRecord
     when "new" then self.declare_new
     when "printed" then self.declare_printed
     when "sended" then self.declare_sended
+    end
   end
 
   aasm do

@@ -6,7 +6,6 @@
 
 require 'faraday'
 require 'json'
-require 'dotenv'
 
 class MerciFacteur < ApplicationRecord
   after_create :query_access_token

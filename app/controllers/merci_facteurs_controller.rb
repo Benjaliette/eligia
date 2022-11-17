@@ -8,11 +8,11 @@ class MerciFacteursController < ApplicationController
     webhook_detail = JSON.parse(params["detail"], symbolize_names: true).first
 
 
-    puts webhook_detail[:id_envoi]
-    puts webhook_event[:name_event]
+    p webhook_detail[:id_envoi]
+    p webhook_event[:name_event]
     delivery = Delivery.find_by(envoi_id: webhook_detail[:id_envoi])
+    p delivery
     delivery.update_delivery_state(webhook_event[:name_event])
-
-    render status :ok
+    p delivery
   end
 end

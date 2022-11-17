@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :delivery do
+    order_account { nil }
+  end
+
   factory :merci_facteur do
     access_token { "MyString" }
   end

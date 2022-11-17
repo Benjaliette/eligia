@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_17_092405) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_17_154354) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,6 +99,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_092405) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.bigint "order_account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "aasm_state"
+    t.index ["order_account_id"], name: "index_deliveries_on_order_account_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -218,6 +226,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_092405) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "accounts"
   add_foreign_key "addresses", "orders"
+  add_foreign_key "deliveries", "order_accounts"
   add_foreign_key "notifications", "order_accounts"
   add_foreign_key "notifications", "orders"
   add_foreign_key "order_accounts", "accounts"

@@ -15,7 +15,7 @@ class MerciFacteur < ApplicationRecord
     # Si il y a une instance de MerciFacteur avec un access_token valable, on la récupère.
     # Sinon on en crée une autre
     unless MerciFacteur.count.zero? || MerciFacteur.last.access_token.nil? || MerciFacteur.last.expire_at.nil?
-      return MerciFacteur.last if (MerciFacteur.last.expire_at > Time.now.to_i)
+      return MerciFacteur.last if (MerciFacteur.last.expire_at > (Time.now.to_i + 1800))
     end
 
     return MerciFacteur.create

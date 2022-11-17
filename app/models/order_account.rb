@@ -91,7 +91,7 @@ class OrderAccount < ApplicationRecord
     file_links
   end
 
-  # private
+  private
 
   def update_order_state
     self.order.update_state unless Rails.env.test?

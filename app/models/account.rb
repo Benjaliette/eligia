@@ -5,8 +5,10 @@ class Account < ApplicationRecord
   has_many :documents, through: :account_documents
   has_many :order_accounts, dependent: :destroy
   belongs_to :subcategory
+  has_one :address, dependent: :destroy
 
   validates :name, presence: true
+  validates_associated :address
 
   scope :validated,      ->{ where(aasm_state: 'validated') }
   scope :non_validated,  ->{ where(aasm_state: 'non_validated') }

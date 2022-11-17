@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_09_150236) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_17_092405) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,10 +78,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_150236) do
     t.string "complement"
     t.string "zip"
     t.string "city"
-    t.bigint "order_id", null: false
+    t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "state"
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_addresses_on_account_id"
     t.index ["order_id"], name: "index_addresses_on_order_id"
   end
 
@@ -107,6 +109,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_150236) do
     t.string "file_type"
   end
 
+  create_table "merci_facteurs", force: :cascade do |t|
+    t.string "access_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "expire_at"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "content"
     t.bigint "order_id", null: false
@@ -116,6 +125,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_150236) do
     t.boolean "read", default: false
     t.index ["order_account_id"], name: "index_notifications_on_order_account_id"
     t.index ["order_id"], name: "index_notifications_on_order_id"
+  end
+
+  create_table "order_account_order_documents", force: :cascade do |t|
+    t.bigint "order_account_id", null: false
+    t.bigint "order_document_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_account_id"], name: "index_order_account_order_documents_on_order_account_id"
+    t.index ["order_document_id"], name: "index_order_account_order_documents_on_order_document_id"
   end
 
   create_table "order_accounts", force: :cascade do |t|
@@ -207,9 +225,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_150236) do
   add_foreign_key "accounts", "subcategories"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "accounts"
   add_foreign_key "addresses", "orders"
   add_foreign_key "notifications", "order_accounts"
   add_foreign_key "notifications", "orders"
+  add_foreign_key "order_account_order_documents", "order_accounts"
+  add_foreign_key "order_account_order_documents", "order_documents"
   add_foreign_key "order_accounts", "accounts"
   add_foreign_key "order_accounts", "orders"
   add_foreign_key "order_documents", "documents"

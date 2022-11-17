@@ -157,7 +157,6 @@ class OrderAccount < ApplicationRecord
 
     response = connection.post do |req|
       req.body = URI.encode_www_form(generate_json_send_resiliation(order_account)).gsub("%3A", "%22").gsub("%3D%3E", "%22%3A")
-
     end
     response = JSON.parse(response.body, symbolize_names: true)
   end

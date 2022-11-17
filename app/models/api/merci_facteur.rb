@@ -29,7 +29,7 @@ class MerciFacteur < ApplicationRecord
     service_id = ENV.fetch('MERCI_FACTEUR_SERVICE_ID')
     secret_key = ENV.fetch('MERCI_FACTEUR_SECRET_KEY')
     hashed_key = hash_the_key(the_timestamp, service_id, secret_key)
-
+    debugger
     response = Faraday.new(
       url: 'https://www.merci-facteur.com/api/1.2/prod/service/getToken',
       headers: { 'ww-service-signature': hashed_key, 'ww-timestamp': the_timestamp, 'ww-service-id': service_id, 'ww-authorized-ip': "#{request.remote_id};82.210.42.78" }

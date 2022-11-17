@@ -21,7 +21,7 @@ module Eligia
 
     # config.asset_host = 'https://www.eligia.fr/'
 
-    config.assets.initialize_on_precompile = false
+    # config.assets.initialize_on_precompile = false
 
     # Configuration for the application, engines, and railties goes here.
     #

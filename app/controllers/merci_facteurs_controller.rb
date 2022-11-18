@@ -5,11 +5,15 @@ class MerciFacteursController < ApplicationController
 
   def webhook
     webhook_event = JSON.parse(params["event"], symbolize_names: true)
-    # Do not keep the first -> go to each
-    webhook_detail = JSON.parse(params["detail"], symbolize_names: true).first
 
-    delivery = Delivery.find_by(envoi_id: webhook_detail[:id_envoi])
-    delivery.update_delivery_state(webhook_event[:name_event])
+    deliveries = []
+
+    JSON.parse(params["detail"], symbolize_names: true).map do |detail|
+      delivery = Delivery.find_by(envoi_id: detail[:id_envoi])
+      deliveries << delivery unless delivery.nil?
+    end
+
+    deliveries.each { |delivery| delivery.update_delivery_state(webhook_event[:name_event]) }
 
     render json: {}, status: 200
   end

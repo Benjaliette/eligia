@@ -305,6 +305,7 @@
 
 
 .form-order-div {
+  height: 100vh;
   overflow-y:scroll;
   background: white;
   max-width: 100%;
@@ -507,6 +508,7 @@
 }
 
 .order-parts {
+  position: fixed;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   height: 100vh;

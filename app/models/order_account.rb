@@ -166,6 +166,8 @@ class OrderAccount < ApplicationRecord
     end
     response = JSON.parse(response.body, symbolize_names: true)
 
+    puts response
+
     self.delivery.update(envoi_id: response[:envoi_id].first)
   end
 

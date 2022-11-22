@@ -1,4 +1,5 @@
 require 'normalize_country'
+require 'json'
 
 class Order < ApplicationRecord
   include AASM
@@ -72,27 +73,29 @@ class Order < ApplicationRecord
     end
   end
 
-  def set_payplug_payment(success_url, cancel_url)
+  def set_payplug_payment
     secret_key = ENV.fetch('PAYPLUG_SECRET_KEY')
     public_key = ENV.fetch('PAYPLUG_PUBLISHABLE_KEY')
 
     connection = Faraday.new(
       url: 'https://api.payplug.com/v1/payments',
-      headers: { 'Authorization': "Bearer #{secret_key}" }
+      headers: { 'Authorization': "Bearer #{secret_key}", 'Content-Type': 'application/json' }
     )
 
     response = connection.post do |req|
-      req.body = URI.encode_www_form(payment_data(success_url, cancel_url)).gsub("%3A", "%22").gsub("%3D%3E", "%22%3A")
+      req.body = JSON.generate(payment_data)
     end
 
-
+    response = JSON.parse(response.body, symbolize_names: true)
   end
 
-  def payment_data(success_url, cancel_url)
+  def payment_data
+    base_url = Rails.application.config.action_controller.asset_host
+
     payment_data = {
-      amount: self.amount_cents,
+      amount: self.pack.price_cents,
       currency: 'EUR',
-      billing: {
+      customer: {
         first_name: self.user.first_name,
         last_name: self.user.last_name,
         email: self.user.email,
@@ -103,15 +106,15 @@ class Order < ApplicationRecord
         language: 'fr'
       },
       hosted_payment: {
-        return_url: success_url,
-        cancel_url: webhook_url,
+        return_url: base_url + Rails.application.routes.url_helpers.success_order_url(self, only_path: true),
+        cancel_url: base_url + Rails.application.routes.url_helpers.root_path(only_path: true),
       },
       metadata: {
         customer_id: self.user.id,
       },
     }
-
   end
+
   def notify_order_payment
     Notification.create(
       content: "La demande de résiliation des contrats de #{self.deceased_first_name} #{self.deceased_last_name}

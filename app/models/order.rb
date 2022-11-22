@@ -72,27 +72,46 @@ class Order < ApplicationRecord
     end
   end
 
-  def set_mollie_payment(success_url, webhook_url)
-    customer = Mollie::Customer.create(
-      name: "#{self.user.first_name} #{self.user.last_name}",
-      email: self.user.email
+  def set_payplug_payment(success_url, cancel_url)
+    secret_key = ENV.fetch('PAYPLUG_SECRET_KEY')
+    public_key = ENV.fetch('PAYPLUG_PUBLISHABLE_KEY')
+
+    connection = Faraday.new(
+      url: 'https://api.payplug.com/v1/payments',
+      headers: { 'Authorization': "Bearer #{secret_key}" }
     )
 
-    Mollie::Payment.create(
-      amount: { value: sprintf('%.2f', (self.amount_cents / 100)), currency: 'EUR' },
-      description: self.pack.title,
-      billingAddress: {
-        streetAndNumber: self.address.street,
-        postalCode: self.address.zip,
-        city: self.address.city,
-        country: NormalizeCountry(self.address.state, to: :alpha2)
-      },
-      customerId: customer.id,
-      redirect_url: success_url,
-      webhook_url: webhook_url
-    )
+    response = connection.post do |req|
+      req.body = URI.encode_www_form(payment_data(success_url, cancel_url)).gsub("%3A", "%22").gsub("%3D%3E", "%22%3A")
+    end
+
+
   end
 
+  def payment_data(success_url, cancel_url)
+    payment_data = {
+      amount: self.amount_cents,
+      currency: 'EUR',
+      billing: {
+        first_name: self.user.first_name,
+        last_name: self.user.last_name,
+        email: self.user.email,
+        address1: self.address.street,
+        postcode: self.address.zip,
+        city: self.address.city,
+        country: 'FR',
+        language: 'fr'
+      },
+      hosted_payment: {
+        return_url: success_url,
+        cancel_url: webhook_url,
+      },
+      metadata: {
+        customer_id: self.user.id,
+      },
+    }
+
+  end
   def notify_order_payment
     Notification.create(
       content: "La demande de résiliation des contrats de #{self.deceased_first_name} #{self.deceased_last_name}

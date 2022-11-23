@@ -1,10 +1,9 @@
 require 'normalize_country'
+require 'json'
 
 class Order < ApplicationRecord
   include AASM
   include ActiveStoragePath
-
-  after_save :check_for_change_in_paid
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
@@ -72,25 +71,46 @@ class Order < ApplicationRecord
     end
   end
 
-  def set_mollie_payment(success_url, webhook_url)
-    customer = Mollie::Customer.create(
-      name: "#{self.user.first_name} #{self.user.last_name}",
-      email: self.user.email
+  def set_payplug_payment
+    secret_key = ENV.fetch('PAYPLUG_SECRET_KEY')
+    public_key = ENV.fetch('PAYPLUG_PUBLISHABLE_KEY')
+
+    connection = Faraday.new(
+      url: 'https://api.payplug.com/v1/payments',
+      headers: { 'Authorization': "Bearer #{secret_key}", 'Content-Type': 'application/json' }
     )
 
-    Mollie::Payment.create(
-      amount: { value: sprintf('%.2f', (self.amount_cents / 100)), currency: 'EUR' },
-      description: self.pack.title,
-      billingAddress: {
-        streetAndNumber: self.address.street,
-        postalCode: self.address.zip,
+    response = connection.post do |req|
+      req.body = JSON.generate(payment_data)
+    end
+
+    response = JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def payment_data
+    base_url = Rails.application.config.action_controller.asset_host
+
+    payment_data = {
+      amount: self.pack.price_cents,
+      currency: 'EUR',
+      customer: {
+        first_name: self.user.first_name,
+        last_name: self.user.last_name,
+        email: self.user.email,
+        address1: self.address.street,
+        postcode: self.address.zip,
         city: self.address.city,
-        country: NormalizeCountry(self.address.state, to: :alpha2)
+        country: 'FR',
+        language: 'fr'
       },
-      customerId: customer.id,
-      redirect_url: success_url,
-      webhook_url: webhook_url
-    )
+      hosted_payment: {
+        return_url: base_url + Rails.application.routes.url_helpers.success_order_url(self, only_path: true),
+        cancel_url: base_url + Rails.application.routes.url_helpers.recap_order_url(self, only_path: true),
+      },
+      metadata: {
+        customer_id: self.user.id,
+      },
+    }
   end
 
   def notify_order_payment
@@ -170,9 +190,13 @@ class Order < ApplicationRecord
     state_index(self.aasm_state)
   end
 
-
   def passed_state?(state)
     current_state_index >= state_index(state)
+  end
+
+  def attach_invoice_pdf
+    order_pdf = OrderPdf.new(self)
+    order_pdf.build_and_upload_invoice
   end
 
   private
@@ -196,16 +220,6 @@ class Order < ApplicationRecord
     STATES.index(state)
   end
 
-  def check_for_change_in_paid
-    return if Rails.env == "test"
-
-    attach_invoice_pdf if saved_change_to_attribute?(:paid) && self.paid == true
-  end
-
-  def attach_invoice_pdf
-    order_pdf = OrderPdf.new(self)
-    order_pdf.build_and_upload_invoice
-  end
 
   aasm do
     state :pending, initial: true

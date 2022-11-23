@@ -170,7 +170,7 @@ class OrderAccount < ApplicationRecord
   end
 
   def generate_json_send_resiliation(order_account)
-    base_64_file = Base64.encode64(URI.parse(order_account.resiliation_file.url).open.read).gsub(/\n/, "")
+    base_64_file = Base64.strict_encode64(URI.parse(order_account.resiliation_file.url).open.read)
 
     json_send_resiliation = {
       idUser: 21881,

@@ -73,7 +73,6 @@ class Order < ApplicationRecord
 
   def set_payplug_payment
     secret_key = ENV.fetch('PAYPLUG_SECRET_KEY')
-    public_key = ENV.fetch('PAYPLUG_PUBLISHABLE_KEY')
 
     connection = Faraday.new(
       url: 'https://api.payplug.com/v1/payments',

@@ -24,7 +24,7 @@ class MerciFacteur < ApplicationRecord
 
   def query_access_token
     the_timestamp = Time.now.to_i.to_s
-    # the .to_i creates the timestamp in the right format (ex: 1668510062) and the to_s converts it to string to be used in the hashing method
+    # the .to_i creates the timestamp in the right format (ex: 1668510062) and the to_s converts it to string to be used in the hashing method ~
 
     service_id = ENV.fetch('MERCI_FACTEUR_SERVICE_ID')
     secret_key = ENV.fetch('MERCI_FACTEUR_SECRET_KEY')

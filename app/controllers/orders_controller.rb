@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   skip_after_action :verify_authorized, only: :webhook
 
   before_action :set_order, only: %i[show created edit update update_documents recap paiement destroy success show_invoice_pdf]
+  before_action :declare_paid, only: :success
   before_action :set_categories, only: %i[created update]
 
   after_action :send_confirmation_mail, only: :webhook
@@ -94,16 +95,16 @@ class OrdersController < ApplicationController
   def success
   end
 
-  def webhook
-    payment = Mollie::Payment.get(params[:id])
-    return unless payment.paid?
+  # def webhook
+  #   payment = Mollie::Payment.get(params[:id])
+  #   return unless payment.paid?
 
-    @order = Order.find_by(checkout_session_id: payment.id)
-    if !@order.nil?
-      @order.update(paid: true)
-      @order.notify_order_payment
-    end
-  end
+  #   @order = Order.find_by(checkout_session_id: payment.id)
+  #   if !@order.nil?
+  #     @order.update(paid: true)
+  #     @order.notify_order_payment
+  #   end
+  # end
 
   private
 
@@ -145,5 +146,10 @@ class OrdersController < ApplicationController
 
     OrderMailer.with(order: @order, user: @order.user).confirmation.deliver_now
     OrderMailer.with(order: @order, user: @order.user).notification_to_contact.deliver_now
+  end
+
+  def declare_paid
+    @order.notify_order_payment
+    @order.update(paid: true)
   end
 end

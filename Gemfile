@@ -63,9 +63,6 @@ gem 'matrix'
 # Gem used to generate meta tags
 gem 'meta-tags'
 
-# Gem to use Mollie Paiement
-gem 'mollie-api-ruby'
-
 # Gem to store a money column into DB (here the orders table)
 gem 'money-rails'
 

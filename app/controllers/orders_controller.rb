@@ -1,14 +1,11 @@
 require 'json'
 
 class OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new created edit update update_documents recap destroy webhook]
-  skip_before_action :verify_authenticity_token, only: :webhook
-  skip_after_action :verify_authorized, only: :webhook
+  skip_before_action :authenticate_user!, only: %i[new created edit update update_documents recap destroy]
 
   before_action :set_order, only: %i[show created edit update update_documents recap paiement destroy success show_invoice_pdf]
   before_action :set_categories, only: %i[created update]
 
-  after_action :send_confirmation_mail, only: :webhook
   after_action :declare_paid, only: :success
   after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy show_invoice_pdf]
 
@@ -94,17 +91,6 @@ class OrdersController < ApplicationController
 
   def success
   end
-
-  # def webhook
-  #   payment = Mollie::Payment.get(params[:id])
-  #   return unless payment.paid?
-
-  #   @order = Order.find_by(checkout_session_id: payment.id)
-  #   if !@order.nil?
-  #     @order.update(paid: true)
-  #     @order.notify_order_payment
-  #   end
-  # end
 
   private
 

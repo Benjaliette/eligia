@@ -22,9 +22,10 @@
     <% end %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <script src="https://www.paypal.com/sdk/js?client-id=<%=ENV['PAYPAL_CLIENT_ID']%>&currency=USD"></script>
+
   </head>
 
   <body class=<%= content_for?(:bodyclass) ? yield(:bodyclass) : "" %>>

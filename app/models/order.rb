@@ -220,4 +220,5 @@ class Order < ApplicationRecord
       transitions from: :processing, to: :done
     end
   end
+
 end

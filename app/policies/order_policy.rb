@@ -40,15 +40,11 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def success?
-    true
+    record.notifications.count == 0
   end
 
   def destroy?
     true
-  end
-
-  def webhook?
-    skip_authorization
   end
 
   def show_invoice_pdf?

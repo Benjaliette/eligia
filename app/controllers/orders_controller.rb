@@ -1,14 +1,12 @@
 require 'json'
 
 class OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new created edit update update_documents recap destroy webhook]
-  skip_before_action :verify_authenticity_token, only: :webhook
-  skip_after_action :verify_authorized, only: :webhook
+  skip_before_action :authenticate_user!, only: %i[new created edit update update_documents recap destroy]
 
   before_action :set_order, only: %i[show created edit update update_documents recap paiement destroy success show_invoice_pdf]
   before_action :set_categories, only: %i[created update]
 
-  after_action :send_confirmation_mail, only: :webhook
+  after_action :declare_paid, only: :success
   after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy show_invoice_pdf]
 
   def index
@@ -82,32 +80,16 @@ class OrdersController < ApplicationController
     @order.amount = @order.pack.price
     @order.user = current_user
     if @order.update(order_params)
-      if Rails.env == "development" || Rails.env == "staging"
-        @order.update(paid: true)
-        redirect_to success_order_url(@order)
-      else
-        payment = @order.set_mollie_payment(success_order_url(@order), mollie_webhook_url)
-        @order.update(checkout_session_id: payment.id)
+      payment = @order.set_payplug_payment
+      @order.update(checkout_session_id: payment[:id])
 
-        redirect_to payment._links.dig("checkout", "href"), allow_other_host: true
-      end
+      redirect_to payment[:hosted_payment][:payment_url], allow_other_host: true
     else
       render :recap
     end
   end
 
   def success
-  end
-
-  def webhook
-    payment = Mollie::Payment.get(params[:id])
-    return unless payment.paid?
-
-    @order = Order.find_by(checkout_session_id: payment.id)
-    if !@order.nil?
-      @order.update(paid: true)
-      @order.notify_order_payment
-    end
   end
 
   private
@@ -150,5 +132,12 @@ class OrdersController < ApplicationController
 
     OrderMailer.with(order: @order, user: @order.user).confirmation.deliver_now
     OrderMailer.with(order: @order, user: @order.user).notification_to_contact.deliver_now
+  end
+
+  def declare_paid
+    @order.notify_order_payment
+    @order.update(paid: true)
+    @order.attach_invoice_pdf unless Rails.env == 'test'
+    send_confirmation_mail
   end
 end

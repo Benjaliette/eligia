@@ -79,6 +79,6 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine, at: '/admin', as: 'rails_admin'
 
-  post 'resiliations/bth!567bo=_iohpo654uUf', to: 'orders#webhook', as: 'mollie_webhook'
   post 'merci_facteurs/hC3A7dp5EC3A7uufohqsjoidf', to: 'merci_facteurs#webhook', as: 'merci_facteur_webhook'
+
 end

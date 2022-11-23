@@ -40,7 +40,7 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def success?
-    true
+    record.notifications.count == 0
   end
 
   def destroy?

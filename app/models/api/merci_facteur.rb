@@ -32,7 +32,7 @@ class MerciFacteur < ApplicationRecord
 
     response = Faraday.new(
       url: 'https://www.merci-facteur.com/api/1.2/prod/service/getToken',
-      headers: { 'ww-service-signature': hashed_key, 'ww-timestamp': the_timestamp, 'ww-service-id': service_id, "ww-authorized-ip": "#{Socket.ip_address_list.detect(&:ipv4_private?).try(:ip_address)}" }
+      headers: { 'ww-service-signature': hashed_key, 'ww-timestamp': the_timestamp, 'ww-service-id': service_id, "ww-authorized-ip": "111.111.111" }
     ).get
 
     response = JSON.parse(response.body, symbolize_names: true)

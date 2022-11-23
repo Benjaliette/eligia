@@ -6,10 +6,10 @@ class OrdersController < ApplicationController
   skip_after_action :verify_authorized, only: :webhook
 
   before_action :set_order, only: %i[show created edit update update_documents recap paiement destroy success show_invoice_pdf]
-  before_action :declare_paid, only: :success
   before_action :set_categories, only: %i[created update]
 
   after_action :send_confirmation_mail, only: :webhook
+  after_action :declare_paid, only: :success
   after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy show_invoice_pdf]
 
   def index
@@ -151,5 +151,7 @@ class OrdersController < ApplicationController
   def declare_paid
     @order.notify_order_payment
     @order.update(paid: true)
+    @order.attach_invoice_pdf unless Rails.env == 'test'
+    send_confirmation_mail
   end
 end

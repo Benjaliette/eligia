@@ -5,8 +5,6 @@ class Order < ApplicationRecord
   include AASM
   include ActiveStoragePath
 
-  after_save :check_for_change_in_paid
-
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
@@ -107,7 +105,7 @@ class Order < ApplicationRecord
       },
       hosted_payment: {
         return_url: base_url + Rails.application.routes.url_helpers.success_order_url(self, only_path: true),
-        cancel_url: base_url + Rails.application.routes.url_helpers.root_path(only_path: true),
+        cancel_url: base_url + Rails.application.routes.url_helpers.recap_order_url(self, only_path: true),
       },
       metadata: {
         customer_id: self.user.id,
@@ -192,9 +190,13 @@ class Order < ApplicationRecord
     state_index(self.aasm_state)
   end
 
-
   def passed_state?(state)
     current_state_index >= state_index(state)
+  end
+
+  def attach_invoice_pdf
+    order_pdf = OrderPdf.new(self)
+    order_pdf.build_and_upload_invoice
   end
 
   private
@@ -218,16 +220,6 @@ class Order < ApplicationRecord
     STATES.index(state)
   end
 
-  def check_for_change_in_paid
-    return if Rails.env == "test"
-
-    attach_invoice_pdf if saved_change_to_attribute?(:paid) && self.paid == true
-  end
-
-  def attach_invoice_pdf
-    order_pdf = OrderPdf.new(self)
-    order_pdf.build_and_upload_invoice
-  end
 
   aasm do
     state :pending, initial: true

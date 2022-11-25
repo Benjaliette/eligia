@@ -20,6 +20,10 @@
     box-shadow: 0px 2px 6px grey;
   }
 
+  &.green-bg {
+    background: $gradient-bg;
+  }
+
   &.help-navbar {
     background: $gradient-bg;
     height: 200px;

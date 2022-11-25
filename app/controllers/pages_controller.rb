@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home price cgu cgv]
+  skip_before_action :authenticate_user!, only: %i[home price cgu cgs]
 
   def home
   end
@@ -11,6 +11,7 @@ class PagesController < ApplicationController
   def cgu
   end
 
-  def cgv
+  def cgs
+    @cgs = Cgs.last
   end
 end

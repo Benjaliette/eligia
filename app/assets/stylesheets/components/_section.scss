@@ -19,7 +19,68 @@
 }
 
 
-@media (max-width: 500px) {
+#review-section{
+  height: 45vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .review-top{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  h3{
+    padding-left: 3em;
+  }
+
+  .splide{
+    height: 100%;
+  }
+
+  .splide__track{
+    height: 100%;
+  }
+
+  .splide__list{
+    height: 100%;
+    width: 80vw;
+  }
+
+  .splide__pagination__page.is-active{
+    background-color: $light-green;
+  }
+
+  .splide__arrow{
+    background: $light-green;
+    opacity: .9;
+    transition: all ease;
+    box-shadow: 0 0 4px 8px white;
+  }
+
+  .splide__arrow:hover{
+    opacity: 1;
+    scale: 1.03;
+  }
+}
+
+@media(max-width: 900px){
+  #review-section{
+    height: 65vh;
+  }
+}
+
+@media(max-width: 900px){
+  #review-section{
+    .splide__arrow{
+      display: none;
+    }
+  }
+}
+
+
+@media(max-width: 500px) {
   #function {
     padding: 50px 0px 200px 0px;
   }

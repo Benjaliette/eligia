@@ -46,6 +46,9 @@ application.register("scroll-navbar", ScrollNavbarController)
 import ShowPasswordController from "./show_password_controller"
 application.register("show-password", ShowPasswordController)
 
+import SplideController from "./splide_controller"
+application.register("splide", SplideController)
+
 import SubcategoryDropdownController from "./subcategory_dropdown_controller"
 application.register("subcategory-dropdown", SubcategoryDropdownController)
 

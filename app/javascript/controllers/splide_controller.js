@@ -6,7 +6,10 @@ export default class extends Controller {
   connect() {
     new Splide( '.splide',{
       type   : 'loop',
-      speed: 8000,
+      speed: 800,
+      padding: '20%',
+      fixedWidth : '60%',
+      gap : '1em'
     } ).mount();
   }
 }

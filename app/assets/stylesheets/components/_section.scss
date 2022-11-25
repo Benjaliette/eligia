@@ -20,11 +20,20 @@
 
 
 #review-section{
-  height: 30vh;
-  background-color: antiquewhite;
+  height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .review-top{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  h3{
+    padding-left: 3em;
+  }
 
   .splide{
     height: 100%;
@@ -37,6 +46,22 @@
   .splide__list{
     height: 100%;
     width: 80vw;
+  }
+
+  .splide__pagination__page.is-active{
+    background-color: $light-green;
+  }
+
+  .splide__arrow{
+    background: $light-green;
+    opacity: .9;
+    transition: all ease;
+    box-shadow: 0 0 4px 8px white;
+  }
+
+  .splide__arrow:hover{
+    opacity: 1;
+    scale: 1.03;
   }
 }
 

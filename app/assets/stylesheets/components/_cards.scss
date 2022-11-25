@@ -580,9 +580,9 @@
 
   .service-card {
     height: 200px;
-    background: #FFFFFF;
-    border: 1px solid $gray;
-    border-radius: 10px;
+    background: white;
+    border: 1px solid $light-gray;
+    border-radius: 1em;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -596,6 +596,31 @@
     .service-card-text {
       flex-grow: 1;
     }
+  }
+}
+
+
+
+// Cards for section client review on homepage
+.review-card{
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 1em 4em;
+  border: 1px solid $light-gray;
+  border-radius: 1em;
+
+  p{
+    font-size: smaller;
+  }
+}
+
+@media(max-width: 900px){
+  .review-card{
+    padding: 1em 2em;
   }
 }
 

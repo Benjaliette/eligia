@@ -107,7 +107,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_134105) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cgss", force: :cascade do |t|
+  create_table "cgses", force: :cascade do |t|
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -12,7 +12,7 @@
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
         <%= f.error_notification %>
 
-        <div class="form-inputs ">
+        <div class="form-inputs form-sign-up">
           <%= f.input :first_name,
                       required: true,
                       autofocus: true,
@@ -24,11 +24,12 @@
                       placeholder:'*Votre nom' %>
           <p id="label-date">*Votre date de naissance</p>
           <%= f.input :birthdate,
+                      include_blank: true,
+                      placeholder: '--',
                       required: true,
                       label: false,
-                      placeholder: false,
                       start_year: Date.today.year - 18,
-                      end_year: Date.today.year - 90 %>
+                      end_year: Date.today.year - 100 %>
           <%= f.input :email,
                       required: true,
                       label: false,
@@ -59,7 +60,11 @@
             <%= f.input :accepted_rgpd,
                         label: "* J'ai lu et j'accepte les conditions RGPD",
                         label_html: {class: "d-block margin-top-three margin-bottom-three"}%>
-                         <span class="link underline" data-action="click->modal#show">Lire les conditions RGPD</span>
+            <%= f.input :accepted_cgs,
+                        label: "* J'ai lu et j'accepte les conditions générales de service",
+                        label_html: {class: "d-block margin-top-three margin-bottom-three"}%>
+            <div class="link underline" data-action="click->modal#show">Lire les conditions RGPD</div>
+            <%= link_to 'Lire les CGS', cgs_pages_path, target: '_blank', class: 'link underline'  %>
           </div>
         </div>
 

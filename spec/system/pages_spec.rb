@@ -8,7 +8,8 @@ if User.count.zero?
     address: '12 rue du test , 75000 Paris , FR',
     password: '123456',
     birthdate: Date.today - 20.years,
-    accepted_rgpd: true
+    accepted_rgpd: true,
+    accepted_cgs: true
   )
 end
 

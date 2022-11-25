@@ -24,6 +24,11 @@ FactoryBot.define do
     user
   end
 
+  factory :cgs do
+    text { "MyText" }
+    user
+  end
+
   factory :notification do
     content { "MyString" }
     order { nil }
@@ -39,6 +44,7 @@ FactoryBot.define do
     birthdate { Date.today - 20.year }
     password { "123456" }
     accepted_rgpd { true }
+    accepted_cgs { true }
   end
 
   # Category

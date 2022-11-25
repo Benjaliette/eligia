@@ -8,15 +8,72 @@ if Rails.env.development?
   Pack.destroy_all
   User.destroy_all
   Subcategory.destroy_all
+  Rgpd.destroy_all
+  Cgs.destroy_all
 
   puts "📄 Rédaction des RGPD"
   Rgpd.create(text: "<h2>La protection de vos données est importante pour nous. À cette fin, Eligia applique des procédures strictes, conformes aux dernières directives RGPD.</h2> <br> <br> <p>Sur la base légale du consentement, la société ELIGIA SARL récolte les données nécessaires à la mise à disposition de son service. Ces données peuvent être séparées en deux catégories : les données du demandeur ainsi que les données du défunt. La récolte des données est directe : Eligia ne récolte que les données que vous spécifiez dans les champs des divers formulaires d’inscription, de création de dossier ou de paiement.</p> <br><br> <h3>Pourquoi récolter des données ?</h3> <br><br> <ul> <li>Les données du demandeur sont utilisées à des fin de répression des fraudes, de facturation et de contact pour le suivi des dossiers. Note : vos données bancaires sont sécurisées <em>via</em> la plateforme de paiement Stripe.com, elle ne sont pas et ne peuvent en aucun cas être récoltées par ELIGIA SARL.</li> <li> Suite à leur récolte, les données du défunt sont stockées sur un serveur externe sécurisé. Ces données sont ensuite transmises aux entreprises concessionnaires des contrats pour leur résiliation via des canaux sécurisés (lettres recommandées avec accusé de réception). Eligia s’engage à ne récolter que les données suffisantes et nécessaires à la résiliation des contrats. </li> </ul> <br> <p>Toutes les données du dossier d’un défunt sont supprimées définitivement des serveurs dans la durée légale de 3 mois après la clôture du dossier.</p> <p>Pour toute question concernant le traitement ou la suppression de vos données personnelles, contactez-nous à l’adresse email suivante : contact@eligia.fr. Nous nous engageons à vous répondre dans un délai de 2 jours ouvrés après réception du courriel.</p>")
 
+  puts "📄 Rédaction des CGS"
+  Cgs.create(
+    text: "
+      <h1>Conditions générales de service</h1>
+
+      <h3>Article 1 : Objet et champ d'application</h3>
+      <p>
+        Les présentes conditions générales de vente (CGV) constituent le socle de la négociation commerciale.
+
+        Les conditions générales de vente décrites ci-après détaillent les droits et obligations de la société
+        ELIGIA, société à responsabilité limitée au capital de 2 000 euros, et inscrite au registre du commerce de Bordeaux sous le numéro de SIREN 920 048 725 (ci-après 'ELIGIA SARL'),
+        et de son client dans le cadre de la vente de prestations suivantes : service de résiliations de contrats.
+
+        Tout paiement pour ce service implique l'adhésion sans réserve de l'acheteur aux présentes conditions générales de service.
+      </p>
+
+      <h3>Article 2 : Prix</h3>
+      <p>
+        Les prix des services vendus sont ceux en vigueur au jour de la prise de commande. Ils sont libellés en euros et calculés hors taxes. Par voie de conséquence, ils seront majorés du taux de TVA applicables au jour de la commande.
+
+        La société ELIGIA SARL s'accorde le droit de modifier ses tarifs à tout moment. Toutefois, elle s'engage à facturer les services achetés aux prix indiqués lors de l'enregistrement de la commande.
+      </p>
+
+      <h3>Article 3 : Modalités de paiement</h3>
+      <p>
+        Le règlement des commandes se fait par carte bancaire (VISA, CB, Mastercard).
+
+        Les règlements seront effectués à l'aide de la plateforme de paiement en ligne Payplug et seront immédiats.
+      </p>
+
+      <h3>Article 4 : Livraison</h3>
+      <p>
+        La livraison est effectuée après réalisation des démarches de résiliation des contrats souhaités.
+
+        Le délai de livraison estimé entre deux semaines et un mois n'est donné qu'à titre indicatif et n'est aucunement garanti.
+
+        Par voie de conséquence, tout retard raisonnable dans la livraison des services ne pourra pas donner lieu au profit de l'acheteur à :
+
+        - l'allocation de dommages et intérêts ;
+        - l'annulation de la commande.
+      </p>
+
+      <h3>Article 5 : Force majeure</h3>
+      <p>
+        La responsabilité de la société ELIGIA SARL ne pourra pas être mise en oeuvre si la non-exécution ou le retard dans l'exécution de l'une de ses obligations décrites dans les présentes conditions générales de service découle d'un cas de force majeure. À ce titre, la force majeure s'entend de tout événement extérieur, imprévisible et irrésistible au sens de l'article 1148 du Code civil.
+      </p>
+
+      <h3>Article 6 : Tribunal compétent</h3>
+      <p>
+        Tout litige relatif à l'interprétation et à l'exécution des présentes conditions générales de service est soumis au droit français.
+
+        À défaut de résolution amiable, le litige sera porté devant le Tribunal de Commerce de Bordeaux.
+      </p>
+    "
+  )
 
   puts "👷🏼 Création des Users"
-  User.create(first_name: 'Marc', last_name: 'Delesalle', email: 'marc.delesalle@eligia.fr', password: '123456', admin: 'true', accepted_rgpd: true, birthdate: Date.today - 20.year)
-  User.create(first_name: 'Benjamin', last_name: 'Liet', email: 'benjamin.liet@eligia.fr', password: '123456', admin: 'true', accepted_rgpd: true, birthdate: Date.today - 20.year)
-  User.create(first_name: 'jane', last_name: 'doe', email: 'jane.doe@eligia.fr', password: '123456', accepted_rgpd: true, birthdate: Date.today - 20.year)
+  User.create(first_name: 'Marc', last_name: 'Delesalle', email: 'marc.delesalle@eligia.fr', password: '123456', admin: 'true', accepted_rgpd: true, accepted_cgs: true, birthdate: Date.today - 20.year)
+  User.create(first_name: 'Benjamin', last_name: 'Liet', email: 'benjamin.liet@eligia.fr', password: '123456', admin: 'true', accepted_rgpd: true, accepted_cgs: true, birthdate: Date.today - 20.year)
+  User.create(first_name: 'jane', last_name: 'doe', email: 'jane.doe@eligia.fr', password: '123456', accepted_rgpd: true, accepted_cgs: true, birthdate: Date.today - 20.year)
   puts User.count == 3 ? "🟩 Users créées avec succès" : "🟥 Erreur dans la création des Users"
 
   puts "👷🏼 Création des catégories"
@@ -722,6 +779,11 @@ if Rails.env.development?
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: mail)
   AccountDocument.create(account: account, document: numero_contrat_rtm)
+
+  Account.all.each do |acc|
+    address = Address.create(street: '10 rue du test', zip: '75000', city: 'Paris', state: 'France')
+    acc.update(address: address)
+  end
 
   puts Account.count == 141 ? "🟩 Accounts créées avec succès" : "🟥 Erreur dans la création des accounts"
 

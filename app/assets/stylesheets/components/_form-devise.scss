@@ -12,20 +12,48 @@
   background: $off-white;
 
   form{
-    margin-top: 50px;
+    margin-top: 30px;
   }
 
   .form-text{
     position: absolute;
     width: 100%;
-    top: 15%;
+    top: 12%;
     background: #fbfbfb;
   }
 
   .form-inputs{
-    min-width: 80%;
-    max-width: 100%;
+    width: 70%;
     margin: 0px auto 20px auto;
+    overflow: auto;
+
+    .error {
+      margin-bottom: 15px;
+    }
+
+    &.form-sign-up {
+      height: 63vh;
+    }
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: $light-green;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
 
     .form-inputs-block {
       margin-left: 40px;
@@ -78,7 +106,7 @@
 
   .form-inputs > .input{
     margin: 5px auto;
-    width: 50%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -86,10 +114,12 @@
 
   .form-inputs > .input.date{
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-columns: 1fr 2fr 1fr;
     column-gap: 8px;
-    width: 50%;
+    width: 70%;
     margin: 0 auto 1em auto;
+
+    .error { grid-area: 2 / 1 / 3 / 4; }
   }
 
   .input.date > .date {
@@ -97,7 +127,7 @@
     padding: 5px 0px;
     border: solid 1px lightgray;
     border-radius: 4px;
-    color: #757575;
+    color: black;
     font-size: 16px;
     font-family: $body-font;
     padding: 10px;
@@ -108,7 +138,7 @@
   }
 
   #label-date{
-    width: 50%;
+    width: 70%;
     margin: 1em auto 0 auto;
     color: #757575;
     font-size: 16px;
@@ -150,7 +180,7 @@
 
   .show-password-devise{
     margin: 5px auto;
-    width: 50%;
+    width: 70%;
     position: relative;
 
     .input > input {
@@ -174,6 +204,12 @@
       justify-content: space-between;
       flex-direction: column;
       align-items: flex-start;
+    }
+
+    .boolean label {
+      font-size: 12px;
+      font-style: italic;
+      text-align: left;
     }
   }
 
@@ -262,7 +298,6 @@
     .form-text{
       position: absolute;
       width: 100%;
-      top: 25%;
     }
   }
 
@@ -284,30 +319,18 @@
     width: 60vw;
     height: fit-content;
 
-    .form-inputs > .input {
-      width: 85%;
-
-    }
-
-    .form-inputs> .input.date{
-      width: 85%;
-    }
-
-    #label-date{
-      width: 85%;
-    }
-
-    .show-password-devise {
-      width: 85%;
-    }
     .form-text{
-      margin-top: 20%;
+      margin-top: 16%;
       box-shadow: 0px 0px 4px lightgray;
       border-radius: 8px;
       background: $off-white;
       width: 100%;
       text-align: center;
       padding: 20px;
+
+      .form-inputs {
+        width: 90%
+      }
     }
     .autocomplete-div{
       width: 85%;
@@ -316,34 +339,68 @@
 }
 
 @media (max-width: 500px) {
-
-  .input.date > .date {
-    font-size: 12px;
-  }
-
-  #label-date{
-    font-size: 12px;
-  }
-
-  .input > input {
-    font-size: 12px;
-  }
-  label.checkbox{
-    font-size: 12px;
-  }
-  a {
-    font-size: 12px;
-  }
-  .show-password-devise{
-    justify-content: space-between;
-    width: 90%;
-  }
-  .show-password-devise > .input{
-    margin-left: 0px;
-    flex-grow: 1;
-  }
-
   .form-div{
     width: 70vw;
+
+    .form-inputs > .input.date {
+      grid-template-columns: 1fr;
+
+      .date {
+        margin-bottom: 10px;
+
+        &:first-child {
+          width: 40%;
+        }
+
+        &:last-child {
+          width: 60%;
+        }
+      }
+    }
+
+    .form-inputs.form-sign-up {
+      height: 54vh;
+    }
+
+    .form-text {
+      margin-top: 25%;
+    }
+
+    .input.date > .date {
+      font-size: 14px;
+    }
+
+    #label-date{
+      font-size: 14px;
+    }
+
+    .input > input {
+      font-size: 14px;
+    }
+
+    label.checkbox{
+      font-size: 14px;
+    }
+
+    a {
+      font-size: 14px;
+    }
+
+    .show-password-devise {
+      justify-content: space-between;
+
+      .link {
+        font-size: 14px;
+      }
+    }
+
+    .show-password-devise > .input{
+      margin-left: 0px;
+      flex-grow: 1;
+
+      input {
+        font-size: 14px;
+      }
+    }
   }
 }

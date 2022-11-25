@@ -11,11 +11,14 @@ export default class extends Controller {
     const regexes = {
       'telephone_mobile': /^(\(\+33\)|0|\+33|0033)[1-9]([0-9]{8})$/,
       'telephone_fixe': /^(\(\+33\)|0|\+33|0033)[1-9]([0-9]{8})$/,
-      'iban': /^[A-Z]{2}(?:[ ]?[0-9]){18,25}$/i
+      'iban': /^[A-Z]{2}(?:[ ]?[0-9]){18,25}$/i,
+      'email': /^(\w+\.?|-?\w+?)+@\w+\.?-?\w+?(\.\w{2,3})+$/i,
     }
     const regexp = regexes[this.formatValue]
     const inputValue = event.target.value.replaceAll(' ', '')
-    if(regexp.test(inputValue)) {
+    if (regexp === undefined) {
+      this.checkElement()
+    } else if(regexp.test(inputValue)) {
       this.checkElement()
     } else {
       this.removeCheckedElement()

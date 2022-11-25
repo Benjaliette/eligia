@@ -618,6 +618,12 @@
   }
 }
 
+@media(max-width: 900px){
+  .review-card{
+    padding: 1em 2em;
+  }
+}
+
 // Card for price in recap
 .price-recap {
   font-size: 14px;

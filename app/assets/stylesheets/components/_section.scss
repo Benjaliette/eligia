@@ -20,7 +20,7 @@
 
 
 #review-section{
-  height: 40vh;
+  height: 45vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,8 +65,22 @@
   }
 }
 
+@media(max-width: 900px){
+  #review-section{
+    height: 65vh;
+  }
+}
 
-@media (max-width: 500px) {
+@media(max-width: 900px){
+  #review-section{
+    .splide__arrow{
+      display: none;
+    }
+  }
+}
+
+
+@media(max-width: 500px) {
   #function {
     padding: 50px 0px 200px 0px;
   }

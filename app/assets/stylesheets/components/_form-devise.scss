@@ -26,6 +26,8 @@
     min-width: 80%;
     max-width: 100%;
     margin: 0px auto 20px auto;
+    height: 50vh;
+    overflow: auto;
 
     .form-inputs-block {
       margin-left: 40px;
@@ -86,7 +88,7 @@
 
   .form-inputs > .input.date{
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-columns: 1fr 2fr 1fr;
     column-gap: 8px;
     width: 50%;
     margin: 0 auto 1em auto;
@@ -97,7 +99,7 @@
     padding: 5px 0px;
     border: solid 1px lightgray;
     border-radius: 4px;
-    color: #757575;
+    color: black;
     font-size: 16px;
     font-family: $body-font;
     padding: 10px;

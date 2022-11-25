@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     collection do
       get :price, path: 'tarifs'
       get :cgu
-      get :cgv
+      get :cgs
     end
   end
 

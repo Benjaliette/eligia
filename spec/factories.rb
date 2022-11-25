@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :cg do
+    text { "MyText" }
+  end
+
   factory :delivery do
     order_account { nil }
   end

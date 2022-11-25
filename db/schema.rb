@@ -101,12 +101,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_134105) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cgs", force: :cascade do |t|
-    t.text "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "cgses", force: :cascade do |t|
     t.text "text"
     t.datetime "created_at", null: false
@@ -252,6 +246,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_134105) do
   add_foreign_key "orders", "packs"
   add_foreign_key "orders", "users"
   add_foreign_key "subcategories", "categories"
-  add_foreign_key "users", "cgs", column: "cgs_id"
+  add_foreign_key "users", "cgses"
   add_foreign_key "users", "rgpds"
 end

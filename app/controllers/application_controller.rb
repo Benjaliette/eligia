@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def storable_location?
-    request.get? && !devise_controller? && !request.xhr?
+    request.get? && !devise_controller? && !request.xhr? && params[:action] != 'cgs'
   end
 
   def store_user_location!

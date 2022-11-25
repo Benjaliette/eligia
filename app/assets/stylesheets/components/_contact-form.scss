@@ -9,7 +9,11 @@
 .contact-form-text{
   position: absolute;
   top: 100px;
-  padding: 0px 60px;
+  width: 70%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 
   .contact-form-file {
 
@@ -53,9 +57,9 @@
   }
 
   .contact-form-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
 
     label {
       font-weight: bold;
@@ -65,12 +69,13 @@
   .input {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   .form-name-input {
     margin: 10px 0;
     height: 30px;
-    width: 19vw;
+    width: 85%;
     border-radius: 5px;
     border: 1px solid $green;
   }
@@ -95,6 +100,7 @@
 
   .message_body{
     flex-grow: 1;
+    width: 100%;
     textarea{
       height: 100%;
     }

@@ -19,6 +19,28 @@
 }
 
 
+#review-section{
+  height: 30vh;
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .splide{
+    height: 100%;
+  }
+
+  .splide__track{
+    height: 100%;
+  }
+
+  .splide__list{
+    height: 100%;
+    width: 80vw;
+  }
+}
+
+
 @media (max-width: 500px) {
   #function {
     padding: 50px 0px 200px 0px;

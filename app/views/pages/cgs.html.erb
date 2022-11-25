@@ -1,0 +1,9 @@
+<% content_for :scroll_navbar, 'scroll-navbar' %>
+<% content_for :home_navbar, 'green-bg' %>
+<%= render 'shared/navbar' %>
+
+<div class="container margin-bottom-five">
+  <%= sanitize @cgs.text %>
+</div>
+
+<%= render 'shared/footer' %>

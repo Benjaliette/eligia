@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :notifications, through: :orders
   belongs_to :rgpd, optional: true
+  belongs_to :cgs, optional: true
 
   validates :first_name, :last_name,
             presence: true,
@@ -18,6 +19,7 @@ class User < ApplicationRecord
   validates :phone_number, allow_blank: true, format: { with: /(\(\+33\)|0|\+33|0033)[1-9]([0-9]{8}|([0-9\- ]){12})/, message: "Numéro incorrect" }
   validates :birthdate, presence: true
   validates :accepted_rgpd, acceptance: { accept: true, message: "Veuillez lire et accepter les conditions RGPD." }
+  validates :accepted_cgs, acceptance: { accept: true, message: "Veuillez lire et accepter les conditions générales de service." }
 
   def add_address!(address)
     cleaned_address = "#{address.line1}#{' ' unless address.line2}#{address.line2 unless address.line2}, #{address.postal_code} #{address.city}, #{address.country}"

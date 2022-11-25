@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_17_161622) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_24_134105) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -97,6 +97,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_161622) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cgses", force: :cascade do |t|
+    t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -214,6 +220,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_161622) do
     t.bigint "rgpd_id"
     t.boolean "accepted_rgpd", default: false
     t.date "birthdate"
+    t.bigint "cgs_id"
+    t.boolean "accepted_cgs", default: false
+    t.index ["cgs_id"], name: "index_users_on_cgs_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["rgpd_id"], name: "index_users_on_rgpd_id"
@@ -237,5 +246,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_161622) do
   add_foreign_key "orders", "packs"
   add_foreign_key "orders", "users"
   add_foreign_key "subcategories", "categories"
+  add_foreign_key "users", "cgses"
   add_foreign_key "users", "rgpds"
 end

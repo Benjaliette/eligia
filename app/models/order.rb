@@ -112,6 +112,17 @@ class Order < ApplicationRecord
     }
   end
 
+  def payplug_is_paid?
+    secret_key = ENV.fetch('PAYPLUG_SECRET_KEY')
+    response = Faraday.new(
+      url: "https://api.payplug.com/v1/payments/#{self.checkout_session_id}",
+      headers: { 'Authorization': "Bearer #{secret_key}", 'Content-Type': 'application/json' }
+    ).get
+
+    response = JSON.parse(response.body, symbolize_names: true)
+    return response[:is_paid]
+  end
+
   def notify_order_payment
     Notification.create(
       content: "La demande de résiliation des contrats de #{self.deceased_first_name} #{self.deceased_last_name}

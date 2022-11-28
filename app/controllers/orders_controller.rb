@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
   before_action :set_categories, only: %i[created update]
 
   after_action :declare_paid, only: :success
+
   after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy show_invoice_pdf]
 
   def index
@@ -127,17 +128,19 @@ class OrdersController < ApplicationController
     )
   end
 
+  def declare_paid
+    return unless @order.payplug_is_paid?
+
+    @order.notify_order_payment
+    @order.update(paid: true)
+    @order.attach_invoice_pdf unless Rails.env == 'test'
+    send_confirmation_mail
+  end
+
   def send_confirmation_mail
     return unless @order
 
     OrderMailer.with(order: @order, user: @order.user).confirmation.deliver_now
     OrderMailer.with(order: @order, user: @order.user).notification_to_contact.deliver_now
-  end
-
-  def declare_paid
-    @order.notify_order_payment
-    @order.update(paid: true)
-    @order.attach_invoice_pdf unless Rails.env == 'test'
-    send_confirmation_mail
   end
 end

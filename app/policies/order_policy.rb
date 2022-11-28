@@ -40,7 +40,7 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def success?
-    record.notifications.count == 0
+    record.notifications.count == 0 && record.payplug_is_paid?
   end
 
   def destroy?

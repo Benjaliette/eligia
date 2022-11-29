@@ -129,95 +129,95 @@ if Rails.env.development?
 
   puts "👷🏼 Création des accounts"
 
-  account = Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated')
+  account = Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated', logo_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Free_logo.svg/langfr-2880px-Free_logo.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_mobile)
 
-  account = Account.create(name: 'Orange', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated')
+  account = Account.create(name: 'Orange', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/langfr-300px-Orange_logo.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: piece_identite)
   AccountDocument.create(account: account, document: numero_telephone_mobile)
 
-  account = Account.create(name: 'Sosh', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated')
+  account = Account.create(name: 'Sosh', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/7/7d/Sosh_%28logo_bleu%29.svg/langfr-560px-Sosh_%28logo_bleu%29.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_mobile)
 
-  account = Account.create(name: 'SFR', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated')
+  account = Account.create(name: 'SFR', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated', logo_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/SFR_2022.svg/langfr-300px-SFR_2022.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_contrat_sfr)
   AccountDocument.create(account: account, document: numero_telephone_mobile)
 
-  account = Account.create(name: 'RED By SFR', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated')
+  account = Account.create(name: 'RED By SFR', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/6/6f/Logo_Red_By_SFR_2016.svg/langfr-560px-Logo_Red_By_SFR_2016.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_mobile)
 
-  account = Account.create(name: 'La Poste Mobile', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated')
+  account = Account.create(name: 'La Poste Mobile', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/f/f3/Logo_La_Poste_Mobile_-_2019.svg/langfr-280px-Logo_La_Poste_Mobile_-_2019.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_mobile)
 
-  account = Account.create(name: 'Prixtel', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated')
+  account = Account.create(name: 'Prixtel', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/8/8b/Logo_Prixtel.png/350px-Logo_Prixtel.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_mobile)
 
-  account = Account.create(name: 'Coriolis', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated')
+  account = Account.create(name: 'Coriolis', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/e/e6/Logo_Coriolis_Telecom.svg/langfr-560px-Logo_Coriolis_Telecom.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_mobile)
 
-  account = Account.create(name: 'Bouygues Télécom', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated')
+  account = Account.create(name: 'Bouygues Télécom', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/2/2b/Bouygues_T%C3%A9l%C3%A9com.png/560px-Bouygues_T%C3%A9l%C3%A9com.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_mobile)
 
-  account = Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated')
+  account = Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated', logo_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Free_logo.svg/langfr-2880px-Free_logo.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_fixe)
 
-  account = Account.create(name: 'Orange', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated')
+  account = Account.create(name: 'Orange', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/langfr-300px-Orange_logo.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: piece_identite)
   AccountDocument.create(account: account, document: numero_telephone_fixe)
 
-  account = Account.create(name: 'Sosh', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated')
+  account = Account.create(name: 'Sosh', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/7/7d/Sosh_%28logo_bleu%29.svg/langfr-560px-Sosh_%28logo_bleu%29.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_fixe)
 
-  account = Account.create(name: 'SFR', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated')
+  account = Account.create(name: 'SFR', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated', logo_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/SFR_2022.svg/langfr-300px-SFR_2022.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_contrat_sfr)
   AccountDocument.create(account: account, document: numero_telephone_fixe)
 
-  account = Account.create(name: 'RED By SFR', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated')
+  account = Account.create(name: 'RED By SFR', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/6/6f/Logo_Red_By_SFR_2016.svg/langfr-560px-Logo_Red_By_SFR_2016.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_fixe)
 
-  account = Account.create(name: 'Coriolis', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated')
+  account = Account.create(name: 'Coriolis', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/e/e6/Logo_Coriolis_Telecom.svg/langfr-560px-Logo_Coriolis_Telecom.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_fixe)
 
-  account = Account.create(name: 'Bouygues', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated')
+  account = Account.create(name: 'Bouygues', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/2/2b/Bouygues_T%C3%A9l%C3%A9com.png/560px-Bouygues_T%C3%A9l%C3%A9com.png')
 
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_fixe)
 
-  account = Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated')
+  account = Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated', logo_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Free_logo.svg/langfr-2880px-Free_logo.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
 
-  account = Account.create(name: 'Orange', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated')
+  account = Account.create(name: 'Orange', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/langfr-300px-Orange_logo.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: piece_identite)
 
-  account = Account.create(name: 'Sosh', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated')
+  account = Account.create(name: 'Sosh', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/7/7d/Sosh_%28logo_bleu%29.svg/langfr-560px-Sosh_%28logo_bleu%29.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_contrat_sosh)
 
-  account = Account.create(name: 'SFR', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated')
+  account = Account.create(name: 'SFR', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated', logo_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/SFR_2022.svg/langfr-300px-SFR_2022.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_contrat_sfr)
 
-  account = Account.create(name: 'RED By SFR', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated')
+  account = Account.create(name: 'RED By SFR', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/6/6f/Logo_Red_By_SFR_2016.svg/langfr-560px-Logo_Red_By_SFR_2016.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_contrat_red)
 
-  account = Account.create(name: 'Bouygues', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated')
+  account = Account.create(name: 'Bouygues', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/2/2b/Bouygues_T%C3%A9l%C3%A9com.png/560px-Bouygues_T%C3%A9l%C3%A9com.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_contrat_bouygues)
 
@@ -290,12 +290,12 @@ if Rails.env.development?
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
   AccountDocument.create(account: account, document: numero_abonne)
 
-  account = Account.create(name: "Le dauphiné libéré", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated')
+  account = Account.create(name: "Le dauphiné libéré", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Logo_Journal_Le_Dauphin%C3%A9_Lib%C3%A9r%C3%A9_-_2022.svg/langfr-500px-Logo_Journal_Le_Dauphin%C3%A9_Lib%C3%A9r%C3%A9_-_2022.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
   AccountDocument.create(account: account, document: numero_abonne)
 
-  account = Account.create(name: "DNA", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated')
+  account = Account.create(name: "DNA", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Logo-dna-2022.svg/langfr-340px-Logo-dna-2022.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
   AccountDocument.create(account: account, document: numero_abonne)
@@ -320,7 +320,7 @@ if Rails.env.development?
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
   AccountDocument.create(account: account, document: numero_abonne)
 
-  account = Account.create(name: "Fémina", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated')
+  account = Account.create(name: "Fémina", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/6/65/Logo_Version_Femina.png')
   AccountDocument.create(account: account, document: acte_deces)
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
   AccountDocument.create(account: account, document: numero_abonne)
@@ -365,7 +365,7 @@ if Rails.env.development?
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
   AccountDocument.create(account: account, document: numero_abonne)
 
-  account = Account.create(name: "Madame Figaro", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated')
+  account = Account.create(name: "Madame Figaro", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/f/f8/Le_Figaro_logo.svg/400px-Le_Figaro_logo.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
   AccountDocument.create(account: account, document: numero_abonne)
@@ -430,7 +430,7 @@ if Rails.env.development?
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
   AccountDocument.create(account: account, document: numero_abonne)
 
-  account = Account.create(name: "Courrier international", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated')
+  account = Account.create(name: "Courrier international", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/fr/thumb/0/0b/Courrier_international_2012_logo.png/560px-Courrier_international_2012_logo.png')
   AccountDocument.create(account: account, document: acte_deces)
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
   AccountDocument.create(account: account, document: numero_abonne)
@@ -470,7 +470,7 @@ if Rails.env.development?
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
   AccountDocument.create(account: account, document: numero_abonne)
 
-  account = Account.create(name: "Charlie Hebdo", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated')
+  account = Account.create(name: "Charlie Hebdo", subcategory: Subcategory.find_by(name: 'Journaux/Magazines'), aasm_state: 'validated', logo_url:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Charlie_Hebdo_logo.svg/langfr-560px-Charlie_Hebdo_logo.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   numero_abonne = Document.create(name: "Numéro d'Abonné #{account.name}", format: 'text')
   AccountDocument.create(account: account, document: numero_abonne)

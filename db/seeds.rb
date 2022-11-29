@@ -129,7 +129,7 @@ if Rails.env.development?
 
   puts "👷🏼 Création des accounts"
 
-  account = Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated')
+  account = Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Ligne mobile'), aasm_state: 'validated', logo_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Free_logo.svg/langfr-2880px-Free_logo.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_mobile)
 
@@ -167,7 +167,7 @@ if Rails.env.development?
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_mobile)
 
-  account = Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated')
+  account = Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Ligne fixe'), aasm_state: 'validated', logo_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Free_logo.svg/langfr-2880px-Free_logo.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_fixe)
 
@@ -198,7 +198,7 @@ if Rails.env.development?
   AccountDocument.create(account: account, document: acte_deces)
   AccountDocument.create(account: account, document: numero_telephone_fixe)
 
-  account = Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated')
+  account = Account.create(name: 'Free', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated', logo_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Free_logo.svg/langfr-2880px-Free_logo.svg.png')
   AccountDocument.create(account: account, document: acte_deces)
 
   account = Account.create(name: 'Orange', subcategory: Subcategory.find_by(name: 'Internet'), aasm_state: 'validated')

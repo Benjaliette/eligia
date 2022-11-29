@@ -255,6 +255,9 @@ button {
 @media (max-width: 900px) {
   button {
     .circle {
+      background: $yellow;
+      border-radius: 1.625rem;
+      width: auto !important;
       .icon {
         top: 1px;
         &.arrow {
@@ -266,9 +269,6 @@ button {
     .button-text {
       color: black;
     }
-
-    background: $yellow;
-    border-radius: 1.625rem;
   }
 
   .btn-principal.small {

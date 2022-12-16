@@ -6,7 +6,7 @@
   <%= render 'shared/navbar' %>
 
   <div class="fullscreen-no-navbar">
-    <div class="banner user-banner">
+    <div class="banner">
       <div class="container dashboard-container">
         <h1><%= @blogpost.title %></h1>
       </div>
@@ -21,7 +21,8 @@
           <%= image_tag @blogpost.main_picture, alt: "text" %>
         </div>
       <% end %>
-      <div class="margin-y-five">
+      <p class="blog-date">Écris le <%= l(Date.parse(@blogpost.created_at.to_s), format: :long) %> par <%= @blogpost.user.first_name %></p>
+      <div class="margin-y-five blog-body">
         <%= @blogpost.body %>
       </div>
 

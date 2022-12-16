@@ -35,6 +35,7 @@
 
 .blog-action {
   display: flex;
+  margin-bottom: 100px;
 
   a {
     margin-right: 20px;
@@ -44,4 +45,24 @@
 .blog-img {
   margin: 20px auto;
   width: fit-content;
+
+  img {
+    width: 100%;
+  }
+}
+
+.blog-body {
+  a {
+    color: $blue;
+    text-decoration: underline;
+
+    &:hover {
+      color: $strong-blue;
+    }
+  }
+}
+
+.blog-date {
+  font-size: 10px;
+  font-style: italic;
 }

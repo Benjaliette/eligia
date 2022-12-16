@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_24_134105) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_16_121713) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,7 +92,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_134105) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.bigint "user_id", null: false
     t.index ["slug"], name: "index_blogposts_on_slug", unique: true
+    t.index ["user_id"], name: "index_blogposts_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -236,6 +238,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_134105) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "accounts"
   add_foreign_key "addresses", "orders"
+  add_foreign_key "blogposts", "users"
   add_foreign_key "deliveries", "order_accounts"
   add_foreign_key "notifications", "order_accounts"
   add_foreign_key "notifications", "orders"

@@ -5,7 +5,6 @@
     <%= link_to "Commencer une démarche", new_order_path, class:"btn-principal small", data:{'scroll-navbar-target':'button'} %>
   </li>
 <% end %>
-<% content_for :accueil_btn, 'display-none' %>
 <%= render 'shared/navbar' %>
 
 <div class="banner">
@@ -16,19 +15,22 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container fullscreen">
   <ul class="blog-cards">
     <% @blogposts.each do |post| %>
-      <li class="blog-card">
+      <%= link_to blogpost_path(post) do %>
+        <li class="blog-card">
 
-        <div style="background-image: url(<%= image_path post.main_picture.attached? ? post.main_picture.url : 'handshake.webp' %>)" class="blog-card-img">
-        </div>
+          <div style="background-image: url(<%= image_path post.main_picture.attached? ? post.main_picture.url : 'handshake.webp' %>)" class="blog-card-img">
+          </div>
 
-        <div class="blog-card-content">
-          <h2><%= post.title %></h2>
-        </div>
-        <%= link_to "Lire la suite", blogpost_path(post), class: "btn-third small" %>
-      </li>
+          <div class="blog-card-content">
+            <h2><%= post.title %></h2>
+            <p><%= post.body.to_plain_text.truncate(150) %></p>
+          </div>
+          <div class="btn-third small">Lire la suite</div>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 

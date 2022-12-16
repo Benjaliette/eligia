@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'blogposts/index'
   devise_for :users, path: 'utilisateur', controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',

@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :orders, dependent: :destroy
   has_many :notifications, through: :orders
+  has_many :blogposts
   belongs_to :rgpd, optional: true
   belongs_to :cgs, optional: true
 

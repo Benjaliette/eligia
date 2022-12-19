@@ -1,21 +1,19 @@
 require 'json'
 
 class OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new created edit update update_documents recap destroy]
+  skip_before_action :authenticate_user!, only: %i[create edit update show destroy]
 
-  before_action :set_order, only: %i[show created edit update update_documents recap paiement destroy success show_invoice_pdf]
-  before_action :set_categories, only: %i[created update]
+  before_action :set_order, only: %i[show edit update update_documents recap paiement destroy success show_invoice_pdf]
+  before_action :set_categories, only: %i[edit update]
 
   after_action :declare_paid, only: :success
 
-  after_action :order_pundit, only: %i[show new created edit update update_documents paiement recap success destroy show_invoice_pdf]
+  after_action :order_pundit, only: %i[show new create edit update paiement recap success destroy show_invoice_pdf]
 
   def index
   end
 
   def show
-    @orders = current_user.orders.where(paid: true).order(:deceased_last_name, :deceased_first_name)
-    @order.update_order_account_status
   end
 
   def show_invoice_pdf
@@ -29,12 +27,12 @@ class OrdersController < ApplicationController
     authorize @order
   end
 
-  def new
+  def create
     @order = Order.create
-    redirect_to created_order_path(@order)
+    redirect_to edit_order_path(@order)
   end
 
-  def created
+  def edit
     @accounts = Account.all
   end
 
@@ -42,28 +40,10 @@ class OrdersController < ApplicationController
     if @order.order_accounts.count.positive?
       @order.generate_order_documents
       @order.update_order_account_status
-      redirect_to edit_order_path(@order)
+      redirect_to edit_documents_order_path(@order)
     else
       flash[:alert] = "Veuillez sélectionner au moins un contrat à résilier."
-      render :created, status: :unprocessable_entity
-    end
-  end
-
-  def edit
-    @order_documents_json = @order.jsonify_order_documents
-    @order_text_documents = @order.order_documents.select { |od| od.document.format == 'text' }
-    @order_file_documents = @order.order_documents.select { |od| od.document.format == 'file' }
-  end
-
-  def update_documents
-    @order_text_documents = @order.order_documents.select { |od| od.document.format == 'text' }
-    @order_file_documents = @order.order_documents.select { |od| od.document.format == 'file' }
-
-    if @order.update(order_params) && params[:order]
-      @order.update_order_account_status
-      redirect_to recap_order_path(@order)
-    else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -71,9 +51,6 @@ class OrdersController < ApplicationController
     @order.destroy
 
     redirect_to root_path
-  end
-
-  def recap
   end
 
   def paiement
@@ -88,9 +65,6 @@ class OrdersController < ApplicationController
     else
       render :recap
     end
-  end
-
-  def success
   end
 
   private
@@ -126,21 +100,5 @@ class OrdersController < ApplicationController
         :city
       ]
     )
-  end
-
-  def declare_paid
-    return unless @order.payplug_is_paid?
-
-    @order.notify_order_payment
-    @order.update(paid: true)
-    @order.attach_invoice_pdf unless Rails.env == 'test'
-    send_confirmation_mail
-  end
-
-  def send_confirmation_mail
-    return unless @order
-
-    OrderMailer.with(order: @order, user: @order.user).confirmation.deliver_now
-    OrderMailer.with(order: @order, user: @order.user).notification_to_contact.deliver_now
   end
 end

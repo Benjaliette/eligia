@@ -12,7 +12,9 @@
   <div class="container">
       <h1>Résiliez en 10 minutes tous les <br> abonnements d'un proche disparu</h1>
       <p id='tagline'>Simplifions ensemble les démarches du deuil</p>
-      <%= link_to "Commencer", new_order_path, class:"btn-call-to-a" %>
+      <%= simple_form_for Order.new do |f| %>
+        <%= f.submit 'Commencer', class:"btn-call-to-a" %>
+      <% end %>
   </div>
     <%= image_tag('illustration-banner-home.svg', class:'banner-image', alt:'icone résiliation') %>
 </div>

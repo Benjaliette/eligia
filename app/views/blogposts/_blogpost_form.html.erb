@@ -1,0 +1,7 @@
+<%= simple_form_for @blogpost do |f| %>
+  <%= f.input :title, label: "Titre de l'article :" %>
+  <%= f.input :main_picture, as: :file, label: "Image d'illustration :" %>
+  <%= f.input :body, as: :rich_text_area, label: false, placeholder: "Texte de l'article" %>
+  <%= f.input :pinned, label: "Pin l'article sur homepage ?" %>
+  <%= f.submit 'Publier', class: 'btn-principal' %>
+<% end %>

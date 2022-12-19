@@ -7,13 +7,7 @@
   <div class="blog-form">
     <div class="container">
       <h1>Nouvel article</h1>
-
-      <%= simple_form_for @blogpost do |f| %>
-        <%= f.input :title, label: "Titre de l'article :" %>
-        <%= f.input :main_picture, as: :file, label: "Image d'illustration :" %>
-        <%= f.input :body, as: :rich_text_area, label: false, placeholder: "Texte de l'article" %>
-        <%= f.submit 'Publier', class: 'btn-principal' %>
-      <% end %>
+      <%= render 'blogpost_form', blogpost: @blogpost %>
     </div>
   </div>
 </div>

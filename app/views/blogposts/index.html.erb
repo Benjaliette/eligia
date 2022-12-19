@@ -17,23 +17,7 @@
 </div>
 
 <div class="container fullscreen">
-  <ul class="blog-cards">
-    <% @blogposts.each do |post| %>
-      <%= link_to blogpost_path(post) do %>
-        <li class="blog-card">
-
-          <div style="background-image: url(<%= image_path post.main_picture.attached? ? post.main_picture.url : 'handshake.webp' %>)" class="blog-card-img">
-          </div>
-
-          <div class="blog-card-content">
-            <h2><%= post.title %></h2>
-            <p><%= post.body.to_plain_text.truncate(150) %></p>
-          </div>
-          <div class="btn-third small">Lire la suite</div>
-        </li>
-      <% end %>
-    <% end %>
-  </ul>
+  <%= render "blogpost_cards", blogposts: @blogposts %>
 
   <% if policy(Blogpost).new? %>
     <%= link_to 'Nouvel article', new_blogpost_path, class: 'btn-principal small margin-bottom-five' %>

@@ -1,1 +1,15 @@
 # See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+
+User-agent: *
+Disallow: /users/
+Disallow: /utilisateurs/
+Disallow: /contact/
+Disallow: /orders/
+Disallow: /admin/
+Allow: /pages/cgs/
+Allow: /pages/cgu/
+Allow: /pages/tarifs/
+Allow: /aide/
+Allow: /blog/
+Allow: /utilisateur/connexion/
+Allow: /utilisateur/inscription/

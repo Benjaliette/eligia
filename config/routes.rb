@@ -49,7 +49,7 @@ Rails.application.routes.draw do
 
   resources :order_documents, only: :create
 
-  resources :pages do
+  resources :pages, only: :index do
     collection do
       get :price, path: 'tarifs'
       get :cgu

@@ -76,6 +76,8 @@ Rails.application.routes.draw do
 
   resources :blogposts, path: 'blog', only: %i[index show new create edit update destroy]
 
+  get '/sitemap.xml.gz', to: redirect("https://storage.googleapis.com/eligia_sitemaps/sitemap.xml.gz")
+
   mount RailsAdmin::Engine, at: '/admin', as: 'rails_admin'
 
   post 'merci_facteurs/hC3A7dp5EC3A7uufohqsjoidf', to: 'merci_facteurs#webhook', as: 'merci_facteur_webhook'

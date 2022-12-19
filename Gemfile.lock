@@ -116,14 +116,6 @@ GEM
     capybara-screenshot (1.0.26)
       capybara (>= 1.0, < 4)
       launchy
-    carrierwave (1.2.3)
-      activemodel (>= 4.0.0)
-      activesupport (>= 4.0.0)
-      mime-types (>= 1.16)
-    carrierwave-google-storage (0.9.0)
-      activemodel (>= 3.2.0)
-      carrierwave (~> 1.2.0)
-      google-cloud-storage (~> 1.10)
     childprocess (4.1.0)
     cloudinary (1.23.0)
       aws_cf_signer
@@ -463,7 +455,6 @@ DEPENDENCIES
   breadcrumbs_on_rails
   capybara (~> 3.37.1)
   capybara-screenshot
-  carrierwave-google-storage
   cloudinary
   combine_pdf
   debug

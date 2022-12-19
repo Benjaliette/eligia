@@ -4,13 +4,11 @@ require 'google/cloud/storage'
 SitemapGenerator::Sitemap.default_host = "https://www.eligia.fr/"
 SitemapGenerator::Sitemap.public_path = 'public'
 
-# SitemapGenerator::Sitemap.sitemaps_host = "https://storage.googleapis.com/eligia_dev/"
-# SitemapGenerator::Sitemap.sitemaps_path = 'sitemap/'
-# SitemapGenerator::Sitemap.adapter = SitemapGenerator::GoogleStorageAdapter.new(
-#   acl: 'public', # Optional.  This is the default value.
-#   bucket: 'eligia_dev',
-#   credentials: ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json
-# )
+SitemapGenerator::Sitemap.sitemaps_host = "https://storage.googleapis.com/eligia_sitemaps/"
+
+SitemapGenerator::Sitemap.adapter = SitemapGenerator::GoogleStorageAdapter.new(
+  bucket: 'eligia_sitemaps'
+)
 
 SitemapGenerator::Sitemap.create do
   # Usage: add(path, options={})

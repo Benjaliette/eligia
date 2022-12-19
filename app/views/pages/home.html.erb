@@ -177,127 +177,63 @@
   </div>
 </section>
 
-<section id="review-section" class="wide-container">
-  <section class="splide" aria-label="Splide Basic HTML Example" data-controller="splide">
-    <div class="splide__track">
-      <ul class="splide__list">
-        <li class="splide__slide">
-          <div class="review-card">
-            <div class="review-top">
-              <%= image_tag "Caroline-M.jpg", alt: "avatar utilisateur", class:'avatar' %>
-              <h3>Pour éviter les impayés!</h3>
-            </div>
-            <p><em>Caroline M.</em></p>
-            <i class="fa-solid fa-quote-left blue"></i>
-            <p>L'opérateur mobile de mon père nous a relancé car il était en rupture de paiement. Eligia nous a permis de le notifier du décès et de faire de même pour tous les autres abonnements. L'utilisation est facile et pas besoin d'envoyer soi même les recommandés.<br>Je recommende!</p>
-            <div class="w-100"><i class="fa-solid fa-quote-right w-100 align-end blue"></i></div>
+<section id="review-section" class="splide container" data-controller="splide">
+  <div class="splide__track">
+    <ul class="splide__list">
+      <li class="splide__slide">
+        <div class="review-card">
+          <div class="review-top">
+            <%= image_tag "Caroline-M.jpg", alt: "avatar utilisateur", class:'avatar' %>
+            <h3>Pour éviter les impayés!</h3>
           </div>
-        </li>
-        <li class="splide__slide">
-          <div class="review-card">
-            <div class="review-top">
-              <%= image_tag "Philippe-C.jpg", alt: "avatar utilisateur", class:'avatar' %>
-              <h3>Très bien</h3>
-            </div>
-            <p><em>Philippe C.</em></p>
-            <i class="fa-solid fa-quote-left blue"></i>
-            <p>J'étais initialement assez dubitatif, mais il s'avère que le service proposé est super. Les abonnements de mon père ont tous été clôturés assez rapidement. Le plus dur était finalement de rassembler tous les documents nécessaires.</p>
-            <div class="w-100"><i class="fa-solid fa-quote-right w-100 align-end blue"></i></div>
+          <p><em>Caroline M.</em></p>
+          <i class="fa-solid fa-quote-left blue"></i>
+          <p>L'opérateur mobile de mon père nous a relancé car il était en rupture de paiement. Eligia nous a permis de le notifier du décès et de faire de même pour tous les autres abonnements. L'utilisation est facile et pas besoin d'envoyer soi même les recommandés.<br>Je recommende!</p>
+          <div class="w-100"><i class="fa-solid fa-quote-right w-100 align-end blue"></i></div>
+        </div>
+      </li>
+      <li class="splide__slide">
+        <div class="review-card">
+          <div class="review-top">
+            <%= image_tag "Philippe-C.jpg", alt: "avatar utilisateur", class:'avatar' %>
+            <h3>Très bien</h3>
           </div>
-        </li>
-        <li class="splide__slide">
-          <div class="review-card">
-            <div class="review-top">
-              <%= image_tag "Jean-H.jpg", alt: "avatar utilisateur", class:'avatar' %>
-              <h3>Facile</h3>
-            </div>
-            <p><em>Jean H.</em></p>
-            <i class="fa-solid fa-quote-left blue"></i>
-            <p>Réponse rapide de la part du service client.<br>Un peu long de devoir trouver tous les identifiants mais sinon la démarche est simple.<br>On gagne du temps pour résilier tous les magasines.</p>
-            <div class="w-100"><i class="fa-solid fa-quote-right w-100 align-end blue"></i></div>
+          <p><em>Philippe C.</em></p>
+          <i class="fa-solid fa-quote-left blue"></i>
+          <p>J'étais initialement assez dubitatif, mais il s'avère que le service proposé est super. Les abonnements de mon père ont tous été clôturés assez rapidement. Le plus dur était finalement de rassembler tous les documents nécessaires.</p>
+          <div class="w-100"><i class="fa-solid fa-quote-right w-100 align-end blue"></i></div>
+        </div>
+      </li>
+      <li class="splide__slide">
+        <div class="review-card">
+          <div class="review-top">
+            <%= image_tag "Jean-H.jpg", alt: "avatar utilisateur", class:'avatar' %>
+            <h3>Facile</h3>
           </div>
-        </li>
-      </ul>
-    </div>
-  </section>
+          <p><em>Jean H.</em></p>
+          <i class="fa-solid fa-quote-left blue"></i>
+          <p>Réponse rapide de la part du service client.<br>Un peu long de devoir trouver tous les identifiants mais sinon la démarche est simple.<br>On gagne du temps pour résilier tous les magasines.</p>
+          <div class="w-100"><i class="fa-solid fa-quote-right w-100 align-end blue"></i></div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </section>
 
+
 <section id="home-infos">
-  <div class="wide-container">
+  <div class="container">
     <h2 class="home-title">Que faire après le décès ?</h2>
 
     <p>
       Le décès d'un proche est l'un des moments les plus douloureux de la vie de chacun.
       Nous ne sommes jamais réellement préparés à une pareille douleur.<br><br>
-      Néanmoins, en dépit de la peine et de l'émotion, plusieurs démarches doivent être entreprises lors du départ d'un proche. Puisque les délais varient, nous vous proposons un résumé ci-dessous :
+      Nous espérons que les articles que nous avons rédigé pourront vous aiguiller dans votre parcours :
     </p>
 
-    <div class="home-infos-grid">
-      <div class="home-infos-img" style="background-image: url(<%= image_path 'rendez-vous.webp' %>)">
-      </div>
-      <div class="home-infos-text">
-        <h3 class="home-title">Dans les premières 24h</h3>
-        <ul class="home-infos-text-detail">
-          <li>Faire constater le décès et aborder les questions relatives au don d’organes et don du corps</li>
-          <li>Déclarer le décès dans la mairie du lieu de décès pour récupérer l'acte de décès</li>
-        </ul>
-        <p class="home-infos-text-detail">
-          Certains contrats des services de Pompes Funèbres prévoient de se charger de la déclaration de décès à la mairie. Lors d’un décès dans un centre hospitalier, une clinique ou un hospice ; l’établissement effectue gratuitement cette démarche.
-          <br><br>
-          Pour vous aider dans vos démarches, vous pouvez consulter la page du gouvernement concernant les <%= link_to 'prestations funéraires.', "https://www.economie.gouv.fr/dgccrf/Publications/Vie-pratique/Fiches-pratiques/Prestations-funeraires",
-              target: :_blank,
-              class: 'bold link underline' %>
-        </p>
-      </div>
-    </div>
-    <div class="home-infos-grid">
-      <div class="home-infos-text home-infos-first-month">
-        <h3 class="home-title">Lors de la première semaine</h3>
-        <ul class="home-infos-text-detail">
-          <li> Légalement, les obsèques doivent avoir lieu dans les six jours suivant le décès, il vous faudra donc organiser les funérailles. Si la personne disparue était encore en activité, il faut prévenir son employeur (ou les ASSEDIC). Triez et conservez les papiers du défunt. Ils vous seront utiles.</li>
-          <br>
-          <li>Il est également recommandé de notifier dès que possible la banque du défunt. Dès lors, deux scénarios se présentent :</li>
-          <br>
-            <ul>
-              <li><span class="underline">S'il s'agit d'un compte individuel,</span> il est immédiatement gelé. <br> La banque n'y enregistre donc plus aucune opération de dépôt ou de retrait. Toutefois, la banque accepte le règlement des frais suivants (et dans la limite de 5 000 €) : frais concernant les funérailles, frais de soins apportés au défunt lors de sa dernière maladie, impôts dus par le défunt.</li>
-              <li><span class="underline">S'il s'agit d'un compte joint,</span> la convention de compte prévoit ce que devient le compte bancaire. En principe, le compte reste ouvert (sauf contre ordre), et profite aux cotitulaires survivants. Dans l'éventualité où il n'y aurait qu'un cotitulaire survivant, le compte devient automatiquement un compte bancaire individuel.</li>
-            </ul>
-        </ul>
-        <p class="home-infos-text-detail">
-          Plus d'informations <%= link_to ' sur le site du gouvernement', "https://www.service-public.fr/particuliers/vosdroits/F1451#:~:text=D%C3%A8s%20que%20la%20banque%20est%20inform%C3%A9e%20du%20d%C3%A9c%C3%A8s%20d'un,l'ensemble%20de%20la%20succession.",
-              target: :_blank,
-              class: 'bold link underline' %>
-        </p>
-      </div>
-      <div class="home-infos-img home-infos-first-month" style="background-image: url(<%= image_path 'handshake.webp' %>)">
-      </div>
-    </div>
-    <div class="home-infos-grid">
-      <div class="home-infos-img" style="background-image: url(<%= image_path 'couple.webp' %>)">
-      </div>
-      <div class="home-infos-text">
-        <h3 class="home-title">Durant les mois qui suivent</h3>
-        <p class="home-infos-text-detail">
-          Il est nécessaire de notifier diverses administrations publiques et privées telles que :
-        </p>
-        <ul class="home-infos-text-detail">
-          <li>Le service des impôts</li>
-          <li>La caisse de retraite</li>
-          <li>Le bailleur</li>
-          <li>Le service des immatriculations</li>
-          <li>Les divers organismes sociaux concernés</li>
-        </ul>
-        <p class="home-infos-text-detail">
-          Enfin, il faut notifier toutes les entreprises concessionaires auprès desquelles le defunt payait une souscription. <strong>En l'absence de notification des entreprises, les contrats perdurent et leur facturation revient aux héritiers.</strong>
-          <span class="underline">C'est la raison pour laquelle il est conseillé de s'en occuper aussi vite que possible.</span>
-        </p>
-        <p class="home-infos-text-detail">
-          <strong><em>Eligia</em> vise à vous décharger de ce poids en s'occupant de toutes ces démarches rapidement et efficacement.</strong><br>
-          Le plus souvent il s'agit de contrats d'énergie (EDF, Engie, TotalEnergies, Eni...), d'abonnements télécoms (Orange, SFR, Bouygues, Free...),
-          à des médias payants (Canal+, Netflix, BeinSport...) ou encore à des journaux et/ou magazines (Le Monde, Le Figaro, Le Parisien...).
-        </p>
-      </div>
-    </div>
+    <%= render 'blogposts/blogpost_cards', blogposts: @pinned_blogposts %>
+
+    <%= link_to "Lire plus d'articles", blogposts_path, class:"link underline" %>
   </div>
 </section>
 

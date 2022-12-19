@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home price cgu cgs]
 
   def home
+    @pinned_blogposts = Blogpost.where(pinned: true)
   end
 
   def price

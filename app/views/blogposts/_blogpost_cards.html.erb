@@ -1,0 +1,18 @@
+<ul class="blog-cards">
+    <% blogposts.each do |post| %>
+      <%= link_to blogpost_path(post) do %>
+        <li class="blog-card">
+          <div style="background-image: url(<%= image_path post.main_picture.attached? ? post.main_picture.url : 'handshake.webp' %>)" class="blog-card-img">
+          </div>
+
+          <div class="blog-card-content">
+            <h2><%= post.title %></h2>
+            <p class="word-break"><%= post.body.to_plain_text.truncate(150) %></p>
+          </div>
+          <div class="w-100 align-center">
+            <div class="btn-third small">Lire la suite</div>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>

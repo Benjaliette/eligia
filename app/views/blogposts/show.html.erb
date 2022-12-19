@@ -1,9 +1,12 @@
 <% content_for :title, "#{@blogpost.title} - Eligia" %>
-
-
-  <% content_for :scroll_navbar, 'scroll-navbar' %>
-  <% content_for :home_navbar, 'home-navbar' %>
-  <%= render 'shared/navbar' %>
+<% content_for :scroll_navbar, 'scroll-navbar' %>
+<% content_for :home_navbar, 'home-navbar' %>
+<% content_for :order_new_btn do %>
+  <li class="nav-item">
+    <%= link_to "Commencer une démarche", new_order_path, class:"btn-principal small", data:{'scroll-navbar-target':'button'} %>
+  </li>
+<% end %>
+<%= render 'shared/navbar' %>
 
   <div class="fullscreen-no-navbar">
     <div class="banner">
@@ -34,3 +37,5 @@
       <% end %>
     </div>
   </div>
+
+  <%= render 'shared/footer' %>

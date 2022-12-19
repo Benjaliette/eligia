@@ -18,9 +18,6 @@ gem "bootsnap", require: false
 # Helper to add breadcrumbs for rails
 gem "breadcrumbs_on_rails"
 
-# Gem to upload to GCS for tmp sitemap
-gem 'carrierwave-google-storage'
-
 # Use cloudinary to store pictures and documents on the cloud
 gem 'cloudinary'
 

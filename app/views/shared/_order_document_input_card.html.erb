@@ -9,7 +9,7 @@
   <% if order_account %>
     <% order_documents_to_add.each do |order_document| %>
       <div id="<%= dom_id order_document %>">
-        <%= simple_form_for [@order, order_account, order_document], url: order_order_account_order_document_path(@order, order_account, order_document), html: { id: order_document }, data: { controller:"loading-spinner add-file", action:'turbo:submit-end->loading-spinner#unload click->add-file#test' } do |f| %>
+        <%= simple_form_for [@order, order_account, order_document], url: order_order_account_order_document_path(@order, order_account, order_document), html: { id: order_document }, data: { controller:"loading-spinner add-file", action:'turbo:submit-end->loading-spinner#unload } do |f| %>
           <%= f.error_notification %>
           <div class="insert-document <%= modal_height %>">
             <div class="document-name d-inline-block"><p class='margin-top-zero'><%= order_document.document.name %></p></div>

@@ -18,6 +18,9 @@ gem "bootsnap", require: false
 # Helper to add breadcrumbs for rails
 gem "breadcrumbs_on_rails"
 
+# Gem to upload to GCS for tmp sitemap
+gem 'carrierwave-google-storage'
+
 # Use cloudinary to store pictures and documents on the cloud
 gem 'cloudinary'
 
@@ -103,6 +106,9 @@ gem "sassc-rails"
 
 # Gem simple form is used to builds the forms/nested forms on the website
 gem "simple_form", github: "heartcombo/simple_form"
+
+# Gem to generate sitemap xml
+gem 'sitemap_generator'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

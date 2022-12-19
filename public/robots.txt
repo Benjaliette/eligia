@@ -13,3 +13,5 @@ Allow: /aide/
 Allow: /blog/
 Allow: /utilisateur/connexion/
 Allow: /utilisateur/inscription/
+
+Sitemap: https://www.eligia.fr/sitemap.xml.gz

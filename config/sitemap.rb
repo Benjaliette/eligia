@@ -2,7 +2,7 @@ require 'google/cloud/storage'
 
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = "https://www.eligia.fr/"
-SitemapGenerator::Sitemap.public_path = 'public'
+SitemapGenerator::Sitemap.public_path = 'public/sitemaps'
 
 SitemapGenerator::Sitemap.sitemaps_host = "https://storage.googleapis.com/eligia_sitemaps/"
 

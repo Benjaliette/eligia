@@ -24,6 +24,9 @@ class Order < ApplicationRecord
   validates :deceased_first_name, :deceased_last_name,
             format: { with: /\A([a-zàâçéèêëîïôûùüÿñæœ'.-]|\s)*\z/i, message: "ne doit contenir que des lettres" },
             presence: { message: "doit être obligatoirement renseigné" }, on: :update
+  validates :user_email,
+    presence: { message: "Ne pas laisser vide" },
+    format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, message: "Adresse email invalide" }
   validates_associated :order_documents
   validates_associated :address, message: 'Veuillez remplir tous les champs non-optionnels'
 
@@ -103,8 +106,8 @@ class Order < ApplicationRecord
         language: 'fr'
       },
       hosted_payment: {
-        return_url: base_url + Rails.application.routes.url_helpers.success_order_url(self, only_path: true),
-        cancel_url: base_url + Rails.application.routes.url_helpers.recap_order_url(self, only_path: true),
+        return_url: base_url + Rails.application.routes.url_helpers.paiement_order_url(self, only_path: true),
+        cancel_url: base_url + Rails.application.routes.url_helpers.order_url(self, only_path: true),
       },
       metadata: {
         customer_id: self.user.id,

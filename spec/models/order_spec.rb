@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
+  context "When creating an order" do
+    it "Should be valid with an email" do
+      order = build(:order)
+      expect(order.valid?).to eq true
+    end
+
+    it "Should be invalid if email does not match regex" do
+      order = build(:order, user_email: "hello.com")
+      expect(order.valid?).to eq false
+    end
+  end
 
   context "When updating an order" do
     it "Should be valid with a deceased_first/last_name and user" do

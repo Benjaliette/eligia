@@ -114,6 +114,7 @@ FactoryBot.define do
   factory :order do
     user
     pack
+    user_email {"jane.doe@eligia.fr"}
     deceased_first_name { "Jane" }
     deceased_last_name { "Doe" }
     aasm_state { "pending" }

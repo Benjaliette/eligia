@@ -65,15 +65,19 @@
   }
 }
 
+@media(max-width: 1200px){
+  #review-section{
+    height: 65vh;
+  }
+}
+
 @media(max-width: 900px){
   #review-section{
     height: 75vh;
   }
 
-  #home-infos{
-    padding: 50px 0px 20px 0px;
-    text-align: center;
-    background-color: $off-white;
+  #home-infos, #service{
+    padding: 20px 0px 20px 0px;
   }
 }
 

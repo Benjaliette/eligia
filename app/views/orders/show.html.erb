@@ -62,7 +62,7 @@
                 <div class="box-invoice">
                   <ul class="box-invoice-part">
                     <li class="box-invoice-part-title">Ouverture du dossier :</li>
-                    <li><%= l(Date.parse(@order.created_at.to_s), format: :long) %></li>
+                    <li><%= <%= format_french_date(@order.created_at) %> %></li>
                   </ul>
                   <ul class="box-invoice-part">
                     <li class="box-invoice-part-title">Récapitulatif :</li>

@@ -16,7 +16,7 @@
           </li>
           <li class="dashboard-breadcrumb-separator"></li>
           <li class="dashboard-breadcrumb-item active">
-            <%= link_to order_path(@order), data: { turbo_frame: :_top } do %>
+            <%= link_to users_order_path(@order), data: { turbo_frame: :_top } do %>
               Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %>
             <% end %>
           </li>

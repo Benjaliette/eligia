@@ -114,10 +114,13 @@
   }
 }
 
+.modal-content.small {
+  height: 30vh;
+}
+
 @media (min-width: 800px) {
   .modal-content.small {
     width: 45vw;
-    height: 30vh;
   }
 }
 

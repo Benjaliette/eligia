@@ -1,10 +1,12 @@
 <% content_for :title, "Nouvelle démarche - Eligia" %>
 <% content_for :meta, "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" %>
-<div class="order-parts" data-controller="toggle-contracts account-search-autocomplete check-for-added-contracts" data-action="click@window->account-search-autocomplete#clickOutside" data-check-for-added-contracts-added-ids-value="<%=@order.order_accounts.map(&:account).map(&:id)%>">
+<div class="order-parts" data-controller="toggle-contracts account-search-autocomplete check-for-added-contracts" data-action="clickwindow->account-search-autocomplete#clickOutside" data-check-for-added-contracts-added-ids-value="<%=order.order_accounts.map(&:account).map(&:id)%>">
   <div class="form-order-steps">
     <div class="order-steps-btn">
-      <%= button_to order_path(@order), method: :delete, class:"btn-third small btn-round" do %>
-        ← retour à l'accueil
+      <% unless order.id.nil? %>
+        <%= button_to order_path(order), method: :delete, class:"btn-third small btn-round" do %>
+          ← retour à l'accueil
+        <% end %>
       <% end %>
     </div>
     <div class="steps">
@@ -29,8 +31,10 @@
     <div class="form-order-infos">
       <div class="mobile-steps">
         <div class="order-steps-btn">
-          <%= button_to order_path(@order), method: :delete, class:"btn-third small btn-round" do %>
-            ← retour à l'accueil
+          <% unless order.id.nil? %>
+            <%= button_to order_path(order), method: :delete, class:"btn-third small btn-round" do %>
+              ← retour à l'accueil
+            <% end %>
           <% end %>
         </div>
         <div class="logo">
@@ -39,7 +43,7 @@
         <div class="contract-list-toggle-btn" data-action='click->toggle-contracts#displayList'>
           <i class="fa-solid fa-basket-shopping">
             <div id="contract-number">
-              <%= @order.order_accounts.count %>
+              <%= order.order_accounts.count %>
             </div>
           </i>
         </div>
@@ -68,7 +72,7 @@
                           } %>
           <%= form.input :order_id,
                           input_html: {
-                            value: @order.id
+                            value: order.id
                           },
                           as: :hidden %>
         <% end %>
@@ -77,7 +81,7 @@
       </div>
     </div>
     <div class="form-order-content">
-      <% @categories.each do |category| %>
+      <% categories.each do |category| %>
         <div class="order-divs">
           <h3><%= category.name %></h3>
           <% category.subcategories.each do |subcategory| %>
@@ -87,16 +91,18 @@
                   <h4><%= subcategory.name %></h4>
                   <div class="toggle-btn" data-subcategory-dropdown-target='button'></div>
                 </div>
-                <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts' id=<%= dom_id subcategory %>>
-                  <%= render 'orders/chose_account_form', category: category, subcategory: subcategory, order_accounts: @order_accounts, order: @order %>
-                </div>
+                <% unless order.id.nil? %>
+                  <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts' id=<%= dom_id subcategory %>>
+                    <%= render 'chose_account_form', category: category, subcategory: subcategory, order_accounts: @order_accounts, order: order %>
+                  </div>
+                <% end %>
               </div>
             <% end %>
           <% end %>
         </div>
       <% end %>
       <div class="align-end w-100 show-700">
-        <%= simple_form_for @order do |f_order| %>
+        <%= simple_form_for order do |f_order| %>
           <%= button_tag(type: 'submit', class: "learn-more") do %>
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>
@@ -114,19 +120,19 @@
       </div>
       <div class="form-order-right-title">
         <h3>
-          Contrats sélectionnés <span id='account-number'>(<%= @order.order_accounts.size %>)</span> :
+          Contrats sélectionnés <span id='account-number'>(<%= order.order_accounts.size %>)</span> :
         </h3>
       </div>
       <div class="box account-box">
         <div id='account-list' class='account-grid small'></div>
         <div id='account-list' class='account-grid small'>
-          <% @order.order_accounts.each do |order_account| %>
+          <% order.order_accounts.each do |order_account| %>
             <%= render 'order_accounts/account_list_card', order_account: order_account %>
           <% end %>
         </div>
       </div>
     </div>
-    <%= simple_form_for @order, html: {class:'hide-700'} do |f_order| %>
+    <%= simple_form_for order, html: {class:'hide-700'} do |f_order| %>
       <div class="order-btn">
         <%= button_tag(type: 'submit', class: "learn-more") do %>
           <span class="circle" aria-hidden="true">

@@ -1,93 +1,240 @@
-<% content_for :title, "Mes démarches - Eligia" %>
+<% content_for :title, "Validation demande - Eligia" %>
 
-<turbo-frame id="content">
-  <% content_for :scroll_navbar, 'scroll-navbar' %>
-  <% content_for :home_navbar, 'home-navbar' %>
-  <%= render 'shared/navbar' %>
+<div class="fullscreen order-parts one-part">
 
-  <div class="fullscreen-no-navbar">
-
-    <div class="banner user-banner">
-      <div class="container dashboard-container">
-        <h1><span class='unbold'><%= @current_user.first_name %></span> <%= @current_user.last_name %></h1>
-        <ul class="dashboard-breadcrumb">
-          <li class="dashboard-breadcrumb-item active">
-            <%= link_to "Espace personnel", user_path(current_user), data: { turbo_frame: :_top } %>
-          </li>
-          <li class="dashboard-breadcrumb-separator"></li>
-          <li class="dashboard-breadcrumb-item">Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></li>
-        </ul>
+  <div class="form-order-steps">
+    <div class="order-steps-btn">
+      <%= link_to edit_documents_order_path(@order), class:"btn-third small btn-round" do %>
+        ←  Précédent
+      <% end %>
+    </div>
+    <div class="steps">
+      <%= link_to edit_order_path(@order) do %>
+        <div class='step previous-step'>
+          <p>Étape 1 :</p>
+          <p>Résiliations</p>
+        </div>
+      <% end %>
+      <%= link_to edit_documents_order_path(@order) do %>
+        <div class='step previous-step'>
+          <p>Étape 2 :</p>
+          <p>Informations nécessaires</p>
+        </div>
+      <% end %>
+      <div class='step current-step'>
+        <p>Étape 3 :</p>
+        <p>Récapitulatif</p>
       </div>
     </div>
+    <div class="logo">
+      <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+    </div>
+  </div>
 
-    <div class="container">
-      <div class="order-steps-title">
-        <%= image_tag 'order-steps.svg', alt: "Personnes envoyant des lettres", class: "order-steps-img" %>
-        <h4>Avancée de vos démarches :</h4>
+  <div class="form-order-div">
+
+    <div class="form-order-infos">
+      <div class="mobile-steps">
+        <div class="order-steps-btn">
+          <%= link_to edit_order_path(@order), class:"btn-third small btn-round" do %>
+            <i class="fa-solid fa-arrow-left"></i> Précédent
+          <% end %>
+        </div>
+        <div class="logo">
+          <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+        </div>
       </div>
-      <div class="order-steps">
-        <% @order.aasm.states.each do |state| %>
-          <div class="order-step three-steps <%= @order.passed_state?(state.to_s) ? 'active' : '' %>">
-            <div class="order-step-title"><%= @order.state_to_french(state.to_s) %></div>
-          </div>
-        <% end %>
+      <div class="mobile-step-title">Étape 3 :</div>
+      <h1>Récapitulatif</h1>
+      <p>
+        <strong>Les documents manquants</strong> n'empêchent pas de continuer la procédure de paiement. <br><br>
+        Vous pourrez <strong>compléter les informations depuis votre espace personnel.</strong>
+      </p>
+    </div>
+
+    <div class="main-order-divs">
+      <div class="order-subdiv">
+        <div class="d-flex justify-content-space-between">
+          <h3 class="margin-bottom-three">Contrats</h3>
+          <%= link_to edit_order_path(@order), class:"btn-third small margin-top-three" do %>
+            <span class="recap-plus">+</span>
+            <span>Ajouter</span>
+          <% end %>
+        </div>
+        <div class="box">
+          <ul class="order-div-list no-padding">
+            <% @order.order_accounts.each do |order_account| %>
+              <div class="account-card-title">
+                <% if order_account.account.logo_url.nil?  %>
+                  <div class="account-avatar <%= order_account.account.non_validated? %>" style="background: #464646;">
+                    <span style='color: white;'><%= order_account.account.name.upcase.split.map { |word| word[0] }.join %></span>
+                  </div>
+                <% else %>
+                  <div class="account-avatar <%= order_account.account.non_validated? %>" style="background-image:url('<%= order_account.account.logo_url %>')"></div>
+                <% end %>
+                <div class='account-card-name'>
+                  <%= order_account.account.name %>
+                  <% if order_account.account.non_validated? %>
+                    <span class='italic'>(à valider)</span>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </ul>
+        </div>
       </div>
-      <div class="user-dashboard-content">
-        <div class="order-dashboard-section">
-          <% unless @order.non_uploaded_order_documents.empty? %>
-            <div id="docs-<%=@order.id%>">
-              <%= render 'shared/order_document_input_card', order_documents_to_add: @order.non_uploaded_order_documents,
-                                                             order_account: false,
-                                                             no_doc_message: '',
-                                                             modal_height: '' %>
+      <div class="order-subdiv">
+        <div class="d-flex justify-content-space-between">
+          <h3 class="margin-bottom-three">Documents</h3>
+            <%= link_to edit_documents_order_path(@order), class:"btn-third small margin-top-three" do %>
+              <span class="recap-plus">+</span>
+              <span>Ajouter</span>
+            <% end %>
+        </div>
+        <div class="box">
+          <% if @order.order_accounts.map(&:account).map(&:aasm_state).include?("non_validated") %>
+            <p class="bold"> Nous vous recontacterons pour résilier les contrats 'à valider'.</p>
+          <% end %>
+          <% @order.order_documents.each do |order_document| %>
+            <div class="order-div-item document">
+              <div><%= order_document.document.name %> :</div>
+              <% if order_document.document.format == 'file' %>
+                <div class="document-created-<%= order_document.document_file.attached? %>">
+                  <%= order_document.document_file.attached? ? "OK" : "Document manquant"%>
+                </div>
+              <% else %>
+                <div class="document-created-<%= order_document.document_input.present? %>">
+                  <%= order_document.document_input.present? ? "OK" : "Information manquante"%>
+                </div>
+              <% end %>
             </div>
           <% end %>
         </div>
-
-        <div class="order-dashboard-section">
-          <h3 class="dashboard-title margin-top-four width-fit-content">État des contrats à résilier :</h3>
-            <div id="oa-cards-<%= @order.id %>">
-              <%= render "orders/order_account_cards", order: @order %>
-            </div>
-        </div>
-
-
-        <% if @order.invoice_file.attached? %>
-          <div class="order-dashboard-section">
-            <h3 class="dashboard-title margin-top-four width-fit-content">État des contrats à résilier :</h3>
-              <div class="box margin-bottom-five">
-                <div class="box-invoice-btn">
-                  <a class="btn-third small" href=<%=@order.invoice_file.url%> target='_blank'> Voir la facture</a>
+      </div>
+    </div>
+    <% if current_user %>
+      <%= simple_form_for [:paiement, @order], data: { turbo: false } do |f| %>
+        <div class="main-order-divs margin-top-five">
+          <div class="address-order-div" data-controller="address-autocomplete" data-address-autocomplete-api-key-value="<%= ENV["MAPBOX_API_KEY"] %>">
+            <h3>Adresse de facturation</h3>
+            <% unless @order.errors.empty? %>
+              <div class="error"><%= @order.errors.to_a.last.gsub('Address ', '')%></div>
+            <% end %>
+            <%= f.simple_fields_for :address, Address.new do |f_address| %>
+              <div class="form-address-inputs">
+                <mapbox-address-autofill>
+                  <div class="form-address-inputs-block">
+                    <%= f_address.label "Numéro et nom de voie :" %>
+                    <%= f_address.input :street,
+                                        label: false,
+                                        name: "address",
+                                        input_html: {
+                                          autocomplete: "address-line1"
+                                        } %>
+                  </div>
+                </mapbox-address-autofill>
+                <div class="form-address-inputs-block">
+                  <%= f_address.label "Champ additionnel (optionnel) :" %>
+                  <%= f_address.input :complement,
+                                        label: false,
+                                        name: "apartment",
+                                        input_html: { autocomplete: "address-line2" } %>
                 </div>
-                <div class="box-invoice">
-                  <ul class="box-invoice-part">
-                    <li class="box-invoice-part-title">Ouverture du dossier :</li>
-                    <li><%= l(Date.parse(@order.created_at.to_s), format: :long) %></li>
-                  </ul>
-                  <ul class="box-invoice-part">
-                    <li class="box-invoice-part-title">Récapitulatif :</li>
-                    <li><span>Nombre de contrats :</span> <span><%= @order.order_accounts.count %></span></li>
-                    <li><span>Forfait :</span> <span><%= @order.pack.title %></span></li>
-                    <li><span>Prix HT :</span> <span><%= @order.pack.price / 1.2 %>€</span></li>
-                    <li><span>TVA (20%) :</span> <span><%= @order.pack.price / 1.2 * 0.2 %>€</span></li>
-                    <li><span>Total TTC :</span> <span><%= @order.pack.price %>€</span></li>
-                  </ul>
-                  <ul class="box-invoice-part">
-                    <li class="box-invoice-part-title">Adresse de facturation :</li>
-                    <li><%= @order.address.street %></li>
-                    <% unless @order.address.complement.nil? %>
-                      <li><%= @order.address.complement %></li>
-                    <% end %>
-                    <li><%= @order.address.zip %> - <%= @order.address.city %></li>
-                    <li><%= @order.address.state %></li>
-                  </ul>
+                <div class="form-address-inputs-blocks">
+                  <div class="form-address-inputs-block">
+                    <%= f_address.label "Code postal :" %>
+                    <%= f_address.input :zip,
+                                          label: false,
+                                          name: "postcode",
+                                          input_html: { autocomplete: "postal-code" } %>
+                  </div>
+                  <div class="form-address-inputs-block">
+                    <%= f_address.label "Ville :" %>
+                    <%= f_address.input :city,
+                                          label: false,
+                                          name: "city",
+                                          input_html: { autocomplete: "address-level2" } %>
+                  </div>
+                  <div class="form-address-inputs-block">
+                    <%= f_address.label "Pays :" %>
+                    <%= f_address.input :state,
+                                          label: false,
+                                          input_html: { autocomplete: "country-name" } %>
+                  </div>
                 </div>
-                <%# <%= link_to "Voir live", show_invoice_pdf_order_path(@order), class:'btn-third small', target:'_blank' %>
               </div>
+            <% end %>
           </div>
-        <% end %>
 
+          <div class="order-btn right align-items-flex-end">
+            <div class="fit-content" data-controller="loading-spinner" data-action="click->loading-spinner#load">
+              <%= button_tag(type: 'submit', class: "learn-more", data: {"loading-spinner-target":"btn"}) do %>
+                <span class="circle" aria-hidden="true">
+                  <span class="icon arrow"></span>
+                </span>
+                <span class="button-text">
+                    Paiement
+                </span>
+              <% end %>
+              <div class="lds-dual-ring display-none" data-loading-spinner-target='spinner'></div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    <% else %>
+      <div class="continuer-btn">
+        <p class="margin-top-five align-end italic">Inscription ou connexion nécessaire pour continuer</p>
+        <div class="order-btn right margin-top-two">
+          <%= button_tag(type: 'button', class: "learn-more") do %>
+            <%= link_to new_user_registration_path do %>
+              <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+              </span>
+              <span class="button-text">
+                Continuer
+              </span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-order-right'>
+    <div class="form-order-right-list documents">
+      <div class="logo">
+        <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+      </div>
+      <div class="form-order-right-title recap-title">
+        <h3>
+          Récapitulatif :
+        </h3>
+      </div>
+      <div class="price-recap box">
+        <div class='d-flex justify-content-space-between margin-y-three'>
+          <div class="bold">Contrats à résilier</div>
+          <div>x<%= @order.order_accounts.size %></div>
+        </div>
+        <div class="d-flex justify-content-space-between margin-y-one">
+          <div>Forfait <%= @order.determine_pack_type.title %></div>
+          <div><%= @order.determine_pack_type.price %> €</div>
+        </div>
+        <hr>
+        <div class="bold margin-y-four">
+          <div>Montant total :</div>
+          <div ><%= @order.determine_pack_type.price %> €</div>
+        </div>
+        <div class="sm-italic margin-top-five">(TVA comprise dans le calcul du total)</div>
       </div>
     </div>
   </div>
-</turbo-frame>
+
+  <%= link_to recapitulatif_helps_path, target: "_blank", class: 'btn-third small help-btn' do %>
+    <div>
+      <span>Aide</span>
+      <%= image_tag 'help.svg', alt: "icon aide" %>
+    </div>
+  <% end %>
+
+</div>

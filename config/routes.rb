@@ -3,22 +3,16 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     passwords: 'users/passwords'
-  }, path_names: {
-    sign_in: 'connexion',
-    sign_up: 'inscription',
-    edit: 'modification'
-  }
+    }, path_names: {
+      sign_in: 'connexion',
+      sign_up: 'inscription',
+      edit: 'modification'
+    }
 
-  root to: "pages#home"
+    root to: "pages#home"
 
-  resources :orders, path: 'resiliations', path_names: { edit: 'documents' }, except: %i[index] do
+  resources :orders, path: 'resiliations', path_names: { new: 'commencer', edit: 'contrats', show: "recapitulatif" }, except: %i[index] do
     member do
-      get :created, path: 'contrats'
-      patch 'update_order'
-      patch 'update_documents'
-      get :recap, path: 'recapitulatif'
-      get 'success'
-      patch 'paiement'
       get :show_invoice_pdf
     end
 
@@ -33,11 +27,20 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :documents do
+    resources :orders, path: 'resiliations', path_names: { edit: 'ajout' }, only: %i[edit update]
+  end
+
+  namespace :paiement do
+    resources :orders, path: 'resiliations', only: %i[show update]
+  end
+
+  namespace :users, path: 'utilisateurs' do
+    resources :orders, path: 'resiliations', only: :show
+  end
+
   resources :order_accounts, only: %i[create destroy]
   resources :accounts, only: %i[create]
-
-  # Redirect to orders/new if there is a refresh after a render :new
-  get '/resiliations/', to: 'orders#new'
 
   resources :users, path: 'utilisateurs', path_names: { edit: 'modification' }, only: %i[show index edit update] do
     member do

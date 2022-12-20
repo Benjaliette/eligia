@@ -12,10 +12,10 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
+    record.paid == false
   end
 
-  def created?
+  def create?
     record.paid == false
   end
 
@@ -25,22 +25,6 @@ class OrderPolicy < ApplicationPolicy
 
   def update?
     record.paid == false
-  end
-
-  def update_documents?
-    record.paid == false
-  end
-
-  def recap?
-    record.paid == false
-  end
-
-  def paiement?
-    record.paid == false || Rails.env == "development" || Rails.env == "staging"
-  end
-
-  def success?
-    record.notifications.count == 0 && record.payplug_is_paid?
   end
 
   def destroy?

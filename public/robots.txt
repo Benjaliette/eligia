@@ -13,5 +13,6 @@ Allow: /aide/
 Allow: /blog/
 Allow: /utilisateur/connexion/
 Allow: /utilisateur/inscription/
+Allow: /resiliations/new
 
 Sitemap: https://www.eligia.fr/sitemap.xml.gz

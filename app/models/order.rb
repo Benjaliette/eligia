@@ -24,6 +24,9 @@ class Order < ApplicationRecord
   validates :deceased_first_name, :deceased_last_name,
             format: { with: /\A([a-zàâçéèêëîïôûùüÿñæœ'.-]|\s)*\z/i, message: "ne doit contenir que des lettres" },
             presence: { message: "doit être obligatoirement renseigné" }, on: :update
+  validates :user_email,
+    presence: { message: "Ne pas laisser vide" },
+    format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, message: "Adresse email invalide" }
   validates_associated :order_documents
   validates_associated :address, message: 'Veuillez remplir tous les champs non-optionnels'
 

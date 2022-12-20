@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
     root to: "pages#home"
 
-  resources :orders, path: 'resiliations', path_names: { edit: 'contrats', show: "recapitulatif" }, except: %i[index] do
+  resources :orders, path: 'resiliations', path_names: { new: 'commencer', edit: 'contrats', show: "recapitulatif" }, except: %i[index] do
     member do
       get :show_invoice_pdf
     end

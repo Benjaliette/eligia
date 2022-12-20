@@ -3,12 +3,13 @@ require 'json'
 class OrdersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create edit update show destroy]
 
-  before_action :set_order, only: %i[show edit update update_documents recap paiement destroy success show_invoice_pdf]
-  before_action :set_categories, only: %i[edit update]
+  before_action :set_order, only: %i[show edit update destroy success show_invoice_pdf]
+  before_action :set_categories, only: %i[new create edit update]
+  before_action :set_accounts, only: %i[new create edit]
 
   after_action :declare_paid, only: :success
 
-  after_action :order_pundit, only: %i[show new create edit update paiement recap success destroy show_invoice_pdf]
+  after_action :order_pundit, only: %i[show new create edit update show_invoice_pdf destroy]
 
   def index
   end
@@ -28,16 +29,19 @@ class OrdersController < ApplicationController
   end
 
   def new
-
+    @order = Order.new
   end
 
   def create
-    @order = Order.create
-    redirect_to edit_order_path(@order)
+    @order = Order.new(order_params)
+    if @order.save
+      redirect_to edit_order_path(@order)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
-    @accounts = Account.all
   end
 
   def update
@@ -67,6 +71,10 @@ class OrdersController < ApplicationController
     @categories = Category.all
   end
 
+  def set_accounts
+    @accounts = Account.all
+  end
+
   def order_pundit
     authorize @order
   end
@@ -75,6 +83,7 @@ class OrdersController < ApplicationController
     params.require(:order).permit(
       :deceased_first_name,
       :deceased_last_name,
+      :user_email,
       order_documents_attributes: [
         :id,
         :document_id,

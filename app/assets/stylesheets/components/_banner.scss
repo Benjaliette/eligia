@@ -59,6 +59,7 @@
     padding: 0px 10vw;
 
     &.user-banner {
+      height: 24vh;
       .container {
         padding: 25vh 0 10vh 0;
       }
@@ -87,12 +88,14 @@
 @media (max-width: 500px) {
   .banner {
     &.user-banner {
+      height: 30vh;
+
       .container {
         padding: 44vh 0 10vh 0;
       }
 
       h1 {
-        font-size: 18px;
+        font-size: 28px;
       }
       p {
         font-size: 12px;

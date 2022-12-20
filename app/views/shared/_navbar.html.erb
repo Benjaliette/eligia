@@ -51,7 +51,7 @@
 
         <% unless current_user.notifications.empty? %>
           <%= simple_form_for Notification.last, url: mark_as_read_notifications_path, method: :patch do |f| %>
-            <i class="fa-solid fa-comment notification-btn" data-action="click->navbar-dropdown#toggleNotifications" data-navbar-dropdown-target="notificationsIcon" id='notif-icon'>
+            <i class="fa-solid fa-comment notification-btn" data-action="click->navbar-dropdown#toggleNotifications click@window->navbar-dropdown#closeNotifications" data-navbar-dropdown-target="notificationsIcon" id='notif-icon'>
               <%= render 'shared/notification_badge', notifications: @notifications %>
             </i>
             <%= f.submit '', class: 'display-none' %>
@@ -62,7 +62,7 @@
               <ul class="notification-list">
                 <% @notifications.each do |notification| %>
                   <li class="notification-list-item">
-                    <%= link_to notification.order_account ? order_order_account_path(notification.order, notification.order_account) : order_path(notification.order) do %>
+                    <%= link_to notification.order_account ? order_order_account_path(notification.order, notification.order_account) : users_order_path(notification.order) do %>
                       <div class="notification-content"><%= notification.content %></div>
                     <% end %>
                     <% notification_time = (Date.today - notification.created_at.to_datetime).to_i %>

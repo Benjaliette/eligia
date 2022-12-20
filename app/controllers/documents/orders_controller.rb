@@ -50,6 +50,6 @@ class Documents::OrdersController < ApplicationController
   end
 
   def set_order
-    @order = Order.friendly.find(params[:id])
+    @order = Order.friendly.find(params[:id]).decorate
   end
 end

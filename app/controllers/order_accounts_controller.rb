@@ -49,7 +49,7 @@ class OrderAccountsController < ApplicationController
   end
 
   def set_order
-    @order = Order.friendly.find(params[:order_id])
+    @order = Order.friendly.find(params[:order_id]).decorate
   end
 
   def set_pundit_order_account

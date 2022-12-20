@@ -11,9 +11,9 @@ export default class extends Controller {
       fixedWidth : '45%',
       gap : '1em',
       breakpoints: {
-        900: {
+        850: {
           type   : 'slide',
-          fixedWidth : '80%',
+          fixedWidth : '75%',
           padding: {left:0, right: '10%'},
         },
         600: {

@@ -55,12 +55,16 @@
 
 @media (max-width: 900px) {
   .footer {
+    background: $mobile-gradient-bg;
+
     .footer-items {
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
-      height: 24vh;
+      height: 35vh;
+      padding: 0px 2em;
+
 
       .legal-infos {
         display: none;

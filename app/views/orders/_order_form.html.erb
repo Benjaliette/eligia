@@ -1,0 +1,153 @@
+<% content_for :title, "Nouvelle démarche - Eligia" %>
+<% content_for :meta, "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" %>
+<div class="order-parts" data-controller="toggle-contracts account-search-autocomplete check-for-added-contracts" data-action="clickwindow->account-search-autocomplete#clickOutside" data-check-for-added-contracts-added-ids-value="<%=order.order_accounts.map(&:account).map(&:id)%>">
+  <div class="form-order-steps">
+    <div class="order-steps-btn">
+      <% unless order.id.nil? %>
+        <%= button_to order_path(order), method: :delete, class:"btn-third small btn-round" do %>
+          ← retour à l'accueil
+        <% end %>
+      <% end %>
+    </div>
+    <div class="steps">
+      <div class='step current-step'>
+        <p>Étape 1 :</p>
+        <p>Résiliations</p>
+      </div>
+      <div class='step'>
+        <p>Étape 2 :</p>
+        <p>Informations nécessaires</p>
+      </div>
+      <div class='step'>
+        <p>Étape 3 :</p>
+        <p>Récapitulatif</p>
+      </div>
+    </div>
+    <div class="logo">
+      <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+    </div>
+  </div>
+  <div class="form-order-div">
+    <div class="form-order-infos">
+      <div class="mobile-steps">
+        <div class="order-steps-btn">
+          <% unless order.id.nil? %>
+            <%= button_to order_path(order), method: :delete, class:"btn-third small btn-round" do %>
+              ← retour à l'accueil
+            <% end %>
+          <% end %>
+        </div>
+        <div class="logo">
+          <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+        </div>
+        <div class="contract-list-toggle-btn" data-action='click->toggle-contracts#displayList'>
+          <i class="fa-solid fa-basket-shopping">
+            <div id="contract-number">
+              <%= order.order_accounts.count %>
+            </div>
+          </i>
+        </div>
+      </div>
+      <div class="mobile-step-title">Étape 1 :</div>
+      <h1>Contrats à résilier</h1>
+      <p>
+        Renseigner les <strong>abonnements à résilier</strong>.<br><br>
+        Pour des raisons de simplicité, les documents et informations à fournir seront demandées à l'étape 2.
+      </p>
+    </div>
+    <div class="search-div">
+      <div class="search-title">
+        Chercher un contrat :
+      </div>
+      <div class="search-bar" data-account-search-autocomplete-target="searchBar">
+        <%= simple_form_for :account, url: accounts_path, data: { account_search_autocomplete_target: 'form' } do |form| %>
+          <%= form.input :name,
+                          label: false,
+                          input_html: {
+                            data: {
+                              action: 'keyup->account-search-autocomplete#submitForm',
+                              account_search_autocomplete_target: 'input'
+                            },
+                            class: 'search-bar-input',
+                          } %>
+          <%= form.input :order_id,
+                          input_html: {
+                            value: order.id
+                          },
+                          as: :hidden %>
+        <% end %>
+        <div class="clear-search" data-action="click->account-search-autocomplete#clearInput">+</div>
+        <div id="account-search-results"></div>
+      </div>
+    </div>
+    <div class="form-order-content">
+      <% categories.each do |category| %>
+        <div class="order-divs">
+          <h3><%= category.name %></h3>
+          <% category.subcategories.each do |subcategory| %>
+            <% unless subcategory.name == "Autres" %>
+              <div class="box subcategory-div" data-controller="subcategory-dropdown">
+                <div class='subcategory-title' data-action='click->subcategory-dropdown#toggle'>
+                  <h4><%= subcategory.name %></h4>
+                  <div class="toggle-btn" data-subcategory-dropdown-target='button'></div>
+                </div>
+                <% unless order.id.nil? %>
+                  <div class='subcategory-accounts' data-subcategory-dropdown-target='accounts' id=<%= dom_id subcategory %>>
+                    <%= render 'chose_account_form', category: category, subcategory: subcategory, order_accounts: @order_accounts, order: order %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="align-end w-100 show-700">
+        <%= simple_form_for order do |f_order| %>
+          <%= button_tag(type: 'submit', class: "learn-more") do %>
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">Valider</span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class='form-order-right' data-toggle-contracts-target='accountList'>
+    <div class="form-order-right-list">
+      <div class="logo">
+        <%= image_tag('eligia-sans-fond-vecto.svg', alt:'Logo Eligia') %>
+      </div>
+      <div class="form-order-right-title">
+        <h3>
+          Contrats sélectionnés <span id='account-number'>(<%= order.order_accounts.size %>)</span> :
+        </h3>
+      </div>
+      <div class="box account-box">
+        <div id='account-list' class='account-grid small'></div>
+        <div id='account-list' class='account-grid small'>
+          <% order.order_accounts.each do |order_account| %>
+            <%= render 'order_accounts/account_list_card', order_account: order_account %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= simple_form_for order, html: {class:'hide-700'} do |f_order| %>
+      <div class="order-btn">
+        <%= button_tag(type: 'submit', class: "learn-more") do %>
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Valider</span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to contrats_helps_path, target: "_blank", class: 'btn-third small help-btn' do %>
+    <div>
+      <span>Aide</span>
+      <%= image_tag 'help.svg', alt: "icon aide" %>
+    </div>
+  <% end %>
+</div>

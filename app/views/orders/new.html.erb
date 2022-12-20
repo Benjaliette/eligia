@@ -1,0 +1,14 @@
+<%= render 'order_form', order: @order, accounts: @accounts, categories: @categories %>
+
+<div class="modal" data-modal-target="modal">
+  <div class="modal-content small">
+    <div class="height-100 align-center d-flex flex-column justify-content-center">
+      <h2>Saisissez votre email</h2>
+      <p>Pour retourner sur votre dossier plus tard si vous ne l'avez pas terminé</p>
+      <%= simple_form_for @order do |f| %>
+        <%= f.input :user_email, label:"Adresse email:", placeholder: "mon-email@web.net", input_html:{class:"margin-left-two padding-one w-50"} %>
+        <%= f.button :submit, 'Valider', class:'btn-principal small margin-top-two' %>
+      <% end %>
+    </div>
+  </div>
+</div>

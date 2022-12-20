@@ -65,9 +65,20 @@
   }
 }
 
-@media(max-width: 900px){
+@media(max-width: 1200px){
   #review-section{
     height: 65vh;
+    display: block;
+  }
+}
+
+@media(max-width: 900px){
+  #review-section{
+    height: 75vh;
+  }
+
+  #home-infos, #service{
+    padding: 20px 0px 20px 0px;
   }
 }
 
@@ -76,6 +87,10 @@
     .splide__arrow{
       display: none;
     }
+
+    .splide__list{
+      width: 100%
+    }
   }
 }
 
@@ -83,5 +98,10 @@
 @media(max-width: 500px) {
   #function {
     padding: 50px 0px 200px 0px;
+  }
+  #function, #service, #home-infos {
+    p {
+      text-align: justify;
+    }
   }
 }

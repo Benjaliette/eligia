@@ -233,7 +233,7 @@
     height: 150px;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 0px 8px lightgrey;
+    box-shadow: 0px 0px 2px lightgrey;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -924,5 +924,48 @@
     .doc-input{
       margin-top: 2px;
     }
+  }
+}
+
+// Invoice card
+
+.invoice-card-btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  a {
+    margin: 10px
+  }
+}
+
+.invoice-card {
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: flex-start;
+  justify-content: space-around;
+  font-size: 14px;
+  margin-top: 20px;
+  padding: 1em 2em;
+
+  .invoice-card-part {
+    width: 80%;
+  }
+
+  .invoice-card-part-title{
+    font-weight: bolder;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+@media(max-width:900px){
+  .invoice-card {
+    grid-template-columns: 1fr;
   }
 }

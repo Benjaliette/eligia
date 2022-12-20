@@ -57,3 +57,6 @@ class BlogpostsController < ApplicationController
     params.require(:blogpost).permit(:title, :body, :main_picture, :pinned)
   end
 end
+
+
+##

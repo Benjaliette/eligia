@@ -34,6 +34,12 @@ export default class extends Controller {
     }
   }
 
+  closeNotifications(event) {
+    if (event.srcElement != this.notificationsIconTarget && !event.path.includes(this.notificationsTarget)) {
+      this.notificationsTarget.classList.add('display-none')
+    }
+  }
+
   readNotifications(event) {
     event.target.parentElement.requestSubmit()
   }

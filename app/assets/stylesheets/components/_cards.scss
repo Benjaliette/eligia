@@ -639,12 +639,6 @@
   }
 }
 
-@media(max-width: 900px){
-  .review-card{
-    padding: 1em 2em;
-  }
-}
-
 // Card for price in recap
 .price-recap {
   font-size: 14px;
@@ -660,6 +654,10 @@
 }
 
 @media (max-width: 900px) {
+  .review-card{
+    padding: 1em 2em;
+  }
+
   .main-user-card {
     width: 80%;
     position: absolute;
@@ -722,6 +720,23 @@
 
   .blog-cards {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .notification-card {
+    .notification-list {
+      .notification-list-item {
+        .notification-date {
+          font-size: 12px;
+          font-style: italic;
+        }
+        .notification-content {
+          font-size: 14px;
+          text-align: justify;
+          padding: 10px 0px;
+          width: 80%;
+        }
+      }
+    }
   }
 }
 
@@ -794,6 +809,26 @@
     .blog-card {
       width: 70vw;
       margin: 0 auto;
+    }
+  }
+
+  .notification-card {
+    .notification-list {
+      .notification-list-item {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .notification-date {
+          font-size: 12px;
+          font-style: italic;
+        }
+        .notification-content {
+          font-size: 14px;
+          text-align: left;
+          padding: 10px 0px;
+          width: 100%;
+        }
+      }
     }
   }
 }

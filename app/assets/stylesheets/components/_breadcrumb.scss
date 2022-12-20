@@ -33,20 +33,22 @@
     font-size: 12px;
   }
 
-  .dashboard-breadcrumb-separator {
-    padding: 2px;
+  .dashboard-breadcrumb {
+    .dashboard-breadcrumb-separator {
+      padding: 2px;
+    }
   }
 }
 
 @media (max-width: 500px) {
   .dashboard-breadcrumb {
-    font-size: 7px;
+    font-size: 12px;
   }
 
   .dashboard-breadcrumb-item {
     &.active {
       a {
-        font-size: 8px;
+        font-size: 12px;
       }
     }
   }

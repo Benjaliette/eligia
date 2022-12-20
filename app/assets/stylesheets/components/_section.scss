@@ -68,6 +68,7 @@
 @media(max-width: 1200px){
   #review-section{
     height: 65vh;
+    display: block;
   }
 }
 
@@ -85,6 +86,10 @@
   #review-section{
     .splide__arrow{
       display: none;
+    }
+
+    .splide__list{
+      width: 100%
     }
   }
 }

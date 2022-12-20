@@ -691,6 +691,10 @@
 
   .tarif-card-box {
     height: fit-content;
+    position: absolute;
+    left: 0;
+    border-radius: 0px;
+    padding-bottom: 10vh;
 
     .tarif-cards {
       flex-direction: column;
@@ -698,6 +702,7 @@
       margin: 20px auto;
       height: 100%;
       width: 100%;
+
 
       .tarif-card {
         width: 70%;

@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       redirect_to edit_order_path(@order)
+      OrderMailer.with(order: @order).order_creation.deliver_now
     else
       render :new, status: :unprocessable_entity
     end

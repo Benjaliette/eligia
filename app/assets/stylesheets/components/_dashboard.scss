@@ -342,6 +342,9 @@
   }
 
   .order-steps {
+    width: 90%;
+    margin: 50px auto 150px auto;
+
     .order-step {
       &::before {
         width: 84px;

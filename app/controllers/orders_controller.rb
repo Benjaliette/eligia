@@ -1,5 +1,3 @@
-require 'json'
-
 class OrdersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[new create edit update show destroy]
 
@@ -10,9 +8,6 @@ class OrdersController < ApplicationController
   after_action :declare_paid, only: :success
 
   after_action :order_pundit, only: %i[show new create edit update show_invoice_pdf destroy]
-
-  def index
-  end
 
   def show
   end
@@ -65,7 +60,7 @@ class OrdersController < ApplicationController
   private
 
   def set_order
-    @order = Order.friendly.find(params[:id])
+    @order = Order.friendly.find(params[:id]).decorate
   end
 
   def set_categories

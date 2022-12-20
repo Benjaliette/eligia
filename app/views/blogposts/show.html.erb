@@ -24,7 +24,7 @@
           <%= image_tag @blogpost.main_picture, alt: "text" %>
         </div>
       <% end %>
-      <p class="blog-date">Écrit le <%= l(Date.parse(@blogpost.created_at.to_s), format: :long) %> par <%= @blogpost.user.first_name %></p>
+      <p class="blog-date">Écrit le <%= format_french_date(@blogpost.created_at) %> par <%= @blogpost.user.first_name %></p>
       <div class="margin-y-five blog-body">
         <%= @blogpost.body %>
       </div>

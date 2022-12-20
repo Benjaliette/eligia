@@ -74,3 +74,9 @@
   padding-left: 10px;
   border-left: 3px solid #8FCC9B;
 }
+
+@media (max-width: 500px) {
+  .dashboard-title {
+    font-size: 20px;
+  }
+}

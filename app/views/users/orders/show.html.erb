@@ -15,7 +15,7 @@
             <%= link_to "Espace personnel", user_path(current_user), data: { turbo_frame: :_top } %>
           </li>
           <li class="dashboard-breadcrumb-separator"></li>
-          <li class="dashboard-breadcrumb-item">Dossier de <%= @order.deceased_first_name %> <%= @order.deceased_last_name %></li>
+          <li class="dashboard-breadcrumb-item">Dossier de <%= @order.deceased_full_name %></li>
         </ul>
       </div>
     </div>

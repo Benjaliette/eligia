@@ -31,7 +31,7 @@
             <div class="user-dashboard-content">
               <% @orders.each do |order| %>
                 <%= link_to users_order_path(order), data: { turbo_frame: :_top } do %>
-                  <%= render "orders/order_dashboard_card", order: order %>
+                  <%= render "orders/order_dashboard_card", order: order.decorate %>
                 <% end %>
               <% end %>
             </div>
@@ -66,7 +66,7 @@
                 <% @notifications.each do |notification| %>
                   <li class="notification-list-item" data-controller="modal">
                     <div class="notification-all">
-                      <%= link_to notification.order_account ? order_order_account_path(notification.order, notification.order_account) : order_path(notification.order) do %>
+                      <%= link_to notification.order_account ? order_order_account_path(notification.order, notification.order_account) : users_order_path(notification.order) do %>
                         <div class="notification-content"><%= notification.content %></div>
                       <% end %>
                       <% notification_time = (Date.today - notification.created_at.to_date).to_i %>

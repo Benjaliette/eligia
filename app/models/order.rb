@@ -128,7 +128,7 @@ class Order < ApplicationRecord
 
   def notify_order_payment
     Notification.create(
-      content: "La demande de résiliation des contrats de #{self.deceased_first_name} #{self.deceased_last_name}
+      content: "La demande de résiliation des contrats de #{self.decorate.deceased_full_name}
                 a bien été prise en compte",
       order: self
     )
@@ -148,7 +148,7 @@ class Order < ApplicationRecord
     return unless self.done?
 
     Notification.create(
-      content: "Tous les contrats de #{self.deceased_first_name} #{self.deceased_last_name} ont été résiliés.",
+      content: "Tous les contrats de #{self.decorate.deceased_full_name} ont été résiliés.",
       order: self
     )
   end

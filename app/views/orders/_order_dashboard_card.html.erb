@@ -1,7 +1,7 @@
 <div class=order-dashboard-card>
 
   <div class="order-card-info">
-    <p>Dossier de <%= order.deceased_first_name %> <%= order.deceased_last_name.upcase %></p>
+    <p>Dossier de <%= order.deceased_cap_full_name %></p>
   </div>
   <div class="order-card-content">
     <p class="order-state-<%=order.aasm_state%>"><%= order.state_to_french %></p>

@@ -1,7 +1,7 @@
 require 'json'
 
 class OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[create edit update show destroy]
+  skip_before_action :authenticate_user!, only: %i[new create edit update show destroy]
 
   before_action :set_order, only: %i[show edit update destroy success show_invoice_pdf]
   before_action :set_categories, only: %i[new create edit update]
@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       redirect_to edit_order_path(@order)
-      OrderMailer.with(order: @order).order_creation.deliver_now
+      send_order_creation_email
     else
       render :new, status: :unprocessable_entity
     end
@@ -78,6 +78,12 @@ class OrdersController < ApplicationController
 
   def order_pundit
     authorize @order
+  end
+
+  def send_order_creation_email
+    return if Rails.env == "test"
+
+    OrderMailer.with(order: @order).order_creation.deliver_now
   end
 
   def order_params

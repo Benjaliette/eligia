@@ -46,12 +46,12 @@ RSpec.describe "pages", type: :system do
       expect(page).to have_text("Votre message")
     end
 
-    it "Has a link towarts /resiliations/contrats" do
+    it "Has a link towards /orders/new" do
       visit "/"
       expect(page).to have_link(nil, href: '/resiliations/commencer')
     end
 
-    it "Can click the link towarts /resiliations/commencer" do
+    it "Can click the link towarts /orders/new" do
       visit "/"
       page.find(class: 'btn-call-to-a', text: 'Commencer').click
       expect(page).to have_text("Adresse email")

@@ -28,6 +28,7 @@ SitemapGenerator::Sitemap.create do
   add new_message_path
   add new_user_session_path
   add new_user_registration_path
+  add new_order_path
 
   # Add '/blog'
   add blogposts_path, changefreq: 'daily'

@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       redirect_to edit_order_path(@order)
-      OrderMailer.with(order: @order).order_creation.deliver_now
+      send_order_creation_email
     else
       render :new, status: :unprocessable_entity
     end
@@ -78,6 +78,12 @@ class OrdersController < ApplicationController
 
   def order_pundit
     authorize @order
+  end
+
+  def send_order_creation_email
+    return if Rails.env == "test"
+
+    OrderMailer.with(order: @order).order_creation.deliver_now
   end
 
   def order_params

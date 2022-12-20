@@ -642,6 +642,10 @@
 @media(max-width: 900px){
   .review-card{
     padding: 1em 2em;
+
+    h3{
+      padding-left: 1em !important;
+    }
   }
 }
 
@@ -679,6 +683,7 @@
 
   .service-cards {
     grid-template-columns: 1fr;
+    grid-gap: 20px;
   }
 
   .tarif-card-box {
@@ -772,7 +777,11 @@
 
   .service-cards {
     .service-card {
-      height: 270px;
+      height: 200px;
+    }
+
+    .service-card-text{
+      font-size: 14px;
     }
   }
 

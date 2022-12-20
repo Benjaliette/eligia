@@ -66,7 +66,7 @@ class OrderDocumentsController < ApplicationController
   def notify_user
     Notification.create(
       content: "Le document/information '#{@order_document.document.name}' a été ajouté pour votre démarche
-                concernant #{@order.deceased_first_name} #{@order.deceased_last_name}",
+                concernant #{@order.decorate.deceased_full_name}",
       order: @order,
       order_account: @order_account ? @order_account : nil
     )

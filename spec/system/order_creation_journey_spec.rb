@@ -22,7 +22,7 @@ RSpec.describe "order_creation_journey", type: :system do
     ## Journey steps
     ## --------------------------------------------------------------------------------------------------
 
-    def access_created_page
+    def access_edit_page
       order = create(:order)
       visit "/resiliations/#{order.id}/contrats"
     end
@@ -40,7 +40,7 @@ RSpec.describe "order_creation_journey", type: :system do
     end
 
     def step_one_complete
-      access_created_page
+      access_edit_page
       click_on_subcategory
       select_an_account
       click_on_valider
@@ -65,13 +65,13 @@ RSpec.describe "order_creation_journey", type: :system do
 
 
     # STEP 1 :
-    it "Accesses the orders/created page" do
-      access_created_page
+    it "Accesses the order/edit page" do
+      access_edit_page
       expect(page).to have_text("Contrats à résilier")
     end
 
     it "An account-card appears on the right hand side once we select a contract" do
-      access_created_page
+      access_edit_page
       click_on_subcategory
       previous_count = page.all('.account-card').count
       select_an_account
@@ -79,7 +79,7 @@ RSpec.describe "order_creation_journey", type: :system do
     end
 
     it "Click on 'valider' and land on 'documents à fournir'" do
-      access_created_page
+      access_edit_page
       click_on_subcategory
       select_an_account
       click_on_valider

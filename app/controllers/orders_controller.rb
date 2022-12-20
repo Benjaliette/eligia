@@ -1,7 +1,7 @@
 require 'json'
 
 class OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[create edit update show destroy]
+  skip_before_action :authenticate_user!, only: %i[new create edit update show destroy]
 
   before_action :set_order, only: %i[show edit update destroy success show_invoice_pdf]
   before_action :set_categories, only: %i[new create edit update]

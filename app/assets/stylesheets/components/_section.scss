@@ -67,7 +67,13 @@
 
 @media(max-width: 900px){
   #review-section{
-    height: 65vh;
+    height: 75vh;
+  }
+
+  #home-infos{
+    padding: 50px 0px 20px 0px;
+    text-align: center;
+    background-color: $off-white;
   }
 }
 

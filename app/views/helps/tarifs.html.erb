@@ -16,17 +16,11 @@
         Pour utiliser ce service, vous aurez le choix entre trois prix différents
       </p>
       <ul>
-        <li>
-          Le forfait initial au prix le plus bas (109€ TTC). A ce prix là, vous avez le choix de résilier
-          jusqu'à 7 contrats.
-        </li>
-        <li>
-          Le forfait premium à 169€ TTC. Ce forfait comprend cette fois-ci la résiliation de 7 à 12 contrats (inclus).
-        </li>
-        <li>
-          Enfin, le forfait "illimité" à un prix de 219€ qui vous permet de ne pas compter le nombre de contrats
-          que vous souhaitez résilier.
-        </li>
+        <% @packs.each do |pack| %>
+          <li>
+            <p>Le pack <span class="bold"><%= pack.title.downcase %></span>, <%= pack.price.to_i %> €. permettant de résilier <%= pack.quantity_text.downcase %>. <%= pack.description %></p>
+          </li>
+        <% end %>
       </ul>
     </div>
 

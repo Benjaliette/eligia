@@ -14,5 +14,6 @@ class HelpsController < ApplicationController
   end
 
   def tarifs
+    @packs = Pack.all.last(3)
   end
 end

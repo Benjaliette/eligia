@@ -233,7 +233,7 @@
     height: 150px;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 0px 8px lightgrey;
+    box-shadow: 0px 0px 2px lightgrey;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -542,9 +542,8 @@
     width: 100%;
     height: 50vh;
     border: solid 1px $light-gray;
-    border-radius: 8px;
+    border-radius: 1em;
     background-color: white;
-    box-shadow: 0px 0px 2px lightgrey;
 
     padding: 20px;
     display: flex;
@@ -639,6 +638,20 @@
   }
 }
 
+@media(max-width: 900px){
+  .review-card{
+    padding: 1em 1.5em;
+
+    h3{
+      padding-left: 1em !important;
+    }
+
+    p{
+      text-align: justify;
+    }
+  }
+}
+
 // Card for price in recap
 .price-recap {
   font-size: 14px;
@@ -677,10 +690,15 @@
 
   .service-cards {
     grid-template-columns: 1fr;
+    grid-gap: 20px;
   }
 
   .tarif-card-box {
     height: fit-content;
+    position: absolute;
+    left: 0;
+    border-radius: 0px;
+    padding-bottom: 10vh;
 
     .tarif-cards {
       flex-direction: column;
@@ -688,6 +706,7 @@
       margin: 20px auto;
       height: 100%;
       width: 100%;
+
 
       .tarif-card {
         width: 70%;
@@ -786,8 +805,14 @@
   }
 
   .service-cards {
+    padding: 2em;
+    margin-bottom: 0;
     .service-card {
-      height: 270px;
+      height: 200px;
+    }
+
+    .service-card-text{
+      font-size: 14px;
     }
   }
 
@@ -807,8 +832,13 @@
     grid-template-columns: 1fr;
 
     .blog-card {
-      width: 70vw;
+      width: 80vw;
       margin: 0 auto;
+      height: 60vh;
+
+      .blog-card-img{
+        border-radius: 0.5em;
+      }
     }
   }
 
@@ -935,5 +965,48 @@
     .doc-input{
       margin-top: 2px;
     }
+  }
+}
+
+// Invoice card
+
+.invoice-card-btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  a {
+    margin: 10px
+  }
+}
+
+.invoice-card {
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: flex-start;
+  justify-content: space-around;
+  font-size: 14px;
+  margin-top: 20px;
+  padding: 1em 2em;
+
+  .invoice-card-part {
+    width: 80%;
+  }
+
+  .invoice-card-part-title{
+    font-weight: bolder;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+@media(max-width:900px){
+  .invoice-card {
+    grid-template-columns: 1fr;
   }
 }

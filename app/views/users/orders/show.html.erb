@@ -54,33 +54,39 @@
 
         <% if @order.invoice_file.attached? %>
           <div class="order-dashboard-section">
-            <h3 class="dashboard-title margin-top-four width-fit-content">État des contrats à résilier :</h3>
+            <h3 class="dashboard-title margin-top-four width-fit-content">Informations de facturation :</h3>
               <div class="box margin-bottom-five">
-                <div class="box-invoice-btn">
+                <div class="invoice-card-btn">
                   <a class="btn-third small" href=<%=@order.invoice_file.url%> target='_blank'> Voir la facture</a>
                 </div>
-                <div class="box-invoice">
-                  <ul class="box-invoice-part">
-                    <li class="box-invoice-part-title">Ouverture du dossier :</li>
-                    <li><%= l(Date.parse(@order.created_at.to_s), format: :long) %></li>
-                  </ul>
-                  <ul class="box-invoice-part">
-                    <li class="box-invoice-part-title">Récapitulatif :</li>
-                    <li><span>Nombre de contrats :</span> <span><%= @order.order_accounts.count %></span></li>
-                    <li><span>Forfait :</span> <span><%= @order.pack.title %></span></li>
-                    <li><span>Prix HT :</span> <span><%= @order.pack.price / 1.2 %>€</span></li>
-                    <li><span>TVA (20%) :</span> <span><%= @order.pack.price / 1.2 * 0.2 %>€</span></li>
-                    <li><span>Total TTC :</span> <span><%= @order.pack.price %>€</span></li>
-                  </ul>
-                  <ul class="box-invoice-part">
-                    <li class="box-invoice-part-title">Adresse de facturation :</li>
-                    <li><%= @order.address.street %></li>
-                    <% unless @order.address.complement.nil? %>
-                      <li><%= @order.address.complement %></li>
-                    <% end %>
-                    <li><%= @order.address.zip %> - <%= @order.address.city %></li>
-                    <li><%= @order.address.state %></li>
-                  </ul>
+                <div class="invoice-card">
+                  <div class="invoice-card-part">
+                    <p class="invoice-card-part-title">Ouverture du dossier :</p>
+                    <ul>
+                      <li><%= l(Date.parse(@order.created_at.to_s), format: :long) %></li>
+                    </ul>
+                  </div>
+                  <div class="invoice-card-part">
+                    <p class="invoice-card-part-title">Récapitulatif :</p>
+                    <ul>
+                      <li><span>Nombre de contrats :</span> <span><%= @order.order_accounts.count %></span></li>
+                      <li><span>Forfait :</span> <span><%= @order.pack.title %></span></li>
+                      <li><span>Prix HT :</span> <span><%= @order.pack.price / 1.2 %>€</span></li>
+                      <li><span>TVA (20%) :</span> <span><%= @order.pack.price / 1.2 * 0.2 %>€</span></li>
+                      <li><span>Total TTC :</span> <span><%= @order.pack.price %>€</span></li>
+                    </ul>
+                  </div>
+                  <div class="invoice-card-part">
+                    <p class="invoice-card-part-title">Adresse de facturation :</p>
+                    <ul>
+                      <li><%= @order.address.street %></li>
+                      <% unless @order.address.complement.nil? %>
+                        <li><%= @order.address.complement %></li>
+                      <% end %>
+                      <li><%= @order.address.zip %> - <%= @order.address.city %></li>
+                      <li><%= @order.address.state %></li>
+                    </ul>
+                  </div>
                 </div>
                 <%# <%= link_to "Voir live", show_invoice_pdf_order_path(@order), class:'btn-third small', target:'_blank' %>
               </div>

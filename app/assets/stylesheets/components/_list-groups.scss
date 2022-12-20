@@ -229,7 +229,8 @@
 @media (max-width: 500px) {
   .func-grid {
     grid-template-columns: 1fr;
-    margin-top: 70px;
+    margin-top: 10px;
+    margin-bottom: 50px;
 
     .title {
       display: none;
@@ -238,6 +239,7 @@
     .func-nav {
       padding: 20px 0px;
       width: 95%;
+      margin: auto;
 
       .func-nav-items {
         display: none;
@@ -272,7 +274,7 @@
         padding: 0px 0.1vw;
 
         .func-nav-item {
-          padding: 0px 4vw;
+          padding: 0px 3vw;
           font-size: 12px;
           text-align: center;
 
@@ -299,7 +301,8 @@
 
     .func-infos {
       padding: 10px 10px 200px 10px;
-      width: 87%
+      width: 87%;
+      text-align: left;
     }
   }
 }

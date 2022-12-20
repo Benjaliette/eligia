@@ -7,8 +7,8 @@ export default class extends Controller {
     new Splide( '.splide', {
       type   : 'loop',
       speed: 800,
-      padding: '20%',
-      fixedWidth : '60%',
+      padding: '15%',
+      fixedWidth : '45%',
       gap : '1em',
       breakpoints: {
         900: {
@@ -17,7 +17,7 @@ export default class extends Controller {
           padding: {left:0, right: '10%'},
         },
         600: {
-          fixedWidth : '90%',
+          fixedWidth : '80%',
           padding: {left:0, right: '5%'},
         },
       }

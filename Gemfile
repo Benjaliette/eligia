@@ -27,6 +27,9 @@ gem 'combine_pdf'
 # Used devise to code the users table
 gem "devise"
 
+# Use to generate easily decorators
+gem 'draper'
+
 # Factorybot : used to generate fixtures for testing
 gem "factory_bot_rails"
 

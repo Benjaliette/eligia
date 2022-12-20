@@ -27,6 +27,10 @@ class OrdersController < ApplicationController
     authorize @order
   end
 
+  def new
+
+  end
+
   def create
     @order = Order.create
     redirect_to edit_order_path(@order)
@@ -51,20 +55,6 @@ class OrdersController < ApplicationController
     @order.destroy
 
     redirect_to root_path
-  end
-
-  def paiement
-    @order.pack = @order.determine_pack_type
-    @order.amount = @order.pack.price
-    @order.user = current_user
-    if @order.update(order_params)
-      payment = @order.set_payplug_payment
-      @order.update(checkout_session_id: payment[:id])
-
-      redirect_to payment[:hosted_payment][:payment_url], allow_other_host: true
-    else
-      render :recap
-    end
   end
 
   private

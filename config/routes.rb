@@ -42,9 +42,6 @@ Rails.application.routes.draw do
   resources :order_accounts, only: %i[create destroy]
   resources :accounts, only: %i[create]
 
-  # Redirect to orders/new if there is a refresh after a render :new
-  get '/resiliations/', to: 'orders#new'
-
   resources :users, path: 'utilisateurs', path_names: { edit: 'modification' }, only: %i[show index edit update] do
     member do
       get :control_password, path: 'controle'

@@ -1,6 +1,6 @@
 <% content_for :title, "Nouvelle démarche - Eligia" %>
 <% content_for :meta, "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" %>
-<div class="order-parts" data-controller="toggle-contracts account-search-autocomplete check-for-added-contracts" data-action="click@window->account-search-autocomplete#clickOutside" data-check-for-added-contracts-added-ids-value="<%=order.order_accounts.map(&:account).map(&:id)%>">
+<div class="order-parts" data-controller="toggle-contracts account-search-autocomplete check-for-added-contracts"  data-check-for-added-contracts-added-ids-value="<%=order.order_accounts.map(&:account).map(&:id)%>" data-action=<%= yield(:click_outside) %>>
   <div class="form-order-steps">
     <div class="order-steps-btn">
       <% unless order.id.nil? %>

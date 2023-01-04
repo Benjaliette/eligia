@@ -42,39 +42,39 @@ RSpec.describe Order, type: :model do
       expect(order.determine_pack_type.title).to eq("packTitle1")
     end
 
-    it "Should not assign pack #2 for 7 OrderAccounts" do
+    it "Should not assign pack #2 for 5 OrderAccounts" do
       create(:pack, title: 'packTitle1', level: 1)
       create(:pack, title: 'packTitle2', level: 2)
       create(:pack, title: 'packTitle3', level: 3)
       order = create(:order, pack: Pack.first)
-      create_list(:order_account, 7, order: order)
+      create_list(:order_account, 5, order: order)
       expect(order.determine_pack_type.title).not_to eq("packTitle2")
     end
 
-    it "Should assign pack #2 for 8 OrderAccounts" do
+    it "Should assign pack #2 for 10 OrderAccounts" do
       create(:pack, title: 'packTitle1', level: 1)
       create(:pack, title: 'packTitle2', level: 2)
       create(:pack, title: 'packTitle3', level: 3)
       order = create(:order, pack: Pack.first)
-      create_list(:order_account, 8, order: order)
+      create_list(:order_account, 10, order: order)
       expect(order.determine_pack_type.title).to eq("packTitle2")
     end
 
-    it "Should not assign pack #3 for 15 OrderAccounts" do
+    it "Should not assign pack #3 for 10 OrderAccounts" do
       create(:pack, title: 'packTitle1', level: 1)
       create(:pack, title: 'packTitle2', level: 2)
       create(:pack, title: 'packTitle3', level: 3)
       order = create(:order, pack: Pack.first)
-      create_list(:order_account, 15, order: order)
+      create_list(:order_account, 10, order: order)
       expect(order.determine_pack_type.title).not_to eq("packTitle3")
     end
 
-    it "Should assign pack #3 for 16 OrderAccounts" do
+    it "Should assign pack #3 for 11 OrderAccounts" do
       create(:pack, title: 'packTitle1', level: 1)
       create(:pack, title: 'packTitle2', level: 2)
       create(:pack, title: 'packTitle3', level: 3)
       order = create(:order, pack: Pack.first)
-      create_list(:order_account, 16, order: order)
+      create_list(:order_account, 11, order: order)
       expect(order.determine_pack_type.title).to eq("packTitle3")
     end
 

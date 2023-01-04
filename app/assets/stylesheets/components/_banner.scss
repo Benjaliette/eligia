@@ -65,7 +65,17 @@
       }
     }
 
+    &.home-banner > .container{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn-call-to-a{
+      margin: auto;
+      width: fit-content;
+    }
    }
+
 
   .banner-image{
     display: none;

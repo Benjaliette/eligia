@@ -21,7 +21,7 @@ RSpec.describe "pages", type: :system do
   context "pages#home" do
     it "Can find catch phrase" do
       visit "/"
-      expect(page).to have_text("Résiliez en 10 minutes tous les\nabonnements d'un proche disparu")
+      expect(page).to have_text("Effectuez en 10 minutes")
     end
 
     it "Has a link towarts /pages/tarifs" do

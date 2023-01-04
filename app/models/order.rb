@@ -52,8 +52,8 @@ class Order < ApplicationRecord
 
   def determine_pack_type
     case self.order_accounts.length
-    when 0..7 then return Pack.order(created_at: :desc).find_by(level: 1)
-    when 8..15 then return Pack.order(created_at: :desc).find_by(level: 2)
+    when 0..5 then return Pack.order(created_at: :desc).find_by(level: 1)
+    when 6..10 then return Pack.order(created_at: :desc).find_by(level: 2)
     else return Pack.order(created_at: :desc).find_by(level: 3)
     end
   end

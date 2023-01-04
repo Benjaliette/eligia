@@ -36,11 +36,13 @@ class Account < ApplicationRecord
   end
 
   def notify_validated
-    Notification.create(
-      content: "Le contrat '#{self.name}' a été validé. Vous pouvez retrouver les documents à y joindre en cliquant
-                sur cette notification",
-      order: self.order_accounts.first.order,
-      order_account: self.order_accounts.first
-    )
+    unless self.order_accounts.empty?
+      Notification.create(
+        content: "Le contrat '#{self.name}' a été validé. Vous pouvez retrouver les documents à y joindre en cliquant
+                  sur cette notification",
+        order: self.order_accounts.first.order,
+        order_account: self.order_accounts.first
+      )
+    end
   end
 end

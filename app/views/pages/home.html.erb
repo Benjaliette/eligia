@@ -10,7 +10,7 @@
 
 <div class="banner home-banner">
   <div class="container">
-      <h1>Résiliez en 10 minutes tous les <br> abonnements d'un proche disparu</h1>
+      <h1>Effectuez en 10 minutes toutes les <br> formalités d'un proche disparu</h1>
       <p id='tagline'>Simplifions ensemble les démarches du deuil</p>
         <%= link_to "Commencer", new_order_path, class:"btn-call-to-a" %>
   </div>
@@ -23,14 +23,14 @@
     <h2 class="home-title">Notre service</h2>
 
     <p>
-      <em>Eligia</em> est un outil digital permettant de résilier les abonnements d'un proche suite à son décès.<br><br>
+      <em>Eligia</em> est un outil digital permettant de résilier les abonnements d'un proche après son décès et notifier toutes les administrations publiques concernées.<br><br>
       <strong>Nous nous occupons de tout. Vous pouvez suivre l'avancée des démarches en temps réel.</strong>
     </p>
 
     <ul class="service-cards">
       <li class="service-card">
         <%= image_tag('icon-fast.svg', alt:'icone rapidité', class: 'service-card-img')%>
-        <div class="service-card-text">Demande en ligne effectuée en <span class="highlight-yellow">quelques minutes</span> : <br> il suffit de renseigner les comptes à résilier et de joindre les documents nécessaires !</div>
+        <div class="service-card-text">Demande en ligne effectuée en <span class="highlight-yellow">10 min</span> : <br> il suffit de renseigner les contrats et administrations concernées et fournir les documents nécessaires !</div>
       </li>
       <li class="service-card">
         <%= image_tag('icon-list.svg', alt:'icone vaste choix', class: 'service-card-img')%>
@@ -52,7 +52,7 @@
   <div class="container">
     <h2 class="home-title">Comment ça fonctionne ?</h2>
     <p class="padding-top-three padding-bottom-three">
-      <strong>Pour démarrer une démarche sur eligia, il vous suffit de sélectionner les comptes à résilier
+      <strong>Pour démarrer une démarche sur eligia, il vous suffit de sélectionner les comptes à résilier, et administrations à notifier
       puis de fournir les documents demandés.</strong>
     </p>
     <p>
@@ -70,7 +70,7 @@
               id="contrats"
               data-action="click->home-function#infoAppear"
               data-home-function-target='navItem'>
-            Étape 1 :<br> les contrats
+            Étape 1 :<br> les contrats / administrations
           </li>
           <li class="func-nav-item"
               id="documents"
@@ -125,10 +125,10 @@
         <div class="func-infos-text" id="contrats" data-home-function-target='infoDiv'>
           <h3>1. Choisir les contrats</h3>
           <p>
-            La première étape consiste à sélectionner les contrats du défunt que vous souhaitez résilier. <br><br>
+            La première étape consiste à sélectionner les contrats du défunt que vous souhaitez résilier et les administrations que vous voulez notifier du décès. <br><br>
 
             Grâce à cette liste, nous pourrons ensuite vous demander les informations et documents
-            nécessaires à la résiliation des divers contrats.
+            nécessaires aux formalités.
           </p>
           <div class="d-flex align-items-flex-end">
             <%= image_tag('icon-subscription.svg', class:'icon-infos', alt:'icone sélection contrats') %>

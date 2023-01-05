@@ -5,8 +5,6 @@ class OrdersController < ApplicationController
   before_action :set_categories, only: %i[new create edit update]
   before_action :set_accounts, only: %i[new create edit]
 
-  after_action :declare_paid, only: :success
-
   after_action :order_pundit, only: %i[show new create edit update show_invoice_pdf destroy]
 
   def show

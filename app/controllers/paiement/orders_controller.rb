@@ -1,6 +1,6 @@
 class Paiement::OrdersController < ApplicationController
   before_action :set_order, only: %i[update show]
-  after_action :declare_paid, only: :show
+  before_action :declare_paid, only: :show
   after_action :order_pundit, only: %i[update show]
 
   def show

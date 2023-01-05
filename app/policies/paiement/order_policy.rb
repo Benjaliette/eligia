@@ -7,7 +7,7 @@ class Paiement::OrderPolicy < ApplicationPolicy
   end
 
   def show?
-    record.notifications.count == 0 && record.payplug_is_paid?
+    record.notifications.count == 0 && record.paid
   end
 
   def update?

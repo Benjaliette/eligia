@@ -32,7 +32,8 @@ Rails.application.routes.draw do
   end
 
   namespace :paiement do
-    resources :orders, path: 'resiliations', only: %i[show update]
+    get '/resiliations/:id/success', to: 'orders#show'
+    resources :orders, path: 'resiliations', only: %i[update]
   end
 
   namespace :users, path: 'utilisateurs' do

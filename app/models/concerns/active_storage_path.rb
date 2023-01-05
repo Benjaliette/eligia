@@ -20,7 +20,7 @@ module ActiveStoragePath
         when OrderAccount
           custom_key = "#{self.account.name.gsub(' ', '_')}/#{Date.today}_Résiliation_#{self.account.name.gsub(' ', '_')}-#{original_key}"
         when Order
-          custom_key = "Facture"
+          custom_key = "Facture-#{original_key}"
         when Blogpost
           custom_key = original_key
         end

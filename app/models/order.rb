@@ -106,7 +106,7 @@ class Order < ApplicationRecord
         language: 'fr'
       },
       hosted_payment: {
-        return_url: base_url + Rails.application.routes.url_helpers.paiement_order_url(self, only_path: true),
+        return_url: base_url + Rails.application.routes.url_helpers.paiement_url(self, only_path: true),
         cancel_url: base_url + Rails.application.routes.url_helpers.order_url(self, only_path: true),
       },
       metadata: {

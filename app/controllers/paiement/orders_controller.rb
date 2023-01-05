@@ -23,7 +23,7 @@ class Paiement::OrdersController < ApplicationController
   private
 
   def declare_paid
-    return unless @order.payplug_is_paid?
+    return unless @order.payplug_is_paid? || !@order.paid?
 
     @order.notify_order_payment
     @order.update(paid: true)

@@ -18,7 +18,7 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  config.action_controller.asset_host = 'https://www.eligia.fr'
+  config.action_controller.asset_host = 'https://eligia-fa7ef5f340ed.herokuapp.com/'
   config.action_mailer.asset_host = config.action_controller.asset_host
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers

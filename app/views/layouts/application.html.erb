@@ -2,20 +2,20 @@
 <html lang="fr">
   <head>
         <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8WXRW11HK"></script>
+    <%# <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8WXRW11HK"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-M8WXRW11HK'); // Balise Google Ads + Google Analytics
       gtag('config', 'AW-10977648623'); // Compte Google Ads
-    </script>
+    </script> %>
     <% if content_for?(:title) %>
       <title>
         <%= yield(:title) %>
       </title>
     <% end %>
-    <%= display_meta_tags(default_meta_tags) %>
+    <%# <%= display_meta_tags(default_meta_tags) %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <% if content_for?(:meta) %>
       <meta name='viewport' content="<%= yield(:meta)%>">

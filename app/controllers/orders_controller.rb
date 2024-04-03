@@ -29,7 +29,8 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       redirect_to edit_order_path(@order)
-      send_order_creation_email
+      # Ligne commentée car mailing annulée
+      # send_order_creation_email
     else
       render :new, status: :unprocessable_entity
     end
